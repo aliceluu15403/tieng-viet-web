@@ -1,0 +1,761 @@
+---
+// src/pages/index.astro - Havie Landing Page
+---
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HAVIE. — Learn Vietnamese Online | 1-on-1 Coaching</title>
+  <meta name="description" content="Personalized 1-on-1 online Vietnamese lessons with Hang Luu. Real conversations, pronunciation mastery, and cultural depth." />
+
+  <!-- Tailwind CSS CDN -->
+  <script is:inline src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: DM Sans & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #fffaf5;
+      --navy: #0f172a;
+      --brand-red: #dc2626;
+    }
+
+    /* Khắc phục khoảng trắng khi bấm navigation bar */
+    html {
+      scroll-padding-top: 85px;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--cream);
+      color: var(--navy);
+    }
+
+    .font-brand {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .curved-underline {
+      position: relative;
+    }
+    .curved-underline::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 6px;
+      border-bottom: 3px solid var(--brand-red);
+      border-radius: 50%;
+      transform: rotate(-1.5deg);
+    }
+
+    .hero-glow {
+      background: radial-gradient(circle, rgba(220, 38, 38, 0.12) 0%, rgba(245, 158, 11, 0.06) 50%, transparent 80%);
+    }
+  </style>
+</head>
+<body class="selection:bg-red-600 selection:text-white min-h-screen flex flex-col antialiased">
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-40 bg-[#fffaf5]/90 backdrop-blur-md border-b border-stone-200/80 h-20">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-full flex items-center justify-between">
+      
+      <!-- LOGO (ĐÃ BỎ CHẤM ĐEN) -->
+      <a href="/" class="group flex flex-col select-none text-left">
+        <div class="h-7 flex items-center">
+          <svg class="h-6 sm:h-7 w-auto overflow-visible" viewBox="0 0 175 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 2H6V12H18V2H24V28H18V17H6V28H0V2Z" fill="#dc2626"/>
+            <path d="M41 2L52 28H45.5L43.2 22H33.8L31.5 28H25L36 2H41ZM38.5 8.5L35.2 17.5H41.8L38.5 8.5Z" fill="#dc2626"/>
+            <path d="M53 2H59.5L67 21L74.5 2H81L70.5 28H63.5L53 2Z" fill="#dc2626"/>
+            <path d="M86 2H92V28H86V2Z" fill="#dc2626"/>
+            <path d="M98 2H117V7.5H104V12H115V17H104V22.5H117V28H98V2Z" fill="#dc2626"/>
+          </svg>
+        </div>
+        <span class="text-[9.5px] font-bold tracking-[0.24em] text-stone-400 uppercase mt-1.5 pl-0.5 group-hover:text-slate-700 transition-colors leading-none">
+          Learn Vietnamese Online
+        </span>
+      </a>
+
+      <!-- Menu Links -->
+      <nav class="hidden md:flex items-center space-x-7 text-sm font-semibold text-slate-700">
+        <a href="#about" class="hover:text-red-600 transition">About Me</a>
+        <a href="#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
+        <a href="#reviews" class="hover:text-red-600 transition">Student Stories</a>
+        <a href="/resources" class="hover:text-red-600 transition">Resources</a>
+        <a href="/test" class="text-red-600 hover:text-red-700 font-bold flex items-center gap-1.5 bg-red-50 px-3.5 py-1.5 rounded-full border border-red-200 shadow-2xs hover:bg-red-100 transition">
+          <span>📝 Level Test</span>
+        </a>
+        <a href="#faq" class="hover:text-red-600 transition">FAQ</a>
+      </nav>
+
+      <!-- CTA Nav Button -->
+      <div class="flex items-center gap-3">
+        <button
+          type="button"
+          class="open-modal-trigger inline-flex items-center justify-center px-5 py-2.5 text-xs sm:text-sm font-bold text-white bg-red-600 hover:bg-red-700 rounded-xl shadow-lg shadow-red-600/25 transition hover:-translate-y-0.5 cursor-pointer"
+        >
+          Book 25-Min Trial Lesson →
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="flex-grow">
+    <!-- HERO SECTION -->
+    <section class="relative flex items-center overflow-hidden py-14 lg:py-20">
+      <div class="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
+        <div class="absolute top-5 right-[10%] w-[500px] h-[500px] hero-glow rounded-full blur-3xl"></div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+          
+          <!-- CỘT BÊN TRÁI -->
+          <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-stone-200/90 text-xs sm:text-sm font-semibold text-slate-800 shadow-xs">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse"></span>
+              <span>Native Tutor</span>
+              <span class="text-stone-300">•</span>
+              <span>Northern & Southern Accents</span>
+            </div>
+
+            <!-- Thu nhỏ font tối ưu để chữ approach không bị nhảy dòng và có màu đỏ -->
+            <h1 class="font-extrabold text-slate-900 tracking-tight font-brand" style="font-size: clamp(30px, 3.8vw, 48px); line-height: 1.15; letter-spacing: -1px;">
+              <span>Vietnamese isn’t hard.</span>
+              <span class="block mt-2">
+                You just need <span class="text-red-600">the right</span>
+              </span>
+              <span class="block mt-1">
+                <span class="curved-underline text-red-600">approach.</span>
+              </span>
+            </h1>
+
+            <p class="text-stone-600 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed pt-1">
+              Personalized, 1-on-1 online coaching tailored for beginners, expats, and heritage learners. No robotic textbook phrases — just real everyday conversations and precise pronunciation.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-3">
+              <button
+                type="button"
+                class="open-modal-trigger w-full sm:w-auto px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-2xl text-sm shadow-xl shadow-red-600/30 transition hover:-translate-y-0.5 text-center flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <span>📅</span>
+                <span>Book 25-Min Trial Lesson →</span>
+              </button>
+              <a
+                href="/test"
+                class="w-full sm:w-auto px-7 py-4 bg-white hover:bg-stone-50 text-slate-900 font-bold rounded-2xl text-sm border border-stone-200/90 transition text-center shadow-xs flex items-center justify-center gap-2"
+              >
+                <span>Take Level Test</span>
+                <span>📝</span>
+              </a>
+            </div>
+
+            <!-- Đã đổi nomads thành Heritage learners -->
+            <div class="pt-6 border-t border-stone-200/80 flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 text-xs text-stone-600 font-medium">
+              <div class="flex items-center gap-1.5"><span class="text-emerald-600 font-bold text-sm">✓</span> 1,200+ Online Hours Taught</div>
+              <div class="flex items-center gap-1.5"><span class="text-emerald-600 font-bold text-sm">✓</span> Beginners, Expats & Heritage learners</div>
+              <div class="flex items-center gap-1.5"><span class="text-emerald-600 font-bold text-sm">✓</span> Google Meet / Zoom + Slides + Audio</div>
+            </div>
+          </div>
+
+          <!-- CỘT BÊN PHẢI: SUPER CARD -->
+          <div class="lg:col-span-5 flex justify-center">
+            <div class="w-full max-w-[400px] bg-white rounded-3xl p-7 shadow-2xl shadow-stone-200/50 border border-stone-200/90 space-y-5 relative">
+              
+              <div class="absolute -top-3 right-6 bg-red-50 text-red-600 border border-red-200 text-[10px] font-extrabold px-3 py-0.5 rounded-full uppercase tracking-wider">
+                Interactive Preview
+              </div>
+
+              <!-- Profile Header -->
+              <div class="flex items-center gap-4 pb-4 border-b border-stone-100">
+                <div class="w-16 h-16 rounded-2xl overflow-hidden shadow-md ring-2 ring-red-500/20 shrink-0 bg-stone-100">
+                  <img 
+                    src="/hang.jpg" 
+                    alt="Hang Luu" 
+                    class="w-full h-full object-cover"
+                    onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-2xl\'>👩🏻‍🏫</div>';"
+                  />
+                </div>
+                <div>
+                  <h2 class="text-base font-bold text-slate-900 leading-tight">Hang Luu</h2>
+                  <p class="text-xs text-stone-500 font-medium mt-0.5">Professional Vietnamese Tutor</p>
+                  <div class="flex items-center gap-1 text-amber-500 text-xs mt-1">
+                    <span>★★★★★</span>
+                    <span class="text-slate-700 font-bold font-mono ml-1">5.0</span>
+                    <span class="text-stone-400">(48 Reviews)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- WHY TONES MATTER -->
+              <div class="bg-stone-50/90 rounded-2xl p-4 border border-stone-200/80 space-y-2.5">
+                <div class="text-[10px] font-bold uppercase tracking-wider text-stone-400">Why Vietnamese Tones Matter:</div>
+                <div class="grid grid-cols-3 gap-2.5 text-center">
+                  <button onclick="playVoice('ma', 1.0)" type="button" class="bg-white p-3 rounded-xl border border-stone-200 hover:border-red-500 hover:shadow-sm transition cursor-pointer group">
+                    <div class="text-sm font-bold text-red-600 font-brand group-hover:scale-105 transition-transform">ma 🔊</div>
+                    <div class="text-[10px] text-stone-500 mt-0.5">Ghost 👻</div>
+                  </button>
+                  <button onclick="playVoice('má', 1.35)" type="button" class="bg-white p-3 rounded-xl border border-stone-200 hover:border-red-500 hover:shadow-sm transition cursor-pointer group">
+                    <div class="text-sm font-bold text-red-600 font-brand group-hover:scale-105 transition-transform">má 🔊</div>
+                    <div class="text-[10px] text-stone-500 mt-0.5">Mother 👩🏻</div>
+                  </button>
+                  <button onclick="playVoice('mã', 1.2)" type="button" class="bg-white p-3 rounded-xl border border-stone-200 hover:border-red-500 hover:shadow-sm transition cursor-pointer group">
+                    <div class="text-sm font-bold text-red-600 font-brand group-hover:scale-105 transition-transform">mã 🔊</div>
+                    <div class="text-[10px] text-stone-500 mt-0.5">Horse 🐎</div>
+                  </button>
+                </div>
+              </div>
+
+              <!-- EXPLORE FREE RESOURCES HUB -->
+              <a
+                href="/resources"
+                class="flex items-center justify-between p-4 rounded-2xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 transition text-white group cursor-pointer shadow-lg shadow-red-600/25"
+              >
+                <div class="flex items-center gap-3">
+                  <span class="text-xl">🎁</span>
+                  <div class="text-left pt-0.5">
+                    <div class="text-xs font-bold leading-tight">Explore Free Resources Hub</div>
+                    <div class="text-[11px] text-red-100 font-medium mt-0.5">Tones, Pronouns & Conversation Labs</div>
+                  </div>
+                </div>
+                <span class="text-sm font-bold text-white group-hover:translate-x-1 transition">→</span>
+              </a>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT ME SECTION (ĐÃ ĐƯA LÊN TRƯỚC) -->
+    <section id="about" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          <!-- CỘT BÊN TRÁI: TIÊU ĐỀ + VIDEO VIMEO -->
+          <div class="lg:col-span-5 space-y-6">
+            <div>
+              <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest bg-red-50 px-3 py-1 rounded-md border border-red-200 inline-block">About Me</span>
+              <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-brand mt-3">
+                Hi, I'm Hang!
+              </h2>
+            </div>
+
+            <div class="relative w-full aspect-video rounded-3xl overflow-hidden shadow-2xl border border-stone-200/90 bg-stone-900 ring-4 ring-stone-100">
+              <iframe 
+                src="https://player.vimeo.com/video/1156028562?badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0" 
+                class="absolute inset-0 w-full h-full border-0" 
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" 
+                title="Hang Luu - Preply Intro Video">
+              </iframe>
+            </div>
+          </div>
+
+          <!-- CỘT BÊN PHẢI -->
+          <div class="lg:col-span-7 space-y-5 text-stone-600 text-sm sm:text-base leading-relaxed">
+            
+            <!-- Trích dẫn thành tích video chuẩn có dấu ! -->
+            <h3 class="text-lg sm:text-xl font-extrabold text-slate-900 tracking-tight font-brand italic leading-snug bg-[#fffaf5] p-5 rounded-2xl border border-stone-200/80 shadow-2xs">
+              "This video helped me reach 100 students worldwide in just 7 months!"
+            </h3>
+            
+            <p>
+              Over 3 years of teaching Vietnamese, every lesson has been refined through hands-on experience, blending practical insights with 100% tailor-made materials.
+            </p>
+
+            <div class="pt-1">
+              <p class="font-extrabold text-slate-900 mb-3 text-xs uppercase tracking-wider text-red-600">Who I Help:</p>
+              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs sm:text-sm text-stone-700">
+                <li class="flex items-start gap-2.5 p-3 rounded-xl bg-stone-50 border border-stone-100">
+                  <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
+                  <span><strong class="text-slate-900 font-bold block">Absolute beginners</strong> starting from zero</span>
+                </li>
+                <li class="flex items-start gap-2.5 p-3 rounded-xl bg-stone-50 border border-stone-100">
+                  <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
+                  <span><strong class="text-slate-900 font-bold block">Heritage speakers</strong> reconnecting with roots</span>
+                </li>
+                <li class="flex items-start gap-2.5 p-3 rounded-xl bg-stone-50 border border-stone-100">
+                  <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
+                  <span><strong class="text-slate-900 font-bold block">Expats in Vietnam</strong> navigating daily work & life</span>
+                </li>
+                <li class="flex items-start gap-2.5 p-3 rounded-xl bg-stone-50 border border-stone-100">
+                  <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
+                  <span><strong class="text-slate-900 font-bold block">Partners & in-laws</strong> connecting deeply with Vietnamese spouses and family</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Hiệu ứng nhấn nhá cho câu chốt Day 1 ở cuối khối About Me -->
+            <div class="relative overflow-hidden bg-gradient-to-r from-red-50/90 to-[#fffaf5] p-5 rounded-2xl border-l-4 border-red-600 border-y border-r border-stone-200/80 shadow-md mt-4">
+              <span class="absolute top-2 right-4 text-3xl text-red-200 font-serif select-none pointer-events-none">“</span>
+              <p class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight font-brand italic relative z-10 text-red-600">
+                Let's speak real Vietnamese from Day 1!
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- LEARNING TRACKS (ĐẶT SAU PHẦN ABOUT ME) -->
+    <section id="curriculum" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <span class="text-xs font-bold text-red-600 uppercase tracking-widest">Tailored Programs</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2.5 tracking-tight font-brand">
+            Find the Path That Fits Your Goals
+          </h2>
+          <p class="text-sm sm:text-base text-stone-600 mt-3 leading-relaxed">
+            No generic syllabus. Every session is designed around your daily lifestyle, regional dialect (Northern or Southern), and natural pace.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+          
+          <!-- Track 01 -->
+          <div class="bg-[#fffaf5] rounded-3xl p-8 border border-stone-200/90 shadow-2xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div class="inline-block text-[11px] font-bold text-slate-700 bg-stone-100 px-3 py-1 rounded-lg uppercase tracking-wider">
+                Track 01 • 5–10 Sessions
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 mt-4 mb-2.5 font-brand">
+                Pronunciation - Tones + Alphabet
+              </h3>
+              <p class="text-xs sm:text-sm text-stone-600 leading-relaxed mb-6">
+                Master the foundations. Learn exact mouth and tongue mechanics for vowels, consonants, and the 6 tones from day one.
+              </p>
+              <ul class="space-y-3.5 text-xs sm:text-sm text-stone-700">
+                <li class="flex items-start gap-2.5">
+                  <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
+                  <span>Step-by-step guidance on mouth, jaw, and lip positioning</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
+                  <span>Concrete real-world examples and interactive drills</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
+                  <span>Custom practice audio exercises included for every session</span>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-8 pt-6 border-t border-stone-100">
+              <button
+                type="button"
+                class="open-modal-trigger block w-full text-center py-3.5 bg-stone-100 hover:bg-stone-200 text-slate-900 font-bold rounded-xl text-xs transition cursor-pointer"
+              >
+                Book 25-Min Trial Lesson →
+              </button>
+            </div>
+          </div>
+
+          <!-- Track 02 (Featured) -->
+          <div class="bg-[#fffaf5] rounded-3xl p-8 border-2 border-red-600 shadow-2xl shadow-red-600/10 relative flex flex-col justify-between md:-translate-y-3">
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-red-600 text-white text-[11px] font-extrabold px-4 py-1 rounded-full uppercase tracking-wider shadow-md">
+              🔥 Most Popular for Expats
+            </div>
+            <div>
+              <div class="inline-block text-[11px] font-bold text-red-600 bg-red-50 px-3 py-1 rounded-lg border border-red-200 uppercase tracking-wider">
+                Track 02 • 10–20 Sessions
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 mt-4 mb-2.5 font-brand">
+                Real-World Street Vietnamese
+              </h3>
+              <p class="text-xs sm:text-sm text-stone-600 leading-relaxed mb-6">
+                Cut through textbook stiffness. Speak natural, conversational Vietnamese for daily life, social settings, and travel.
+              </p>
+              <ul class="space-y-3.5 text-xs sm:text-sm text-stone-700">
+                <li class="flex items-start gap-2.5">
+                  <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
+                  <span>Order food and refreshing drinks seamlessly at local spots</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
+                  <span>Communicate smoothly with ride-hailing drivers, delivery couriers, and neighbors</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
+                  <span>Master marketplace bargaining, checking costs, and everyday shopping</span>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-8 pt-6 border-t border-stone-100">
+              <button
+                type="button"
+                class="open-modal-trigger block w-full text-center py-3.5 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-xl text-xs transition shadow-lg shadow-red-600/20 hover:-translate-y-0.5 cursor-pointer"
+              >
+                Book 25-Min Trial Lesson →
+              </button>
+            </div>
+          </div>
+
+          <!-- Track 03 -->
+          <div class="bg-[#fffaf5] rounded-3xl p-8 border border-stone-200/90 shadow-2xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div class="inline-block text-[11px] font-bold text-slate-700 bg-stone-100 px-3 py-1 rounded-lg uppercase tracking-wider">
+                Track 03 • Flexible / Ongoing
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 mt-4 mb-2.5 font-brand">
+                Family & Heritage Roots
+              </h3>
+              <p class="text-xs sm:text-sm text-stone-600 leading-relaxed mb-6">
+                Bridge the gap with your family, partner, and relatives through warm, culturally grounded speech.
+              </p>
+              <ul class="space-y-3.5 text-xs sm:text-sm text-stone-700">
+                <li class="flex items-start gap-2.5">
+                  <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
+                  <span>Natural dining table chats and family bonding phrases</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
+                  <span>Essential cultural etiquette for Tết, weddings, and gatherings</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
+                  <span>Reconnect with your or your partner's family & regional accent</span>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-8 pt-6 border-t border-stone-100">
+              <button
+                type="button"
+                class="open-modal-trigger block w-full text-center py-3.5 bg-stone-100 hover:bg-stone-200 text-slate-900 font-bold rounded-xl text-xs transition cursor-pointer"
+              >
+                Book 25-Min Trial Lesson →
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- STUDENT TESTIMONIALS CAROUSEL (Mỗi học viên một màu riêng biệt) -->
+    <section id="reviews" class="py-20 bg-white overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end mb-12">
+          <div class="lg:col-span-8 space-y-2">
+            <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest bg-red-50 px-3 py-1 rounded-md border border-red-200 inline-block">Student Stories</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-brand mt-1">
+              Real Progress in Everyday Situations
+            </h2>
+          </div>
+
+          <div class="lg:col-span-4 flex items-center lg:justify-end gap-3">
+            <button
+              id="prevBtn"
+              type="button"
+              aria-label="Previous review"
+              class="w-12 h-12 rounded-full border border-stone-200 bg-white hover:bg-stone-50 text-slate-800 flex items-center justify-center font-bold text-lg shadow-2xs hover:border-stone-400 transition-all active:scale-95 cursor-pointer"
+            >
+              ←
+            </button>
+            <button
+              id="nextBtn"
+              type="button"
+              aria-label="Next review"
+              class="w-12 h-12 rounded-full border border-stone-200 bg-white hover:bg-stone-50 text-slate-800 flex items-center justify-center font-bold text-lg shadow-2xs hover:border-stone-400 transition-all active:scale-95 cursor-pointer"
+            >
+              →
+            </button>
+          </div>
+        </div>
+
+        <div
+          id="reviewTrack"
+          class="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 pt-2 -mx-6 px-6 sm:-mx-8 sm:px-8 lg:-mx-12 lg:px-12"
+          style="scrollbar-width: none; -ms-overflow-style: none;"
+        >
+          <!-- Melina -->
+          <div class="snap-start shrink-0 w-[350px] sm:w-[400px] bg-[#f0fdf4] p-7 rounded-3xl border border-emerald-100 shadow-2xs hover:shadow-lg transition-all flex flex-col justify-between select-none">
+            <div>
+              <div class="flex items-center justify-between mb-3.5">
+                <span class="text-[11px] font-bold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-md border border-emerald-200">Tones & Pronunciation</span>
+                <div class="text-amber-500 text-xs">★★★★★</div>
+              </div>
+              <p class="text-slate-700 text-sm leading-relaxed italic mb-5">
+                “Hang is amazing at explaining Vietnamese tones and pronunciation in a way that actually makes sense. As a complete beginner, she always made me feel comfortable trying to speak Vietnamese confidently even when I thought I completely butchered it.”
+              </p>
+            </div>
+            <div class="pt-4 border-t border-emerald-200/60 flex items-center">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-xs shadow-xs">M</div>
+                <div class="text-xs font-bold text-slate-900">Melina</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Thomas -->
+          <div class="snap-start shrink-0 w-[350px] sm:w-[400px] bg-[#fefce8] p-7 rounded-3xl border border-amber-100 shadow-2xs hover:shadow-lg transition-all flex flex-col justify-between select-none">
+            <div>
+              <div class="flex items-center justify-between mb-3.5">
+                <span class="text-[11px] font-bold text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded-md border border-amber-200">Wedding Speech Prep</span>
+                <div class="text-amber-500 text-xs">★★★★★</div>
+              </div>
+              <p class="text-slate-700 text-sm leading-relaxed italic mb-5">
+                “Hang is a great tutor. She helped me write a part of my wedding speech in Vietnamese and was extremely patient in teaching. She took me from a complete beginner to being able to say my speech confidently and has a really friendly style.”
+              </p>
+            </div>
+            <div class="pt-4 border-t border-amber-200/60 flex items-center">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold text-xs shadow-xs">T</div>
+                <div class="text-xs font-bold text-slate-900">Thomas</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kathy -->
+          <div class="snap-start shrink-0 w-[350px] sm:w-[400px] bg-[#fff1f2] p-7 rounded-3xl border border-rose-100 shadow-2xs hover:shadow-lg transition-all flex flex-col justify-between select-none">
+            <div>
+              <div class="flex items-center justify-between mb-3.5">
+                <span class="text-[11px] font-bold text-rose-700 bg-rose-100 px-2.5 py-0.5 rounded-md border border-rose-200">Practical & Engaging</span>
+                <div class="text-amber-500 text-xs">★★★★★</div>
+              </div>
+              <p class="text-slate-700 text-sm leading-relaxed italic mb-5">
+                “I highly recommend Hang as a Vietnamese tutor. Her lessons are engaging, well-structured, and tailored to my learning pace. What I appreciate most is her ability to make learning practical by incorporating real-life conversations and cultural insights. (And she's super funny by the way!)”
+              </p>
+            </div>
+            <div class="pt-4 border-t border-rose-200/60 flex items-center">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-rose-600 text-white flex items-center justify-center font-bold text-xs shadow-xs">K</div>
+                <div class="text-xs font-bold text-slate-900">Kathy</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Amber -->
+          <div class="snap-start shrink-0 w-[350px] sm:w-[400px] bg-[#eff6ff] p-7 rounded-3xl border border-blue-100 shadow-2xs hover:shadow-lg transition-all flex flex-col justify-between select-none">
+            <div>
+              <div class="flex items-center justify-between mb-3.5">
+                <span class="text-[11px] font-bold text-blue-700 bg-blue-100 px-2.5 py-0.5 rounded-md border border-blue-200">Growth & Support</span>
+                <div class="text-amber-500 text-xs">★★★★★</div>
+              </div>
+              <p class="text-slate-700 text-sm leading-relaxed italic mb-5">
+                “Very kind and patient. She builds on skills naturally and at an encouraging pace. She goes above and beyond with extra resources and messages. When I needed the extra push she was firm, but when I needed kindness she supplied that in bag-fuls. She has helped me grow so much.”
+              </p>
+            </div>
+            <div class="pt-4 border-t border-blue-200/60 flex items-center">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-xs shadow-xs">A</div>
+                <div class="text-xs font-bold text-slate-900">Amber</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Joe -->
+          <div class="snap-start shrink-0 w-[350px] sm:w-[400px] bg-[#f5f3ff] p-7 rounded-3xl border border-purple-100 shadow-2xs hover:shadow-lg transition-all flex flex-col justify-between select-none">
+            <div>
+              <div class="flex items-center justify-between mb-3.5">
+                <span class="text-[11px] font-bold text-purple-700 bg-purple-100 px-2.5 py-0.5 rounded-md border border-purple-200">Engaging & Structured</span>
+                <div class="text-amber-500 text-xs">★★★★★</div>
+              </div>
+              <p class="text-slate-700 text-sm leading-relaxed italic mb-5">
+                “She is the best teacher by far! Her style of breaking down & explaining concepts keeps me engaged & motivated. She sends over everything we went over during sessions. I still can't believe how much I've learned in only a handful of sessions. Highly recommended!”
+              </p>
+            </div>
+            <div class="pt-4 border-t border-purple-200/60 flex items-center">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-xs shadow-xs">J</div>
+                <div class="text-xs font-bold text-slate-900">Joe</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest bg-red-50 px-3 py-1 rounded-md border border-red-200">Got Questions</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-brand mt-3">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="max-w-3xl mx-auto space-y-4 text-xs sm:text-sm">
+          <details class="group bg-[#fffaf5] p-6 rounded-3xl border border-stone-200/90 shadow-2xs hover:border-red-300 transition-colors">
+            <summary class="flex justify-between items-center font-bold text-slate-900 cursor-pointer list-none">
+              <span class="text-base">How do the online lessons work?</span>
+              <span class="transition group-open:rotate-180 text-stone-400">▼</span>
+            </summary>
+            <p class="text-stone-600 mt-3 leading-relaxed">
+              All classes are held 1-on-1 via Google Meet (or Zoom). Slides and audios are provided for each session.
+            </p>
+          </details>
+
+          <details class="group bg-[#fffaf5] p-6 rounded-3xl border border-stone-200/90 shadow-2xs hover:border-red-300 transition-colors">
+            <summary class="flex justify-between items-center font-bold text-slate-900 cursor-pointer list-none">
+              <span class="text-base">Should I learn Northern (Hanoi) or Southern (Saigon) accent?</span>
+              <span class="transition group-open:rotate-180 text-stone-400">▼</span>
+            </summary>
+            <p class="text-stone-600 mt-3 leading-relaxed">
+              It depends on where you live, plan to stay, or who you want to talk to, as the two accents have distinct differences and you should choose one before starting.
+            </p>
+          </details>
+
+          <details class="group bg-[#fffaf5] p-6 rounded-3xl border border-stone-200/90 shadow-2xs hover:border-red-300 transition-colors">
+            <summary class="flex justify-between items-center font-bold text-slate-900 cursor-pointer list-none">
+              <span class="text-base">How do I make payment?</span>
+              <span class="transition group-open:rotate-180 text-stone-400">▼</span>
+            </summary>
+            <p class="text-stone-600 mt-3 leading-relaxed">
+              We support direct payments via <strong>Wise</strong>, <strong>PayPal</strong>, or direct bank transfer if you have a local Vietnamese bank account.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#fffaf5] text-stone-600 py-8 text-xs border-t border-stone-200/80">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2.5">
+        <span class="font-brand font-black text-slate-900 tracking-widest text-sm">HAVIE.</span>
+        <span class="text-stone-400">•</span>
+        <span class="font-medium">Learn Vietnamese with Hang</span>
+      </div>
+      <div class="flex items-center gap-6 font-semibold text-stone-700">
+        <a href="#about" class="hover:text-red-600 transition">About Me</a>
+        <a href="#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
+        <a href="#reviews" class="hover:text-red-600 transition">Student Stories</a>
+        <a href="/resources" class="hover:text-red-600 transition">Resources</a>
+        <a href="/test" class="hover:text-red-600 transition">Level Test</a>
+        <button type="button" class="open-modal-trigger text-red-600 font-bold hover:underline cursor-pointer">Book Trial</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CONSULTATION / BOOKING MODAL -->
+  <div id="consultModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-stone-200 space-y-5 text-left">
+      
+      <div class="flex items-center justify-between border-b border-stone-100 pb-3">
+        <div>
+          <span class="text-[10px] font-black text-red-600 uppercase tracking-widest bg-red-50 px-2.5 py-0.5 rounded border border-red-200">1-on-1 Coaching</span>
+          <h3 class="text-xl font-black text-slate-900 font-brand mt-1">Book 25-Min Trial Lesson</h3>
+        </div>
+        <button id="closeModalBtn" type="button" class="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 font-bold flex items-center justify-center cursor-pointer">
+          ✕
+        </button>
+      </div>
+
+      <form id="consultForm" class="space-y-3.5 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Full Name / Tên của bạn *</label>
+          <input type="text" id="cName" required placeholder="e.g. Alex Smith" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Country / Quốc gia *</label>
+            <input type="text" id="cCountry" required placeholder="e.g. Germany, USA" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50" />
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Phone / SĐT</label>
+            <input type="tel" id="cPhone" placeholder="e.g. +49..." class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Email Address *</label>
+          <input type="email" id="cEmail" required placeholder="name@example.com" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50" />
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Learning Goals / Mục tiêu học tập *</label>
+          <textarea id="cGoals" rows="3" required placeholder="Current level, target dialect (Hanoi/Saigon), goals..." class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50 resize-none"></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full py-3.5 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl text-xs sm:text-sm shadow-md transition cursor-pointer mt-2"
+        >
+          Submit Request to Hang →
+        </button>
+      </form>
+
+      <div id="successMessage" class="hidden text-center py-6 space-y-3">
+        <div class="text-3xl">🎉</div>
+        <h4 class="font-black text-slate-900 text-base font-brand">Request Sent Successfully!</h4>
+        <p class="text-stone-600 text-xs leading-relaxed">Thank you! Hang has received your details and goals. She will reach out via email within 24 hours.</p>
+        <button id="btnCloseSuccess" type="button" class="px-6 py-2.5 bg-slate-900 text-white font-bold rounded-xl text-xs cursor-pointer">
+          Close Window
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script is:inline>
+    function playVoice(text, pitch = 1.0) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'vi-VN';
+      utterance.rate = 0.88;
+      utterance.pitch = pitch;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    const track = document.getElementById('reviewTrack');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    if (track && prevBtn && nextBtn) {
+      prevBtn.addEventListener('click', () => track.scrollBy({ left: -420, behavior: 'smooth' }));
+      nextBtn.addEventListener('click', () => track.scrollBy({ left: 420, behavior: 'smooth' }));
+    }
+
+    // Modal Control Script
+    const modal = document.getElementById('consultModal');
+    const openTriggers = document.querySelectorAll('.open-modal-trigger');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const consultForm = document.getElementById('consultForm');
+    const successMessage = document.getElementById('successMessage');
+    const btnCloseSuccess = document.getElementById('btnCloseSuccess');
+
+    openTriggers.forEach(btn => {
+      if (btn) {
+        btn.addEventListener('click', () => {
+          modal.classList.remove('hidden');
+          consultForm.classList.remove('hidden');
+          successMessage.classList.add('hidden');
+        });
+      }
+    });
+
+    const hideModal = () => modal.classList.add('hidden');
+    if (closeModalBtn) closeModalBtn.addEventListener('click', hideModal);
+    if (btnCloseSuccess) closeModalBtn.addEventListener('click', hideModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) hideModal(); });
+
+    consultForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = {
+        name: document.getElementById('cName').value,
+        country: document.getElementById('cCountry').value,
+        phone: document.getElementById('cPhone').value,
+        email: document.getElementById('cEmail').value,
+        goals: document.getElementById('cGoals').value,
+      };
+      console.log("Consultation Booking Submitted:", formData);
+
+      consultForm.classList.add('hidden');
+      successMessage.classList.remove('hidden');
+      consultForm.reset();
+    });
+  </script>
+</body>
+</html>

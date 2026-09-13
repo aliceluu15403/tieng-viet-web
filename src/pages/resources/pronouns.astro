@@ -1,0 +1,646 @@
+---
+// src/pages/resources.astro - Havie Free Learning Resources
+---
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Vietnamese Learning Resources — HAVIE.</title>
+  <meta name="description" content="Interactive Vietnamese learning tools: Pronoun Decoder, Tone Mastery, and Real-life Spoken Phrasing." />
+
+  <!-- Tailwind CSS CDN -->
+  <script is:inline src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: DM Sans & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #fffaf5;
+      --navy: #0f172a;
+      --brand-red: #dc2626;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--cream);
+      color: var(--navy);
+    }
+
+    .font-brand {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+  </style>
+</head>
+<body class="selection:bg-red-600 selection:text-white min-h-screen flex flex-col antialiased">
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-40 bg-[#fffaf5]/90 backdrop-blur-md border-b border-stone-200/80 h-20">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-full flex items-center justify-between">
+      
+      <!-- BRAND WORDMARK -->
+      <a href="/" class="group flex flex-col select-none text-left">
+        <div class="h-7 flex items-center">
+          <svg class="h-6 sm:h-7 w-auto overflow-visible" viewBox="0 0 175 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 2H6V12H18V2H24V28H18V17H6V28H0V2Z" fill="#dc2626"/>
+            <path d="M41 2L52 28H45.5L43.2 22H33.8L31.5 28H25L36 2H41ZM38.5 8.5L35.2 17.5H41.8L38.5 8.5Z" fill="#dc2626"/>
+            <path d="M53 2H59.5L67 21L74.5 2H81L70.5 28H63.5L53 2Z" fill="#dc2626"/>
+            <path d="M86 2H92V28H86V2Z" fill="#dc2626"/>
+            <path d="M98 2H117V7.5H104V12H115V17H104V22.5H117V28H98V2Z" fill="#dc2626"/>
+            <circle cx="125" cy="24.5" r="3.5" fill="#0f172a"/>
+          </svg>
+        </div>
+        <span class="text-[9.5px] font-bold tracking-[0.24em] text-stone-400 uppercase mt-1 pl-0.5 group-hover:text-slate-700 transition-colors leading-none">
+          Learn Vietnamese Online
+        </span>
+      </a>
+
+      <!-- Menu Links -->
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-700">
+        <a href="/" class="hover:text-red-600 transition">Home</a>
+        <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
+        <a href="/resources" class="text-red-600 font-bold flex items-center gap-1.5 bg-red-50 px-3.5 py-1.5 rounded-full border border-red-200">
+          <span>⚡ Resources Hub</span>
+        </a>
+      </nav>
+
+      <!-- CTA Nav Button -->
+      <div class="flex items-center gap-3">
+        <a
+          href="https://calendly.com"
+          target="_blank"
+          rel="noreferrer"
+          class="inline-flex items-center justify-center px-5 py-2.5 text-xs sm:text-sm font-bold text-white bg-red-600 hover:bg-red-700 rounded-xl shadow-sm transition hover:-translate-y-0.5"
+        >
+          Book 25-Min Trial Lesson →
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="flex-grow py-12 lg:py-16">
+    <div class="max-w-4xl mx-auto px-6 sm:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-xl mx-auto mb-12">
+        <span class="text-[11px] font-bold text-red-600 uppercase tracking-widest bg-red-50 px-3.5 py-1.5 rounded-full border border-red-200">
+          Interactive Social Engine
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3.5 tracking-tight font-brand">
+          The Vietnamese Pronoun Decoder
+        </h1>
+        <p class="text-stone-600 text-sm sm:text-base mt-2.5 leading-relaxed">
+          In Vietnamese, there is no generic <strong class="text-slate-900">“I”</strong> or <strong class="text-slate-900">“You”</strong>. Set both ages and genders to see how native speakers address each other naturally.
+        </p>
+      </div>
+
+      <!-- Main Tool Box -->
+      <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-stone-200/90 relative">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+          
+          <!-- Controls Column -->
+          <div class="md:col-span-5 space-y-6 border-b md:border-b-0 md:border-r border-stone-100 pb-6 md:pb-0 md:pr-6">
+            
+            <!-- 1. SPEAKER PROFILE (YOU / "I") -->
+            <div class="space-y-3 pb-4 border-b border-stone-100">
+              <div class="flex items-center justify-between text-xs font-bold text-slate-900">
+                <label for="userAge">Your Age <span class="text-stone-400 font-normal">(Speaker "I")</span></label>
+                <span id="ageDisplay" class="px-2.5 py-0.5 rounded-lg bg-red-50 text-red-600 font-mono text-sm font-bold">28 yrs</span>
+              </div>
+              <input 
+                id="userAge" 
+                type="range" 
+                min="10" 
+                max="85" 
+                value="28" 
+                class="w-full accent-red-600 h-2 bg-stone-100 rounded-lg cursor-pointer"
+              />
+              
+              <div>
+                <span class="block text-[11px] font-bold text-slate-800 mb-1.5">Your Gender <span class="text-stone-400 font-normal">(Speaker "I")</span></span>
+                <div class="grid grid-cols-2 gap-2">
+                  <button 
+                    type="button" 
+                    data-my-gender="male"
+                    class="my-gender-btn active px-3.5 py-2 rounded-xl border text-xs font-bold text-center transition flex items-center justify-center gap-1.5 border-red-600 bg-red-50 text-red-600 cursor-pointer"
+                  >
+                    <span>👨 Male</span>
+                  </button>
+                  <button 
+                    type="button" 
+                    data-my-gender="female"
+                    class="my-gender-btn px-3.5 py-2 rounded-xl border text-xs font-bold text-center transition flex items-center justify-center gap-1.5 border-stone-200 bg-white text-stone-600 hover:border-stone-300 cursor-pointer"
+                  >
+                    <span>👩 Female</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. LISTENER PROFILE (THEM / "YOU") -->
+            <div class="space-y-3 pb-4 border-b border-stone-100">
+              <div class="flex items-center justify-between text-xs font-bold text-slate-900">
+                <label for="theirAge">Their Estimated Age <span class="text-stone-400 font-normal">(Listener "You")</span></label>
+                <span id="theirAgeDisplay" class="px-2.5 py-0.5 rounded-lg bg-slate-100 text-slate-800 font-mono text-sm font-bold">35 yrs</span>
+              </div>
+              <input 
+                id="theirAge" 
+                type="range" 
+                min="5" 
+                max="85" 
+                value="35" 
+                class="w-full accent-slate-800 h-2 bg-stone-100 rounded-lg cursor-pointer"
+              />
+
+              <div>
+                <span class="block text-[11px] font-bold text-slate-800 mb-1.5">Their Gender <span class="text-stone-400 font-normal">(Listener "You")</span></span>
+                <div class="grid grid-cols-2 gap-2">
+                  <button 
+                    type="button" 
+                    data-their-gender="male"
+                    class="their-gender-btn active px-3.5 py-2 rounded-xl border text-xs font-bold text-center transition flex items-center justify-center gap-1.5 border-slate-900 bg-slate-100 text-slate-900 cursor-pointer"
+                  >
+                    <span>👨 Male</span>
+                  </button>
+                  <button 
+                    type="button" 
+                    data-their-gender="female"
+                    class="their-gender-btn px-3.5 py-2 rounded-xl border text-xs font-bold text-center transition flex items-center justify-center gap-1.5 border-stone-200 bg-white text-stone-600 hover:border-stone-300 cursor-pointer"
+                  >
+                    <span>👩 Female</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Social Setting Context -->
+            <div>
+              <label class="block text-xs font-bold text-slate-900 mb-2">
+                Social Setting
+              </label>
+              <div class="space-y-1.5">
+                <label class="flex items-center gap-2.5 p-2 rounded-xl border border-stone-100 hover:bg-stone-50 transition cursor-pointer text-xs">
+                  <input type="radio" name="context" value="street" checked class="accent-red-600 cursor-pointer" />
+                  <span class="font-medium text-slate-800">Casual / Street / Cafe / Restaurant</span>
+                </label>
+                <label class="flex items-center gap-2.5 p-2 rounded-xl border border-stone-100 hover:bg-stone-50 transition cursor-pointer text-xs">
+                  <input type="radio" name="context" value="work" class="accent-red-600 cursor-pointer" />
+                  <span class="font-medium text-slate-800">Workplace / Professional Meeting</span>
+                </label>
+                <label class="flex items-center gap-2.5 p-2 rounded-xl border border-stone-100 hover:bg-stone-50 transition cursor-pointer text-xs">
+                  <input type="radio" name="context" value="family" class="accent-red-600 cursor-pointer" />
+                  <span class="font-medium text-slate-800">Partner’s Family / In-Laws</span>
+                </label>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Result Column -->
+          <div class="md:col-span-7 flex flex-col justify-between space-y-6">
+            <div>
+              <div class="flex items-center justify-between pb-3 border-b border-stone-100">
+                <span class="text-[10px] font-bold uppercase tracking-widest text-stone-400">Recommended Pronoun Pair</span>
+                <span id="respectLevel" class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-md border border-emerald-200">
+                  Warm & Polite
+                </span>
+              </div>
+
+              <!-- Pair Display Grid -->
+              <div class="grid grid-cols-2 gap-4 my-5">
+                <!-- Self -->
+                <div class="p-4 rounded-2xl bg-stone-50 border border-stone-200/80 text-center">
+                  <span class="text-[10px] uppercase font-bold tracking-wider text-stone-400 block mb-1">
+                    I Call Myself ("I")
+                  </span>
+                  <span id="selfPronoun" class="text-2xl sm:text-3xl font-black font-brand text-slate-900 block">
+                    Em
+                  </span>
+                  <span class="text-[11px] text-stone-500 mt-1 block">Your self-reference</span>
+                </div>
+
+                <!-- Them -->
+                <div class="p-4 rounded-2xl bg-red-50/60 border border-red-200 text-center">
+                  <span class="text-[10px] uppercase font-bold tracking-wider text-red-600/80 block mb-1">
+                    I Address Them ("You")
+                  </span>
+                  <span id="themPronoun" class="text-2xl sm:text-3xl font-black font-brand text-red-600 block">
+                    Anh
+                  </span>
+                  <span class="text-[11px] text-red-700/80 mt-1 block">Their honorific title</span>
+                </div>
+              </div>
+
+              <!-- Spoken Phrasing Example -->
+              <div class="p-4 sm:p-5 rounded-2xl bg-[#fffaf5] border border-stone-200/90 space-y-2.5">
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-bold uppercase tracking-wider text-stone-400">Natural Phrasing:</span>
+                  <button 
+                    id="speakBtn" 
+                    type="button"
+                    class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-white border border-stone-200 text-slate-800 text-[11px] font-bold hover:border-red-500 hover:text-red-600 transition cursor-pointer"
+                  >
+                    <span>🔊</span>
+                    <span>Listen</span>
+                  </button>
+                </div>
+
+                <div id="exampleViet" class="text-base sm:text-lg font-bold text-slate-900 leading-snug">
+                  “Anh ơi, cho em xin menu nha!”
+                </div>
+                <p id="exampleEng" class="text-xs text-stone-500 italic">
+                  “Excuse me brother/sir, could I please get the menu!”
+                </p>
+              </div>
+            </div>
+
+            <!-- Context Tip -->
+            <div class="bg-stone-50 rounded-2xl p-3.5 border border-stone-200/80 flex items-start gap-3">
+              <span class="text-base shrink-0 mt-0.5">💡</span>
+              <p id="pairExplanation" class="text-xs text-stone-600 leading-relaxed">
+                Use <strong>Anh/Chị vs Em</strong> with anyone within 2–15 years of your age.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Notes Section -->
+        <div class="mt-8 pt-6 border-t border-stone-100 grid grid-cols-1 md:grid-cols-2 gap-3.5">
+          
+          <!-- Note 1: Family Rank Trumps Age -->
+          <div class="p-3.5 rounded-2xl bg-[#fffaf5] border border-stone-200/80">
+            <div class="flex items-center gap-1.5 mb-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+              <h3 class="text-[11px] font-extrabold uppercase tracking-wider text-slate-900">
+                Kinship Rank Trumps Age
+              </h3>
+            </div>
+            <p class="text-xs text-stone-600 leading-relaxed">
+              In Vietnamese families or in-law gatherings, formal family branch titles always override age (e.g., calling a younger relative <em>Anh / Chú</em> if they belong to a higher generational line).
+            </p>
+          </div>
+
+          <!-- Note 2: Avoid Tôi & Bạn + When to use Bạn / Mình -->
+          <div class="p-3.5 rounded-2xl bg-[#fffaf5] border border-stone-200/80">
+            <div class="flex items-center gap-1.5 mb-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-red-600"></span>
+              <h3 class="text-[11px] font-extrabold uppercase tracking-wider text-slate-900">
+                Avoid "Tôi" & "Bạn" in Spoken Vietnamese
+              </h3>
+            </div>
+            <p class="text-xs text-stone-600 leading-relaxed">
+              Don't default to <em>Tôi / Bạn</em> like translation apps suggest—in spoken life, it creates cold emotional distance. The pair <strong>Bạn / Mình</strong> is strictly reserved for equal-aged classmates, close peers, or neutral social media text.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- REFINED CTA SECTION -->
+      <div class="mt-10 rounded-3xl bg-white p-7 sm:p-9 border border-stone-200/90 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="space-y-2 text-center md:text-left max-w-lg">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 text-red-600 text-[11px] font-bold tracking-wide border border-red-100">
+            <span>🎯 1-on-1 Pronunciation & Nuance Coaching</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight font-brand">
+            Stop Guessing. Speak Vietnamese Naturally.
+          </h2>
+          <p class="text-stone-600 text-xs sm:text-sm leading-relaxed">
+            Master real-life pronouns, street shortcuts, and dialect differences (Northern & Southern) with personalized feedback tailored to your life.
+          </p>
+        </div>
+        <div class="shrink-0 w-full md:w-auto text-center">
+          <a
+            href="https://calendly.com"
+            target="_blank"
+            rel="noreferrer"
+            class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-xs sm:text-sm shadow-sm transition hover:-translate-y-0.5"
+          >
+            Book Free 25-Min Trial Lesson →
+          </a>
+          <p class="text-[10px] text-stone-400 mt-2 font-medium">No commitment • Personalized evaluation</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-950 text-stone-400 py-10 border-t border-slate-800 text-xs text-center">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="font-brand font-black text-white tracking-widest text-sm">HAVIE.</div>
+      <p class="text-stone-500">Master real-life spoken Vietnamese with confidence.</p>
+      <a href="https://calendly.com" target="_blank" rel="noreferrer" class="text-red-500 font-bold hover:underline">Book a Trial Lesson →</a>
+    </div>
+  </footer>
+
+  <!-- DYNAMIC PRONOUN CALCULATION SCRIPT -->
+  <script is:inline>
+    let myGender = 'male';
+    let theirGender = 'male';
+
+    const userAgeInput = document.getElementById('userAge');
+    const ageDisplay = document.getElementById('ageDisplay');
+    const theirAgeInput = document.getElementById('theirAge');
+    const theirAgeDisplay = document.getElementById('theirAgeDisplay');
+
+    const selfPronounEl = document.getElementById('selfPronoun');
+    const themPronounEl = document.getElementById('themPronoun');
+    const respectLevelEl = document.getElementById('respectLevel');
+    const exampleVietEl = document.getElementById('exampleViet');
+    const exampleEngEl = document.getElementById('exampleEng');
+    const pairExplanationEl = document.getElementById('pairExplanation');
+    const speakBtn = document.getElementById('speakBtn');
+
+    // 1. My Gender buttons
+    document.querySelectorAll('.my-gender-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.my-gender-btn').forEach(b => {
+          b.classList.remove('active', 'border-red-600', 'bg-red-50', 'text-red-600');
+          b.classList.add('border-stone-200', 'bg-white', 'text-stone-600');
+        });
+        btn.classList.add('active', 'border-red-600', 'bg-red-50', 'text-red-600');
+        btn.classList.remove('border-stone-200', 'bg-white', 'text-stone-600');
+        myGender = btn.getAttribute('data-my-gender');
+        calculatePronouns();
+      });
+    });
+
+    // 2. Their Gender buttons
+    document.querySelectorAll('.their-gender-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.their-gender-btn').forEach(b => {
+          b.classList.remove('active', 'border-slate-900', 'bg-slate-100', 'text-slate-900');
+          b.classList.add('border-stone-200', 'bg-white', 'text-stone-600');
+        });
+        btn.classList.add('active', 'border-slate-900', 'bg-slate-100', 'text-slate-900');
+        btn.classList.remove('border-stone-200', 'bg-white', 'text-stone-600');
+        theirGender = btn.getAttribute('data-their-gender');
+        calculatePronouns();
+      });
+    });
+
+    // Sliders Listeners
+    if (userAgeInput) {
+      userAgeInput.addEventListener('input', (e) => {
+        ageDisplay.textContent = `${e.target.value} yrs`;
+        calculatePronouns();
+      });
+    }
+
+    if (theirAgeInput) {
+      theirAgeInput.addEventListener('input', (e) => {
+        theirAgeDisplay.textContent = `${e.target.value} yrs`;
+        calculatePronouns();
+      });
+    }
+
+    document.querySelectorAll('input[name="context"]').forEach(radio => {
+      radio.addEventListener('change', calculatePronouns);
+    });
+
+    // Main Calculation Engine
+    function calculatePronouns() {
+      const myAge = parseInt(userAgeInput.value, 10);
+      const theirAge = parseInt(theirAgeInput.value, 10);
+      const diff = theirAge - myAge;
+      const context = document.querySelector('input[name="context"]:checked').value;
+
+      let self = myGender === 'male' ? "Anh" : "Chị";
+      let them = theirGender === 'male' ? "Anh" : "Chị";
+      let status = "Polite Peer Encounter";
+      let viet = "";
+      let eng = "";
+      let explanation = "";
+
+      // ========================================================
+      // 1. WORKPLACE / PROFESSIONAL
+      // ========================================================
+      if (context === 'work') {
+        if (diff >= 30) {
+          self = "Con / Cháu";
+          them = theirGender === 'male' ? "Chú" : "Cô";
+          status = "Generational Senior Respect";
+          viet = `“Dạ ${them}, con/cháu đã tổng hợp xong tài liệu dự án rồi ạ!”`;
+          eng = `“Yes ${them}, I have finished compiling the project documents!”`;
+          explanation = `With a 30+ year gap in the office, address them respectfully as <strong>${them}</strong> and call yourself <strong>Con / Cháu</strong>. Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North.`;
+        }
+        else if (diff >= 2) {
+          self = "Em";
+          them = theirGender === 'male' ? "Anh" : "Chị";
+          status = "Workplace Dynamic Standard";
+          viet = `“Dạ ${them}, em vừa gửi báo cáo tuần qua email rồi ạ!”`;
+          eng = `“Yes ${them}, I just sent over the weekly report via email!”`;
+          explanation = `Standard dynamic office rule: coworkers within 2–29 years of your age use <strong>Anh / Chị ⇄ Em</strong>.`;
+        }
+        else if (diff >= -1 && diff <= 1) {
+          self = "Em";
+          them = theirGender === 'male' ? "Anh" : "Chị";
+          status = "Equal Colleague";
+          viet = `“${them} xem qua file thiết kế này giúp em nhé!”`;
+          eng = `“Could you please check this design file for me?”`;
+          explanation = `Peers of equal rank and age typically default to <strong>Anh / Chị ⇄ Em</strong> for daily courtesy.`;
+        }
+        else if (diff <= -2 && diff > -30) {
+          self = myGender === 'male' ? "Anh" : "Chị";
+          them = "Em";
+          status = "Senior Colleague Warmth";
+          viet = `“Em chuẩn bị slide thuyết trình xong thì gửi ${self.toLowerCase()} xem trước nhé!”`;
+          eng = `“Once you finish the slides, send them to me first!”`;
+          explanation = `As the senior coworker, call yourself <strong>${self}</strong> and address junior staff kindly as <strong>Em</strong>.`;
+        }
+        else {
+          self = myGender === 'male' ? "Chú" : "Cô";
+          them = "Con / Cháu";
+          status = "Elder Mentor Warmth";
+          viet = `“Con/cháu cứ nghiên cứu kỹ dự án này đi, có gì hỏi ${self.toLowerCase()} nha!”`;
+          eng = `“Take your time studying the project, feel free to ask me anything!”`;
+          explanation = `Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North.`;
+        }
+      }
+
+      // ========================================================
+      // 2. PARTNER'S FAMILY / IN-LAWS
+      // ========================================================
+      else if (context === 'family') {
+        if (theirAge >= 70 || diff >= 45) {
+          self = "Con / Cháu";
+          them = theirGender === 'male' ? "Ông" : "Bà";
+          status = "Grandparent Generational Respect";
+          viet = `“Dạ ${them}, con/cháu mới sang thăm hai ${them} và gia đình ạ!”`;
+          eng = `“Hello grandparent, thank you so much for welcoming me into your home!”`;
+          explanation = `Always address partner's grandparents as <strong>${them}</strong>. Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North.`;
+        }
+        else if (myAge >= 70 || diff <= -45) {
+          self = myGender === 'male' ? "Ông" : "Bà";
+          them = "Con / Cháu";
+          status = "Grandparent Affection";
+          viet = `“Con/cháu vào nhà uống nước ăn bánh với ${self.toLowerCase()} nha!”`;
+          eng = `“Come inside and have some sweets and tea with me!”`;
+          explanation = `Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North.`;
+        }
+        else if (diff >= 28) {
+          self = "Con / Cháu";
+          them = "Bác";
+          status = "Senior In-Law Kinship";
+          viet = `“Dạ Bác, con/cháu gửi Bác chút hoa quả biếu gia đình ạ!”`;
+          eng = `“Hello senior uncle/aunt, I brought some fruits for the family!”`;
+          explanation = `Relatives older than the parents are called <strong>Bác</strong>. Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North.`;
+        }
+        else if (diff >= 16) {
+          self = "Con / Cháu";
+          status = "Parental In-Law Warmth";
+          if (theirGender === 'male') {
+            them = "Chú / Cậu";
+            viet = `“Dạ con/cháu chào Chú/Cậu, hôm nay con sang chơi ạ!”`;
+            eng = `“Hello uncle, thank you for having me over today!”`;
+            explanation = `<strong>Uncles:</strong> <strong>Chú</strong> (father's younger brother) or <strong>Cậu</strong> (mother's brother). Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North.`;
+          } else {
+            them = "Cô / Dì / Mợ";
+            viet = `“Dạ con/cháu chào Cô/Dì/Mợ, con có mang chút quà ạ!”`;
+            eng = `“Hello auntie, thank you for having me over today!”`;
+            explanation = `<strong>Aunts:</strong> <strong>Cô</strong> (father's sister), <strong>Dì</strong> (mother's sister), or <strong>Mợ</strong> (maternal uncle's wife). Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North.`;
+          }
+        }
+        else if (diff >= 2) {
+          self = "Em";
+          them = theirGender === 'male' ? "Anh" : "Chị";
+          status = "In-Law Older Sibling";
+          viet = `“Dạ ${them.toLowerCase()} cứ để em phụ dọn bàn ăn nha!”`;
+          eng = `“Please let me help you set the dining table!”`;
+          explanation = `For older siblings or elder cousins of your partner, use <strong>Anh / Chị ⇄ Em</strong>.`;
+        }
+        else if (diff >= -1 && diff <= 1) {
+          self = "Em";
+          them = theirGender === 'male' ? "Anh" : "Chị";
+          status = "Polite Sibling Peer";
+          viet = `“${them} uống nước gì để em lấy luôn nha?”`;
+          eng = `“Would you like some tea or water? Let me grab it for you!”`;
+          explanation = `Safest to honor partner's peer relatives as <strong>Anh / Chị</strong> first.`;
+        }
+        else if (diff <= -2 && diff >= -20) {
+          self = myGender === 'male' ? "Anh" : "Chị";
+          them = "Em";
+          status = "Elder Sibling In-Law Guidance";
+          viet = `“Em cứ tự nhiên ăn uống nha, không phải ngại ${self.toLowerCase()} đâu!”`;
+          eng = `“Make yourself comfortable, feel right at home!”`;
+          explanation = `For younger brothers or sisters of your partner: <strong>${self} ⇄ Em</strong>.`;
+        }
+        else {
+          self = myGender === 'male' ? "Chú / Bác / Cậu" : "Cô / Dì";
+          them = "Con / Cháu";
+          status = "Family Elder Affection";
+          viet = `“Con/cháu ăn thêm hoa quả đi, ngon lắm đó!”`;
+          eng = `“Have some more fruits, they are really fresh!”`;
+          
+          if (myGender === 'female') {
+            explanation = `Call yourself <strong>Cô</strong> if you are the father's sister (paternal aunt), or <strong>Dì</strong> if you are the mother's younger sister (maternal aunt). Address the child as <strong>Con</strong> or <strong>Cháu</strong> (Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North).`;
+          } else {
+            explanation = `Call yourself <strong>Chú</strong> (father's younger brother), <strong>Bác</strong> (older than the parent), or <strong>Cậu</strong> (mother's brother). Address the child as <strong>Con</strong> or <strong>Cháu</strong> (Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North).`;
+          }
+        }
+      }
+
+      // ========================================================
+      // 3. CASUAL / STREET / CAFE / RESTAURANT
+      // ========================================================
+      else {
+        if (theirAge >= 70 || diff >= 45) {
+          self = "Con / Cháu";
+          them = theirGender === 'male' ? "Ông" : "Bà";
+          status = "Elder Respect";
+          viet = `“Dạ ${them} ơi, để con/cháu dắt ${them} qua đường nha!”`;
+          eng = `“Excuse me grandfather/grandmother, let me help you cross the street!”`;
+          explanation = `Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North.`;
+        }
+        else if (myAge >= 70 || diff <= -45) {
+          self = myGender === 'male' ? "Ông" : "Bà";
+          them = "Con / Cháu";
+          status = "Elder Street Warmth";
+          viet = `“Con/cháu cẩn thận coi chừng vấp té nha!”`;
+          eng = `“Be careful not to trip over there, young one!”`;
+          explanation = `Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North.`;
+        }
+        else if (diff >= 30) {
+          self = "Con / Cháu";
+          them = "Bác";
+          status = "Senior Elder Respect";
+          viet = `“Dạ Bác ơi, cho con/cháu hỏi đường này đi đâu ạ?”`;
+          eng = `“Excuse me senior elder, could you tell me where this street leads?”`;
+          explanation = `<strong>Bác</strong> is used for senior elders noticeably older than your parents. Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North.`;
+        }
+        else if (diff >= 16) {
+          self = "Con / Cháu";
+          them = theirGender === 'male' ? "Chú" : "Cô";
+          status = "Street Vendor Warmth";
+          viet = `“${them} ơi, cho con / cháu xin tính tiền nha!”`;
+          eng = `“Excuse me uncle/auntie, could I get the check please!”`;
+          explanation = `Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North.`;
+        }
+        else if (diff >= 2) {
+          self = "Em";
+          them = theirGender === 'male' ? "Anh" : "Chị";
+          status = "Everyday Peer Politeness";
+          viet = `“${them} ơi, cho em xin menu nha!”`;
+          eng = `“Excuse me ${them}, could I please get the menu!”`;
+          explanation = `The everyday golden standard for cafes, baristas, convenience stores, and anyone slightly older.`;
+        }
+        else if (diff >= -1 && diff <= 1) {
+          self = "Em";
+          them = theirGender === 'male' ? "Anh" : "Chị";
+          status = "Polite Peer Encounter";
+          viet = `“${them} uống gì để em gọi luôn nha?”`;
+          eng = `“What are you having so I can order for both of us?”`;
+          explanation = `Even if you look roughly the same age, addressing them politely as <strong>Anh / Chị</strong> avoids awkwardness.`;
+        }
+        else if (diff <= -2 && diff >= -20) {
+          self = myGender === 'male' ? "Anh" : "Chị";
+          them = "Em";
+          status = "Senior Guidance & Care";
+          viet = `“Em ơi, mang giùm ${self.toLowerCase()} ly trà đá nha!”`;
+          eng = `“Excuse me em, could you bring us some iced tea please!”`;
+          explanation = `You are visibly older than the service staff or barista. Call yourself <strong>${self}</strong> and address them as <strong>Em</strong>.`;
+        }
+        else {
+          self = myGender === 'male' ? "Chú" : "Cô";
+          them = "Con / Cháu";
+          status = "Generational Senior Warmth";
+          viet = `“Con/cháu cứ để đó lát ${self.toLowerCase()} dọn cho nha!”`;
+          eng = `“You can leave that there, I will take care of it for you!”`;
+          explanation = `Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North.`;
+        }
+      }
+
+      selfPronounEl.textContent = self;
+      themPronounEl.textContent = them;
+      respectLevelEl.textContent = status;
+      exampleVietEl.textContent = viet;
+      exampleEngEl.textContent = eng;
+      pairExplanationEl.innerHTML = explanation;
+    }
+
+    // Speech synthesis
+    if (speakBtn) {
+      speakBtn.addEventListener('click', () => {
+        const textToSpeak = exampleVietEl.textContent.replace(/[“”"']/g, '');
+        if (!('speechSynthesis' in window)) return;
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(textToSpeak);
+        utterance.lang = 'vi-VN';
+        utterance.rate = 0.9;
+        window.speechSynthesis.speak(utterance);
+      });
+    }
+
+    // Run initial calculation
+    calculatePronouns();
+  </script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+---
+// src/pages/resources/index.astro - Havie Interactive Practice Lab Hub
+---
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Practice Lab & Interactive Tools — Havie Vietnamese</title>
+  <meta name="description" content="Master Vietnamese tones, decode social pronouns, and practice daily conversations with interactive exercises." />
+
+  <!-- Tailwind CSS CDN -->
+  <script is:inline src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #fffaf5;
+      --navy: #0f172a;
+      --brand-red: #dc2626;
+      --orange: #ef7218;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--cream);
+      color: var(--navy);
+    }
+
+    .font-brand {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .curved-underline {
+      position: relative;
+    }
+    .curved-underline::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 100%;
+      height: 6px;
+      border-bottom: 3px solid var(--brand-red);
+      border-radius: 50%;
+      transform: rotate(-1.5deg);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-red-600 selection:text-white relative overflow-x-hidden">
+
+  <!-- BACKGROUND GLOW: ĐÃ LÀM MỜ VÀ TAN ĐỀU, KHÔNG CÒN BỊ CỤC MÀU THÔ -->
+  <div class="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
+    <div class="absolute -top-20 right-[5%] w-[500px] h-[500px] bg-gradient-to-br from-amber-400/15 via-red-500/5 to-transparent rounded-full blur-[100px]"></div>
+    <div class="absolute top-10 -left-[10%] w-[450px] h-[450px] bg-gradient-to-tr from-amber-200/20 to-transparent rounded-full blur-[100px]"></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-40 bg-[#fffaf5]/90 backdrop-blur-md border-b border-stone-200/80 h-20">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-full flex items-center justify-between">
+      
+      <!-- LOGO -->
+      <a href="/" class="group flex flex-col select-none text-left">
+        <div class="h-7 flex items-center">
+          <svg class="h-6 sm:h-7 w-auto overflow-visible" viewBox="0 0 175 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 2H6V12H18V2H24V28H18V17H6V28H0V2Z" fill="#dc2626"/>
+            <path d="M41 2L52 28H45.5L43.2 22H33.8L31.5 28H25L36 2H41ZM38.5 8.5L35.2 17.5H41.8L38.5 8.5Z" fill="#dc2626"/>
+            <path d="M53 2H59.5L67 21L74.5 2H81L70.5 28H63.5L53 2Z" fill="#dc2626"/>
+            <path d="M86 2H92V28H86V2Z" fill="#dc2626"/>
+            <path d="M98 2H117V7.5H104V12H115V17H104V22.5H117V28H98V2Z" fill="#dc2626"/>
+          </svg>
+        </div>
+        <span class="text-[9.5px] font-bold tracking-[0.24em] text-stone-400 uppercase mt-1.5 pl-0.5 group-hover:text-slate-700 transition-colors leading-none">
+          Learn Vietnamese Online
+        </span>
+      </a>
+
+      <!-- Menu Links -->
+      <nav class="hidden md:flex items-center space-x-7 text-sm font-semibold text-slate-700">
+        <a href="/#about" class="hover:text-red-600 transition">About Me</a>
+        <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
+        <a href="/#reviews" class="hover:text-red-600 transition">Student Stories</a>
+        <a href="/resources" class="text-red-600 font-bold transition">Resources</a>
+        <a href="/test" class="hover:text-red-600 transition">Level Test</a>
+        <a href="/#faq" class="hover:text-red-600 transition">FAQ</a>
+      </nav>
+
+      <!-- CTA Nav Button -->
+      <div class="flex items-center gap-3">
+        <button
+          type="button"
+          class="open-modal-trigger inline-flex items-center justify-center px-5 py-2.5 text-xs sm:text-sm font-bold text-white bg-red-600 hover:bg-red-700 rounded-xl shadow-lg shadow-red-600/25 transition hover:-translate-y-0.5 cursor-pointer"
+        >
+          Book 25-Min Trial Lesson →
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="flex-grow py-12 lg:py-16">
+    
+    <!-- HERO HEADER -->
+    <section class="max-w-4xl mx-auto px-6 text-center space-y-4 mb-14">
+      <span class="text-xs sm:text-sm font-extrabold text-red-600 uppercase tracking-widest bg-red-50 px-4 py-1.5 rounded-full border border-red-200 inline-block shadow-2xs">
+        Free Practice Lab • Interactive Tools
+      </span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight font-brand leading-[1.2]">
+        Learn how it actually sounds in <span class="curved-underline text-red-600 whitespace-nowrap">real life.</span>
+      </h1>
+    </section>
+
+    <!-- 3 INTERACTIVE TOOL CARDS (KÍCH THƯỚC VỪA VĂN, ĐẦM TAY, ĐẸP MẮT) -->
+    <section class="max-w-6xl mx-auto px-6 pb-20">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+
+        <!-- CARD 1: TONES -->
+        <a 
+          href="/resources/tones" 
+          class="group bg-white rounded-3xl p-8 border border-stone-200/90 shadow-sm hover:shadow-xl hover:border-red-400 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
+        >
+          <div class="absolute top-0 right-0 w-28 h-28 bg-red-500/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform"></div>
+
+          <div>
+            <div class="flex items-center justify-between mb-5">
+              <div class="w-13 h-13 rounded-2xl bg-red-50 border border-red-100 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform shadow-2xs">
+                🎵
+              </div>
+            </div>
+
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 group-hover:text-red-600 transition-colors font-brand">
+              Tones
+            </h2>
+            <p class="text-stone-500 text-sm sm:text-base mt-3 leading-relaxed">
+              Master the 6 Vietnamese tones through visual pitch contours, audio examples, step-by-step breakdowns, and practice exercises.
+            </p>
+          </div>
+
+          <div class="mt-8 pt-5 border-t border-stone-100 flex items-center justify-between text-xs sm:text-sm font-bold text-red-600">
+            <span>Launch Tones Trainer</span>
+            <span class="group-hover:translate-x-1.5 transition">→</span>
+          </div>
+        </a>
+
+        <!-- CARD 2: PRONOUNS -->
+        <a 
+          href="/resources/pronouns" 
+          class="group bg-white rounded-3xl p-8 border border-stone-200/90 shadow-sm hover:shadow-xl hover:border-amber-400 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
+        >
+          <div class="absolute top-0 right-0 w-28 h-28 bg-amber-500/10 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform"></div>
+
+          <div>
+            <div class="flex items-center justify-between mb-5">
+              <div class="w-13 h-13 rounded-2xl bg-amber-50 border border-amber-100 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform shadow-2xs">
+                👥
+              </div>
+            </div>
+
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 group-hover:text-amber-700 transition-colors font-brand">
+              Pronouns
+            </h2>
+            <p class="text-stone-500 text-sm sm:text-base mt-3 leading-relaxed">
+              Never get stuck on "I" and "You" again. Instantly calculate whether to use <em>Anh, Chị, Em, Bác,</em> or <em>Cô</em> based on age and social context.
+            </p>
+          </div>
+
+          <div class="mt-8 pt-5 border-t border-stone-100 flex items-center justify-between text-xs sm:text-sm font-bold text-amber-700">
+            <span>Open Pronoun Calculator</span>
+            <span class="group-hover:translate-x-1.5 transition">→</span>
+          </div>
+        </a>
+
+        <!-- CARD 3: DAILY CONVERSATIONS -->
+        <a 
+          href="/resources/streetwise" 
+          class="group bg-white rounded-3xl p-8 border border-stone-200/90 shadow-sm hover:shadow-xl hover:border-emerald-400 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
+        >
+          <div class="absolute top-0 right-0 w-28 h-28 bg-emerald-500/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform"></div>
+
+          <div>
+            <div class="flex items-center justify-between mb-5">
+              <div class="w-13 h-13 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform shadow-2xs">
+                🍜
+              </div>
+            </div>
+
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 group-hover:text-emerald-700 transition-colors font-brand">
+              Daily conversations
+            </h2>
+            <p class="text-stone-500 text-sm sm:text-base mt-3 leading-relaxed">
+              Drop stiff textbook phrases like <em>“Bạn có khỏe không?”</em>. Use plug-and-play templates for ordering food, shopping, and everyday small talk like a local.
+            </p>
+          </div>
+
+          <div class="mt-8 pt-5 border-t border-stone-100 flex items-center justify-between text-xs sm:text-sm font-bold text-emerald-700">
+            <span>Launch Formula Builder</span>
+            <span class="group-hover:translate-x-1.5 transition">→</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#fffaf5] text-stone-600 py-8 text-xs border-t border-stone-200/80">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2.5">
+        <span class="font-brand font-black text-slate-900 tracking-widest text-sm">HAVIE.</span>
+        <span class="text-stone-400">•</span>
+        <span class="font-medium">Learn Vietnamese with Hang</span>
+      </div>
+      <div class="flex items-center gap-6 font-semibold text-stone-700">
+        <a href="/#about" class="hover:text-red-600 transition">About Me</a>
+        <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
+        <a href="/#reviews" class="hover:text-red-600 transition">Student Stories</a>
+        <a href="/resources" class="text-red-600 transition">Resources</a>
+        <a href="/test" class="hover:text-red-600 transition">Level Test</a>
+        <button type="button" class="open-modal-trigger text-red-600 font-bold hover:underline cursor-pointer">Book Trial</button>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

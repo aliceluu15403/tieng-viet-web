@@ -1,0 +1,536 @@
+---
+// src/pages/resources/tones.astro - Havie Vietnamese Tones Studio
+const TONES = [
+  { 
+    id: 'ngang', 
+    num: '1', 
+    name: 'Ngang', 
+    type: 'Mid-Flat', 
+    word: 'ma', 
+    en: 'Ghost', 
+    path: 'M 10,25 L 110,25', 
+    color: '#10b981', 
+    bg: 'hover:border-emerald-400',
+    mechanic: 'Keep pitch steady at mid level. Relax your jaw and vocal cords, like humming.'
+  },
+  { 
+    id: 'huyen', 
+    num: '2', 
+    name: 'Huyền', 
+    type: 'Low-Falling', 
+    word: 'mà', 
+    en: 'But', 
+    path: 'M 10,15 L 110,38', 
+    color: '#3b82f6', 
+    bg: 'hover:border-blue-400',
+    mechanic: 'Start at lower-mid pitch and glide down gently. Drop chin like a relaxed sigh: "Ahhh".'
+  },
+  { 
+    id: 'sac',   
+    num: '3', 
+    name: 'Sắc', 
+    type: 'High-Rising', 
+    word: 'má', 
+    en: 'Mother', 
+    path: 'M 10,38 L 110,12', 
+    color: '#e52b27', 
+    bg: 'hover:border-red-400',
+    mechanic: 'Start at mid pitch and shoot sharply upward. Tighten cords quickly, like asking: "WHAT?!".'
+  },
+  { 
+    id: 'hoi',   
+    num: '4', 
+    name: 'Hỏi', 
+    type: 'Dipping-Rising', 
+    word: 'mả', 
+    en: 'Tomb', 
+    path: 'M 10,18 Q 60,44 110,20', 
+    color: '#d97706', 
+    bg: 'hover:border-amber-400',
+    mechanic: 'Dip deep into low pitch, then scoop upward with a questioning curve: "Reaaally?".'
+  },
+  { 
+    id: 'nga',   
+    num: '5', 
+    name: 'Ngã', 
+    type: 'Glottal Rise', 
+    word: 'mã', 
+    en: 'Horse', 
+    path: 'M 10,28 L 50,32 M 70,24 L 110,10', 
+    color: '#8b5cf6', 
+    bg: 'hover:border-purple-400',
+    mechanic: 'High rising pitch broken midway by a brief throat stop before rising: "Uh-oh!".'
+  },
+  { 
+    id: 'nang',  
+    num: '6', 
+    name: 'Nặng', 
+    type: 'Heavy Drop', 
+    word: 'mạ', 
+    en: 'Seedling', 
+    path: 'M 10,18 L 85,38', 
+    dot: true, 
+    color: '#ea580c', 
+    bg: 'hover:border-orange-400',
+    mechanic: 'Drop pitch immediately to the bottom and cut airflow dead short, like a blunt "Yup!".'
+  },
+];
+---
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vietnamese Tones Studio — Havie</title>
+  <meta name="description" content="Master 6 Vietnamese tones with native audio, vocal mechanics, dialect switcher, and interactive ear workout." />
+
+  <!-- Tailwind CSS CDN -->
+  <script is:inline src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #fffaf5;
+      --navy: #0f172a;
+      --brand-red: #dc2626;
+      --orange: #ef7218;
+    }
+
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--cream);
+      color: var(--navy);
+    }
+
+    .font-brand {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .font-tone {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    }
+
+    .curved-underline {
+      position: relative;
+    }
+    .curved-underline::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 6px;
+      border-bottom: 3px solid var(--orange);
+      border-radius: 50%;
+      transform: rotate(-1.5deg);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-red-600 selection:text-white relative overflow-x-hidden">
+
+  <!-- BACKGROUND GLOW -->
+  <div class="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
+    <div class="absolute top-0 right-[15%] w-[450px] h-[450px] bg-gradient-to-br from-amber-400/20 via-red-500/10 to-transparent rounded-full blur-3xl"></div>
+    <div class="absolute top-40 left-[10%] w-[380px] h-[380px] bg-gradient-to-tr from-amber-200/30 to-transparent rounded-full blur-3xl"></div>
+  </div>
+
+  <!-- NAVBAR ĐỒNG BỘ CHUẨN 100% VỚI CÁC TRANG KHÁC -->
+  <header class="sticky top-0 z-40 bg-[#fffaf5]/90 backdrop-blur-md border-b border-stone-200/80 h-20">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-full flex items-center justify-between">
+      
+      <!-- LOGO -->
+      <a href="/" class="group flex flex-col select-none text-left">
+        <div class="h-7 flex items-center">
+          <svg class="h-6 sm:h-7 w-auto overflow-visible" viewBox="0 0 175 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 2H6V12H18V2H24V28H18V17H6V28H0V2Z" fill="#dc2626"/>
+            <path d="M41 2L52 28H45.5L43.2 22H33.8L31.5 28H25L36 2H41ZM38.5 8.5L35.2 17.5H41.8L38.5 8.5Z" fill="#dc2626"/>
+            <path d="M53 2H59.5L67 21L74.5 2H81L70.5 28H63.5L53 2Z" fill="#dc2626"/>
+            <path d="M86 2H92V28H86V2Z" fill="#dc2626"/>
+            <path d="M98 2H117V7.5H104V12H115V17H104V22.5H117V28H98V2Z" fill="#dc2626"/>
+          </svg>
+        </div>
+        <span class="text-[9.5px] font-bold tracking-[0.24em] text-stone-400 uppercase mt-1.5 pl-0.5 group-hover:text-slate-700 transition-colors leading-none">
+          Learn Vietnamese Online
+        </span>
+      </a>
+
+      <!-- Menu Links -->
+      <nav class="hidden md:flex items-center space-x-7 text-sm font-semibold text-slate-700">
+        <a href="/#about" class="hover:text-red-600 transition">About Me</a>
+        <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
+        <a href="/#reviews" class="hover:text-red-600 transition">Student Stories</a>
+        <a href="/resources" class="text-red-600 font-bold transition">Resources</a>
+        <a href="/test" class="hover:text-red-600 transition">Level Test</a>
+        <a href="/#faq" class="hover:text-red-600 transition">FAQ</a>
+      </nav>
+
+      <!-- CTA Nav Button -->
+      <div class="flex items-center gap-3">
+        <button
+          type="button"
+          class="open-modal-trigger inline-flex items-center justify-center px-5 py-2.5 text-xs sm:text-sm font-bold text-white bg-red-600 hover:bg-red-700 rounded-xl shadow-lg shadow-red-600/25 transition hover:-translate-y-0.5 cursor-pointer"
+        >
+          Book 25-Min Trial Lesson →
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="flex-grow py-10 lg:py-14">
+    
+    <!-- HEADER & DIALECT SWITCHER -->
+    <section class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-10">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div class="max-w-2xl space-y-3">
+          <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest bg-red-50 px-4 py-1.5 rounded-full border border-red-200 inline-block shadow-2xs">
+            Interactive Pronunciation Studio
+          </span>
+          <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight font-brand">
+            Master the 6 <span class="curved-underline text-red-600">Vietnamese Tones.</span>
+          </h1>
+          <p class="text-stone-600 text-sm sm:text-base leading-relaxed pt-1">
+            Choose your accent below, click any tone card to hear native pronunciation, and practice with the <a href="#workout" class="text-red-600 font-bold underline underline-offset-4 decoration-red-300 hover:decoration-red-600 transition cursor-pointer">quick ear workout ↓</a>.
+          </p>
+        </div>
+
+        <!-- ACCENT SELECTOR -->
+        <div class="inline-flex items-center p-1.5 bg-white rounded-2xl border border-stone-200 shadow-xs shrink-0 self-start md:self-auto">
+          <button 
+            id="btn-north" 
+            onclick="setDialect('north')" 
+            class="px-4 py-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs sm:text-sm transition shadow-xs cursor-pointer"
+          >
+            🇻🇳 Northern (Hanoi)
+          </button>
+          <button 
+            id="btn-south" 
+            onclick="setDialect('south')" 
+            class="px-4 py-2.5 rounded-xl text-stone-500 hover:text-slate-900 font-bold text-xs sm:text-sm transition cursor-pointer"
+          >
+            🇻🇳 Southern (Saigon)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 TONE CARDS GRID -->
+    <section class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pb-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {TONES.map(t => (
+          <div 
+            onclick={`playTone('${t.id}')`}
+            class={`group bg-white rounded-3xl p-6 lg:p-7 border border-stone-200/90 ${t.bg} shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between relative overflow-hidden select-none`}
+          >
+            <div class="absolute top-0 right-0 w-24 h-24 bg-stone-100 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform -z-0"></div>
+
+            <div class="relative z-10">
+              <!-- Top Info -->
+              <div class="flex items-center justify-between pb-4 border-b border-stone-100">
+                <span class="font-mono font-extrabold text-xs text-stone-400 uppercase tracking-widest">Tone {t.num}</span>
+                <span class="font-bold text-xs text-slate-800 bg-stone-100/90 px-3 py-1 rounded-full border border-stone-200/60">
+                  {t.name} • {t.type}
+                </span>
+              </div>
+
+              <!-- Main Word & SVG Graph -->
+              <div class="py-5 flex items-center justify-between gap-4">
+                <div>
+                  <span class="text-4xl sm:text-5xl font-black font-tone text-slate-900 group-hover:text-red-600 transition-colors leading-none block">
+                    {t.word}
+                  </span>
+                  <span class="text-xs sm:text-sm font-bold text-stone-400 mt-1.5 block">
+                    {t.en}
+                  </span>
+                </div>
+
+                <div class="w-24 h-12 flex items-center justify-center bg-stone-50/80 rounded-2xl p-2 border border-stone-100">
+                  <svg class="w-full h-full" viewBox="0 0 120 50">
+                    <path d={t.path} fill="none" stroke={t.color} stroke-width="5" stroke-linecap="round" />
+                    {t.dot && <circle cx="102" cy="38" r="5" fill={t.color} />}
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Vocal Mechanic Tip -->
+              <p class="text-xs sm:text-sm text-stone-600 leading-relaxed pt-1">
+                {t.mechanic}
+              </p>
+            </div>
+
+            <!-- Footer Audio Trigger -->
+            <div class="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between text-xs font-bold text-stone-400 group-hover:text-red-600 transition-colors relative z-10">
+              <span>Click to listen & repeat</span>
+              <div class="w-8 h-8 rounded-full bg-stone-100 group-hover:bg-red-600 group-hover:text-white flex items-center justify-center transition-colors text-xs shadow-2xs">
+                🔊
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- PRACTICE WORKOUT SECTION -->
+    <section id="workout" class="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 pt-6 scroll-mt-28">
+      <div class="bg-white rounded-3xl p-8 sm:p-10 border border-stone-200/95 shadow-md relative overflow-hidden">
+        
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-stone-100">
+          <div>
+            <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest block mb-1">Interactive Ear Trainer • 6 Rounds</span>
+            <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Which Tone Did You Hear?</h2>
+            <p class="text-stone-500 text-xs sm:text-sm mt-1">Play the audio and test your ear by selecting the exact tone match below.</p>
+          </div>
+          <div class="flex items-center gap-4 bg-stone-50 px-5 py-2.5 rounded-2xl border border-stone-200 shrink-0 text-sm font-bold self-start sm:self-auto">
+            <span id="quizRound" class="text-slate-900 font-mono font-extrabold">1 / 6</span>
+            <span class="text-stone-300">|</span>
+            <span class="text-stone-500">Score: <strong id="quizScore" class="text-red-600 font-mono font-extrabold">0</strong></span>
+          </div>
+        </div>
+
+        <div id="quizPlayArea" class="pt-6">
+          <div class="py-8 text-center space-y-3">
+            <button 
+              id="btnPlayQuiz" 
+              onclick="playCurrentQuestionAudio()" 
+              class="px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-2xl text-sm sm:text-base shadow-md shadow-red-600/20 transition active:scale-95 inline-flex items-center gap-2.5 cursor-pointer"
+            >
+              <span class="text-lg">🔊</span> 
+              <span id="quizBtnText">Listen Audio</span>
+            </button>
+            <div id="quizPromptHint" class="text-xs text-stone-400 font-medium italic">Click to play sound, then pick the right choice below.</div>
+          </div>
+
+          <div id="quizChoicesGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto"></div>
+          
+          <div id="quizFeedback" class="hidden mt-6 p-4.5 rounded-2xl text-xs sm:text-sm font-semibold text-center max-w-2xl mx-auto"></div>
+
+          <div id="nextButtonArea" class="hidden mt-6 text-center">
+            <button 
+              onclick="goToNextQuestion()" 
+              class="px-8 py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl text-xs sm:text-sm transition shadow-sm cursor-pointer"
+            >
+              Next Question →
+            </button>
+          </div>
+        </div>
+
+        <!-- SUMMARY -->
+        <div id="quizSummaryArea" class="hidden py-12 text-center space-y-4">
+          <div class="w-16 h-16 rounded-3xl bg-amber-100 text-amber-700 flex items-center justify-center text-3xl mx-auto shadow-xs">🏆</div>
+          <h3 class="text-3xl font-black text-slate-900">Workout Completed!</h3>
+          <p id="quizFinalResultText" class="text-stone-600 text-sm sm:text-base max-w-md mx-auto leading-relaxed"></p>
+          <div class="pt-4 flex justify-center gap-4">
+            <button type="button" class="open-modal-trigger px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-xs sm:text-sm shadow-md transition cursor-pointer">Book Trial Lesson →</button>
+            <button onclick="restartQuiz()" class="px-6 py-3 bg-stone-100 hover:bg-stone-200 text-slate-900 font-bold rounded-xl text-xs sm:text-sm transition cursor-pointer">Practice Again ↺</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- BANNER TRIAL -->
+      <div class="mt-10 rounded-3xl bg-gradient-to-r from-red-50 via-white to-amber-50 border border-red-200/80 p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
+        <div class="space-y-1 text-center md:text-left">
+          <span class="text-xs font-bold uppercase tracking-wider text-red-600">Personalized Coaching</span>
+          <h3 class="text-xl font-extrabold text-slate-900">Want live vocal feedback from Hang Luu?</h3>
+          <p class="text-xs sm:text-sm text-stone-600">Diagnose your pitch blocks and lock in mouth mechanics in a 25-minute trial session.</p>
+        </div>
+        <button 
+          type="button"
+          class="open-modal-trigger shrink-0 px-6 py-3.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-2xl text-xs shadow-md shadow-red-600/20 transition hover:-translate-y-0.5 cursor-pointer"
+        >
+          Book 25-Min Trial Lesson →
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER ĐỒNG BỘ CHUẨN VỚI TRANG RESOURCES -->
+  <footer class="bg-[#fffaf5] text-stone-600 py-8 text-xs border-t border-stone-200/80">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2.5">
+        <span class="font-brand font-black text-slate-900 tracking-widest text-sm">HAVIE.</span>
+        <span class="text-stone-400">•</span>
+        <span class="font-medium">Learn Vietnamese with Hang</span>
+      </div>
+      <div class="flex items-center gap-6 font-semibold text-stone-700">
+        <a href="/#about" class="hover:text-red-600 transition">About Me</a>
+        <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
+        <a href="/#reviews" class="hover:text-red-600 transition">Student Stories</a>
+        <a href="/resources" class="text-red-600 transition">Resources</a>
+        <a href="/test" class="hover:text-red-600 transition">Level Test</a>
+        <button type="button" class="open-modal-trigger text-red-600 font-bold hover:underline cursor-pointer">Book Trial</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT LOGIC -->
+  <script is:inline>
+    const MA_WORDS = { ngang: 'ma', huyen: 'mà', sac: 'má', hoi: 'mả', nga: 'mã', nang: 'mạ' };
+    
+    const TONE_NAMES = { 
+      ngang: 'Tone 1 (Flat)', 
+      huyen: 'Tone 2 (Low-Fall)', 
+      sac: 'Tone 3 (Sharp Rise)', 
+      hoi: 'Tone 4 (Dipping)', 
+      nga: 'Tone 5 (Glottal)', 
+      nang: 'Tone 6 (Heavy Drop)' 
+    };
+    
+    const QUIZ_ROUNDS = [
+      { correctIndex: 2, choices: [{ word: 'ca', tone: 'ngang', en: 'sing' }, { word: 'cà', tone: 'huyen', en: 'eggplant' }, { word: 'cá', tone: 'sac', en: 'fish' }, { word: 'cả', tone: 'hoi', en: 'all' }] },
+      { correctIndex: 1, choices: [{ word: 'ba', tone: 'ngang', en: 'dad' }, { word: 'bà', tone: 'huyen', en: 'grandmother' }, { word: 'bá', tone: 'sac', en: 'uncle' }, { word: 'bạ', tone: 'nang', en: 'random' }] },
+      { correctIndex: 3, choices: [{ word: 'phơ', tone: 'ngang', en: 'faded' }, { word: 'phờ', tone: 'huyen', en: 'exhausted' }, { word: 'phớ', tone: 'sac', en: 'unconcerned' }, { word: 'phở', tone: 'hoi', en: 'noodle soup' }] },
+      { correctIndex: 2, choices: [{ word: 'la', tone: 'ngang', en: 'shout' }, { word: 'là', tone: 'huyen', en: 'to be' }, { word: 'lá', tone: 'sac', en: 'leaf' }, { word: 'lạ', tone: 'nang', en: 'strange' }] },
+      { correctIndex: 1, choices: [{ word: 'to', tone: 'ngang', en: 'big' }, { word: 'tò', tone: 'huyen', en: 'curious' }, { word: 'tỏ', tone: 'hoi', en: 'clear' }, { word: 'tọ', tone: 'nang', en: 'heavy' }] },
+      { correctIndex: 1, choices: [{ word: 'ga', tone: 'ngang', en: 'station' }, { word: 'gà', tone: 'huyen', en: 'chicken' }, { word: 'gá', tone: 'sac', en: 'attach' }, { word: 'gả', tone: 'hoi', en: 'marry off' }] }
+    ];
+
+    let currentDialect = 'north';
+    let currentRoundIndex = 0;
+    let score = 0;
+    let hasAnsweredCurrentRound = false;
+
+    function setDialect(d) {
+      currentDialect = d;
+      document.getElementById('btn-north').className = d === 'north' ? 'px-4 py-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs sm:text-sm transition shadow-xs cursor-pointer' : 'px-4 py-2.5 rounded-xl text-stone-500 hover:text-slate-900 font-bold text-xs sm:text-sm transition cursor-pointer';
+      document.getElementById('btn-south').className = d === 'south' ? 'px-4 py-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs sm:text-sm transition shadow-xs cursor-pointer' : 'px-4 py-2.5 rounded-xl text-stone-500 hover:text-slate-900 font-bold text-xs sm:text-sm transition cursor-pointer';
+    }
+
+    function speakWord(word, toneType) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+
+      let targetWord = word;
+      let pitch = 1.0;
+      let rate = 0.85;
+
+      if (currentDialect === 'north') {
+        const pitches = { ngang: 1.0, huyen: 0.82, sac: 1.45, hoi: 0.94, nga: 1.35, nang: 0.78 };
+        pitch = pitches[toneType] || 1.0;
+        if (toneType === 'nang') rate = 1.15;
+      } else {
+        const pitches = { ngang: 0.98, huyen: 0.80, sac: 1.38, hoi: 0.92, nga: 0.92, nang: 0.75 };
+        pitch = pitches[toneType] || 1.0;
+        if (toneType === 'nga') targetWord = { 'mã': 'mả' }[targetWord] || targetWord;
+      }
+
+      const u = new SpeechSynthesisUtterance(targetWord);
+      u.lang = 'vi-VN';
+      u.rate = rate;
+      u.pitch = pitch;
+
+      const voices = window.speechSynthesis.getVoices();
+      if (currentDialect === 'south') {
+        const sVoice = voices.find(v => v.lang.includes('vi') && (v.name.includes('HoaiMy') || v.name.includes('South')));
+        if (sVoice) u.voice = sVoice;
+      } else {
+        const nVoice = voices.find(v => v.lang.includes('vi') && (v.name.includes('Linh') || v.name.includes('NamMinh') || v.name.includes('North')));
+        if (nVoice) u.voice = nVoice;
+      }
+
+      window.speechSynthesis.speak(u);
+    }
+
+    function playTone(type) {
+      speakWord(MA_WORDS[type], type);
+    }
+
+    function renderCurrentQuestion() {
+      hasAnsweredCurrentRound = false;
+      const roundData = QUIZ_ROUNDS[currentRoundIndex];
+
+      document.getElementById('quizRound').innerText = `${currentRoundIndex + 1} / 6`;
+      document.getElementById('quizBtnText').innerText = 'Listen Audio';
+      document.getElementById('quizPromptHint').innerText = 'Click to play sound, then pick the right choice below.';
+      document.getElementById('quizFeedback').classList.add('hidden');
+      document.getElementById('nextButtonArea').classList.add('hidden');
+
+      const container = document.getElementById('quizChoicesGrid');
+      container.innerHTML = '';
+
+      roundData.choices.forEach((choice, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-opt-btn p-5 rounded-2xl border border-stone-200/90 hover:border-slate-800 bg-[#fffaf6] text-center transition active:scale-95 group shadow-2xs cursor-pointer';
+        btn.innerHTML = `
+          <span class="block text-2xl sm:text-3xl font-black font-tone text-slate-900 group-hover:text-red-600 transition-colors leading-tight">${choice.word}</span>
+          <span class="text-xs text-stone-500 font-medium block mt-1.5">${TONE_NAMES[choice.tone]}</span>
+        `;
+        btn.onclick = () => selectAnswer(idx, btn);
+        container.appendChild(btn);
+      });
+    }
+
+    function playCurrentQuestionAudio() {
+      const roundData = QUIZ_ROUNDS[currentRoundIndex];
+      const targetObj = roundData.choices[roundData.correctIndex];
+      speakWord(targetObj.word, targetObj.tone);
+      document.getElementById('quizBtnText').innerText = 'Listen Again ↺';
+    }
+
+    function selectAnswer(selectedIndex, btnEl) {
+      if (hasAnsweredCurrentRound) return;
+      hasAnsweredCurrentRound = true;
+
+      const roundData = QUIZ_ROUNDS[currentRoundIndex];
+      const correctObj = roundData.choices[roundData.correctIndex];
+      const selectedObj = roundData.choices[selectedIndex];
+
+      const fb = document.getElementById('quizFeedback');
+      fb.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-900', 'border-emerald-200', 'bg-red-50', 'text-red-900', 'border-red-200');
+
+      document.querySelectorAll('.quiz-opt-btn').forEach(btn => {
+        btn.classList.remove('hover:border-slate-800', 'active:scale-95');
+        btn.classList.add('cursor-default');
+      });
+
+      if (selectedIndex === roundData.correctIndex) {
+        score += 10;
+        btnEl.classList.add('border-emerald-500', 'bg-emerald-50');
+        fb.classList.add('bg-emerald-50', 'text-emerald-900', 'border', 'border-emerald-200');
+        fb.innerHTML = `Correct! The word was <strong class="font-tone">“${correctObj.word}”</strong> (${correctObj.en}) with <strong>${TONE_NAMES[correctObj.tone]}</strong>.`;
+      } else {
+        btnEl.classList.add('border-red-400', 'bg-red-50');
+        document.querySelectorAll('.quiz-opt-btn')[roundData.correctIndex].classList.add('border-emerald-500', 'bg-emerald-50');
+        fb.classList.add('bg-red-50', 'text-red-900', 'border', 'border-red-200');
+        fb.innerHTML = `Not quite! You selected <strong>“${selectedObj.word}”</strong> (${selectedObj.en} - ${TONE_NAMES[selectedObj.tone]}). The correct word was <strong class="font-tone">“${correctObj.word}”</strong> (${correctObj.en}) with <strong>${TONE_NAMES[correctObj.tone]}</strong>.`;
+      }
+
+      document.getElementById('quizScore').innerText = score;
+      document.getElementById('nextButtonArea').classList.remove('hidden');
+    }
+
+    function goToNextQuestion() {
+      if (currentRoundIndex < QUIZ_ROUNDS.length - 1) {
+        currentRoundIndex++;
+        renderCurrentQuestion();
+      } else {
+        document.getElementById('quizPlayArea').classList.add('hidden');
+        document.getElementById('quizSummaryArea').classList.remove('hidden');
+        document.getElementById('quizFinalResultText').innerHTML = 
+          `You scored <strong>${score} / 60 points</strong>! Keep practicing regularly to make Vietnamese tones instinctive.`;
+      }
+    }
+
+    function restartQuiz() {
+      currentRoundIndex = 0;
+      score = 0;
+      document.getElementById('quizScore').innerText = 0;
+      document.getElementById('quizSummaryArea').classList.add('hidden');
+      document.getElementById('quizPlayArea').classList.remove('hidden');
+      renderCurrentQuestion();
+    }
+
+    renderCurrentQuestion();
+
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+    }
+  </script>
+</body>
+</html>
