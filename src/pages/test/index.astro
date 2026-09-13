@@ -6,8 +6,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vietnamese Proficiency Placement Test — HAVIE.</title>
+  <title>Vietnamese Proficiency Placement Test — HAVIE</title>
   <meta name="description" content="Take our comprehensive Vietnamese level test with Northern and Southern dialect tracks, audio tone discrimination, and real-time feedback." />
+
+  <!-- FAVICON & MOBILE TOUCH ICONS -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
 
   <!-- Tailwind CSS CDN -->
   <script is:inline src="https://cdn.tailwindcss.com"></script>
@@ -36,15 +43,15 @@
     }
   </style>
 </head>
-<body class="selection:bg-red-600 selection:text-white min-h-screen flex flex-col antialiased">
+<body class="selection:bg-red-600 selection:text-white min-h-screen flex flex-col antialiased relative overflow-x-hidden">
 
   <!-- NAVBAR -->
   <header class="sticky top-0 z-40 bg-[#fffaf5]/90 backdrop-blur-md border-b border-stone-200/80 h-20">
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-full flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 h-full flex items-center justify-between">
       
       <!-- LOGO -->
       <a href="/" class="group flex flex-col select-none text-left">
-        <div class="h-7 flex items-center">
+        <div class="h-6 sm:h-7 flex items-center">
           <svg class="h-6 sm:h-7 w-auto overflow-visible" viewBox="0 0 175 30" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 2H6V12H18V2H24V28H18V17H6V28H0V2Z" fill="#dc2626"/>
             <path d="M41 2L52 28H45.5L43.2 22H33.8L31.5 28H25L36 2H41ZM38.5 8.5L35.2 17.5H41.8L38.5 8.5Z" fill="#dc2626"/>
@@ -53,39 +60,67 @@
             <path d="M98 2H117V7.5H104V12H115V17H104V22.5H117V28H98V2Z" fill="#dc2626"/>
           </svg>
         </div>
-        <span class="text-[9.5px] font-bold tracking-[0.24em] text-stone-400 uppercase mt-1.5 pl-0.5 group-hover:text-slate-700 transition-colors leading-none">
+        <span class="text-[9px] sm:text-[9.5px] font-bold tracking-[0.2em] sm:tracking-[0.24em] text-stone-400 uppercase mt-1 pl-0.5 leading-none">
           Learn Vietnamese Online
         </span>
       </a>
 
-      <!-- Menu Links -->
-      <nav class="hidden md:flex items-center space-x-7 text-sm font-semibold text-slate-700">
+      <!-- Desktop Menu Links -->
+      <nav class="hidden md:flex items-center space-x-6 lg:space-x-7 text-sm font-semibold text-slate-700">
         <a href="/#about" class="hover:text-red-600 transition">About Me</a>
         <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
         <a href="/#reviews" class="hover:text-red-600 transition">Student Stories</a>
         <a href="/resources" class="hover:text-red-600 transition">Resources</a>
-        <a href="/test" class="text-red-600 hover:text-red-700 font-bold flex items-center gap-1.5 bg-red-50 px-3.5 py-1.5 rounded-full border border-red-200 shadow-2xs hover:bg-red-100 transition">
-          <span>📝 Level Test</span>
-        </a>
+        <a href="/test" class="text-red-600 font-bold transition">Level Test</a>
         <a href="/#faq" class="hover:text-red-600 transition">FAQ</a>
       </nav>
 
-      <!-- CTA Nav Button -->
+      <!-- Desktop CTA & Mobile Toggle Button -->
       <div class="flex items-center gap-3">
         <button
           type="button"
-          class="open-modal-trigger inline-flex items-center justify-center px-5 py-2.5 text-xs sm:text-sm font-bold text-white bg-red-600 hover:bg-red-700 rounded-xl shadow-lg shadow-red-600/25 transition hover:-translate-y-0.5 cursor-pointer"
+          class="open-modal-trigger hidden sm:inline-flex items-center justify-center px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-bold text-white bg-red-600 hover:bg-red-700 rounded-xl shadow-lg shadow-red-600/25 transition hover:-translate-y-0.5 cursor-pointer"
+        >
+          Book 25-Min Trial Lesson →
+        </button>
+
+        <!-- Mobile Menu Hamburger Button -->
+        <button 
+          id="mobileMenuBtn" 
+          type="button" 
+          aria-label="Toggle Menu"
+          class="md:hidden w-10 h-10 rounded-xl bg-stone-100 hover:bg-stone-200 text-slate-800 flex items-center justify-center font-bold transition cursor-pointer"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden absolute top-20 left-0 w-full bg-[#fffaf5] border-b border-stone-200 shadow-xl px-6 py-5 space-y-4 font-semibold text-slate-700 text-sm">
+      <a href="/#about" class="mobile-link block hover:text-red-600 transition">About Me</a>
+      <a href="/#curriculum" class="mobile-link block hover:text-red-600 transition">Learning Tracks</a>
+      <a href="/#reviews" class="mobile-link block hover:text-red-600 transition">Student Stories</a>
+      <a href="/resources" class="mobile-link block hover:text-red-600 transition">Resources</a>
+      <a href="/test" class="mobile-link block text-red-600 font-bold">Level Test</a>
+      <a href="/#faq" class="mobile-link block hover:text-red-600 transition">FAQ</a>
+      <div class="pt-3 border-t border-stone-200">
+        <button
+          type="button"
+          class="open-modal-trigger w-full py-3 text-xs font-bold text-white bg-red-600 rounded-xl text-center shadow-md cursor-pointer"
         >
           Book 25-Min Trial Lesson →
         </button>
       </div>
-
     </div>
   </header>
 
   <!-- STICKY SCORE TRACKER -->
   <div class="sticky top-20 z-30 bg-white/95 backdrop-blur-md border-b border-stone-200/90 py-3.5 shadow-xs">
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm font-bold text-center sm:text-left">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm font-bold text-center sm:text-left">
       <div class="flex flex-wrap items-center justify-center gap-3">
         <span class="text-stone-400 uppercase text-xs tracking-wider font-extrabold">Dialect Track:</span>
         <div class="inline-flex p-1 rounded-xl bg-stone-100 border border-stone-200">
@@ -98,12 +133,12 @@
         </div>
       </div>
 
-      <div class="flex flex-wrap items-center justify-center gap-5 text-stone-700 text-xs sm:text-sm">
+      <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-5 text-stone-700 text-xs sm:text-sm">
         <div>P1: <span id="scoreP1" class="text-red-600 font-mono font-bold">0</span>/20</div>
         <div>P2: <span id="scoreP2" class="text-red-600 font-mono font-bold">0</span>/20</div>
         <div>P3: <span id="scoreP3" class="text-red-600 font-mono font-bold">0</span>/20</div>
         <div>P4: <span id="scoreP4" class="text-red-600 font-mono font-bold">0</span>/20</div>
-        <div class="pl-4 border-l border-stone-300 font-black text-slate-900">
+        <div class="pl-2 sm:pl-4 border-l border-stone-300 font-black text-slate-900">
           Auto Total: <span id="scoreTotal" class="text-red-600 font-mono text-base font-black">0</span>/80
         </div>
       </div>
@@ -112,7 +147,7 @@
 
   <!-- MAIN CONTAINER -->
   <main class="flex-grow py-12 lg:py-16">
-    <div class="max-w-6xl mx-auto px-6 sm:px-8 space-y-12">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 space-y-12">
       
       <!-- HERO INTRO -->
       <div class="text-center max-w-3xl mx-auto space-y-3.5">
@@ -124,67 +159,57 @@
         <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight font-brand">
           Vietnamese Proficiency Test
         </h1>
-        <p class="text-stone-600 text-base sm:text-lg leading-relaxed pt-1">
+        <p class="text-stone-600 text-sm sm:text-base leading-relaxed pt-1">
           Select your target dialect track above. Complete all parts below, then submit your test at the bottom for instant evaluation.
         </p>
       </div>
 
-      <!-- ======================================================== -->
       <!-- PART 1: TONES (20 PTS) -->
-      <!-- ======================================================== -->
-      <section class="bg-white rounded-3xl p-8 sm:p-12 shadow-lg shadow-stone-200/50 border border-stone-200/90 space-y-8">
+      <section class="bg-white rounded-3xl p-6 sm:p-12 shadow-lg shadow-stone-200/50 border border-stone-200/90 space-y-8">
         <div class="border-b border-stone-100 pb-5">
           <span class="text-xs font-black uppercase tracking-wider text-red-700 bg-red-50 px-3 py-1.5 rounded-lg border border-red-200">Section 1</span>
           <h2 class="text-2xl font-bold text-slate-900 font-brand mt-2">Part 1: Tones</h2>
-          <p class="text-sm sm:text-base text-stone-500 mt-1">Listen to the audio syllable and choose the exact word you hear (20 pts).</p>
+          <p class="text-xs sm:text-base text-stone-500 mt-1">Listen to the audio syllable and choose the exact word you hear (20 pts).</p>
         </div>
 
         <div class="space-y-6" id="containerP1"></div>
       </section>
 
-      <!-- ======================================================== -->
       <!-- PART 2: QUICK RESPONSES (20 PTS) -->
-      <!-- ======================================================== -->
-      <section class="bg-white rounded-3xl p-8 sm:p-12 shadow-lg shadow-stone-200/50 border border-stone-200/90 space-y-8">
+      <section class="bg-white rounded-3xl p-6 sm:p-12 shadow-lg shadow-stone-200/50 border border-stone-200/90 space-y-8">
         <div class="border-b border-stone-100 pb-5">
           <span class="text-xs font-black uppercase tracking-wider text-red-700 bg-red-50 px-3 py-1.5 rounded-lg border border-red-200">Section 2</span>
           <h2 class="text-2xl font-bold text-slate-900 font-brand mt-2">Part 2: Quick Responses</h2>
-          <p class="text-sm sm:text-base text-stone-500 mt-1">Choose the most natural reply to complete each everyday exchange (20 pts).</p>
+          <p class="text-xs sm:text-base text-stone-500 mt-1">Choose the most natural reply to complete each everyday exchange (20 pts).</p>
         </div>
 
         <div class="space-y-8" id="containerP2"></div>
       </section>
 
-      <!-- ======================================================== -->
       <!-- PART 3: GRAMMAR & CONTEXT (20 PTS) -->
-      <!-- ======================================================== -->
-      <section class="bg-white rounded-3xl p-8 sm:p-12 shadow-lg shadow-stone-200/50 border border-stone-200/90 space-y-8">
+      <section class="bg-white rounded-3xl p-6 sm:p-12 shadow-lg shadow-stone-200/50 border border-stone-200/90 space-y-8">
         <div class="border-b border-stone-100 pb-5">
           <span class="text-xs font-black uppercase tracking-wider text-red-700 bg-red-50 px-3 py-1.5 rounded-lg border border-red-200">Section 3</span>
           <h2 class="text-2xl font-bold text-slate-900 font-brand mt-2">Part 3: Grammar & Context</h2>
-          <p class="text-sm sm:text-base text-stone-500 mt-1">Choose the correct option to complete each sentence (20 pts).</p>
+          <p class="text-xs sm:text-base text-stone-500 mt-1">Choose the correct option to complete each sentence (20 pts).</p>
         </div>
 
         <div class="space-y-8" id="containerP3"></div>
       </section>
 
-      <!-- ======================================================== -->
       <!-- PART 4: REAL-WORLD READING COMPREHENSION (20 PTS) -->
-      <!-- ======================================================== -->
-      <section class="bg-white rounded-3xl p-8 sm:p-12 shadow-lg shadow-stone-200/50 border border-stone-200/90 space-y-8">
+      <section class="bg-white rounded-3xl p-6 sm:p-12 shadow-lg shadow-stone-200/50 border border-stone-200/90 space-y-8">
         <div class="border-b border-stone-100 pb-5">
           <span class="text-xs font-black uppercase tracking-wider text-red-700 bg-red-50 px-3 py-1.5 rounded-lg border border-red-200">Section 4</span>
           <h2 class="text-2xl font-bold text-slate-900 font-brand mt-2">Part 4: Real-World Reading Comprehension</h2>
-          <p class="text-sm sm:text-base text-stone-500 mt-1">Read real contexts and answer questions (20 pts).</p>
+          <p class="text-xs sm:text-base text-stone-500 mt-1">Read real contexts and answer questions (20 pts).</p>
         </div>
 
         <div class="space-y-10" id="containerP4"></div>
       </section>
 
-      <!-- ======================================================== -->
       <!-- PART 5: SPEAKING -->
-      <!-- ======================================================== -->
-      <section class="bg-white rounded-3xl p-8 sm:p-12 shadow-lg shadow-stone-200/50 border border-stone-200/90 space-y-8">
+      <section class="bg-white rounded-3xl p-6 sm:p-12 shadow-lg shadow-stone-200/50 border border-stone-200/90 space-y-8">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-100 pb-5">
           <div>
             <span class="text-xs font-black uppercase tracking-wider text-stone-700 bg-stone-100 px-3 py-1.5 rounded-lg border border-stone-200">Section 5</span>
@@ -202,7 +227,7 @@
         <div class="pt-4 text-center">
           <button
             type="button"
-            class="open-modal-trigger inline-flex items-center justify-center px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-2xl text-sm sm:text-base transition shadow-lg shadow-red-600/25 cursor-pointer"
+            class="open-modal-trigger inline-flex items-center justify-center px-6 sm:px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-2xl text-xs sm:text-base transition shadow-lg shadow-red-600/25 cursor-pointer w-full sm:w-auto"
           >
             🎙️ Book Speaking Evaluation with Hang (Free 25-Min Trial) →
           </button>
@@ -214,7 +239,7 @@
         <button
           id="btnFinalSubmit"
           type="button"
-          class="px-14 py-5 bg-slate-950 hover:bg-slate-900 text-white font-black text-lg rounded-2xl shadow-2xl transition-all hover:-translate-y-1 cursor-pointer"
+          class="w-full sm:w-auto px-10 sm:px-14 py-5 bg-slate-950 hover:bg-slate-900 text-white font-black text-base sm:text-lg rounded-2xl shadow-2xl transition-all hover:-translate-y-1 cursor-pointer"
         >
           🏁 Submit Test & View Placement Summary
         </button>
@@ -225,7 +250,7 @@
 
   <!-- RESULT POPUP MODAL -->
   <div id="resultModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl p-8 sm:p-10 max-w-lg w-full shadow-2xl border border-stone-200 text-center space-y-6">
+    <div class="bg-white rounded-3xl p-6 sm:p-10 max-w-lg w-full shadow-2xl border border-stone-200 text-center space-y-6">
       
       <div id="modalBadge" class="w-16 h-16 mx-auto rounded-full flex items-center justify-center text-3xl shadow-inner bg-red-100 text-red-600">
         🎯
@@ -242,7 +267,7 @@
         <div class="text-sm font-black text-slate-900 uppercase tracking-wider flex items-center gap-2">
           <span>📚 Recommended Study Plan</span>
         </div>
-        <ul id="modalRecList" class="space-y-2 text-sm sm:text-base text-stone-700 font-medium"></ul>
+        <ul id="modalRecList" class="space-y-2 text-xs sm:text-sm text-stone-700 font-medium"></ul>
       </div>
 
       <div class="bg-white p-4 rounded-xl border border-stone-200 flex items-center justify-between text-sm sm:text-base font-bold text-stone-600 shadow-2xs">
@@ -253,14 +278,14 @@
       <div class="space-y-3 pt-2">
         <button
           type="button"
-          class="open-modal-trigger block w-full py-4 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-xl text-sm sm:text-base shadow-lg shadow-red-600/25 transition hover:-translate-y-0.5 cursor-pointer"
+          class="open-modal-trigger block w-full py-3.5 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-xl text-xs sm:text-sm shadow-lg shadow-red-600/25 transition hover:-translate-y-0.5 cursor-pointer"
         >
           Schedule Free 25-Min Speaking Evaluation →
         </button>
         <button
           id="btnCloseModal"
           type="button"
-          class="block w-full py-3 bg-stone-100 hover:bg-stone-200 text-stone-700 font-bold rounded-xl text-sm transition cursor-pointer"
+          class="block w-full py-3 bg-stone-100 hover:bg-stone-200 text-stone-700 font-bold rounded-xl text-xs sm:text-sm transition cursor-pointer"
         >
           Review My Answers
         </button>
@@ -283,36 +308,36 @@
         </button>
       </div>
 
-      <form id="consultForm" class="space-y-4 text-sm">
+      <form id="consultForm" class="space-y-3.5 text-xs">
         <div>
-          <label class="block font-bold text-slate-700 mb-1.5">Full Name / Tên của bạn *</label>
-          <input type="text" id="cName" required placeholder="e.g. Alex Smith" class="w-full px-4 py-3 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50 text-sm" />
+          <label class="block font-bold text-slate-700 mb-1">Full Name / Tên của bạn *</label>
+          <input type="text" id="cName" required placeholder="e.g. Alex Smith" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50" />
         </div>
 
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="block font-bold text-slate-700 mb-1.5">Country / Quốc gia *</label>
-            <input type="text" id="cCountry" required placeholder="e.g. Germany, USA" class="w-full px-4 py-3 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50 text-sm" />
+            <label class="block font-bold text-slate-700 mb-1">Country / Quốc gia *</label>
+            <input type="text" id="cCountry" required placeholder="e.g. Germany, USA" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50" />
           </div>
           <div>
-            <label class="block font-bold text-slate-700 mb-1.5">Phone / SĐT</label>
-            <input type="tel" id="cPhone" placeholder="e.g. +49..." class="w-full px-4 py-3 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50 text-sm" />
+            <label class="block font-bold text-slate-700 mb-1">Phone / SĐT</label>
+            <input type="tel" id="cPhone" placeholder="e.g. +49..." class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50" />
           </div>
         </div>
 
         <div>
-          <label class="block font-bold text-slate-700 mb-1.5">Email Address *</label>
-          <input type="email" id="cEmail" required placeholder="name@example.com" class="w-full px-4 py-3 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50 text-sm" />
+          <label class="block font-bold text-slate-700 mb-1">Email Address *</label>
+          <input type="email" id="cEmail" required placeholder="name@example.com" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50" />
         </div>
 
         <div>
-          <label class="block font-bold text-slate-700 mb-1.5">Learning Goals / Mục tiêu học tập *</label>
-          <textarea id="cGoals" rows="3" required placeholder="Current level, target dialect (Hanoi/Saigon), goals..." class="w-full px-4 py-3 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50 resize-none text-sm"></textarea>
+          <label class="block font-bold text-slate-700 mb-1">Learning Goals / Mục tiêu học tập *</label>
+          <textarea id="cGoals" rows="3" required placeholder="Current level, target dialect (Hanoi/Saigon), goals..." class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50 resize-none"></textarea>
         </div>
 
         <button
           type="submit"
-          class="w-full py-4 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl text-sm shadow-md transition cursor-pointer mt-2"
+          class="w-full py-3.5 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl text-xs sm:text-sm shadow-md transition cursor-pointer mt-2"
         >
           Submit Request to Hang →
         </button>
@@ -321,8 +346,8 @@
       <div id="successMessage" class="hidden text-center py-6 space-y-3">
         <div class="text-3xl">🎉</div>
         <h4 class="font-black text-slate-900 text-base font-brand">Request Sent Successfully!</h4>
-        <p class="text-stone-600 text-sm leading-relaxed">Thank you! Hang has received your details and goals. She will reach out via email within 24 hours.</p>
-        <button id="btnCloseSuccess" type="button" class="px-6 py-2.5 bg-slate-900 text-white font-bold rounded-xl text-sm cursor-pointer">
+        <p class="text-stone-600 text-xs leading-relaxed">Thank you! Hang has received your details and goals. She will reach out via email within 24 hours.</p>
+        <button id="btnCloseSuccess" type="button" class="px-6 py-2.5 bg-slate-900 text-white font-bold rounded-xl text-xs cursor-pointer">
           Close Window
         </button>
       </div>
@@ -331,19 +356,19 @@
   </div>
 
   <!-- FOOTER -->
-  <footer class="bg-[#fffaf5] text-stone-600 py-8 text-sm border-t border-stone-200/80">
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-2.5">
+  <footer class="bg-[#fffaf5] text-stone-600 py-8 text-xs border-t border-stone-200/80">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <div class="flex items-center justify-center gap-2.5">
         <span class="font-brand font-black text-slate-900 tracking-widest text-sm">HAVIE.</span>
         <span class="text-stone-400">•</span>
         <span class="font-medium">Learn Vietnamese with Hang</span>
       </div>
-      <div class="flex items-center gap-6 font-semibold text-stone-700">
+      <div class="flex items-center gap-4 sm:gap-6 font-semibold text-stone-700 flex-wrap justify-center">
         <a href="/#about" class="hover:text-red-600 transition">About Me</a>
         <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
         <a href="/#reviews" class="hover:text-red-600 transition">Student Stories</a>
         <a href="/resources" class="hover:text-red-600 transition">Resources</a>
-        <a href="/test" class="hover:text-red-600 transition">Level Test</a>
+        <a href="/test" class="text-red-600 transition font-bold">Level Test</a>
         <button type="button" class="open-modal-trigger text-red-600 font-bold hover:underline cursor-pointer">Book Trial</button>
       </div>
     </div>
@@ -414,25 +439,25 @@
         p3: [
           {
             id: "n_p3_1",
-            question: "1. Cho em <span style=\"display: inline-block; min-width: 100px; border-bottom: 3.5px solid #dc2626; margin: 0 8px; vertical-align: baseline; background-color: rgba(220, 38, 38, 0.08);\"></span> bát phở bò.",
+            question: "1. Cho em <span style=\"display: inline-block; min-width: 80px; border-bottom: 3.5px solid #dc2626; margin: 0 6px; vertical-align: baseline; background-color: rgba(220, 38, 38, 0.08);\"></span> bát phở bò.",
             options: ["ba", "thứ ba", "những", "các"],
             correct: 0
           },
           {
             id: "n_p3_2",
-            question: "2. Anh Nam <span style=\"display: inline-block; min-width: 100px; border-bottom: 3.5px solid #dc2626; margin: 0 8px; vertical-align: baseline; background-color: rgba(220, 38, 38, 0.08);\"></span> làm việc ở văn phòng, lát nữa mới về.",
+            question: "2. Anh Nam <span style=\"display: inline-block; min-width: 80px; border-bottom: 3.5px solid #dc2626; margin: 0 6px; vertical-align: baseline; background-color: rgba(220, 38, 38, 0.08);\"></span> làm việc ở văn phòng, lát nữa mới về.",
             options: ["đã", "sẽ", "đang", "vừa"],
             correct: 2
           },
           {
             id: "n_p3_3",
-            question: "3. Hôm nay em mệt <span style=\"display: inline-block; min-width: 100px; border-bottom: 3.5px solid #dc2626; margin: 0 8px; vertical-align: baseline; background-color: rgba(220, 38, 38, 0.08);\"></span> em nghỉ làm.",
+            question: "3. Hôm nay em mệt <span style=\"display: inline-block; min-width: 80px; border-bottom: 3.5px solid #dc2626; margin: 0 6px; vertical-align: baseline; background-color: rgba(220, 38, 38, 0.08);\"></span> em nghỉ làm.",
             options: ["nhưng", "nên", "vì", "tuy"],
             correct: 1
           },
           {
             id: "n_p3_4",
-            question: "4. Mặc dù việc rất nhiều <span style=\"display: inline-block; min-width: 100px; border-bottom: 3.5px solid #dc2626; margin: 0 8px; vertical-align: baseline; background-color: rgba(220, 38, 38, 0.08);\"></span> chị ấy vẫn về đúng giờ.",
+            question: "4. Mặc dù việc rất nhiều <span style=\"display: inline-block; min-width: 80px; border-bottom: 3.5px solid #dc2626; margin: 0 6px; vertical-align: baseline; background-color: rgba(220, 38, 38, 0.08);\"></span> chị ấy vẫn về đúng giờ.",
             options: ["nên", "nhưng", "tại", "vì"],
             correct: 1
           }
@@ -440,33 +465,33 @@
         p4: [
           {
             id: "n_p4_1",
-            contextTitle: "Text 1: Tin nhắn cho bạn / Practical Message",
+            contextTitle: "Text 1: Tin nhắn cho bạn",
             contextText: "Lan ơi, tối nay cậu qua siêu thị mua giúp tớ một hộp sữa tươi với ít hành lá nhé. Tớ đang bận làm báo cáo gấp nên không ra ngoài được. Tiền mai tớ gửi bù nha!",
-            question: "Lan được nhờ làm gì vào tối nay? / What is Lan asked to do tonight?",
+            question: "Lan được nhờ làm gì vào tối nay?",
             options: ["Đến siêu thị mua sữa và hành lá giúp bạn", "Giúp bạn làm báo cáo gấp ở công ty", "Đưa tiền bù cho bạn vào ngày mai", "Sang nhà bạn ăn tối cùng nhau"],
             correct: 0
           },
           {
             id: "n_p4_2",
-            contextTitle: "Text 2: Thông báo đời sống / Notice",
+            contextTitle: "Text 2: Thông báo đời sống",
             contextText: "Thông báo: Quán tạm nghỉ phục vụ để sửa chữa không gian từ ngày 15/10 đến hết ngày 18/10. Quán sẽ mở cửa đón khách trở lại bình thường vào sáng thứ Sáu, ngày 19/10.",
-            question: "Khách hàng có thể quay lại quán cà phê để uống nước vào ngày nào? / When can customers return to the cafe?",
+            question: "Khách hàng có thể quay lại quán cà phê vào ngày nào?",
             options: ["Ngày 16/10", "Ngày 18/10", "Ngày 19/10 (thứ Sáu)", "Sau ngày 19/10 một tuần"],
             correct: 2
           },
           {
             id: "n_p4_3",
-            contextTitle: "Text 3: Xin nghỉ phép / Leave Request",
+            contextTitle: "Text 3: Xin nghỉ phép",
             contextText: "Kính gửi sếp, em xin phép nghỉ làm nửa ngày vào chiều thứ Tư vì lịch hẹn khám sức khỏe định kỳ đã đặt trước. Em đã bàn giao công việc lại cho bạn Mai hoàn thành rồi ạ.",
-            question: "Nhân viên xin nghỉ làm vì lý do gì và ai là người nhận bàn giao? / Why is the employee requesting leave and who takes over?",
-            options: ["Đi du lịch / Bạn Lan nhận bàn giao", "Khám sức khỏe định kỳ / Bạn Mai nhận bàn giao", "Nhà có việc gia đình / Sếp trực tiếp nhận bàn giao", "Bị ốm nặng / Không có người bàn giao"],
+            question: "Nhân viên xin nghỉ vì lý do gì và ai nhận bàn giao?",
+            options: ["Đi du lịch / Bạn Lan nhận bàn giao", "Khám sức khỏe định kỳ / Bạn Mai nhận bàn giao", "Nhà có việc gia đình / Sếp nhận bàn giao", "Bị ốm nặng / Không có người bàn giao"],
             correct: 1
           },
           {
             id: "n_p4_4",
-            contextTitle: "Text 4: Biểu mẫu hành chính / Form Interpretation",
+            contextTitle: "Text 4: Biểu mẫu hành chính",
             contextText: "Lưu ý khi khai báo: Người khai phải điền đầy đủ các thông tin bắt buộc có dấu sao (*). Phần 'Quan hệ với chủ hộ' chỉ điền khi người đăng ký không phải là chủ hộ đứng tên trên sổ đỏ hoặc hợp đồng thuê nhà dài hạn.",
-            question: "Ai là người KHÔNG cần điền thông tin vào mục 'Quan hệ với chủ hộ'? / Who does NOT need to fill out the 'Relationship with household head' section?",
+            question: "Ai là người KHÔNG cần điền thông tin vào mục 'Quan hệ với chủ hộ'?",
             options: ["Người thuê nhà ngắn hạn", "Chủ hộ đứng tên trực tiếp trên sổ đỏ/hợp đồng dài hạn", "Tất cả mọi người đến phường", "Người đến ở nhờ"],
             correct: 1
           }
@@ -544,25 +569,25 @@
         p3: [
           {
             id: "s_p3_1",
-            question: "1. Cho em <span style=\"display: inline-block; min-width: 100px; border-bottom: 3.5px solid #dc2626; margin: 0 8px; vertical-align: baseline; background-color: rgba(220, 38, 38, 0.08);\"></span> tô hủ tiếu nha.",
+            question: "1. Cho em <span style=\"display: inline-block; min-width: 80px; border-bottom: 3.5px solid #dc2626; margin: 0 6px; vertical-align: baseline; background-color: rgba(220, 38, 38, 0.08);\"></span> tô hủ tiếu nha.",
             options: ["ba", "thứ ba", "những", "các"],
             correct: 0
           },
           {
             id: "s_p3_2",
-            question: "2. Anh Nam <span style=\"display: inline-block; min-width: 100px; border-bottom: 3.5px solid #dc2626; margin: 0 8px; vertical-align: baseline; background-color: rgba(220, 38, 38, 0.08);\"></span> làm việc ở văn phòng, chút nữa mới về.",
+            question: "2. Anh Nam <span style=\"display: inline-block; min-width: 80px; border-bottom: 3.5px solid #dc2626; margin: 0 6px; vertical-align: baseline; background-color: rgba(220, 38, 38, 0.08);\"></span> làm việc ở văn phòng, chút nữa mới về.",
             options: ["đã", "sẽ", "đang", "vừa"],
             correct: 2
           },
           {
             id: "s_p3_3",
-            question: "3. Bữa nay em mệt <span style=\"display: inline-block; min-width: 100px; border-bottom: 3.5px solid #dc2626; margin: 0 8px; vertical-align: baseline; background-color: rgba(220, 38, 38, 0.08);\"></span> em nghỉ làm.",
+            question: "3. Bữa nay em mệt <span style=\"display: inline-block; min-width: 80px; border-bottom: 3.5px solid #dc2626; margin: 0 6px; vertical-align: baseline; background-color: rgba(220, 38, 38, 0.08);\"></span> em nghỉ làm.",
             options: ["nhưng", "nên", "vì", "tuy"],
             correct: 1
           },
           {
             id: "s_p3_4",
-            question: "4. Mặc dù việc nhiều dữ lắm <span style=\"display: inline-block; min-width: 100px; border-bottom: 3.5px solid #dc2626; margin: 0 8px; vertical-align: baseline; background-color: rgba(220, 38, 38, 0.08);\"></span> chị ấy vẫn về đúng giờ.",
+            question: "4. Mặc dù việc nhiều dữ lắm <span style=\"display: inline-block; min-width: 80px; border-bottom: 3.5px solid #dc2626; margin: 0 6px; vertical-align: baseline; background-color: rgba(220, 38, 38, 0.08);\"></span> chị ấy vẫn về đúng giờ.",
             options: ["nên", "nhưng", "tại", "vì"],
             correct: 1
           }
@@ -570,33 +595,33 @@
         p4: [
           {
             id: "s_p4_1",
-            contextTitle: "Text 1: Tin nhắn cho bạn / Practical Message",
+            contextTitle: "Text 1: Tin nhắn cho bạn",
             contextText: "Lan ơi, tối nay cậu qua siêu thị mua giúp tớ một hộp sữa tươi với ít hành lá nhé. Tớ đang bận làm báo cáo gấp nên không ra ngoài được. Tiền mai tớ gửi bù nha!",
-            question: "Lan được nhờ làm gì vào tối nay? / What is Lan asked to do tonight?",
+            question: "Lan được nhờ làm gì vào tối nay?",
             options: ["Đến siêu thị mua sữa và hành lá giúp bạn", "Giúp bạn làm báo cáo gấp ở công ty", "Đưa tiền bù cho bạn vào ngày mai", "Sang nhà bạn ăn tối cùng nhau"],
             correct: 0
           },
           {
             id: "s_p4_2",
-            contextTitle: "Text 2: Thông báo đời sống / Notice",
+            contextTitle: "Text 2: Thông báo đời sống",
             contextText: "Thông báo: Quán tạm nghỉ phục vụ để sửa chữa không gian từ ngày 15/10 đến hết ngày 18/10. Quán sẽ mở cửa đón khách trở lại bình thường vào sáng thứ Sáu, ngày 19/10.",
-            question: "Khách hàng có thể quay lại quán để ăn uống vào ngày nào? / When can customers return to the cafe?",
+            question: "Khách hàng có thể quay lại quán để ăn uống vào ngày nào?",
             options: ["Ngày 16/10", "Ngày 18/10", "Ngày 19/10 (thứ Sáu)", "Sau ngày 19/10 một tuần"],
             correct: 2
           },
           {
             id: "s_p4_3",
-            contextTitle: "Text 3: Xin nghỉ phép / Leave Request",
+            contextTitle: "Text 3: Xin nghỉ phép",
             contextText: "Kính gửi sếp, em xin phép nghỉ làm nửa ngày vào chiều thứ Tư vì lịch hẹn khám sức khỏe định kỳ đã đặt trước. Em đã bàn giao công việc lại cho bạn Mai hoàn thành rồi ạ.",
-            question: "Nhân viên xin nghỉ làm vì lý do gì và ai là người nhận bàn giao? / Why is the employee requesting leave and who takes over?",
-            options: ["Đi du lịch / Bạn Lan nhận bàn giao", "Khám sức khỏe định kỳ / Bạn Mai nhận bàn giao", "Nhà có việc gia đình / Sếp trực tiếp nhận bàn giao", "Bị ốm nặng / Không có người bàn giao"],
+            question: "Nhân viên xin nghỉ vì lý do gì và ai nhận bàn giao?",
+            options: ["Đi du lịch / Bạn Lan nhận bàn giao", "Khám sức khỏe định kỳ / Bạn Mai nhận bàn giao", "Nhà có việc gia đình / Sếp nhận bàn giao", "Bị ốm nặng / Không có người bàn giao"],
             correct: 1
           },
           {
             id: "s_p4_4",
-            contextTitle: "Text 4: Biểu mẫu hành chính / Form Interpretation",
+            contextTitle: "Text 4: Biểu mẫu hành chính",
             contextText: "Lưu ý khi khai báo: Người khai phải điền đầy đủ các thông tin bắt buộc có dấu sao (*). Phần 'Quan hệ với chủ hộ' chỉ điền khi người đăng ký không phải là chủ hộ đứng tên trên sổ đỏ hoặc hợp đồng thuê nhà dài hạn.",
-            question: "Ai là người KHÔNG cần điền thông tin vào mục 'Quan hệ với chủ hộ'? / Who does NOT need to fill out the 'Relationship with household head' section?",
+            question: "Ai là người KHÔNG cần điền thông tin vào mục 'Quan hệ với chủ hộ'?",
             options: ["Người thuê nhà ngắn hạn", "Chủ hộ đứng tên trực tiếp trên sổ đỏ/hợp đồng dài hạn", "Tất cả mọi người đến phường", "Người đến ở nhờ"],
             correct: 1
           }
@@ -669,7 +694,7 @@
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             ${q.options.map((opt, oIdx) => `
-              <label class="flex items-center gap-3 p-4 rounded-xl border bg-white border-stone-200 cursor-pointer hover:border-red-400 font-semibold text-slate-800 text-base shadow-2xs">
+              <label class="flex items-center gap-3 p-4 rounded-xl border bg-white border-stone-200 cursor-pointer hover:border-red-400 font-semibold text-slate-800 text-sm sm:text-base shadow-2xs">
                 <input type="radio" name="${q.id}" value="${oIdx}" class="accent-red-600 w-4 h-4" />
                 <span>${opt}</span>
               </label>
@@ -679,17 +704,17 @@
         cP2.appendChild(div);
       });
 
-      // Render P3 (Hiển thị đầy đủ gạch chân)
+      // Render P3
       const cP3 = document.getElementById('containerP3');
       cP3.innerHTML = '';
       data.p3.forEach(q => {
         const div = document.createElement('div');
         div.className = 'p-5 sm:p-6 rounded-2xl bg-[#fffaf5] border border-stone-200/90 space-y-4 text-base shadow-2xs';
         div.innerHTML = `
-          <p class="font-bold text-slate-900 text-lg leading-loose">${q.question}</p>
+          <p class="font-bold text-slate-900 text-base sm:text-lg leading-loose">${q.question}</p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             ${q.options.map((opt, oIdx) => `
-              <label class="flex items-center gap-3 p-4 rounded-xl border bg-white border-stone-200 cursor-pointer hover:border-red-400 font-semibold text-slate-800 text-base shadow-2xs">
+              <label class="flex items-center gap-3 p-4 rounded-xl border bg-white border-stone-200 cursor-pointer hover:border-red-400 font-semibold text-slate-800 text-sm sm:text-base shadow-2xs">
                 <input type="radio" name="${q.id}" value="${oIdx}" class="accent-red-600 w-4 h-4" />
                 <span>${opt}</span>
               </label>
@@ -710,12 +735,12 @@
             <span class="text-xs font-black text-red-700 bg-red-50 px-3.5 py-1.5 rounded-lg border border-red-200 uppercase">${q.contextTitle}</span>
           </div>
           <div class="bg-white p-5 sm:p-6 rounded-2xl border border-stone-200/90 shadow-xs">
-            <p class="text-slate-900 font-medium text-base sm:text-lg leading-relaxed font-sans">"${q.contextText}"</p>
+            <p class="text-slate-900 font-medium text-sm sm:text-base leading-relaxed font-sans">"${q.contextText}"</p>
           </div>
-          <p class="font-bold text-slate-900 text-lg pt-2">${i+1}. ${q.question}</p>
+          <p class="font-bold text-slate-900 text-base sm:text-lg pt-2">${i+1}. ${q.question}</p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             ${q.options.map((opt, oIdx) => `
-              <label class="flex items-center gap-3.5 p-4 rounded-xl border bg-white border-stone-200 cursor-pointer hover:border-red-400 font-semibold text-slate-800 text-base shadow-2xs">
+              <label class="flex items-center gap-3.5 p-4 rounded-xl border bg-white border-stone-200 cursor-pointer hover:border-red-400 font-semibold text-slate-800 text-sm sm:text-base shadow-2xs">
                 <input type="radio" name="${q.id}" value="${oIdx}" class="accent-red-600 w-4 h-4" />
                 <span>${opt}</span>
               </label>
@@ -733,8 +758,8 @@
         div.className = 'p-5 sm:p-6 rounded-2xl bg-[#fffaf5] border border-stone-200/90 space-y-2.5 text-base shadow-2xs';
         div.innerHTML = `
           <span class="text-xs font-bold text-stone-400 uppercase tracking-wider">${q.title}</span>
-          <p class="font-bold text-slate-900 text-lg">${q.text}</p>
-          <p class="text-stone-500 italic text-sm sm:text-base">${q.en}</p>
+          <p class="font-bold text-slate-900 text-base sm:text-lg">${q.text}</p>
+          <p class="text-stone-500 italic text-xs sm:text-base">${q.en}</p>
         `;
         cP5.appendChild(div);
       });
@@ -871,6 +896,19 @@
       if (e.target === resultModal) resultModal.classList.add('hidden');
     });
 
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+      });
+    }
+
     // Modal Control Script (Consultation Modal)
     const consultModal = document.getElementById('consultModal');
     const openTriggers = document.querySelectorAll('.open-modal-trigger');
@@ -887,6 +925,7 @@
           consultModal.classList.remove('hidden');
           consultForm.classList.remove('hidden');
           successMessage.classList.add('hidden');
+          if (mobileMenu) mobileMenu.classList.add('hidden');
         });
       }
     });

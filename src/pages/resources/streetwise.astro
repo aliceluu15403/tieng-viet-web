@@ -6,8 +6,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Real Spoken Vietnamese Lab — HAVIE.</title>
+  <title>Real Spoken Vietnamese Lab — Havie</title>
   <meta name="description" content="Build modular Vietnamese sentences block by block and practice everyday WH-Questions and natural spoken answers." />
+
+  <!-- FAVICON & MOBILE TOUCH ICONS -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
 
   <!-- Tailwind CSS CDN -->
   <script is:inline src="https://cdn.tailwindcss.com"></script>
@@ -22,10 +29,15 @@
       --cream: #fffaf5;
       --navy: #0f172a;
       --brand-red: #dc2626;
+      --orange: #ef7218;
+    }
+
+    html {
+      scroll-padding-top: 85px;
     }
 
     body {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background-color: var(--cream);
       color: var(--navy);
     }
@@ -35,56 +47,94 @@
     }
   </style>
 </head>
-<body class="selection:bg-red-600 selection:text-white min-h-screen flex flex-col antialiased">
+<body class="selection:bg-red-600 selection:text-white min-h-screen flex flex-col antialiased relative overflow-x-hidden">
+
+  <!-- BACKGROUND GLOW -->
+  <div class="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
+    <div class="absolute top-0 right-[15%] w-[450px] h-[450px] bg-gradient-to-br from-amber-400/20 via-red-500/10 to-transparent rounded-full blur-3xl"></div>
+    <div class="absolute top-40 left-[10%] w-[380px] h-[380px] bg-gradient-to-tr from-amber-200/30 to-transparent rounded-full blur-3xl"></div>
+  </div>
 
   <!-- NAVBAR -->
   <header class="sticky top-0 z-40 bg-[#fffaf5]/90 backdrop-blur-md border-b border-stone-200/80 h-20">
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-full flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 h-full flex items-center justify-between">
+      
+      <!-- LOGO -->
       <a href="/" class="group flex flex-col select-none text-left">
-        <div class="h-7 flex items-center">
+        <div class="h-6 sm:h-7 flex items-center">
           <svg class="h-6 sm:h-7 w-auto overflow-visible" viewBox="0 0 175 30" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 2H6V12H18V2H24V28H18V17H6V28H0V2Z" fill="#dc2626"/>
             <path d="M41 2L52 28H45.5L43.2 22H33.8L31.5 28H25L36 2H41ZM38.5 8.5L35.2 17.5H41.8L38.5 8.5Z" fill="#dc2626"/>
             <path d="M53 2H59.5L67 21L74.5 2H81L70.5 28H63.5L53 2Z" fill="#dc2626"/>
             <path d="M86 2H92V28H86V2Z" fill="#dc2626"/>
             <path d="M98 2H117V7.5H104V12H115V17H104V22.5H117V28H98V2Z" fill="#dc2626"/>
-            <circle cx="125" cy="24.5" r="3.5" fill="#0f172a"/>
           </svg>
         </div>
-        <span class="text-[9.5px] font-bold tracking-[0.24em] text-stone-400 uppercase mt-1 pl-0.5 group-hover:text-slate-700 transition-colors leading-none">
+        <span class="text-[9px] sm:text-[9.5px] font-bold tracking-[0.2em] sm:tracking-[0.24em] text-stone-400 uppercase mt-1 pl-0.5 leading-none">
           Learn Vietnamese Online
         </span>
       </a>
 
-      <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-700">
-        <a href="/" class="hover:text-red-600 transition">Home</a>
-        <a href="/resources" class="hover:text-red-600 transition">Resources Hub</a>
-        <a href="/resources/pronouns" class="hover:text-red-600 transition">Pronoun Decoder</a>
-        <a href="/resources/streetwise" class="text-red-600 font-bold flex items-center gap-1.5 bg-red-50 px-3 py-1 rounded-full border border-red-200">
-          <span>🍜 Spoken Lab</span>
-        </a>
+      <!-- Desktop Menu Links -->
+      <nav class="hidden md:flex items-center space-x-6 lg:space-x-7 text-sm font-semibold text-slate-700">
+        <a href="/#about" class="hover:text-red-600 transition">About Me</a>
+        <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
+        <a href="/#reviews" class="hover:text-red-600 transition">Student Stories</a>
+        <a href="/resources" class="text-red-600 font-bold transition">Resources</a>
+        <a href="/test" class="hover:text-red-600 transition">Level Test</a>
+        <a href="/#faq" class="hover:text-red-600 transition">FAQ</a>
       </nav>
 
+      <!-- Desktop CTA & Mobile Toggle Button -->
       <div class="flex items-center gap-3">
-        <a
-          href="https://calendly.com"
-          target="_blank"
-          rel="noreferrer"
-          class="inline-flex items-center justify-center px-5 py-2.5 text-xs sm:text-sm font-bold text-white bg-red-600 hover:bg-red-700 rounded-xl shadow-sm transition hover:-translate-y-0.5"
+        <button
+          type="button"
+          class="open-modal-trigger hidden sm:inline-flex items-center justify-center px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-bold text-white bg-red-600 hover:bg-red-700 rounded-xl shadow-lg shadow-red-600/25 transition hover:-translate-y-0.5 cursor-pointer"
         >
           Book 25-Min Trial Lesson →
-        </a>
+        </button>
+
+        <!-- Mobile Menu Hamburger Button -->
+        <button 
+          id="mobileMenuBtn" 
+          type="button" 
+          aria-label="Toggle Menu"
+          class="md:hidden w-10 h-10 rounded-xl bg-stone-100 hover:bg-stone-200 text-slate-800 flex items-center justify-center font-bold transition cursor-pointer"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden absolute top-20 left-0 w-full bg-[#fffaf5] border-b border-stone-200 shadow-xl px-6 py-5 space-y-4 font-semibold text-slate-700 text-sm">
+      <a href="/#about" class="mobile-link block hover:text-red-600 transition">About Me</a>
+      <a href="/#curriculum" class="mobile-link block hover:text-red-600 transition">Learning Tracks</a>
+      <a href="/#reviews" class="mobile-link block hover:text-red-600 transition">Student Stories</a>
+      <a href="/resources" class="mobile-link block text-red-600 font-bold">Resources</a>
+      <a href="/test" class="mobile-link block hover:text-red-600 transition">Level Test</a>
+      <a href="/#faq" class="mobile-link block hover:text-red-600 transition">FAQ</a>
+      <div class="pt-3 border-t border-stone-200">
+        <button
+          type="button"
+          class="open-modal-trigger w-full py-3 text-xs font-bold text-white bg-red-600 rounded-xl text-center shadow-md cursor-pointer"
+        >
+          Book 25-Min Trial Lesson →
+        </button>
       </div>
     </div>
   </header>
 
   <!-- MAIN CONTENT -->
-  <main class="flex-grow py-12 lg:py-16">
-    <div class="max-w-5xl mx-auto px-6 sm:px-8 space-y-16">
+  <main class="flex-grow py-10 lg:py-14">
+    <div class="max-w-5xl mx-auto px-5 sm:px-8 space-y-16">
       
       <!-- HERO HEADER -->
       <div class="text-center max-w-2xl mx-auto space-y-3">
-        <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-widest bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-200">
+        <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-widest bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-200 inline-block shadow-2xs">
           Tactile Practice • Real-Time Reflex
         </span>
         <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-brand">
@@ -127,7 +177,7 @@
               <button 
                 id="randomSandboxBtn" 
                 type="button"
-                class="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-stone-900 hover:bg-stone-800 text-white text-xs font-bold transition cursor-pointer shadow-xs"
+                class="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition cursor-pointer shadow-xs"
                 title="Shuffle realistic combinations"
               >
                 <span>🎲</span>
@@ -259,22 +309,113 @@
           </p>
         </div>
         <div class="shrink-0 w-full md:w-auto text-center">
-          <a
-            href="https://calendly.com"
-            target="_blank"
-            rel="noreferrer"
-            class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-xs sm:text-sm shadow-sm transition hover:-translate-y-0.5"
+          <button
+            type="button"
+            class="open-modal-trigger inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-xs sm:text-sm shadow-sm transition hover:-translate-y-0.5 cursor-pointer"
           >
             Book Free 25-Min Trial Lesson →
-          </a>
+          </button>
         </div>
       </div>
 
     </div>
   </main>
 
+  <!-- FOOTER -->
+  <footer class="bg-[#fffaf5] text-stone-600 py-8 text-xs border-t border-stone-200/80">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <div class="flex items-center justify-center gap-2.5">
+        <span class="font-brand font-black text-slate-900 tracking-widest text-sm">HAVIE.</span>
+        <span class="text-stone-400">•</span>
+        <span class="font-medium">Learn Vietnamese with Hang</span>
+      </div>
+      <div class="flex items-center gap-4 sm:gap-6 font-semibold text-stone-700 flex-wrap justify-center">
+        <a href="/#about" class="hover:text-red-600 transition">About Me</a>
+        <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
+        <a href="/#reviews" class="hover:text-red-600 transition">Student Stories</a>
+        <a href="/resources" class="text-red-600 transition font-bold">Resources</a>
+        <a href="/test" class="hover:text-red-600 transition">Level Test</a>
+        <button type="button" class="open-modal-trigger text-red-600 font-bold hover:underline cursor-pointer">Book Trial</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CONSULTATION / BOOKING MODAL -->
+  <div id="consultModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-stone-200 space-y-5 text-left">
+      
+      <div class="flex items-center justify-between border-b border-stone-100 pb-3">
+        <div>
+          <span class="text-[10px] font-black text-red-600 uppercase tracking-widest bg-red-50 px-2.5 py-0.5 rounded border border-red-200">1-on-1 Coaching</span>
+          <h3 class="text-xl font-black text-slate-900 font-brand mt-1">Book 25-Min Trial Lesson</h3>
+        </div>
+        <button id="closeModalBtn" type="button" class="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 font-bold flex items-center justify-center cursor-pointer">
+          ✕
+        </button>
+      </div>
+
+      <form id="consultForm" class="space-y-3.5 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Full Name / Tên của bạn *</label>
+          <input type="text" id="cName" required placeholder="e.g. Alex Smith" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Country / Quốc gia *</label>
+            <input type="text" id="cCountry" required placeholder="e.g. Germany, USA" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50" />
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Phone / SĐT</label>
+            <input type="tel" id="cPhone" placeholder="e.g. +49..." class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Email Address *</label>
+          <input type="email" id="cEmail" required placeholder="name@example.com" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50" />
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Learning Goals / Mục tiêu học tập *</label>
+          <textarea id="cGoals" rows="3" required placeholder="Current level, target dialect (Hanoi/Saigon), goals..." class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50 resize-none"></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full py-3.5 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl text-xs sm:text-sm shadow-md transition cursor-pointer mt-2"
+        >
+          Submit Request to Hang →
+        </button>
+      </form>
+
+      <div id="successMessage" class="hidden text-center py-6 space-y-3">
+        <div class="text-3xl">🎉</div>
+        <h4 class="font-black text-slate-900 text-base font-brand">Request Sent Successfully!</h4>
+        <p class="text-stone-600 text-xs leading-relaxed">Thank you! Hang has received your details and goals. She will reach out via email within 24 hours.</p>
+        <button id="btnCloseSuccess" type="button" class="px-6 py-2.5 bg-slate-900 text-white font-bold rounded-xl text-xs cursor-pointer">
+          Close Window
+        </button>
+      </div>
+
+    </div>
+  </div>
+
   <!-- JAVASCRIPT LOGIC -->
   <script is:inline>
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+      });
+    }
+
     // ==========================================
     // PART 1: 5-BLOCK LEGO VOCABULARY
     // ==========================================
@@ -335,7 +476,7 @@
         { vi: "đi chợ", en: "go to the market", label: "🧺 đi chợ (market)" },
         { vi: "làm việc", en: "work", label: "💻 làm việc (work)" },
         { vi: "học tiếng Việt", en: "study Vietnamese", label: "📚 học tiếng Việt (study Vietnamese)" },
-        { vi: "chạy deadline", en: "rush project deadline", label: "⏰ chạy deadline (rush deadline)" }
+        { vi: "ch chạy deadline", en: "rush project deadline", label: "⏰ chạy deadline (rush deadline)" }
       ],
       location: [
         { vi: null, en: "", label: "🚫 None (Skip)" },
@@ -370,7 +511,6 @@
       ]
     };
 
-    // Realistic curated combinations for Shuffle
     const realisticPresets = [
       { time: "Sáng mai", subject: "em", action: "uống cà phê", location: "ở quán quen", companion: "với bạn" },
       { time: "Sáng mai", subject: "hai đứa mình", action: "cà phê bệt", location: "ở công viên", companion: null },
@@ -388,18 +528,9 @@
       { time: "Chút xíu nữa", subject: "em", action: "đi cắt tóc", location: null, companion: "một mình" },
       { time: "Cuối tuần này", subject: "con", action: "đi chợ", location: null, companion: "với gia đình" },
       { time: "Cuối tuần này", subject: "hai đứa mình", action: "đi dạo mát", location: "ở bãi biển", companion: null },
-      { time: "Chủ nhật", subject: "tụi mình", action: "học tiếng Việt", location: null, companion: "với cô giáo" },
-      // Northern flavor presets
-      { time: "Sáng mai", subject: "anh", action: "uống trà đá vỉa hè", location: null, companion: "với bạn" },
-      { time: "Sáng mai", subject: "cháu", action: "ăn phở bò", location: "ở quán quen", companion: "một mình" },
-      { time: "Trưa mai", subject: "bọn em", action: "ăn bún chả", location: "ở quán vỉa hè", companion: "với đồng nghiệp" },
-      { time: "Chiều nay", subject: "em", action: "đi dạo mát", location: "ở quanh hồ", companion: "với crush" },
-      { time: "Tan làm", subject: "bọn mình", action: "uống bia hơi", location: "ở quán vỉa hè", companion: "với đồng nghiệp" },
-      { time: "Tối nay", subject: "hai đứa mình", action: "lượn phố", location: null, companion: "với người yêu" },
-      { time: "Tối mai", subject: "mình", action: "đi xem phim", location: null, companion: "với bạn" }
+      { time: "Chủ nhật", subject: "tụi mình", action: "học tiếng Việt", location: null, companion: "với cô giáo" }
     ];
 
-    // Default state: [Tối nay, em, uống cà phê, ở gần đây, với bạn]
     let currentSandbox = { time: 5, subject: 1, action: 0, location: 1, companion: 2 };
 
     const sandboxVietEl = document.getElementById('sandboxViet');
@@ -478,7 +609,6 @@
       updateSandboxDisplay();
     });
 
-    // Shuffle button: Strictly uses verified realistic presets
     document.getElementById('randomSandboxBtn').addEventListener('click', () => {
       const randomPreset = realisticPresets[Math.floor(Math.random() * realisticPresets.length)];
 
@@ -509,11 +639,10 @@
       window.speechSynthesis.speak(utterance);
     });
 
-    // ========================================================
-    // PART 2: EVERYDAY WH-QUESTIONS & ANSWER PAIRS DATABASE
+    // ==========================================
+    // PART 2: EVERYDAY WH-QUESTIONS & ANSWERS
     // ==========================================
     const whQuestionsDatabase = [
-      // --- LÀM GÌ? (WHAT?) ---
       {
         type: "what",
         qVi: "Tối nay em làm gì?",
@@ -531,40 +660,6 @@
         preset: { time: "Tan làm", subject: "tụi mình", action: "nhậu", location: "ở quán vỉa hè", companion: "với đồng nghiệp" }
       },
       {
-        type: "what",
-        qVi: "Bây giờ em làm gì ở văn phòng?",
-        qEn: "What are you doing at the office right now?",
-        aVi: "Bây giờ em làm việc ở văn phòng một mình.",
-        aEn: "Right now I work at the office alone.",
-        preset: { time: "Bây giờ", subject: "em", action: "làm việc", location: "ở văn phòng", companion: "một mình" }
-      },
-      {
-        type: "what",
-        qVi: "Cuối tuần này con làm gì?",
-        qEn: "What are you doing this weekend?",
-        aVi: "Cuối tuần này con đi chợ với gia đình.",
-        aEn: "This weekend I go to the market with family.",
-        preset: { time: "Cuối tuần này", subject: "con", action: "đi chợ", location: null, companion: "với gia đình" }
-      },
-      {
-        type: "what",
-        qVi: "Trưa mai anh ăn gì?",
-        qEn: "What are you eating for lunch tomorrow?",
-        aVi: "Trưa mai anh ăn cơm tấm ở quán vỉa hè với đồng nghiệp.",
-        aEn: "Tomorrow noon I eat broken rice at a sidewalk stall with colleagues.",
-        preset: { time: "Trưa mai", subject: "anh", action: "ăn cơm tấm", location: "ở quán vỉa hè", companion: "với đồng nghiệp" }
-      },
-      {
-        type: "what",
-        qVi: "Chiều nay em làm gì?",
-        qEn: "What are you doing this afternoon?",
-        aVi: "Chiều nay em chạy xe hóng gió ở gần bờ sông với crush.",
-        aEn: "This afternoon I ride my scooter for breeze by the riverside with my crush.",
-        preset: { time: "Chiều nay", subject: "em", action: "chạy xe hóng gió", location: "ở gần bờ sông", companion: "với crush" }
-      },
-
-      // --- Ở ĐÂU? (WHERE?) ---
-      {
         type: "where",
         qVi: "Em uống cà phê ở đâu?",
         qEn: "Where are you drinking coffee?",
@@ -580,40 +675,6 @@
         aEn: "Tomorrow noon we have lunch at the shopping mall with our boss.",
         preset: { time: "Trưa mai", subject: "tụi em", action: "ăn trưa", location: "ở trung tâm thương mại", companion: "với sếp" }
       },
-      {
-        type: "where",
-        qVi: "Tối nay anh đi ăn tối ở đâu?",
-        qEn: "Where are you having dinner tonight?",
-        aVi: "Tối nay anh đi ăn tối ở trung tâm thương mại với người yêu.",
-        aEn: "Tonight I have dinner at the shopping mall with my partner.",
-        preset: { time: "Tối nay", subject: "anh", action: "đi ăn tối", location: "ở trung tâm thương mại", companion: "với người yêu" }
-      },
-      {
-        type: "where",
-        qVi: "Hai đứa mình cà phê bệt ở đâu?",
-        qEn: "Where are the two of us having sidewalk coffee?",
-        aVi: "Sáng mai hai đứa mình cà phê bệt ở công viên.",
-        aEn: "Tomorrow morning the two of us sit in the park for sidewalk coffee.",
-        preset: { time: "Sáng mai", subject: "hai đứa mình", action: "cà phê bệt", location: "ở công viên", companion: null }
-      },
-      {
-        type: "where",
-        qVi: "Lát nữa anh chạy deadline ở đâu?",
-        qEn: "Where are you rushing your deadline in a bit?",
-        aVi: "Lát nữa anh chạy deadline ở nhà một mình.",
-        aEn: "In a bit I rush my deadline at home alone.",
-        preset: { time: "Lát nữa", subject: "anh", action: "chạy deadline", location: "ở nhà", companion: "một mình" }
-      },
-      {
-        type: "where",
-        qVi: "Cuối tuần này hai đứa mình đi dạo mát ở đâu?",
-        qEn: "Where are the two of us taking a stroll this weekend?",
-        aVi: "Cuối tuần này hai đứa mình đi dạo mát ở bãi biển.",
-        aEn: "This weekend the two of us take a stroll at the beach.",
-        preset: { time: "Cuối tuần này", subject: "hai đứa mình", action: "đi dạo mát", location: "ở bãi biển", companion: null }
-      },
-
-      // --- VỚI AI? (WITH WHOM?) ---
       {
         type: "who",
         qVi: "Tối nay anh đi ăn tối với ai?",
@@ -631,40 +692,6 @@
         preset: { time: "Bây giờ", subject: "em", action: "uống trà sữa", location: null, companion: "với bạn cùng phòng" }
       },
       {
-        type: "who",
-        qVi: "Chiều nay chị đi dạo mát với ai?",
-        qEn: "Who are you taking a stroll with this afternoon?",
-        aVi: "Chiều nay chị đi dạo mát ở công viên với gia đình.",
-        aEn: "This afternoon I take a stroll in the park with family.",
-        preset: { time: "Chiều nay", subject: "chị", action: "đi dạo mát", location: "ở công viên", companion: "với gia đình" }
-      },
-      {
-        type: "who",
-        qVi: "Chủ nhật tụi mình học tiếng Việt với ai?",
-        qEn: "Who are we studying Vietnamese with on Sunday?",
-        aVi: "Chủ nhật tụi mình học tiếng Việt với cô giáo.",
-        aEn: "On Sunday we study Vietnamese with our teacher.",
-        preset: { time: "Chủ nhật", subject: "tụi mình", action: "học tiếng Việt", location: null, companion: "với cô giáo" }
-      },
-      {
-        type: "who",
-        qVi: "Tối nay tụi mình đi coi phim với ai?",
-        qEn: "Who are we watching a movie with tonight?",
-        aVi: "Tối nay tụi mình đi coi phim với bạn.",
-        aEn: "Tonight we go watch a movie with friends.",
-        preset: { time: "Tối nay", subject: "tụi mình", action: "đi coi phim", location: null, companion: "với bạn" }
-      },
-      {
-        type: "who",
-        qVi: "Tan làm tụi mình nhậu với ai?",
-        qEn: "Who are we drinking with after work?",
-        aVi: "Tan làm tụi mình nhậu ở quán vỉa hè với đồng nghiệp.",
-        aEn: "After work we drink at a sidewalk stall with colleagues.",
-        preset: { time: "Tan làm", subject: "tụi mình", action: "nhậu", location: "ở quán vỉa hè", companion: "với đồng nghiệp" }
-      },
-
-      // --- KHI NÀO? (WHEN?) ---
-      {
         type: "when",
         qVi: "Khi nào em đi cắt tóc?",
         qEn: "When are you getting a haircut?",
@@ -674,43 +701,11 @@
       },
       {
         type: "when",
-        qVi: "Khi nào bọn mình học tiếng Việt với cô giáo?",
-        qEn: "When are we studying Vietnamese with teacher?",
-        aVi: "Chủ nhật bọn mình học tiếng Việt với cô giáo.",
-        aEn: "On Sunday we study Vietnamese with teacher.",
-        preset: { time: "Chủ nhật", subject: "bọn mình", action: "học tiếng Việt", location: null, companion: "với cô giáo" }
-      },
-      {
-        type: "when",
         qVi: "Khi nào anh chạy deadline?",
         qEn: "When are you rushing your deadline?",
         aVi: "Lát nữa anh chạy deadline ở nhà một mình.",
         aEn: "In a bit I rush my deadline at home alone.",
         preset: { time: "Lát nữa", subject: "anh", action: "chạy deadline", location: "ở nhà", companion: "một mình" }
-      },
-      {
-        type: "when",
-        qVi: "Khi nào con đi chợ với gia đình?",
-        qEn: "When are you going to the market with family?",
-        aVi: "Cuối tuần này con đi chợ với gia đình.",
-        aEn: "This weekend I go to the market with family.",
-        preset: { time: "Cuối tuần này", subject: "con", action: "đi chợ", location: null, companion: "với gia đình" }
-      },
-      {
-        type: "when",
-        qVi: "Khi nào hai đứa mình ăn ốc vỉa hè?",
-        qEn: "When are the two of us eating street snails?",
-        aVi: "Tối nay hai đứa mình ăn ốc vỉa hè.",
-        aEn: "Tonight the two of us eat street seafood snails.",
-        preset: { time: "Tối nay", subject: "hai đứa mình", action: "ăn ốc vỉa hè", location: null, companion: null }
-      },
-      {
-        type: "when",
-        qVi: "Khi nào em uống cà phê với bạn?",
-        qEn: "When are you having coffee with your friend?",
-        aVi: "Sáng mai em uống cà phê ở quán quen với bạn.",
-        aEn: "Tomorrow morning I drink coffee at my usual spot with a friend.",
-        preset: { time: "Sáng mai", subject: "em", action: "uống cà phê", location: "ở quán quen", companion: "với bạn" }
       }
     ];
 
@@ -748,14 +743,12 @@
               </button>
             </div>
 
-            <!-- Question Box -->
             <div>
               <span class="text-[10px] font-bold text-stone-400 uppercase tracking-wider block">Question:</span>
               <div class="text-base font-extrabold text-slate-900 font-brand">“${item.qVi}”</div>
               <div class="text-xs text-stone-500 italic mt-0.5">“${item.qEn}”</div>
             </div>
 
-            <!-- Answer Box (Matches Part 1 Sandbox) -->
             <div class="p-3.5 rounded-xl bg-[#fffaf5] border border-stone-200/80 space-y-1">
               <span class="text-[10px] font-bold text-emerald-700 uppercase tracking-wider block">Spoken Answer:</span>
               <div class="text-sm font-bold text-slate-900">“${item.aVi}”</div>
@@ -763,7 +756,6 @@
             </div>
           </div>
 
-          <!-- Interactive Action Button: Load to Sandbox -->
           <div class="pt-2 border-t border-stone-100 flex items-center justify-between">
             <button 
               type="button" 
@@ -777,7 +769,6 @@
           </div>
         `;
 
-        // Load Preset into Sandbox
         card.querySelector('.load-to-sandbox-btn').addEventListener('click', () => {
           const p = item.preset;
           const tIdx = p.time ? sandboxVocab.time.findIndex(x => x.vi === p.time) : 0;
@@ -795,14 +786,12 @@
           };
 
           updateSandboxDisplay();
-          // Scroll up smoothly to Sandbox
           document.getElementById('sandboxViet').scrollIntoView({ behavior: 'smooth', block: 'center' });
         });
 
         qaGrid.appendChild(card);
       });
 
-      // Audio Bindings
       document.querySelectorAll('.speak-q-btn, .speak-a-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           const text = btn.getAttribute('data-text');
@@ -816,7 +805,6 @@
       });
     }
 
-    // Filter Buttons for Part 2
     document.querySelectorAll('.q-filter-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.q-filter-btn').forEach(b => {
@@ -830,10 +818,8 @@
       });
     });
 
-    // Random Question Button
     document.getElementById('randomQBtn').addEventListener('click', () => {
       const randomItem = whQuestionsDatabase[Math.floor(Math.random() * whQuestionsDatabase.length)];
-      // Speak the random question aloud for listening reflex
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
         const utterance = new SpeechSynthesisUtterance(randomItem.qVi);
@@ -841,7 +827,6 @@
         utterance.rate = 0.9;
         window.speechSynthesis.speak(utterance);
       }
-      // Switch filter to match and highlight
       currentQType = randomItem.type;
       document.querySelectorAll('.q-filter-btn').forEach(b => {
         if (b.getAttribute('data-type') === currentQType) {
