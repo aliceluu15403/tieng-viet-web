@@ -7,7 +7,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pronouns — Havie</title>
-  <meta name="description" content="Interactive Vietnamese pronoun matrix calculator. Determine whether to use Anh, Chị, Em, Bác, or Cô based on age and social context." />
+  <meta name="description" content="Interactive Vietnamese pronoun matrix calculator. Determine whether to use Anh, Chị, Em, or Cô/Chú based on age and social context." />
 
   <!-- FAVICON & MOBILE TOUCH ICONS -->
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
@@ -19,10 +19,10 @@
   <!-- Tailwind CSS CDN -->
   <script is:inline src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Google Fonts: DM Sans & Plus Jakarta Sans -->
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -37,7 +37,7 @@
     }
 
     body {
-      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background-color: var(--cream);
       color: var(--navy);
     }
@@ -144,33 +144,81 @@
   </header>
 
   <main class="flex-grow py-10 lg:py-14">
-    <div class="max-w-4xl mx-auto px-5 sm:px-8">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
       
       <!-- Section Header -->
-      <div class="text-center max-w-xl mx-auto mb-10 sm:mb-12">
-        <span class="text-[11px] font-bold text-red-600 uppercase tracking-widest bg-red-50 px-3.5 py-1.5 rounded-full border border-red-200 inline-block shadow-2xs">
-          Interactive Social Engine
+      <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+        <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest bg-red-50 px-4 py-1.5 rounded-full border border-red-200 inline-block shadow-2xs">
+          Pronoun Matrix
         </span>
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3 tracking-tight font-brand">
-          The Vietnamese Pronoun Decoder
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-3 tracking-tight font-brand">
+          Vietnamese <span class="curved-underline text-red-600">Pronoun Calculator.</span>
         </h1>
-        <p class="text-stone-600 text-sm sm:text-base mt-2.5 leading-relaxed">
-          In Vietnamese, there is no generic <strong class="text-slate-900">“I”</strong> or <strong class="text-slate-900">“You”</strong>. Set both ages and genders to see how native speakers address each other naturally.
+        <p class="text-stone-600 text-sm sm:text-base mt-4 leading-relaxed max-w-xl mx-auto">
+          Avoid default translation words like <em class="text-slate-900 font-semibold">Tôi / Bạn</em> in daily speech. Proper relational honorifics build instant emotional connection and cultural warmth.
         </p>
       </div>
 
       <!-- Main Tool Box -->
-      <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-stone-200/90 relative">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+      <div class="bg-white rounded-3xl p-6 sm:p-10 lg:p-12 shadow-md border border-stone-200/90 relative space-y-8">
+        
+        <!-- STEP 1: SOCIAL CONTEXT -->
+        <div class="pb-8 border-b border-stone-100">
+          <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-3">
+            Step 1: Choose Your Social Setting
+          </label>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <button 
+              type="button" 
+              data-context-btn="street"
+              class="context-card active p-5 rounded-2xl border text-left transition cursor-pointer border-red-600 bg-red-50/60 shadow-2xs flex flex-col justify-between"
+            >
+              <div>
+                <span class="block text-lg mb-1.5">☕</span>
+                <span class="block text-sm sm:text-base font-extrabold text-slate-900 leading-snug">Casual / Street / Cafe</span>
+              </div>
+              <span class="block text-xs sm:text-sm text-stone-500 mt-2 font-medium">Cafes, restaurants, street vendors, peers</span>
+            </button>
+            <button 
+              type="button" 
+              data-context-btn="work"
+              class="context-card p-5 rounded-2xl border text-left transition cursor-pointer border-stone-200 bg-white hover:border-stone-300 flex flex-col justify-between"
+            >
+              <div>
+                <span class="block text-lg mb-1.5">💼</span>
+                <span class="block text-sm sm:text-base font-extrabold text-slate-800 leading-snug">Workplace / Professional</span>
+              </div>
+              <span class="block text-xs sm:text-sm text-stone-500 mt-2 font-medium">Colleagues, managers, meetings</span>
+            </button>
+            <button 
+              type="button" 
+              data-context-btn="family"
+              class="context-card p-5 rounded-2xl border text-left transition cursor-pointer border-stone-200 bg-white hover:border-stone-300 flex flex-col justify-between"
+            >
+              <div>
+                <span class="block text-lg mb-1.5">🏡</span>
+                <span class="block text-sm sm:text-base font-extrabold text-slate-800 leading-snug">Partner’s Family (In-Laws)</span>
+              </div>
+              <span class="block text-xs sm:text-sm text-stone-500 mt-2 font-medium">Complex family trees & relatives</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 2: CALCULATOR INTERACTIVE AREA -->
+        <div id="calculatorInteractiveArea" class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
           
           <!-- Controls Column -->
-          <div class="md:col-span-5 space-y-6 border-b md:border-b-0 md:border-r border-stone-100 pb-6 md:pb-0 md:pr-6">
+          <div class="lg:col-span-5 flex flex-col justify-between space-y-6 lg:border-r lg:border-stone-100 lg:pr-8 bg-stone-50/40 p-6 rounded-3xl border border-stone-200/80">
             
-            <!-- 1. SPEAKER PROFILE (YOU / "I") -->
-            <div class="space-y-3 pb-4 border-b border-stone-100">
-              <div class="flex items-center justify-between text-xs font-bold text-slate-900">
-                <label for="userAge">Your Age <span class="text-stone-400 font-normal">(Speaker "I")</span></label>
-                <span id="ageDisplay" class="px-2.5 py-0.5 rounded-lg bg-red-50 text-red-600 font-mono text-sm font-bold">28 yrs</span>
+            <div class="text-xs font-bold uppercase tracking-wider text-stone-400">
+              Step 2: Set Ages & Genders
+            </div>
+
+            <!-- Speaker Profile -->
+            <div class="space-y-3.5">
+              <div class="flex items-center justify-between text-sm font-bold text-slate-900">
+                <span class="whitespace-nowrap">Your Age <span class="text-stone-400 font-normal text-xs">(Speaker)</span></span>
+                <span id="ageDisplay" class="px-3 py-1 rounded-xl bg-red-50 text-red-600 font-mono text-sm font-extrabold border border-red-100 shadow-2xs min-w-[85px] text-center whitespace-nowrap">28 yrs</span>
               </div>
               <input 
                 id="userAge" 
@@ -178,23 +226,23 @@
                 min="10" 
                 max="85" 
                 value="28" 
-                class="w-full accent-red-600 h-2 bg-stone-100 rounded-lg cursor-pointer"
+                class="w-full accent-red-600 h-2.5 bg-stone-200/70 rounded-lg cursor-pointer"
               />
               
-              <div>
-                <span class="block text-[11px] font-bold text-slate-800 mb-1.5">Your Gender <span class="text-stone-400 font-normal">(Speaker "I")</span></span>
-                <div class="grid grid-cols-2 gap-2">
+              <div class="pt-1">
+                <span class="block text-xs font-bold text-slate-800 mb-2">Your Gender</span>
+                <div class="grid grid-cols-2 gap-3">
                   <button 
                     type="button" 
                     data-my-gender="male"
-                    class="my-gender-btn active px-3.5 py-2 rounded-xl border text-xs font-bold text-center transition flex items-center justify-center gap-1.5 border-red-600 bg-red-50 text-red-600 cursor-pointer"
+                    class="my-gender-btn active px-4 py-3 rounded-xl border text-sm font-bold text-center transition flex items-center justify-center gap-2 border-red-600 bg-red-50 text-red-600 cursor-pointer shadow-2xs"
                   >
                     <span>👨 Male</span>
                   </button>
                   <button 
                     type="button" 
                     data-my-gender="female"
-                    class="my-gender-btn px-3.5 py-2 rounded-xl border text-xs font-bold text-center transition flex items-center justify-center gap-1.5 border-stone-200 bg-white text-stone-600 hover:border-stone-300 cursor-pointer"
+                    class="my-gender-btn px-4 py-3 rounded-xl border text-sm font-bold text-center transition flex items-center justify-center gap-2 border-stone-200 bg-white text-stone-600 hover:border-stone-300 cursor-pointer"
                   >
                     <span>👩 Female</span>
                   </button>
@@ -202,11 +250,11 @@
               </div>
             </div>
 
-            <!-- 2. LISTENER PROFILE (THEM / "YOU") -->
-            <div class="space-y-3 pb-4 border-b border-stone-100">
-              <div class="flex items-center justify-between text-xs font-bold text-slate-900">
-                <label for="theirAge">Their Estimated Age <span class="text-stone-400 font-normal">(Listener "You")</span></label>
-                <span id="theirAgeDisplay" class="px-2.5 py-0.5 rounded-lg bg-slate-100 text-slate-800 font-mono text-sm font-bold">35 yrs</span>
+            <!-- Listener Profile -->
+            <div class="space-y-3.5 pt-4 border-t border-stone-200/60">
+              <div class="flex items-center justify-between text-sm font-bold text-slate-900">
+                <span class="whitespace-nowrap">Their Age <span class="text-stone-400 font-normal text-xs">(Listener)</span></span>
+                <span id="theirAgeDisplay" class="px-3 py-1 rounded-xl bg-slate-100 text-slate-800 font-mono text-sm font-extrabold border border-stone-200 shadow-2xs min-w-[85px] text-center whitespace-nowrap">35 yrs</span>
               </div>
               <input 
                 id="theirAge" 
@@ -214,23 +262,23 @@
                 min="5" 
                 max="85" 
                 value="35" 
-                class="w-full accent-slate-800 h-2 bg-stone-100 rounded-lg cursor-pointer"
+                class="w-full accent-slate-800 h-2.5 bg-stone-200/70 rounded-lg cursor-pointer"
               />
 
-              <div>
-                <span class="block text-[11px] font-bold text-slate-800 mb-1.5">Their Gender <span class="text-stone-400 font-normal">(Listener "You")</span></span>
-                <div class="grid grid-cols-2 gap-2">
+              <div class="pt-1">
+                <span class="block text-xs font-bold text-slate-800 mb-2">Their Gender</span>
+                <div class="grid grid-cols-2 gap-3">
                   <button 
                     type="button" 
                     data-their-gender="male"
-                    class="their-gender-btn active px-3.5 py-2 rounded-xl border text-xs font-bold text-center transition flex items-center justify-center gap-1.5 border-slate-900 bg-slate-100 text-slate-900 cursor-pointer"
+                    class="their-gender-btn active px-4 py-3 rounded-xl border text-sm font-bold text-center transition flex items-center justify-center gap-2 border-slate-900 bg-slate-100 text-slate-900 cursor-pointer shadow-2xs"
                   >
                     <span>👨 Male</span>
                   </button>
                   <button 
                     type="button" 
                     data-their-gender="female"
-                    class="their-gender-btn px-3.5 py-2 rounded-xl border text-xs font-bold text-center transition flex items-center justify-center gap-1.5 border-stone-200 bg-white text-stone-600 hover:border-stone-300 cursor-pointer"
+                    class="their-gender-btn px-4 py-3 rounded-xl border text-sm font-bold text-center transition flex items-center justify-center gap-2 border-stone-200 bg-white text-stone-600 hover:border-stone-300 cursor-pointer"
                   >
                     <span>👩 Female</span>
                   </button>
@@ -238,126 +286,68 @@
               </div>
             </div>
 
-            <!-- 3. Social Setting Context -->
-            <div>
-              <label class="block text-xs font-bold text-slate-900 mb-2">
-                Social Setting
-              </label>
-              <div class="space-y-1.5">
-                <label class="flex items-center gap-2.5 p-2 rounded-xl border border-stone-100 hover:bg-stone-50 transition cursor-pointer text-xs">
-                  <input type="radio" name="context" value="street" checked class="accent-red-600 cursor-pointer" />
-                  <span class="font-medium text-slate-800">Casual / Street / Cafe / Restaurant</span>
-                </label>
-                <label class="flex items-center gap-2.5 p-2 rounded-xl border border-stone-100 hover:bg-stone-50 transition cursor-pointer text-xs">
-                  <input type="radio" name="context" value="work" class="accent-red-600 cursor-pointer" />
-                  <span class="font-medium text-slate-800">Workplace / Professional Meeting</span>
-                </label>
-                <label class="flex items-center gap-2.5 p-2 rounded-xl border border-stone-100 hover:bg-stone-50 transition cursor-pointer text-xs">
-                  <input type="radio" name="context" value="family" class="accent-red-600 cursor-pointer" />
-                  <span class="font-medium text-slate-800">Partner’s Family / In-Laws</span>
-                </label>
-              </div>
-            </div>
-
           </div>
 
-          <!-- Result Column -->
-          <div class="md:col-span-7 flex flex-col justify-between space-y-6">
-            <div>
-              <div class="flex items-center justify-between pb-3 border-b border-stone-100">
-                <span class="text-[10px] font-bold uppercase tracking-widest text-stone-400">Recommended Pronoun Pair</span>
-                <span id="respectLevel" class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-md border border-emerald-200">
-                  Warm & Polite
-                </span>
+          <!-- Result Column (Đã khôi phục lại cấu trúc nguyên bản hiển thị giải thích bằng lời cho từng trường hợp) -->
+          <div id="calculatorResultCol" class="lg:col-span-7 flex flex-col justify-between space-y-6 bg-stone-50/60 p-6 sm:p-8 rounded-3xl border border-stone-200/80">
+            <div class="space-y-5">
+              <div class="flex items-center justify-between pb-3 border-b border-stone-200/60">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-stone-500">Recommended Pronoun Pair</span>
               </div>
 
               <!-- Pair Display Grid -->
-              <div class="grid grid-cols-2 gap-4 my-5">
+              <div class="grid grid-cols-2 gap-5 items-stretch pt-2">
                 <!-- Self -->
-                <div class="p-4 rounded-2xl bg-stone-50 border border-stone-200/80 text-center">
-                  <span class="text-[10px] uppercase font-bold tracking-wider text-stone-400 block mb-1">
+                <div class="p-6 sm:p-8 rounded-2xl bg-white border border-stone-200/90 text-center flex flex-col justify-center shadow-xs">
+                  <span class="text-[11px] uppercase font-extrabold tracking-wider text-stone-400 block mb-3">
                     I Call Myself ("I")
                   </span>
-                  <span id="selfPronoun" class="text-2xl sm:text-3xl font-black font-brand text-slate-900 block">
+                  <span id="selfPronoun" class="text-3xl sm:text-4xl lg:text-5xl font-black font-brand text-slate-900 block break-words tracking-tight">
                     Em
                   </span>
-                  <span class="text-[11px] text-stone-500 mt-1 block">Your self-reference</span>
                 </div>
 
                 <!-- Them -->
-                <div class="p-4 rounded-2xl bg-red-50/60 border border-red-200 text-center">
-                  <span class="text-[10px] uppercase font-bold tracking-wider text-red-600/80 block mb-1">
+                <div class="p-6 sm:p-8 rounded-2xl bg-red-50 border border-red-200 text-center flex flex-col justify-center shadow-xs">
+                  <span class="text-[11px] uppercase font-extrabold tracking-wider text-red-600/80 block mb-3">
                     I Address Them ("You")
                   </span>
-                  <span id="themPronoun" class="text-2xl sm:text-3xl font-black font-brand text-red-600 block">
+                  <span id="themPronoun" class="text-3xl sm:text-4xl lg:text-5xl font-black font-brand text-red-600 block break-words tracking-tight">
                     Anh
                   </span>
-                  <span class="text-[11px] text-red-700/80 mt-1 block">Their honorific title</span>
                 </div>
-              </div>
-
-              <!-- Spoken Phrasing Example -->
-              <div class="p-4 sm:p-5 rounded-2xl bg-[#fffaf5] border border-stone-200/90 space-y-2.5">
-                <div class="flex items-center justify-between">
-                  <span class="text-[10px] font-bold uppercase tracking-wider text-stone-400">Natural Phrasing:</span>
-                  <button 
-                    id="speakBtn" 
-                    type="button"
-                    class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-white border border-stone-200 text-slate-800 text-[11px] font-bold hover:border-red-500 hover:text-red-600 transition cursor-pointer"
-                  >
-                    <span>🔊</span>
-                    <span>Listen</span>
-                  </button>
-                </div>
-
-                <div id="exampleViet" class="text-base sm:text-lg font-bold text-slate-900 leading-snug">
-                  “Anh ơi, cho em xin menu nha!”
-                </div>
-                <p id="exampleEng" class="text-xs text-stone-500 italic">
-                  “Excuse me brother/sir, could I please get the menu!”
-                </p>
               </div>
             </div>
 
             <!-- Context Tip -->
-            <div class="bg-stone-50 rounded-2xl p-3.5 border border-stone-200/80 flex items-start gap-3">
-              <span class="text-base shrink-0 mt-0.5">💡</span>
-              <p id="pairExplanation" class="text-xs text-stone-600 leading-relaxed">
-                Use <strong>Anh/Chị vs Em</strong> with anyone within 2–15 years of your age.
+            <div class="bg-white rounded-2xl p-4.5 sm:p-5 border border-stone-200/90 flex items-start gap-3.5 shadow-2xs">
+              <span class="text-xl shrink-0 mt-0.5">💡</span>
+              <p id="pairExplanation" class="text-xs sm:text-sm text-stone-700 leading-relaxed font-medium">
+                In casual social settings, whether they are slightly older or the exact same age, out of polite respect you call yourself <strong>Em</strong> and address them as <strong>Anh / Chị</strong>.
               </p>
             </div>
-
           </div>
 
-        </div>
-
-        <!-- Notes Section -->
-        <div class="mt-8 pt-6 border-t border-stone-100 grid grid-cols-1 md:grid-cols-2 gap-3.5">
-          
-          <!-- Note 1: Family Rank Trumps Age -->
-          <div class="p-3.5 rounded-2xl bg-[#fffaf5] border border-stone-200/80">
-            <div class="flex items-center gap-1.5 mb-1">
-              <span class="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
-              <h3 class="text-[11px] font-extrabold uppercase tracking-wider text-slate-900">
-                Kinship Rank Trumps Age
-              </h3>
-            </div>
-            <p class="text-xs text-stone-600 leading-relaxed">
-              In Vietnamese families or in-law gatherings, formal family branch titles always override age (e.g., calling a younger relative <em>Anh / Chú</em> if they belong to a higher generational line).
+          <!-- Family Course Banner -->
+          <div id="familyCourseBanner" class="hidden lg:col-span-12 bg-gradient-to-r from-red-50 via-amber-50/40 to-white rounded-3xl p-8 sm:p-12 border border-red-200/80 text-center space-y-4 shadow-sm">
+            <span class="text-xs font-black text-red-600 uppercase tracking-widest bg-white px-4 py-1.5 rounded-full border border-red-200 inline-block shadow-2xs">
+              🏡 In-Law Family Tree Masterclass
+            </span>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-brand">
+              Navigating Vietnamese Family Titles is Complex!
+            </h3>
+            <p class="text-stone-600 text-xs sm:text-base max-w-2xl mx-auto leading-relaxed">
+              Family trees in Vietnam involve intricate generational ranks, maternal/paternal distinctions (bên nội/bên ngoại), and regional nuances. Don't guess—master it step-by-step with expert lessons.
             </p>
-          </div>
-
-          <!-- Note 2: Avoid Tôi & Bạn -->
-          <div class="p-3.5 rounded-2xl bg-[#fffaf5] border border-stone-200/80">
-            <div class="flex items-center gap-1.5 mb-1">
-              <span class="w-1.5 h-1.5 rounded-full bg-red-600"></span>
-              <h3 class="text-[11px] font-extrabold uppercase tracking-wider text-slate-900">
-                Avoid "Tôi" & "Bạn" in Spoken Vietnamese
-              </h3>
+            <div class="pt-2">
+              <button
+                type="button"
+                class="open-modal-trigger px-8 py-3.5 bg-red-600 hover:bg-red-700 text-white font-black rounded-2xl text-xs sm:text-sm shadow-md transition hover:-translate-y-0.5 cursor-pointer inline-flex items-center gap-2"
+              >
+                <span>Book Lessons to Master Family Tree</span>
+                <span>→</span>
+              </button>
             </div>
-            <p class="text-xs text-stone-600 leading-relaxed">
-              Don't default to <em>Tôi / Bạn</em> like translation apps suggest—in spoken life, it creates cold emotional distance. The pair <strong>Bạn / Mình</strong> is strictly reserved for equal-aged classmates, close peers, or neutral social media text.
-            </p>
           </div>
 
         </div>
@@ -365,26 +355,25 @@
       </div>
 
       <!-- REFINED CTA SECTION -->
-      <div class="mt-10 rounded-3xl bg-white p-7 sm:p-9 border border-stone-200/90 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
-        <div class="space-y-2 text-center md:text-left max-w-lg">
-          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 text-red-600 text-[11px] font-bold tracking-wide border border-red-100">
-            <span>🎯 1-on-1 Pronunciation & Nuance Coaching</span>
+      <div class="mt-12 rounded-3xl bg-white p-8 sm:p-10 border border-stone-200/90 shadow-md flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="space-y-2 text-center md:text-left max-w-xl">
+          <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-red-50 text-red-600 text-xs font-bold tracking-wide border border-red-100">
+            <span>🎯 1-on-1 Pronoun & Nuance Mastery</span>
           </div>
           <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight font-brand">
-            Stop Guessing. Speak Vietnamese Naturally.
+            Speak Vietnamese the Way People Actually Do
           </h2>
           <p class="text-stone-600 text-xs sm:text-sm leading-relaxed">
-            Master real-life pronouns, street shortcuts, and dialect differences (Northern & Southern) with personalized feedback tailored to your life.
+            Vietnamese pronouns change depending on age, gender, relationship, and situation. Learn how to choose the right words — and when to switch them — through real-life conversations and 1-on-1 practice.
           </p>
         </div>
         <div class="shrink-0 w-full md:w-auto text-center">
           <button
             type="button"
-            class="open-modal-trigger inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-xs sm:text-sm shadow-sm transition hover:-translate-y-0.5 cursor-pointer"
+            class="open-modal-trigger inline-flex items-center justify-center px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-bold rounded-2xl text-sm shadow-md transition hover:-translate-y-0.5 cursor-pointer whitespace-nowrap"
           >
-            Book Free 25-Min Trial Lesson →
+            Book a Trial Lesson →
           </button>
-          <p class="text-[10px] text-stone-400 mt-2 font-medium">No commitment • Personalized evaluation</p>
         </div>
       </div>
 
@@ -417,7 +406,7 @@
       <div class="flex items-center justify-between border-b border-stone-100 pb-3">
         <div>
           <span class="text-[10px] font-black text-red-600 uppercase tracking-widest bg-red-50 px-2.5 py-0.5 rounded border border-red-200">1-on-1 Coaching</span>
-          <h3 class="text-xl font-black text-slate-900 font-brand mt-1">Book 25-Min Trial Lesson</h3>
+          <h3 class="text-xl font-black text-slate-900 font-brand mt-1">Book Trial Lessons</h3>
         </div>
         <button id="closeModalBtn" type="button" class="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 font-bold flex items-center justify-center cursor-pointer">
           ✕
@@ -488,6 +477,7 @@
 
     let myGender = 'male';
     let theirGender = 'male';
+    let currentContext = 'street';
 
     const userAgeInput = document.getElementById('userAge');
     const ageDisplay = document.getElementById('ageDisplay');
@@ -496,13 +486,37 @@
 
     const selfPronounEl = document.getElementById('selfPronoun');
     const themPronounEl = document.getElementById('themPronoun');
-    const respectLevelEl = document.getElementById('respectLevel');
-    const exampleVietEl = document.getElementById('exampleViet');
-    const exampleEngEl = document.getElementById('exampleEng');
     const pairExplanationEl = document.getElementById('pairExplanation');
-    const speakBtn = document.getElementById('speakBtn');
 
-    // 1. My Gender buttons
+    const controlsCol = document.getElementById('calculatorInteractiveArea').children[0];
+    const resultCol = document.getElementById('calculatorResultCol');
+    const familyBanner = document.getElementById('familyCourseBanner');
+
+    // 1. Social Context Filter Buttons
+    document.querySelectorAll('[data-context-btn]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-context-btn]').forEach(b => {
+          b.classList.remove('active', 'border-red-600', 'bg-red-50/60');
+          b.classList.add('border-stone-200', 'bg-white');
+        });
+        btn.classList.add('active', 'border-red-600', 'bg-red-50/60');
+        btn.classList.remove('border-stone-200', 'bg-white');
+        currentContext = btn.getAttribute('data-context-btn');
+
+        if (currentContext === 'family') {
+          controlsCol.classList.add('hidden');
+          resultCol.classList.add('hidden');
+          familyBanner.classList.remove('hidden');
+        } else {
+          controlsCol.classList.remove('hidden');
+          resultCol.classList.remove('hidden');
+          familyBanner.classList.add('hidden');
+          calculatePronouns();
+        }
+      });
+    });
+
+    // 2. My Gender buttons
     document.querySelectorAll('.my-gender-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.my-gender-btn').forEach(b => {
@@ -516,7 +530,7 @@
       });
     });
 
-    // 2. Their Gender buttons
+    // 3. Their Gender buttons
     document.querySelectorAll('.their-gender-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.their-gender-btn').forEach(b => {
@@ -545,275 +559,99 @@
       });
     }
 
-    document.querySelectorAll('input[name="context"]').forEach(radio => {
-      radio.addEventListener('change', calculatePronouns);
-    });
-
-    // Main Calculation Engine
+    // ENGINE TÍNH TOÁN XƯNG HÔ ĐÃ HOÀN THIỆN VÀ KHÓA CHẶT:
     function calculatePronouns() {
       const myAge = parseInt(userAgeInput.value, 10);
       const theirAge = parseInt(theirAgeInput.value, 10);
-      const diff = theirAge - myAge;
-      const context = document.querySelector('input[name="context"]:checked').value;
+      const diff = theirAge - myAge; // >0: họ lớn tuổi hơn mình; <0: họ nhỏ tuổi hơn mình; =0: bằng tuổi
 
-      let self = myGender === 'male' ? "Anh" : "Chị";
-      let them = theirGender === 'male' ? "Anh" : "Chị";
-      let status = "Polite Peer Encounter";
-      let viet = "";
-      let eng = "";
+      let self = "Em";
+      let them = "Anh";
       let explanation = "";
 
-      // 1. WORKPLACE / PROFESSIONAL
-      if (context === 'work') {
-        if (diff >= 30) {
-          self = "Con / Cháu";
-          them = theirGender === 'male' ? "Chú" : "Cô";
-          status = "Generational Senior Respect";
-          viet = `“Dạ ${them}, con/cháu đã tổng hợp xong tài liệu dự án rồi ạ!”`;
-          eng = `“Yes ${them}, I have finished compiling the project documents!”`;
-          explanation = `With a 30+ year gap in the office, address them respectfully as <strong>${them}</strong> and call yourself <strong>Con / Cháu</strong> (Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North).`;
-        }
-        else if (diff >= 2) {
-          self = "Em";
-          them = theirGender === 'male' ? "Anh" : "Chị";
-          status = "Workplace Dynamic Standard";
-          viet = `“Dạ ${them}, em vừa gửi báo cáo tuần qua email rồi ạ!”`;
-          eng = `“Yes ${them}, I just sent over the weekly report via email!”`;
-          explanation = `Standard dynamic office rule: coworkers within 2–29 years of your age use <strong>Anh / Chị ⇄ Em</strong>.`;
-        }
-        else if (diff >= -1 && diff <= 1) {
-          self = "Em";
-          them = theirGender === 'male' ? "Anh" : "Chị";
-          status = "Equal Colleague";
-          viet = `“${them} xem qua file thiết kế này giúp em nhé!”`;
-          eng = `“Could you please check this design file for me?”`;
-          explanation = `Peers of equal rank and age typically default to <strong>Anh / Chị ⇄ Em</strong> for daily courtesy.`;
-        }
-        else if (diff <= -2 && diff > -30) {
-          self = myGender === 'male' ? "Anh" : "Chị";
-          them = "Em";
-          status = "Senior Colleague Warmth";
-          viet = `“Em chuẩn bị slide thuyết trình xong thì gửi ${self.toLowerCase()} xem trước nhé!”`;
-          eng = `“Once you finish the slides, send them to me first!”`;
-          explanation = `As the senior coworker, call yourself <strong>${self}</strong> and address junior staff kindly as <strong>Em</strong>.`;
-        }
-        else {
-          self = myGender === 'male' ? "Chú" : "Cô";
-          them = "Con / Cháu";
-          status = "Elder Mentor Warmth";
-          viet = `“Con/cháu cứ nghiên cứu kỹ dự án này đi, có gì hỏi ${self.toLowerCase()} nha!”`;
-          eng = `“Take your time studying the project, feel free to ask me anything!”`;
-          explanation = `Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North.`;
-        }
-      }
+      const conNote = ` Note: "Con" is used naturally across both North and South Vietnam, while "Cháu" is primarily used in the North.`;
 
-      // 2. PARTNER'S FAMILY / IN-LAWS
-      else if (context === 'family') {
-        if (theirAge >= 70 || diff >= 45) {
-          self = "Con / Cháu";
+      // ==========================================
+      // 1. WORKPLACE CONTEXT
+      // ==========================================
+      if (currentContext === 'work') {
+        if ((theirAge >= 70 && diff >= 45) || diff >= 45) {
+          self = "Con";
           them = theirGender === 'male' ? "Ông" : "Bà";
-          status = "Grandparent Generational Respect";
-          viet = `“Dạ ${them}, con/cháu mới sang thăm hai ${them} và gia đình ạ!”`;
-          eng = `“Hello grandparent, thank you so much for welcoming me into your home!”`;
-          explanation = `Always address partner's grandparents as <strong>${them}</strong>. Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North.`;
-        }
-        else if (myAge >= 70 || diff <= -45) {
+          explanation = `For elderly senior figures in a professional setting with a large age gap, address them as <strong>${them}</strong> and call yourself <strong>Con</strong>.${conNote}`;
+        } else if (myAge >= 70 && diff <= -45) {
           self = myGender === 'male' ? "Ông" : "Bà";
-          them = "Con / Cháu";
-          status = "Grandparent Affection";
-          viet = `“Con/cháu vào nhà uống nước ăn bánh với ${self.toLowerCase()} nha!”`;
-          eng = `“Come inside and have some sweets and tea with me!”`;
-          explanation = `Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North.`;
-        }
-        else if (diff >= 28) {
-          self = "Con / Cháu";
-          them = "Bác";
-          status = "Senior In-Law Kinship";
-          viet = `“Dạ Bác, con/cháu gửi Bác chút hoa quả biếu gia đình ạ!”`;
-          eng = `“Hello senior uncle/aunt, I brought some fruits for the family!”`;
-          explanation = `Relatives older than the parents are called <strong>Bác</strong>. Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North.`;
-        }
-        else if (diff >= 16) {
-          self = "Con / Cháu";
-          status = "Parental In-Law Warmth";
-          if (theirGender === 'male') {
-            them = "Chú / Cậu";
-            viet = `“Dạ con/cháu chào Chú/Cậu, hôm nay con sang chơi ạ!”`;
-            eng = `“Hello uncle, thank you for having me over today!”`;
-            explanation = `<strong>Uncles:</strong> <strong>Chú</strong> (father's younger brother) or <strong>Cậu</strong> (mother's brother). Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North.`;
+          them = "Con";
+          explanation = `In the workplace, when an elderly senior speaks to a staff member who is younger than you by 45+ years, call yourself <strong>Ông</strong> (or <strong>Bà</strong>) and address them as <strong>Con</strong>.${conNote}`;
+        } else if (diff >= 31) {
+          self = "Con";
+          them = theirGender === 'male' ? "Chú" : "Cô";
+          explanation = `In the workplace, if someone is older by 31+ years, professional standards dictate addressing them as <strong>Chú / Cô</strong> and calling yourself <strong>Con</strong>.${conNote}`;
+        } else if (diff <= -31) {
+          self = myGender === 'male' ? "Chú" : "Cô";
+          them = "Con";
+          explanation = `In the workplace, when speaking to a junior staff member who is younger than you by 31+ years, call yourself <strong>Chú / Cô</strong> and address them as <strong>Con</strong>.${conNote}`;
+        } else {
+          if (diff >= 1) {
+            self = "Em";
+            them = theirGender === 'male' ? "Anh" : "Chị";
+            explanation = `In the workplace, for colleagues older than you by up to 30 years, it is standard to call yourself <strong>Em</strong> and address them as <strong>Anh / Chị</strong>.`;
+          } else if (diff === 0) {
+            self = "Em";
+            them = theirGender === 'male' ? "Anh" : "Chị";
+            explanation = `When meeting someone of the exact same age in a professional setting, out of polite respect, address them as <strong>Anh / Chị</strong> and call yourself <strong>Em</strong>.`;
           } else {
-            them = "Cô / Dì / Mợ";
-            viet = `“Dạ con/cháu chào Cô/Dì/Mợ, con có mang chút quà ạ!”`;
-            eng = `“Hello auntie, thank you for having me over today!”`;
-            explanation = `<strong>Aunts:</strong> <strong>Cô</strong> (father's sister), <strong>Dì</strong> (mother's sister), or <strong>Mợ</strong> (maternal uncle's wife). Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North.`;
-          }
-        }
-        else if (diff >= 2) {
-          self = "Em";
-          them = theirGender === 'male' ? "Anh" : "Chị";
-          status = "In-Law Older Sibling";
-          viet = `“Dạ ${them.toLowerCase()} cứ để em phụ dọn bàn ăn nha!”`;
-          eng = `“Please let me help you set the dining table!”`;
-          explanation = `For older siblings or elder cousins of your partner, use <strong>Anh / Chị ⇄ Em</strong>.`;
-        }
-        else if (diff >= -1 && diff <= 1) {
-          self = "Em";
-          them = theirGender === 'male' ? "Anh" : "Chị";
-          status = "Polite Sibling Peer";
-          viet = `“${them} uống nước gì để em lấy luôn nha?”`;
-          eng = `“Would you like some tea or water? Let me grab it for you!”`;
-          explanation = `Safest to honor partner's peer relatives as <strong>Anh / Chị</strong> first.`;
-        }
-        else if (diff <= -2 && diff >= -20) {
-          self = myGender === 'male' ? "Anh" : "Chị";
-          them = "Em";
-          status = "Elder Sibling In-Law Guidance";
-          viet = `“Em cứ tự nhiên ăn uống nha, không phải ngại ${self.toLowerCase()} đâu!”`;
-          eng = `“Make yourself comfortable, feel right at home!”`;
-          explanation = `For younger brothers or sisters of your partner: <strong>${self} ⇄ Em</strong>.`;
-        }
-        else {
-          self = myGender === 'male' ? "Chú / Bác / Cậu" : "Cô / Dì";
-          them = "Con / Cháu";
-          status = "Family Elder Affection";
-          viet = `“Con/cháu ăn thêm hoa quả đi, ngon lắm đó!”`;
-          eng = `“Have some more fruits, they are really fresh!”`;
-          if (myGender === 'female') {
-            explanation = `Call yourself <strong>Cô</strong> if you are the father's sister (paternal aunt), or <strong>Dì</strong> if you are the mother's younger sister (maternal aunt). Address the child as <strong>Con</strong> or <strong>Cháu</strong> (Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North).`;
-          } else {
-            explanation = `Call yourself <strong>Chú</strong> (father's younger brother), <strong>Bác</strong> (older than the parent), or <strong>Cậu</strong> (mother's brother). Address the child as <strong>Con</strong> or <strong>Cháu</strong> (Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North).`;
+            self = myGender === 'male' ? "Anh" : "Chị";
+            them = "Em";
+            explanation = `For younger colleagues within a 30-year age gap, call yourself <strong>Anh / Chị</strong> and address them as <strong>Em</strong> (or call them by name).`;
           }
         }
       }
-
-      // 3. CASUAL / STREET / CAFE / RESTAURANT
+      // ==========================================
+      // 2. CASUAL / STREET CONTEXT
+      // ==========================================
       else {
-        if (theirAge >= 70 || diff >= 45) {
-          self = "Con / Cháu";
+        if (theirAge >= 70 && diff >= 45) {
+          self = "Con";
           them = theirGender === 'male' ? "Ông" : "Bà";
-          status = "Elder Respect";
-          viet = `“Dạ ${them} ơi, để con/cháu dắt ${them} qua đường nha!”`;
-          eng = `“Excuse me grandfather/grandmother, let me help you cross the street!”`;
-          explanation = `Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North.`;
-        }
-        else if (myAge >= 70 || diff <= -45) {
+          explanation = `For elderly seniors (age 70+ and 45+ years older, like your grandparents), address them as <strong>Ông / Bà</strong> and call yourself <strong>Con</strong>.${conNote}`;
+        } 
+        else if (myAge >= 70 && diff <= -45) {
           self = myGender === 'male' ? "Ông" : "Bà";
-          them = "Con / Cháu";
-          status = "Elder Street Warmth";
-          viet = `“Con/cháu cẩn thận coi chừng vấp té nha!”`;
-          eng = `“Be careful not to trip over there, young one!”`;
-          explanation = `Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North.`;
+          them = "Con";
+          explanation = `When an elderly senior speaks to a much younger person (such as a 45+ year age gap), address them as <strong>Con</strong> and call yourself <strong>Ông</strong> (or <strong>Bà</strong>).${conNote}`;
         }
-        else if (diff >= 30) {
-          self = "Con / Cháu";
-          them = "Bác";
-          status = "Senior Elder Respect";
-          viet = `“Dạ Bác ơi, cho con/cháu hỏi đường này đi đâu ạ?”`;
-          eng = `“Excuse me senior elder, could you tell me where this street leads?”`;
-          explanation = `<strong>Bác</strong> is used for senior elders noticeably older than your parents. Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North.`;
-        }
-        else if (diff >= 16) {
-          self = "Con / Cháu";
+        else if (diff >= 20) {
+          self = "Con";
           them = theirGender === 'male' ? "Chú" : "Cô";
-          status = "Street Vendor Warmth";
-          viet = `“${them} ơi, cho con / cháu xin tính tiền nha!”`;
-          eng = `“Excuse me uncle/auntie, could I get the check please!”`;
-          explanation = `Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North.`;
+          explanation = `For adults of your parents' age (older by 20–44 years), address them as <strong>Chú</strong> or <strong>Cô</strong> and call yourself <strong>Con</strong>.${conNote}`;
+        } 
+        else if (myAge >= 50 && diff <= -30) {
+          self = myGender === 'male' ? "Ông" : "Bà";
+          them = "Con";
+          explanation = `When an elderly adult speaks to a young child in casual settings, address them as <strong>Con</strong> and call yourself <strong>Ông</strong> (or <strong>Bà</strong> based on your gender).${conNote}`;
         }
-        else if (diff >= 2) {
+        else if (diff >= 0) {
           self = "Em";
           them = theirGender === 'male' ? "Anh" : "Chị";
-          status = "Everyday Peer Politeness";
-          viet = `“${them} ơi, cho em xin menu nha!”`;
-          eng = `“Excuse me ${them}, could I please get the menu!”`;
-          explanation = `The everyday golden standard for cafes, baristas, convenience stores, and anyone slightly older.`;
-        }
-        else if (diff >= -1 && diff <= 1) {
-          self = "Em";
-          them = theirGender === 'male' ? "Anh" : "Chị";
-          status = "Polite Peer Encounter";
-          viet = `“${them} uống gì để em gọi luôn nha?”`;
-          eng = `“What are you having so I can order for both of us?”`;
-          explanation = `Even if you look roughly the same age, addressing them politely as <strong>Anh / Chị</strong> avoids awkwardness.`;
-        }
-        else if (diff <= -2 && diff >= -20) {
+          explanation = `In casual social settings, whether they are slightly older or the exact same age, out of polite respect you call yourself <strong>Em</strong> and address them as <strong>Anh / Chị</strong>. (If you become close friends later, you can switch to <em>Bạn / Mình</em> or call each other by name).`;
+        } 
+        else if (diff > -20) {
           self = myGender === 'male' ? "Anh" : "Chị";
           them = "Em";
-          status = "Senior Guidance & Care";
-          viet = `“Em ơi, mang giùm ${self.toLowerCase()} ly trà đá nha!”`;
-          eng = `“Excuse me em, could you bring us some iced tea please!”`;
-          explanation = `You are visibly older than the service staff or barista. Call yourself <strong>${self}</strong> and address them as <strong>Em</strong>.`;
-        }
+          explanation = `For someone younger than you by up to 19 years, call yourself <strong>Anh / Chị</strong> and address them as <strong>Em</strong> (or call them by their name).`;
+        } 
         else {
           self = myGender === 'male' ? "Chú" : "Cô";
-          them = "Con / Cháu";
-          status = "Generational Senior Warmth";
-          viet = `“Con/cháu cứ để đó lát ${self.toLowerCase()} dọn cho nha!”`;
-          eng = `“You can leave that there, I will take care of it for you!”`;
-          explanation = `Con is used naturally across both North and South Vietnam, while Cháu is primarily used in the North.`;
+          them = "Con";
+          explanation = `For children or young individuals much younger than you (by 20+ years, like your children), call yourself <strong>Chú / Cô</strong> and address them as <strong>Con</strong> (or by name).${conNote}`;
         }
       }
 
       selfPronounEl.textContent = self;
       themPronounEl.textContent = them;
-      respectLevelEl.textContent = status;
-      exampleVietEl.textContent = viet;
-      exampleEngEl.textContent = eng;
       pairExplanationEl.innerHTML = explanation;
     }
-
-    // Speech synthesis
-    if (speakBtn) {
-      speakBtn.addEventListener('click', () => {
-        const textToSpeak = exampleVietEl.textContent.replace(/[“”"']/g, '');
-        if (!('speechSynthesis' in window)) return;
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(textToSpeak);
-        utterance.lang = 'vi-VN';
-        utterance.rate = 0.9;
-        window.speechSynthesis.speak(utterance);
-      });
-    }
-
-    // Modal Control Script
-    const modal = document.getElementById('consultModal');
-    const openTriggers = document.querySelectorAll('.open-modal-trigger');
-    const closeModalBtn = document.getElementById('closeModalBtn');
-    const consultForm = document.getElementById('consultForm');
-    const successMessage = document.getElementById('successMessage');
-    const btnCloseSuccess = document.getElementById('btnCloseSuccess');
-
-    openTriggers.forEach(btn => {
-      if (btn) {
-        btn.addEventListener('click', () => {
-          modal.classList.remove('hidden');
-          consultForm.classList.remove('hidden');
-          successMessage.classList.add('hidden');
-          if (mobileMenu) mobileMenu.classList.add('hidden');
-        });
-      }
-    });
-
-    const hideModal = () => modal.classList.add('hidden');
-    if (closeModalBtn) closeModalBtn.addEventListener('click', hideModal);
-    if (btnCloseSuccess) closeModalBtn.addEventListener('click', hideModal);
-    modal.addEventListener('click', (e) => { if (e.target === modal) hideModal(); });
-
-    consultForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const formData = {
-        name: document.getElementById('cName').value,
-        country: document.getElementById('cCountry').value,
-        phone: document.getElementById('cPhone').value,
-        email: document.getElementById('cEmail').value,
-        goals: document.getElementById('cGoals').value,
-      };
-      console.log("Consultation Booking Submitted:", formData);
-
-      consultForm.classList.add('hidden');
-      successMessage.classList.remove('hidden');
-      consultForm.reset();
-    });
 
     // Run initial calculation
     calculatePronouns();
