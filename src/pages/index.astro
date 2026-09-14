@@ -67,12 +67,12 @@
 </head>
 <body class="selection:bg-red-600 selection:text-white min-h-screen flex flex-col antialiased relative overflow-x-hidden">
 
-  <!-- NAVBAR -->
+  <!-- NAVBAR (Đã mở rộng khung container lên max-w-[1400px] để dịch sát sang trái) -->
   <header class="sticky top-0 z-40 bg-[#fffaf5]/90 backdrop-blur-md border-b border-stone-200/80 h-20">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 h-full flex items-center justify-between">
+    <div class="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 h-full flex items-center justify-between">
       
       <!-- LOGO -->
-      <a href="/" class="group flex flex-col select-none text-left">
+      <a href="/" class="group flex flex-col select-none text-left shrink-0">
         <div class="h-6 sm:h-7 flex items-center">
           <svg class="h-6 sm:h-7 w-auto overflow-visible" viewBox="0 0 175 30" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 2H6V12H18V2H24V28H18V17H6V28H0V2Z" fill="#dc2626"/>
@@ -87,50 +87,45 @@
         </span>
       </a>
 
-      <!-- Desktop Menu Links -->
-      <nav class="hidden md:flex items-center space-x-6 lg:space-x-7 text-sm font-semibold text-slate-700">
+      <!-- CỤM ĐIỀU HƯỚNG & NÚT BẤM -->
+      <div class="hidden lg:flex items-center space-x-7 text-sm font-semibold text-slate-700">
         <a href="#about" class="hover:text-red-600 transition">About Me</a>
         <a href="#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
-        <a href="#reviews" class="hover:text-red-600 transition">Student Stories</a>
         <a href="/resources" class="hover:text-red-600 transition">Resources</a>
-        <a href="/test" class="text-red-600 hover:text-red-700 font-bold flex items-center gap-1.5 bg-red-50 px-3.5 py-1.5 rounded-full border border-red-200 shadow-2xs hover:bg-red-100 transition">
-          <span>📝 Level Test</span>
-        </a>
-        <a href="#faq" class="hover:text-red-600 transition">FAQ</a>
-      </nav>
-
-      <!-- Desktop CTA & Mobile Toggle Button -->
-      <div class="flex items-center gap-3">
-        <button
-          type="button"
-          class="open-modal-trigger hidden sm:inline-flex items-center justify-center px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-bold text-white bg-red-600 hover:bg-red-700 rounded-xl shadow-lg shadow-red-600/25 transition hover:-translate-y-0.5 cursor-pointer"
-        >
-          Book 25-Min Trial Lesson →
-        </button>
-
-        <!-- Mobile Menu Hamburger Button -->
-        <button 
-          id="mobileMenuBtn" 
-          type="button" 
-          aria-label="Toggle Menu"
-          class="md:hidden w-10 h-10 rounded-xl bg-stone-100 hover:bg-stone-200 text-slate-800 flex items-center justify-center font-bold transition cursor-pointer"
-        >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
+        <a href="/student" class="hover:text-red-600 transition">Student Portal</a>
+        <a href="/test" class="hover:text-red-600 transition">Level Test</a>
+        
+        <div class="flex items-center pl-2">
+          <button
+            type="button"
+            class="open-modal-trigger inline-flex items-center justify-center px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-bold text-white bg-red-600 hover:bg-red-700 rounded-xl shadow-lg shadow-red-600/25 transition hover:-translate-y-0.5 cursor-pointer"
+          >
+            Book 25-Min Trial Lesson →
+          </button>
+        </div>
       </div>
+
+      <!-- Mobile Menu Hamburger Button -->
+      <button 
+        id="mobileMenuBtn" 
+        type="button" 
+        aria-label="Toggle Menu"
+        class="lg:hidden w-10 h-10 rounded-xl bg-stone-100 hover:bg-stone-200 text-slate-800 flex items-center justify-center font-bold transition cursor-pointer"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
 
     </div>
 
     <!-- Mobile Dropdown Menu -->
-    <div id="mobileMenu" class="hidden md:hidden absolute top-20 left-0 w-full bg-[#fffaf5] border-b border-stone-200 shadow-xl px-6 py-5 space-y-4 font-semibold text-slate-700 text-sm">
-      <a href="#about" class="mobile-link block hover:text-red-600 transition">About Me</a>
-      <a href="#curriculum" class="mobile-link block hover:text-red-600 transition">Learning Tracks</a>
-      <a href="#reviews" class="mobile-link block hover:text-red-600 transition">Student Stories</a>
-      <a href="/resources" class="mobile-link block hover:text-red-600 transition">Resources</a>
-      <a href="/test" class="mobile-link block text-red-600 font-bold">📝 Level Test</a>
-      <a href="#faq" class="mobile-link block hover:text-red-600 transition">FAQ</a>
+    <div id="mobileMenu" class="hidden lg:hidden absolute top-20 left-0 w-full bg-[#fffaf5] border-b border-stone-200 shadow-xl px-6 py-5 space-y-3 font-semibold text-slate-700 text-sm">
+      <a href="#about" class="mobile-link block hover:text-red-600 transition py-1">About Me</a>
+      <a href="#curriculum" class="mobile-link block hover:text-red-600 transition py-1">Learning Tracks</a>
+      <a href="/resources" class="mobile-link block hover:text-red-600 transition py-1">Resources</a>
+      <a href="/student" class="mobile-link block hover:text-red-600 transition py-1">Student Portal</a>
+      <a href="/test" class="mobile-link block hover:text-red-600 transition py-1">Level Test</a>
       <div class="pt-3 border-t border-stone-200">
         <button
           type="button"
@@ -144,12 +139,12 @@
 
   <main class="flex-grow">
     <!-- HERO SECTION -->
-    <section class="relative flex items-center overflow-hidden py-10 sm:py-14 lg:py-20">
+    <section class="relative flex items-center overflow-hidden py-12 sm:py-16 lg:py-24 min-h-[calc(100vh-80px)] lg:min-h-[82vh]">
       <div class="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
         <div class="absolute top-5 right-[10%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] hero-glow rounded-full blur-3xl"></div>
       </div>
 
-      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 w-full">
+      <div class="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 w-full">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
           <!-- CỘT BÊN TRÁI -->
@@ -161,8 +156,7 @@
               <span>Northern & Southern Accents</span>
             </div>
 
-            <!-- Tối ưu cỡ chữ linh hoạt theo màn hình điện thoại -->
-            <h1 class="font-extrabold text-slate-900 tracking-tight font-brand text-3xl sm:text-4xl lg:text-5xl leading-[1.15]">
+            <h1 class="font-extrabold text-slate-900 tracking-tight font-brand text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-[1.15]">
               <span>Vietnamese isn’t hard.</span>
               <span class="block mt-1 sm:mt-2">
                 You just need <span class="text-red-600">the right</span>
@@ -202,48 +196,53 @@
 
           <!-- CỘT BÊN PHẢI: SUPER CARD -->
           <div class="lg:col-span-5 flex justify-center">
-            <div class="w-full max-w-[380px] sm:max-w-[400px] bg-white rounded-3xl p-6 sm:p-7 shadow-xl shadow-stone-200/50 border border-stone-200/90 space-y-4 sm:space-y-5 relative">
+            <div class="w-full max-w-[420px] sm:max-w-[460px] bg-white rounded-[32px] p-7 sm:p-9 shadow-2xl shadow-stone-300/60 border border-stone-200/90 space-y-6 relative">
               
-              <div class="absolute -top-3 right-6 bg-red-50 text-red-600 border border-red-200 text-[10px] font-extrabold px-3 py-0.5 rounded-full uppercase tracking-wider">
-                Interactive Preview
-              </div>
-
               <!-- Profile Header -->
-              <div class="flex items-center gap-4 pb-4 border-b border-stone-100">
-                <div class="w-14 sm:w-16 h-14 sm:h-16 rounded-2xl overflow-hidden shadow-md ring-2 ring-red-500/20 shrink-0 bg-stone-100">
+              <div class="flex items-center gap-5 pb-5 border-b border-stone-100">
+                <div class="w-18 sm:w-20 h-18 sm:h-20 rounded-2xl overflow-hidden shadow-md ring-2 ring-red-500/20 shrink-0 bg-stone-100">
                   <img 
                     src="/hang.jpg" 
                     alt="Hang Luu" 
                     class="w-full h-full object-cover"
-                    onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-2xl\'>👩🏻‍🏫</div>';"
+                    onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-3xl\'>👩🏻‍🏫</div>';"
                   />
                 </div>
                 <div>
-                  <h2 class="text-base font-bold text-slate-900 leading-tight">Hang Luu</h2>
-                  <p class="text-xs text-stone-500 font-medium mt-0.5">Professional Vietnamese Tutor</p>
-                  <div class="flex items-center gap-1 text-amber-500 text-xs mt-1">
+                  <h2 class="text-lg sm:text-xl font-extrabold text-slate-900 leading-tight">Hang Luu</h2>
+                  <p class="text-xs sm:text-sm text-stone-500 font-medium mt-0.5">Professional Vietnamese Tutor</p>
+                  <div class="flex items-center gap-1 text-amber-500 text-xs sm:text-sm mt-1">
                     <span>★★★★★</span>
-                    <span class="text-slate-700 font-bold font-mono ml-1">5.0</span>
-                    <span class="text-stone-400">(48 Reviews)</span>
+                    <span class="text-slate-900 font-bold font-mono ml-1">5.0</span>
+                    <span class="text-stone-400 font-medium">(48 Reviews)</span>
                   </div>
                 </div>
               </div>
 
               <!-- WHY TONES MATTER -->
-              <div class="bg-stone-50/90 rounded-2xl p-3.5 sm:p-4 border border-stone-200/80 space-y-2.5">
-                <div class="text-[10px] font-bold uppercase tracking-wider text-stone-400">Why Vietnamese Tones Matter:</div>
-                <div class="grid grid-cols-3 gap-2 text-center">
-                  <button onclick="playVoice('ma', 1.0)" type="button" class="bg-white p-2.5 sm:p-3 rounded-xl border border-stone-200 hover:border-red-500 hover:shadow-sm transition cursor-pointer group">
-                    <div class="text-xs sm:text-sm font-bold text-red-600 font-brand group-hover:scale-105 transition-transform">ma 🔊</div>
-                    <div class="text-[10px] text-stone-500 mt-0.5">Ghost 👻</div>
+              <div class="bg-stone-50/90 rounded-2xl p-4 sm:p-5 border border-stone-200/80 space-y-3">
+                <div class="text-[11px] font-extrabold uppercase tracking-wider text-stone-400">Why Vietnamese Tones Matter:</div>
+                <div class="grid grid-cols-3 gap-2.5 text-center">
+                  <button onclick="playHeroAudio('ngang')" type="button" class="bg-white p-3.5 sm:p-4 rounded-2xl border border-stone-200/90 hover:border-red-500 hover:shadow-md transition cursor-pointer group">
+                    <div class="text-sm sm:text-base font-extrabold text-red-600 font-brand group-hover:scale-105 transition-transform flex items-center justify-center gap-1">
+                      <span>ma</span>
+                      <span class="text-xs">🔊</span>
+                    </div>
+                    <div class="text-[11px] text-stone-500 mt-1 font-medium">Ghost 👻</div>
                   </button>
-                  <button onclick="playVoice('má', 1.35)" type="button" class="bg-white p-2.5 sm:p-3 rounded-xl border border-stone-200 hover:border-red-500 hover:shadow-sm transition cursor-pointer group">
-                    <div class="text-xs sm:text-sm font-bold text-red-600 font-brand group-hover:scale-105 transition-transform">má 🔊</div>
-                    <div class="text-[10px] text-stone-500 mt-0.5">Mother 👩🏻</div>
+                  <button onclick="playHeroAudio('sac')" type="button" class="bg-white p-3.5 sm:p-4 rounded-2xl border border-stone-200/90 hover:border-red-500 hover:shadow-md transition cursor-pointer group">
+                    <div class="text-sm sm:text-base font-extrabold text-red-600 font-brand group-hover:scale-105 transition-transform flex items-center justify-center gap-1">
+                      <span>má</span>
+                      <span class="text-xs">🔊</span>
+                    </div>
+                    <div class="text-[11px] text-stone-500 mt-1 font-medium">Mother 👩🏻</div>
                   </button>
-                  <button onclick="playVoice('mã', 1.2)" type="button" class="bg-white p-2.5 sm:p-3 rounded-xl border border-stone-200 hover:border-red-500 hover:shadow-sm transition cursor-pointer group">
-                    <div class="text-xs sm:text-sm font-bold text-red-600 font-brand group-hover:scale-105 transition-transform">mã 🔊</div>
-                    <div class="text-[10px] text-stone-500 mt-0.5">Horse 🐎</div>
+                  <button onclick="playHeroAudio('hoi')" type="button" class="bg-white p-3.5 sm:p-4 rounded-2xl border border-stone-200/90 hover:border-red-500 hover:shadow-md transition cursor-pointer group">
+                    <div class="text-sm sm:text-base font-extrabold text-red-600 font-brand group-hover:scale-105 transition-transform flex items-center justify-center gap-1">
+                      <span>mả</span>
+                      <span class="text-xs">🔊</span>
+                    </div>
+                    <div class="text-[11px] text-stone-500 mt-1 font-medium">Tomb ⚰️</div>
                   </button>
                 </div>
               </div>
@@ -251,16 +250,16 @@
               <!-- EXPLORE FREE RESOURCES HUB -->
               <a
                 href="/resources"
-                class="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 transition text-white group cursor-pointer shadow-lg shadow-red-600/20"
+                class="flex items-center justify-between p-4 sm:p-4.5 rounded-2xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 transition text-white group cursor-pointer shadow-lg shadow-red-600/25"
               >
-                <div class="flex items-center gap-3">
-                  <span class="text-xl">🎁</span>
+                <div class="flex items-center gap-3.5">
+                  <span class="text-2xl">🎁</span>
                   <div class="text-left pt-0.5">
-                    <div class="text-xs font-bold leading-tight">Explore Free Resources Hub</div>
+                    <div class="text-xs sm:text-sm font-bold leading-tight">Explore Free Resources Hub</div>
                     <div class="text-[11px] text-red-100 font-medium mt-0.5">Tones, Pronouns & Conversation Labs</div>
                   </div>
                 </div>
-                <span class="text-sm font-bold text-white group-hover:translate-x-1 transition">→</span>
+                <span class="text-base font-bold text-white group-hover:translate-x-1 transition">→</span>
               </a>
 
             </div>
@@ -272,10 +271,9 @@
 
     <!-- ABOUT ME SECTION -->
     <section id="about" class="py-14 sm:py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           
-          <!-- CỘT BÊN TRÁI: TIÊU ĐỀ + VIDEO VIMEO -->
           <div class="lg:col-span-5 space-y-5">
             <div>
               <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest bg-red-50 px-3 py-1 rounded-md border border-red-200 inline-block">About Me</span>
@@ -294,7 +292,6 @@
             </div>
           </div>
 
-          <!-- CỘT BÊN PHẢI -->
           <div class="lg:col-span-7 space-y-4 sm:space-y-5 text-stone-600 text-sm sm:text-base leading-relaxed">
             
             <h3 class="text-base sm:text-xl font-extrabold text-slate-900 tracking-tight font-brand italic leading-snug bg-[#fffaf5] p-4 sm:p-5 rounded-2xl border border-stone-200/80 shadow-2xs">
@@ -341,7 +338,7 @@
 
     <!-- LEARNING TRACKS -->
     <section id="curriculum" class="py-14 sm:py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
         <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
           <span class="text-xs font-bold text-red-600 uppercase tracking-widest">Tailored Programs</span>
           <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-2.5 tracking-tight font-brand">
@@ -474,7 +471,7 @@
 
     <!-- STUDENT TESTIMONIALS CAROUSEL -->
     <section id="reviews" class="py-14 sm:py-20 bg-white overflow-hidden">
-      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end mb-10 sm:mb-12">
           <div class="lg:col-span-8 space-y-2">
             <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest bg-red-50 px-3 py-1 rounded-md border border-red-200 inline-block">Student Stories</span>
@@ -505,7 +502,7 @@
 
         <div
           id="reviewTrack"
-          class="flex gap-5 sm:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 pt-2 -mx-5 px-5 sm:-mx-8 sm:px-8 lg:-mx-12 lg:px-12"
+          class="flex gap-5 sm:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 pt-2 -mx-6 px-6 sm:-mx-10 sm:px-10 lg:-mx-16 lg:px-16"
           style="scrollbar-width: none; -ms-overflow-style: none;"
         >
           <!-- Melina -->
@@ -609,7 +606,7 @@
 
     <!-- FAQ SECTION -->
     <section id="faq" class="py-14 sm:py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16">
         <div class="text-center max-w-2xl mx-auto mb-12">
           <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest bg-red-50 px-3 py-1 rounded-md border border-red-200">Got Questions</span>
           <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-brand mt-2.5">Frequently Asked Questions</h2>
@@ -652,7 +649,7 @@
 
   <!-- FOOTER -->
   <footer class="bg-[#fffaf5] text-stone-600 py-8 text-xs border-t border-stone-200/80">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div class="flex items-center gap-2.5">
         <span class="font-brand font-black text-slate-900 tracking-widest text-sm">HAVIE.</span>
         <span class="text-stone-400">•</span>
@@ -661,8 +658,8 @@
       <div class="flex items-center gap-5 sm:gap-6 font-semibold text-stone-700 flex-wrap justify-center">
         <a href="#about" class="hover:text-red-600 transition">About Me</a>
         <a href="#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
-        <a href="#reviews" class="hover:text-red-600 transition">Student Stories</a>
         <a href="/resources" class="hover:text-red-600 transition">Resources</a>
+        <a href="/student" class="text-red-600 font-bold hover:underline transition">Student Portal</a>
         <a href="/test" class="hover:text-red-600 transition">Level Test</a>
         <button type="button" class="open-modal-trigger text-red-600 font-bold hover:underline cursor-pointer">Book Trial</button>
       </div>
@@ -732,15 +729,66 @@
 
   <!-- SCRIPTS -->
   <script is:inline>
-    function playVoice(text, pitch = 1.0) {
-      if (!('speechSynthesis' in window)) return;
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'vi-VN';
-      utterance.rate = 0.88;
-      utterance.pitch = pitch;
-      window.speechSynthesis.speak(utterance);
+    let heroAudioCtx = null;
+    let heroSourceNode = null;
+    let heroGainNode = null;
+    let isHeroAudioLoaded = false;
+    let heroAudioBuffer = null;
+
+    const heroTimestamps = {
+      ngang: { start: 0.55, end: 1.45 },
+      sac:   { start: 1.85, end: 2.75 },
+      hoi:   { start: 4.55, end: 5.45 }
+    };
+
+    async function initHeroAudio() {
+      if (isHeroAudioLoaded) return;
+      try {
+        heroAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const response = await fetch('/audio/tones/ma-all.m4a');
+        const arrayBuffer = await response.arrayBuffer();
+        heroAudioBuffer = await heroAudioCtx.decodeAudioData(arrayBuffer);
+        isHeroAudioLoaded = true;
+      } catch (e) {
+        console.log("Web Audio init error:", e);
+      }
     }
+
+    async function playHeroAudio(toneKey) {
+      if (!isHeroAudioLoaded) {
+        await initHeroAudio();
+      }
+      if (!heroAudioCtx || !heroAudioBuffer) return;
+
+      if (heroAudioCtx.state === 'suspended') {
+        await heroAudioCtx.resume();
+      }
+
+      if (heroSourceNode) {
+        try { heroSourceNode.stop(); } catch(e) {}
+      }
+
+      const range = heroTimestamps[toneKey];
+      if (!range) return;
+
+      heroSourceNode = heroAudioCtx.createBufferSource();
+      heroSourceNode.buffer = heroAudioBuffer;
+
+      heroGainNode = heroAudioCtx.createGain();
+      heroGainNode.gain.value = 2.5; 
+
+      heroSourceNode.connect(heroGainNode);
+      heroGainNode.connect(heroAudioCtx.destination);
+
+      const duration = range.end - range.start;
+      heroSourceNode.start(0, range.start, duration);
+    }
+
+    document.addEventListener('click', () => {
+      if (!isHeroAudioLoaded) {
+        initHeroAudio();
+      }
+    }, { once: true });
 
     // Mobile Menu Toggle
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
