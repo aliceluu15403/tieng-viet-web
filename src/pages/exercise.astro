@@ -133,10 +133,10 @@
             return {
               npc: "Quán em có phở với cơm, anh muốn ăn gì?",
               choices: [
-                { text: "Cho anh phở bò", main: "phở bò", type: "pho", img: "/images/pho-bo.jpg" },
-                { text: "Cho anh phở gà", main: "phở gà", type: "pho", img: "/images/pho-ga.jpg" },
-                { text: "Cho anh cơm bò", main: "cơm bò", type: "com", img: "/images/com-bo.jpg" },
-                { text: "Cho anh cơm gà", main: "cơm gà", type: "com", img: "/images/com-ga.jpg" }
+                { text: "Cho anh phở bò", main: "phở bò", type: "pho" },
+                { text: "Cho anh phở gà", main: "phở gà", type: "pho" },
+                { text: "Cho anh cơm bò", main: "cơm bò", type: "com" },
+                { text: "Cho anh cơm gà", main: "cơm gà", type: "com" }
               ]
             };
           } else if (state.step === 1) {
@@ -144,16 +144,16 @@
               return {
                 npc: "Anh có ăn hành lá không?",
                 choices: [
-                  { text: "Có", detail: "có hành", img: "/images/hanh.jpg" },
-                  { text: "Không", detail: "không hành", img: "/images/khong-hanh.jpg" }
+                  { text: "Có", detail: "có hành" },
+                  { text: "Không", detail: "không hành" }
                 ]
               };
             } else {
               return {
                 npc: "Anh có ăn ớt không?",
                 choices: [
-                  { text: "Có", detail: "có ớt", img: "/images/ot.jpg" },
-                  { text: "Không", detail: "không ớt", img: "/images/khong-ot.jpg" }
+                  { text: "Có", detail: "có ớt" },
+                  { text: "Không", detail: "không ớt" }
                 ]
               };
             }
@@ -161,9 +161,9 @@
             return {
               npc: "Anh có muốn uống gì không?",
               choices: [
-                { text: "Cho anh ly coca", drink: "coca", img: "/images/coca.jpg" },
-                { text: "Cho anh ly trà đá", drink: "trà đá", img: "/images/tra-da.jpg" },
-                { text: "Không, anh không uống gì thêm", drink: "", img: "/images/khong-uong.jpg" }
+                { text: "Cho anh ly coca", drink: "coca" },
+                { text: "Cho anh ly trà đá", drink: "trà đá" },
+                { text: "Không, anh không uống gì thêm", drink: "" }
               ]
             };
           } else if (state.step === 3) {
@@ -181,9 +181,9 @@
               npc: "Tổng cộng của mình là 60k.",
               isPayment: true,
               choices: [
-                { text: "Đưa tờ 60k (Đúng tiền)", amount: 60, img: "/images/60k.jpg" },
-                { text: "Đưa tờ 100k", amount: 100, img: "/images/100k.jpg" },
-                { text: "Đưa tờ 200k", amount: 200, img: "/images/200k.jpg" }
+                { text: "Đưa tờ 60k (Đúng tiền)", amount: 60 },
+                { text: "Đưa tờ 100k", amount: 100 },
+                { text: "Đưa tờ 200k", amount: 200 }
               ]
             };
           }
@@ -251,12 +251,10 @@
               </button>
             </div>
             <div id="hintOptions" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-              <button type="button" class="pay-option p-4 rounded-2xl bg-stone-50 hover:bg-red-50 border border-stone-200 text-xs sm:text-sm font-bold text-slate-700 text-left transition cursor-pointer flex items-center gap-3" data-text="Em ơi, tính tiền cho anh!">
-                <img src="/images/tinh-tien.jpg" alt="" class="w-10 h-10 rounded-xl object-cover border bg-white" onerror="this.style.display='none'" />
+              <button type="button" class="pay-option p-4 rounded-2xl bg-stone-50 hover:bg-red-50 border border-stone-200 text-xs sm:text-sm font-bold text-slate-700 text-center transition cursor-pointer" data-text="Em ơi, tính tiền cho anh!">
                 <span>Em ơi, tính tiền cho anh!</span>
               </button>
-              <button type="button" class="pay-option p-4 rounded-2xl bg-stone-50 hover:bg-red-50 border border-stone-200 text-xs sm:text-sm font-bold text-slate-700 text-left transition cursor-pointer flex items-center gap-3" data-text="Cho anh xin cái hóa đơn!">
-                <img src="/images/hoa-don.jpg" alt="" class="w-10 h-10 rounded-xl object-cover border bg-white" onerror="this.style.display='none'" />
+              <button type="button" class="pay-option p-4 rounded-2xl bg-stone-50 hover:bg-red-50 border border-stone-200 text-xs sm:text-sm font-bold text-slate-700 text-center transition cursor-pointer" data-text="Cho anh xin cái hóa đơn!">
                 <span>Cho anh xin cái hóa đơn!</span>
               </button>
             </div>
@@ -285,12 +283,8 @@
       stepData.choices.forEach((choice) => {
         let btn = document.createElement('button');
         btn.type = "button";
-        btn.className = "flex items-center gap-4 p-3.5 rounded-2xl bg-stone-50 hover:bg-red-50 border border-stone-200 hover:border-red-300 text-left transition cursor-pointer shadow-2xs group";
-        
-        btn.innerHTML = `
-          <img src="${choice.img}" alt="illustration" class="w-14 h-14 rounded-xl object-cover shrink-0 border border-stone-200 bg-white" onerror="this.style.display='none'" />
-          <span class="text-xs sm:text-sm font-bold text-slate-700 group-hover:text-red-600 transition">${choice.text}</span>
-        `;
+        btn.className = "p-4 rounded-2xl bg-stone-50 hover:bg-red-50 border border-stone-200 hover:border-red-300 text-center transition cursor-pointer shadow-2xs group font-bold text-xs sm:text-sm text-slate-700 hover:text-red-600";
+        btn.textContent = choice.text;
 
         btn.addEventListener('click', () => {
           if (currentState.step === 0) {
