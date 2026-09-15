@@ -1,0 +1,531 @@
+---
+// src/pages/kitchen-vocab.astro - Kitchen Vocabulary Interactive Room
+---
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kitchen Vocabulary | Havie Learn Vietnamese</title>
+  <meta name="description" content="Interactive kitchen vocabulary practice." />
+
+  <!-- FAVICON & MOBILE TOUCH ICONS -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- Tailwind CSS CDN -->
+  <script is:inline src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #fffaf5;
+      --navy: #0f172a;
+      --brand-red: #dc2626;
+    }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--cream);
+      color: var(--navy);
+    }
+    .font-brand {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .hero-glow {
+      background: radial-gradient(circle, rgba(220, 38, 38, 0.12) 0%, rgba(245, 158, 11, 0.06) 50%, transparent 80%);
+    }
+  </style>
+</head>
+<body class="selection:bg-red-600 selection:text-white min-h-screen flex flex-col antialiased relative overflow-x-hidden">
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-40 bg-[#fffaf5]/90 backdrop-blur-md border-b border-stone-200/80 h-20">
+    <div class="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 h-full flex items-center justify-between">
+      <a href="/" class="group flex flex-col select-none text-left shrink-0">
+        <div class="h-6 sm:h-7 flex items-center">
+          <svg class="h-6 sm:h-7 w-auto overflow-visible" viewBox="0 0 175 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 2H6V12H18V2H24V28H18V17H6V28H0V2Z" fill="#dc2626"/>
+            <path d="M41 2L52 28H45.5L43.2 22H33.8L31.5 28H25L36 2H41ZM38.5 8.5L35.2 17.5H41.8L38.5 8.5Z" fill="#dc2626"/>
+            <path d="M53 2H59.5L67 21L74.5 2H81L70.5 28H63.5L53 2Z" fill="#dc2626"/>
+            <path d="M86 2H92V28H86V2Z" fill="#dc2626"/>
+            <path d="M98 2H117V7.5H104V12H115V17H104V22.5H117V28H98V2Z" fill="#dc2626"/>
+          </svg>
+        </div>
+        <span class="text-[9px] sm:text-[9.5px] font-bold tracking-[0.2em] text-stone-400 uppercase mt-1 leading-none">
+          Learn Vietnamese Online
+        </span>
+      </a>
+
+      <div class="hidden lg:flex items-center space-x-7 text-sm font-semibold text-slate-700">
+        <a href="/student" class="text-red-600 font-bold transition flex items-center gap-1">← Back to Portal</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative">
+    <div class="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
+      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[450px] h-[450px] hero-glow rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- KHUNG NỘI DUNG CHÍNH -->
+    <div class="w-full max-w-4xl">
+      <div class="bg-white rounded-[32px] p-6 sm:p-10 shadow-2xl border border-stone-200/90 space-y-8">
+        
+        <!-- HEADER & TAB SWITCHER -->
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-stone-100">
+          <div>
+            <span class="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-md bg-red-50 text-red-600 border border-red-100">VOCABULARY ROOM</span>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 font-brand mt-1">Kitchen & Dishwashing Practice</h2>
+          </div>
+          <div class="flex items-center gap-1.5 bg-stone-100 p-1 rounded-xl flex-wrap">
+            <button type="button" id="tabQuizBtn" class="px-3.5 py-2 rounded-lg text-xs font-bold transition cursor-pointer bg-red-600 text-white shadow-sm">🎯 Quiz</button>
+            <button type="button" id="tabScrambleBtn" class="px-3.5 py-2 rounded-lg text-xs font-bold transition cursor-pointer text-stone-600 hover:text-slate-900">🔤 Scramble</button>
+            <button type="button" id="tabMatchBtn" class="px-3.5 py-2 rounded-lg text-xs font-bold transition cursor-pointer text-stone-600 hover:text-slate-900">🔗 Matching</button>
+            <button type="button" id="tabTfBtn" class="px-3.5 py-2 rounded-lg text-xs font-bold transition cursor-pointer text-stone-600 hover:text-slate-900">⚡ True/False</button>
+          </div>
+        </div>
+
+        <!-- VIEW 1: QUIZ -->
+        <div id="quizView" class="space-y-6">
+          <div class="flex items-center justify-between bg-red-50 p-4 rounded-2xl border border-red-100">
+            <div class="text-xs font-extrabold text-red-600 uppercase">Question <span id="currentQNum">1</span> / <span id="totalQNum">10</span></div>
+            <div id="quizScore" class="text-xs font-bold text-slate-700">Score: 0</div>
+          </div>
+          <div id="quizCard" class="p-6 sm:p-8 rounded-2xl bg-stone-50 border border-stone-200 text-center space-y-6">
+            <div id="quizEmoji" class="text-6xl">🍳</div>
+            <h3 id="quizQuestionText" class="text-lg sm:text-xl font-black text-slate-900 font-brand">Từ này nghĩa là gì?</h3>
+            <div id="quizOptionsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2"></div>
+          </div>
+          <div id="quizResultBox" class="hidden p-6 rounded-2xl border text-center space-y-3"></div>
+        </div>
+
+        <!-- VIEW 2: WORD SCRAMBLE -->
+        <div id="scrambleView" class="hidden space-y-6">
+          <div class="flex items-center justify-between bg-amber-50 p-4 rounded-2xl border border-amber-100">
+            <div class="text-xs font-extrabold text-amber-700 uppercase">Word <span id="scrambleQNum">1</span> / 10</div>
+            <div id="scrambleScore" class="text-xs font-bold text-slate-700">Score: 0</div>
+          </div>
+          <div id="scrambleCard" class="p-6 sm:p-8 rounded-2xl bg-stone-50 border border-stone-200 text-center space-y-6">
+            <div id="scrambleEmoji" class="text-6xl">🔪</div>
+            <div class="text-xs font-bold text-stone-400 uppercase tracking-wider">Sắp xếp các chữ cái sau thành từ tiếng Việt đúng:</div>
+            <div id="scrambledWordDisplay" class="text-2xl sm:text-3xl font-black text-red-600 font-mono tracking-widest bg-white py-3 rounded-xl border border-stone-200 inline-block px-6">...</div>
+            <div class="text-xs text-stone-500">Gợi ý nghĩa tiếng Anh: <span id="scrambleHint" class="font-bold text-slate-700">...</span></div>
+            <div class="max-w-xs mx-auto flex gap-2">
+              <input type="text" id="scrambleInput" placeholder="Nhập từ tiếng Việt..." class="w-full px-4 py-3 text-center font-bold text-slate-900 bg-white border-2 border-stone-300 rounded-xl focus:border-red-600 focus:outline-none transition shadow-2xs text-sm" autocomplete="off" />
+              <button type="button" id="submitScrambleBtn" class="px-5 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-sm transition cursor-pointer">Gửi</button>
+            </div>
+            <div id="scrambleFeedback" class="hidden text-xs font-bold mt-2"></div>
+          </div>
+          <div id="scrambleResultBox" class="hidden p-6 rounded-2xl border text-center space-y-3"></div>
+        </div>
+
+        <!-- VIEW 3: MATCHING PAIRS -->
+        <div id="matchView" class="hidden space-y-6">
+          <div class="flex items-center justify-between bg-blue-50 p-4 rounded-2xl border border-blue-100">
+            <div class="text-xs font-extrabold text-blue-700 uppercase">🔗 Matching Pairs</div>
+            <div id="matchScore" class="text-xs font-bold text-slate-700">Pairs left: 6</div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <div class="text-xs font-bold text-stone-400 uppercase text-center">English / Emoji</div>
+              <div id="matchLeftCol" class="space-y-2"></div>
+            </div>
+            <div class="space-y-2">
+              <div class="text-xs font-bold text-stone-400 uppercase text-center">Tiếng Việt</div>
+              <div id="matchRightCol" class="space-y-2"></div>
+            </div>
+          </div>
+          <div id="matchResultBox" class="hidden p-6 rounded-2xl border text-center space-y-3"></div>
+        </div>
+
+        <!-- VIEW 4: TRUE / FALSE -->
+        <div id="tfView" class="hidden space-y-6">
+          <div class="flex items-center justify-between bg-emerald-50 p-4 rounded-2xl border border-emerald-100">
+            <div class="text-xs font-extrabold text-emerald-700 uppercase">Round <span id="tfQNum">1</span> / 10</div>
+            <div id="tfScore" class="text-xs font-bold text-slate-700">Score: 0</div>
+          </div>
+          <div id="tfCard" class="p-8 rounded-2xl bg-stone-50 border border-stone-200 text-center space-y-6">
+            <div id="tfEmoji" class="text-6xl">🧊</div>
+            <div class="text-sm font-bold text-stone-500">Từ tiếng Anh: <span id="tfEnglish" class="text-slate-900 text-base font-black">refrigerator</span></div>
+            <div class="text-xl font-extrabold text-slate-800">Có phải nghĩa tiếng Việt là: <span id="tfVietnamese" class="text-red-600 underline">tủ lạnh</span>?</div>
+            <div class="flex items-center justify-center gap-4 pt-4">
+              <button type="button" id="tfFalseBtn" class="px-8 py-3.5 rounded-xl bg-red-100 hover:bg-red-200 text-red-700 font-black text-sm transition cursor-pointer shadow-sm">❌ SAI (False)</button>
+              <button type="button" id="tfTrueBtn" class="px-8 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-sm transition cursor-pointer shadow-md">✓ ĐÚNG (True)</button>
+            </div>
+            <div id="tfFeedback" class="hidden text-xs font-bold pt-2"></div>
+          </div>
+          <div id="tfResultBox" class="hidden p-6 rounded-2xl border text-center space-y-3"></div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#fffaf5] text-stone-600 py-8 text-xs border-t border-stone-200/80 text-center">
+    <p>© 2026 Learn Vietnamese with Hang</p>
+  </footer>
+
+  <!-- SCRIPT LOGIC -->
+  <script is:inline>
+    const vocabData = [
+      {
+        category: "🏠 Đồ vật trong phòng bếp",
+        items: [
+          { vi: "nồi", en: "pot", emoji: "🍲" },
+          { vi: "chảo", en: "pan", emoji: "🍳" },
+          { vi: "bát", en: "bowl", emoji: "🥣" },
+          { vi: "đĩa", en: "plate", emoji: "🍽️" },
+          { vi: "cốc", en: "cup", emoji: "☕" },
+          { vi: "thia", en: "spoon", emoji: "🥄" },
+          { vi: "dao", en: "knife", emoji: "🔪" },
+          { vi: "thớt", en: "cutting board", emoji: "🪵" },
+          { vi: "lò vi sóng", en: "microwave", emoji: "📦" },
+          { vi: "ấm đun nước", en: "kettle", emoji: "🫖" },
+          { vi: "gia vị", en: "seasoning", emoji: "🧂" },
+          { vi: "thùng rác", en: "trash bin", emoji: "🗑️" },
+          { vi: "bồn rửa", en: "sink", emoji: "🚰" },
+          { vi: "tủ bếp", en: "kitchen cabinet", emoji: "🗄️" },
+          { vi: "tủ lạnh", en: "refrigerator", emoji: "🧊" },
+          { vi: "nồi cơm điện", en: "rice cooker", emoji: "🍚" },
+          { vi: "bếp", en: "stove", emoji: "🥘" }
+        ]
+      },
+      {
+        category: "🏃 Hành động thường làm",
+        items: [
+          { vi: "đổ nước", en: "pour water", emoji: "🪣" },
+          { vi: "rửa bát", en: "wash dishes", emoji: "🧼" },
+          { vi: "cắt thức ăn", en: "cut food", emoji: "🔪" },
+          { vi: "đun nước", en: "boil water", emoji: "♨️" },
+          { vi: "dọn dẹp", en: "clean up", emoji: "🧹" },
+          { vi: "mở tủ lạnh", en: "open the fridge", emoji: "🚪" },
+          { vi: "lau bàn", en: "wipe table", emoji: "🧽" },
+          { vi: "bỏ thêm gia vị", en: "add seasoning", emoji: "🌿" }
+        ]
+      },
+      {
+        category: "🍽️ Hoạt động rửa bát",
+        items: [
+          { vi: "ngâm", en: "soak", emoji: "💧" },
+          { vi: "chà", en: "scrub", emoji: "🧽" },
+          { vi: "xả", en: "rinse", emoji: "🚿" },
+          { vi: "xếp đĩa", en: "stack plates", emoji: "🥞" },
+          { vi: "nước rửa bát", en: "dish soap", emoji: "🧴" },
+          { vi: "miếng rửa bát", en: "sponge", emoji: "🧽" },
+          { vi: "khăn lau", en: "cloth", acceptedAnswers: ["khăn", "giẻ lau", "khăn lau"], emoji: "🧻" },
+          { vi: "khô", en: "dry", emoji: "✨" }
+        ]
+      }
+    ];
+
+    let flatVocab = [];
+    vocabData.forEach(group => {
+      group.items.forEach(item => {
+        let accepted = item.acceptedAnswers ? item.acceptedAnswers : [item.vi];
+        flatVocab.push({ ...item, acceptedAnswers: accepted, groupName: group.category });
+      });
+    });
+
+    function shuffleArray(array) {
+      let arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function getUniqueRandomItems(count) {
+      let shuffled = shuffleArray(flatVocab);
+      return shuffled.slice(0, count);
+    }
+
+    // Tab Navigation
+    const tabs = {
+      quiz: document.getElementById('tabQuizBtn'),
+      scramble: document.getElementById('tabScrambleBtn'),
+      match: document.getElementById('tabMatchBtn'),
+      tf: document.getElementById('tabTfBtn')
+    };
+
+    const views = {
+      quiz: document.getElementById('quizView'),
+      scramble: document.getElementById('scrambleView'),
+      match: document.getElementById('matchView'),
+      tf: document.getElementById('tfView')
+    };
+
+    function switchTab(activeKey) {
+      Object.keys(tabs).forEach(k => {
+        if(k === activeKey) {
+          tabs[k].className = "px-3.5 py-2 rounded-lg text-xs font-bold transition cursor-pointer bg-red-600 text-white shadow-sm";
+          views[k].classList.remove('hidden');
+        } else {
+          tabs[k].className = "px-3.5 py-2 rounded-lg text-xs font-bold transition cursor-pointer text-stone-600 hover:text-slate-900";
+          views[k].classList.add('hidden');
+        }
+      });
+
+      if(activeKey === 'quiz') startQuiz();
+      if(activeKey === 'scramble') startScramble();
+      if(activeKey === 'match') startMatch();
+      if(activeKey === 'tf') startTf();
+    }
+
+    tabs.quiz.addEventListener('click', () => switchTab('quiz'));
+    tabs.scramble.addEventListener('click', () => switchTab('scramble'));
+    tabs.match.addEventListener('click', () => switchTab('match'));
+    tabs.tf.addEventListener('click', () => switchTab('tf'));
+
+    // --- QUIZ LOGIC (10 câu không trùng lặp) ---
+    let currentQuizIndex = 0, quizScore = 0, quizQuestions = [];
+    function startQuiz() {
+      quizQuestions = getUniqueRandomItems(10);
+      currentQuizIndex = 0; quizScore = 0;
+      document.getElementById('totalQNum').textContent = quizQuestions.length;
+      document.getElementById('quizResultBox').classList.add('hidden');
+      document.getElementById('quizCard').classList.remove('hidden');
+      loadQuizQuestion();
+    }
+    function loadQuizQuestion() {
+      if (currentQuizIndex >= quizQuestions.length) {
+        document.getElementById('quizCard').classList.add('hidden');
+        let rb = document.getElementById('quizResultBox');
+        rb.classList.remove('hidden');
+        rb.innerHTML = `<div class="text-4xl">🎉</div><h3 class="text-xl font-black font-brand">Quiz Completed!</h3><p class="text-sm">Tổng điểm: <span class="font-bold text-red-600">${quizScore}</span> / 100 điểm.</p><button type="button" onclick="startQuiz()" class="px-6 py-3 bg-red-600 text-white font-black rounded-xl text-xs cursor-pointer">Chơi lại 🔄</button>`;
+        return;
+      }
+      document.getElementById('currentQNum').textContent = currentQuizIndex + 1;
+      document.getElementById('quizScore').textContent = `Score: ${quizScore}`;
+      let q = quizQuestions[currentQuizIndex];
+      document.getElementById('quizEmoji').textContent = q.emoji;
+      document.getElementById('quizQuestionText').textContent = `"${q.en}" tiếng Việt là gì?`;
+      let grid = document.getElementById('quizOptionsGrid');
+      grid.innerHTML = "";
+      
+      let wrongOptions = flatVocab.filter(i => i.vi !== q.vi);
+      let shuffledWrong = shuffleArray(wrongOptions).slice(0, 3);
+      shuffleArray([q, ...shuffledWrong]).forEach(opt => {
+        let btn = document.createElement('button');
+        btn.type = "button";
+        btn.className = "px-4 py-3 rounded-xl bg-white hover:bg-red-50 text-slate-800 font-bold border border-stone-200 transition cursor-pointer text-center text-sm shadow-2xs";
+        btn.textContent = opt.vi;
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('#quizOptionsGrid button').forEach(b => b.disabled = true);
+          if (opt.vi === q.vi) { btn.className = "px-4 py-3 rounded-xl bg-emerald-600 text-white font-bold text-center text-sm"; quizScore += 10; }
+          else { btn.className = "px-4 py-3 rounded-xl bg-red-600 text-white font-bold text-center text-sm"; }
+          setTimeout(() => { currentQuizIndex++; loadQuizQuestion(); }, 1000);
+        });
+        grid.appendChild(btn);
+      });
+    }
+
+    // --- WORD SCRAMBLE LOGIC ---
+    let currentScrambleIndex = 0, scrambleScore = 0, scrambleQuestions = [];
+    
+    function getScrambledString(str) {
+      let arr = str.split('');
+      let scrambled;
+      do {
+        scrambled = shuffleArray(arr).join(' ');
+      } while (scrambled.replace(/\s+/g, '') === str.replace(/\s+/g, '') && str.replace(/\s+/g, '').length > 1);
+      return scrambled;
+    }
+
+    function startScramble() {
+      scrambleQuestions = getUniqueRandomItems(10);
+      currentScrambleIndex = 0; scrambleScore = 0;
+      document.getElementById('scrambleResultBox').classList.add('hidden');
+      document.getElementById('scrambleCard').classList.remove('hidden');
+      loadScrambleQuestion();
+    }
+    function loadScrambleQuestion() {
+      if (currentScrambleIndex >= scrambleQuestions.length) {
+        document.getElementById('scrambleCard').classList.add('hidden');
+        let rb = document.getElementById('scrambleResultBox');
+        rb.classList.remove('hidden');
+        rb.innerHTML = `<div class="text-4xl">🏆</div><h3 class="text-xl font-black font-brand">Completed!</h3><p class="text-sm">Điểm: <span class="font-bold text-red-600">${scrambleScore}</span> / 100</p><button type="button" onclick="startScramble()" class="px-6 py-3 bg-red-600 text-white font-black rounded-xl text-xs cursor-pointer">Chơi lại 🔄</button>`;
+        return;
+      }
+      document.getElementById('scrambleQNum').textContent = currentScrambleIndex + 1;
+      document.getElementById('scrambleScore').textContent = `Score: ${scrambleScore}`;
+      let q = scrambleQuestions[currentScrambleIndex];
+      document.getElementById('scrambleEmoji').textContent = q.emoji;
+      
+      document.getElementById('scrambledWordDisplay').textContent = getScrambledString(q.vi);
+      document.getElementById('scrambleHint').textContent = q.en;
+      let input = document.getElementById('scrambleInput');
+      input.value = ""; input.disabled = false; input.focus();
+      document.getElementById('scrambleFeedback').classList.add('hidden');
+    }
+    function submitScramble() {
+      let q = scrambleQuestions[currentScrambleIndex];
+      let input = document.getElementById('scrambleInput');
+      let fb = document.getElementById('scrambleFeedback');
+      input.disabled = true; fb.classList.remove('hidden');
+      
+      let userClean = input.value.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      
+      let isCorrect = q.acceptedAnswers.some(ans => {
+        let cleanAns = ans.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        return userClean === cleanAns;
+      });
+
+      if(isCorrect) {
+        fb.className = "text-xs font-bold mt-2 text-emerald-600"; fb.textContent = "✓ Chính xác!"; scrambleScore += 10;
+      } else {
+        fb.className = "text-xs font-bold mt-2 text-red-600"; fb.textContent = `✗ Đáp án đúng: "${q.vi}"`;
+      }
+      document.getElementById('scrambleScore').textContent = `Score: ${scrambleScore}`;
+      setTimeout(() => { currentScrambleIndex++; loadScrambleQuestion(); }, 1400);
+    }
+    document.getElementById('submitScrambleBtn').onclick = submitScramble;
+    document.getElementById('scrambleInput').onkeypress = (e) => { if(e.key === 'Enter') submitScramble(); };
+
+    // --- MATCHING PAIRS LOGIC ---
+    let selectedLeft = null, selectedRight = null, matchPairsLeftCount = 6;
+    function startMatch() {
+      let subset = getUniqueRandomItems(6);
+      matchPairsLeftCount = 6;
+      selectedLeft = null; selectedRight = null;
+      document.getElementById('matchResultBox').classList.add('hidden');
+      
+      let leftCol = document.getElementById('matchLeftCol');
+      let rightCol = document.getElementById('matchRightCol');
+      leftCol.innerHTML = ""; rightCol.innerHTML = "";
+      
+      let leftItems = shuffleArray([...subset]);
+      let rightItems = shuffleArray([...subset]);
+
+      document.getElementById('matchScore').textContent = `Pairs left: ${matchPairsLeftCount}`;
+
+      leftItems.forEach(item => {
+        let btn = document.createElement('button');
+        btn.type = "button";
+        btn.className = "w-full p-3 rounded-xl bg-white hover:bg-blue-50 border border-stone-200 font-bold text-sm text-slate-800 transition cursor-pointer shadow-2xs flex items-center justify-center gap-2";
+        btn.innerHTML = `<span class="text-2xl">${item.emoji}</span> <span>${item.en}</span>`;
+        btn.dataset.vi = item.vi;
+        btn.onclick = () => {
+          if(btn.classList.contains('opacity-40')) return;
+          document.querySelectorAll('#matchLeftCol button').forEach(b => b.classList.remove('border-blue-600', 'bg-blue-50'));
+          btn.classList.add('border-blue-600', 'bg-blue-50');
+          selectedLeft = item.vi;
+          checkMatch();
+        };
+        leftCol.appendChild(btn);
+      });
+
+      rightItems.forEach(item => {
+        let btn = document.createElement('button');
+        btn.type = "button";
+        btn.className = "w-full p-3 rounded-xl bg-white hover:bg-blue-50 border border-stone-200 font-bold text-sm text-slate-800 transition cursor-pointer shadow-2xs text-center";
+        btn.textContent = item.vi;
+        btn.dataset.vi = item.vi;
+        btn.onclick = () => {
+          if(btn.classList.contains('opacity-40')) return;
+          document.querySelectorAll('#matchRightCol button').forEach(b => b.classList.remove('border-blue-600', 'bg-blue-50'));
+          btn.classList.add('border-blue-600', 'bg-blue-50');
+          selectedRight = item.vi;
+          checkMatch();
+        };
+        rightCol.appendChild(btn);
+      });
+    }
+
+    function checkMatch() {
+      if(selectedLeft && selectedRight) {
+        let leftBtn = [...document.querySelectorAll('#matchLeftCol button')].find(b => b.dataset.vi === selectedLeft);
+        let rightBtn = [...document.querySelectorAll('#matchRightCol button')].find(b => b.dataset.vi === selectedRight);
+
+        if(selectedLeft === selectedRight) {
+          leftBtn.className = "w-full p-3 rounded-xl bg-emerald-100 border border-emerald-300 font-bold text-sm text-emerald-800 opacity-40 pointer-events-none flex items-center justify-center gap-2";
+          rightBtn.className = "w-full p-3 rounded-xl bg-emerald-100 border border-emerald-300 font-bold text-sm text-emerald-800 opacity-40 pointer-events-none text-center";
+          matchPairsLeftCount--;
+        } else {
+          leftBtn.classList.add('border-red-500', 'bg-red-50');
+          rightBtn.classList.add('border-red-500', 'bg-red-50');
+          setTimeout(() => {
+            leftBtn.classList.remove('border-red-500', 'bg-red-50', 'border-blue-600', 'bg-blue-50');
+            rightBtn.classList.remove('border-red-500', 'bg-red-50', 'border-blue-600', 'bg-blue-50');
+          }, 600);
+        }
+        selectedLeft = null; selectedRight = null;
+        document.getElementById('matchScore').textContent = `Pairs left: ${matchPairsLeftCount}`;
+        
+        if(matchPairsLeftCount === 0) {
+          let rb = document.getElementById('matchResultBox');
+          rb.classList.remove('hidden');
+          rb.innerHTML = `<div class="text-3xl">🌟</div><h3 class="text-lg font-black font-brand text-emerald-800">Tuyệt vời! Bạn đã nối đúng toàn bộ các cặp từ.</h3><button type="button" onclick="startMatch()" class="px-6 py-2.5 bg-blue-600 text-white font-black rounded-xl text-xs cursor-pointer">Chơi ván mới 🔄</button>`;
+        }
+      }
+    }
+
+    // --- TRUE / FALSE GAME LOGIC ---
+    let tfIndex = 0, tfScore = 0, tfCurrent = null, tfIsCorrect = true, tfTotal = 10;
+    function startTf() {
+      tfIndex = 0; tfScore = 0;
+      document.getElementById('tfResultBox').classList.add('hidden');
+      document.getElementById('tfCard').classList.remove('hidden');
+      loadTfRound();
+    }
+    function loadTfRound() {
+      if(tfIndex >= tfTotal) {
+        document.getElementById('tfCard').classList.add('hidden');
+        let rb = document.getElementById('tfResultBox');
+        rb.classList.remove('hidden');
+        rb.innerHTML = `<div class="text-4xl">⚡</div><h3 class="text-xl font-black font-brand">True/False Completed!</h3><p class="text-sm">Tổng điểm: <span class="font-bold text-emerald-600">${tfScore}</span> / 100</p><button type="button" onclick="startTf()" class="px-6 py-3 bg-emerald-600 text-white font-black rounded-xl text-xs cursor-pointer">Chơi lại 🔄</button>`;
+        return;
+      }
+      document.getElementById('tfQNum').textContent = tfIndex + 1;
+      document.getElementById('tfScore').textContent = `Score: ${tfScore}`;
+      document.getElementById('tfFeedback').classList.add('hidden');
+      
+      let item = flatVocab[Math.floor(Math.random() * flatVocab.length)];
+      tfIsCorrect = Math.random() < 0.5;
+      let shownVi = tfIsCorrect ? item.vi : flatVocab[Math.floor(Math.random() * flatVocab.length)].vi;
+      if(!tfIsCorrect && shownVi === item.vi) shownVi = flatVocab.find(i => i.vi !== item.vi).vi;
+
+      document.getElementById('tfEmoji').textContent = item.emoji;
+      document.getElementById('tfEnglish').textContent = item.en;
+      document.getElementById('tfVietnamese').textContent = shownVi;
+      tfCurrent = { item, shownVi, isCorrect: (shownVi === item.vi) };
+
+      document.getElementById('tfTrueBtn').disabled = false;
+      document.getElementById('tfFalseBtn').disabled = false;
+    }
+
+    function answerTf(userChoice) {
+      document.getElementById('tfTrueBtn').disabled = true;
+      document.getElementById('tfFalseBtn').disabled = true;
+      let fb = document.getElementById('tfFeedback');
+      fb.classList.remove('hidden');
+
+      if(userChoice === tfCurrent.isCorrect) {
+        fb.className = "text-xs font-bold pt-2 text-emerald-600";
+        fb.textContent = "✓ Chính xác!";
+        tfScore += 10;
+      } else {
+        fb.className = "text-xs font-bold pt-2 text-red-600";
+        fb.textContent = "✗ Rất tiếc, bạn đoán sai mất rồi!";
+      }
+      document.getElementById('tfScore').textContent = `Score: ${tfScore}`;
+      setTimeout(() => { tfIndex++; loadTfRound(); }, 1100);
+    }
+
+    document.getElementById('tfTrueBtn').onclick = () => answerTf(true);
+    document.getElementById('tfFalseBtn').onclick = () => answerTf(false);
+
+    // Mặc định khởi chạy vào chế độ Quiz khi mở trang
+    startQuiz();
+  </script>
+</body>
+</html>

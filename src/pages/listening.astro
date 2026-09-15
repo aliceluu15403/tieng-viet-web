@@ -83,7 +83,7 @@
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-stone-100">
           <div>
             <span class="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-md bg-red-50 text-red-600 border border-red-100">LISTENING PRACTICE</span>
-            <h2 id="pageTitle" class="text-xl sm:text-2xl font-extrabold text-slate-900 font-brand mt-1">Northern Accent Dialogue</h2>
+            <h2 id="pageTitle" class="text-xl sm:text-2xl font-extrabold text-slate-900 font-brand mt-1">Listening Dialogue</h2>
           </div>
           <!-- Mode Switcher Buttons -->
           <div class="flex items-center gap-2 bg-stone-100 p-1 rounded-xl">
@@ -140,7 +140,7 @@
 
   <!-- SCRIPT LOGIC -->
   <script is:inline>
-    // 1. Tự động nhận diện mã code từ URL (mặc định là SLN01 nếu không truyền)
+    // 1. Nhận diện mã bài học từ URL (mặc định là SLN01 nếu không có)
     const urlParams = new URLSearchParams(window.location.search);
     const lessonCode = (urlParams.get('code') || 'SLN01').trim().toUpperCase();
 
@@ -150,89 +150,129 @@
     const audioErrorBox = document.getElementById('audioErrorBox');
     const pageTitle = document.getElementById('pageTitle');
 
-    // Thiết lập đường dẫn động cho audio (.mp3)
-    const targetAudioFile = `${lessonCode}.mp3`;
+    // Thiết lập file audio tương ứng với mã bài (hỗ trợ cả SLS01 và SLN01)
+    const targetAudioFile = `${lessonCode}.wav`; // Hoặc .mp3 tùy thuộc vào định dạng thực tế của bạn
     audioSource.src = `/audio/${targetAudioFile}`;
     audioFileName.textContent = `Audio File: ${targetAudioFile}`;
 
-    if (lessonCode.startsWith('SLS')) {
-      pageTitle.textContent = "Southern Accent Dialogue (" + lessonCode + ")";
-    } else {
-      pageTitle.textContent = "Northern Accent Dialogue (" + lessonCode + ")";
-    }
+    // 2. Kho dữ liệu chứa câu hỏi riêng biệt cho từng bài học
+    const lessonData = {
+      "SLS01": {
+        title: "Trip to Vietnam Dialogue (Southern Accent)",
+        questions: [
+          {
+            id: 1,
+            part1: "<b>A:</b> Đây là lần",
+            part2: "anh tới Việt Nam? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Lần thứ ba rồi.",
+            typeAnswer: "thu may",
+            correctMcq: "thứ mấy",
+            mcqOptions: ["thứ mấy", "thư mấy", "thú mấy"]
+          },
+          {
+            id: 2,
+            part1: "<b>A:</b> Anh tới Cần Thơ",
+            part2: "chưa? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Anh chưa đi Cần Thơ.",
+            typeAnswer: "bao gio",
+            correctMcq: "bao giờ",
+            mcqOptions: ["bao giờ", "báo giờ", "bảo giở"]
+          },
+          {
+            id: 3,
+            part1: "<b>A:</b> Vậy còn Đà Nẵng? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Đà Nẵng thì anh đi",
+            part2: ".",
+            typeAnswer: "roi",
+            correctMcq: "rồi",
+            mcqOptions: ["rồi", "rối", "roi"]
+          },
+          {
+            id: 4,
+            part1: "<b>A:</b> Anh đi mấy lần rồi? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b>",
+            part2: "lần.",
+            typeAnswer: "hai",
+            correctMcq: "hai",
+            mcqOptions: ["hai", "hài", "hải"]
+          }
+        ]
+      },
+      "SLN01": {
+        title: "Northern Accent Dialogue",
+        questions: [
+          {
+            id: 1,
+            part1: "<b>A:</b> Chào con. Con bay có",
+            part2: "không? &nbsp;&nbsp;|&nbsp;&nbsp; <span class='text-slate-700 font-normal'><b>B:</b> Dạ, cũng hơi mệt.</span>",
+            typeAnswer: "met",
+            correctMcq: "mệt",
+            mcqOptions: ["mệt", "mết"]
+          },
+          {
+            id: 2,
+            part1: "<b>A:</b> Con bay sang đây",
+            part2: "?",
+            typeAnswer: "the nao",
+            correctMcq: "thế nào",
+            mcqOptions: ["thế nào", "thế nao"]
+          },
+          {
+            id: 3,
+            part1: "<b>B:</b> Khoảng 13",
+            part2: "ạ.",
+            typeAnswer: "tieng",
+            correctMcq: "tiếng",
+            mcqOptions: ["tiếng", "tieng"]
+          },
+          {
+            id: 4,
+            part1: "<b>A:</b> Đây là lần",
+            part2: "con đến Việt Nam? &nbsp;&nbsp;|&nbsp;&nbsp; <span class='text-slate-700 font-normal'><b>B:</b> Lần thứ hai rồi ạ.</span>",
+            typeAnswer: "thu may",
+            correctMcq: "thứ mấy",
+            mcqOptions: ["thứ mấy", "thư mấy"]
+          },
+          {
+            id: 5,
+            part1: "<b>A:</b> Con đi Hạ Long",
+            part2: "chưa? &nbsp;&nbsp;|&nbsp;&nbsp; <span class='text-slate-700 font-normal'><b>B:</b> Chưa ạ.</span>",
+            typeAnswer: "bao gio",
+            correctMcq: "bao giờ",
+            mcqOptions: ["bao giờ", "báo giờ"]
+          },
+          {
+            id: 6,
+            part1: "<b>B:</b> Cô chú đi Hạ Long",
+            part2: "rồi ạ?",
+            typeAnswer: "may lan",
+            correctMcq: "mấy lần",
+            mcqOptions: ["mấy lần", "máy lần"]
+          },
+          {
+            id: 7,
+            part1: "<b>A:</b> Khoảng",
+            part2: "lần rồi.",
+            typeAnswer: "ba",
+            correctMcq: "ba",
+            mcqOptions: ["ba", "bà"]
+          }
+        ]
+      }
+    };
 
-    // Load lại audio và bắt lỗi kết nối file
+    // Lấy dữ liệu bài học dựa theo mã code (mặc định lấy SLN01 nếu không tìm thấy)
+    const currentLesson = lessonData[lessonCode] || lessonData["SLN01"];
+    pageTitle.textContent = currentLesson.title;
+    const questions = currentLesson.questions;
+
     audioPlayer.load();
 
     audioPlayer.addEventListener('error', (e) => {
       console.error("Audio loading error:", e);
       audioErrorBox.classList.remove('hidden');
-      audioErrorBox.textContent = `⚠️ Không thể tải file "/audio/${targetAudioFile}". Hãy đảm bảo file đã được đặt trong thư mục public/audio/ và định dạng là .mp3!`;
+      audioErrorBox.textContent = `⚠️ Không thể tải file âm thanh cho bài ${lessonCode}. Hãy đảm bảo file ${targetAudioFile} đã được đặt trong thư mục public/audio/!`;
     });
 
     audioPlayer.addEventListener('loadedmetadata', () => {
       audioErrorBox.classList.add('hidden');
     });
-
-    // 2. Định nghĩa danh sách 7 câu hỏi bám sát kịch bản
-    const questions = [
-      {
-        id: 1,
-        part1: "<b>B:</b> Chào con. Con bay có",
-        part2: "không?",
-        typeAnswer: "met",
-        correctMcq: "mệt",
-        mcqOptions: ["mệt", "mết"]
-      },
-      {
-        id: 2,
-        part1: "<b>A:</b> Dạ cũng hơi mệt &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Con bay sang đây",
-        part2: "?",
-        typeAnswer: "mat bao lau",
-        correctMcq: "mất bao lâu",
-        mcqOptions: ["mất bao lâu", "mât bao lâu"]
-      },
-      {
-        id: 3,
-        part1: "<b>A:</b> Khoảng 13",
-        part2: "ạ.",
-        typeAnswer: "tieng",
-        correctMcq: "tiếng",
-        mcqOptions: ["tiếng", "tieng"]
-      },
-      {
-        id: 4,
-        part1: "<b>B:</b> Đây là lần",
-        part2: "con đến Việt Nam? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Lần thứ hai rồi ạ.",
-        typeAnswer: "thu may",
-        correctMcq: "thứ mấy",
-        mcqOptions: ["thứ mấy", "thư mấy"]
-      },
-      {
-        id: 5,
-        part1: "<b>A:</b> Con đi Hạ Long",
-        part2: "chưa? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Chưa ạ.",
-        typeAnswer: "bao gio",
-        correctMcq: "bao giờ",
-        mcqOptions: ["bao giờ", "báo giờ"]
-      },
-      {
-        id: 6,
-        part1: "<b>B:</b> Cô chú đi Hạ Long",
-        part2: "rồi ạ?",
-        typeAnswer: "may lan",
-        correctMcq: "mấy lần",
-        mcqOptions: ["mấy lần", "máy lần"]
-      },
-      {
-        id: 7,
-        part1: "<b>B:</b> Khoảng",
-        part2: "lần rồi.",
-        typeAnswer: "ba",
-        correctMcq: "ba",
-        mcqOptions: ["ba", "bà"]
-      }
-    ];
 
     let currentMode = 'type'; 
     let mcqAnswers = {}; 
@@ -363,8 +403,15 @@
       }
     }
 
+    // Hàm chuẩn hóa chuỗi
     function normalizeStr(str) {
-      return str.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      return str
+        .trim()
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/đ/g, "d")
+        .replace(/\s+/g, " ");
     }
 
     function checkTypeAnswers() {
@@ -435,7 +482,7 @@
         }
       });
 
-      resultBox.classList.remove('hidden');
+      resultBox.classList.add('hidden');
       if (allCorrect) {
         resultBox.className = "p-5 rounded-2xl border bg-emerald-50 border-emerald-200 text-emerald-800 text-center space-y-1";
         resultBox.innerHTML = `
