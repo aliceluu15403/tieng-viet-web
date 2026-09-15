@@ -1,18 +1,19 @@
 ---
-// src/pages/index.astro - Havie Landing Page
+// src/pages/index.astro - Havie Landing Page (Updated Navbar Layout)
 ---
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Havie | Learn Vietnamese Online</title>
-  <meta name="description" content="Personalized 1-on-1 online Vietnamese lessons with Hang Luu. Real conversations, pronunciation mastery, and cultural depth." />
+  <title>Online Vietnamese Tutor & 1-on-1 Lessons | Havie</title>
+  <meta name="description" content="Master Vietnamese with Hang Luu. Personalized 1-on-1 online Vietnamese lessons, pronunciation mastery, and real conversations for beginners, expats, and heritage learners." />
+  
+  <!-- CANONICAL URL -->
+  <link rel="canonical" href="https://havielearn.com/" />
 
-  <!-- FAVICON & MOBILE TOUCH ICONS -->
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="shortcut icon" href="/favicon.ico" />
+  <!-- FAVICON NHÚNG TRỰC TIẾP -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22><rect width=%22512%22 height=%22512%22 rx=%22110%22 fill=%22%23dc2626%22/><path d=%22M136 116h68v110h104V116h68v280h-68V290H204v106h-68V116z%22 fill=%22%23ffffff%22/></svg>" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
 
@@ -67,7 +68,7 @@
 </head>
 <body class="selection:bg-red-600 selection:text-white min-h-screen flex flex-col antialiased relative overflow-x-hidden">
 
-  <!-- NAVBAR -->
+  <!-- NAVBAR (Tách biệt menu chữ và đẩy nút Book sang phải) -->
   <header class="sticky top-0 z-40 bg-[#fffaf5]/90 backdrop-blur-md border-b border-stone-200/80 h-20">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 h-full flex items-center justify-between">
       
@@ -87,32 +88,32 @@
         </span>
       </a>
 
-      <!-- CỤM PHẢI: MENU -->
-      <div class="hidden md:flex items-center gap-7 lg:gap-8 ml-auto mr-4">
-        <nav class="flex items-center space-x-7 lg:space-x-8 text-base font-bold text-slate-800 tracking-normal font-[inherit]">
-          <a href="#about" class="hover:text-red-600 transition text-base font-bold text-slate-800">About Me</a>
-          <a href="#curriculum" class="hover:text-red-600 transition text-base font-bold text-slate-800">Learning Tracks</a>
-          <a href="/resources" class="hover:text-red-600 transition text-base font-bold text-slate-800">Resources</a>
-          <a href="/student" class="hover:text-red-600 transition text-base font-bold text-slate-800">Student Portal</a>
-          <a href="/test" class="hover:text-red-600 transition text-base font-bold text-slate-800">Level Test</a>
-        </nav>
-      </div>
+      <!-- CỤM MENU CHỮ Ở GIỮA -->
+      <nav class="hidden md:flex items-center space-x-7 lg:space-x-8 text-base font-bold text-slate-800">
+        <a href="#about" class="hover:text-red-600 transition">About Me</a>
+        <a href="#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
+        <a href="/resources" class="hover:text-red-600 transition">Resources</a>
+        <a href="/student" class="hover:text-red-600 transition">Student Portal</a>
+        <a href="/test" class="hover:text-red-600 transition">Level Test</a>
+      </nav>
 
-      <!-- DESKTOP CTA & MOBILE TOGGLE -->
-      <div class="flex items-center gap-3 shrink-0">
+      <!-- NÚT BOOK ĐƯỢC TÁCH RIÊNG VÀ ĐẨY SANG PHẢI VỚI KHOẢNG CÁCH AN TOÀN -->
+      <div class="hidden md:flex items-center pl-6 shrink-0">
         <button
           type="button"
-          class="open-modal-trigger hidden sm:inline-flex items-center justify-center px-5 py-3 text-sm font-extrabold text-white bg-red-600 hover:bg-red-700 rounded-xl shadow-lg shadow-red-600/25 transition hover:-translate-y-0.5 cursor-pointer"
+          class="open-modal-trigger inline-flex items-center justify-center px-5 py-3 text-sm font-extrabold text-white bg-red-600 hover:bg-red-700 rounded-xl shadow-lg shadow-red-600/25 transition hover:-translate-y-0.5 cursor-pointer"
         >
           Book 25-Min Trial Lesson →
         </button>
+      </div>
 
-        <!-- Mobile Menu Hamburger Button -->
+      <!-- MOBILE TOGGLE BUTTON -->
+      <div class="flex items-center md:hidden">
         <button 
           id="mobileMenuBtn" 
           type="button" 
           aria-label="Toggle Menu"
-          class="md:hidden w-10 h-10 rounded-xl bg-stone-100 hover:bg-stone-200 text-slate-800 flex items-center justify-center font-bold transition cursor-pointer"
+          class="w-10 h-10 rounded-xl bg-stone-100 hover:bg-stone-200 text-slate-800 flex items-center justify-center font-bold transition cursor-pointer"
         >
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -152,20 +153,20 @@
           
           <!-- CỘT BÊN TRÁI -->
           <div class="lg:col-span-7 text-center lg:text-left space-y-5 sm:space-y-6">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-stone-200/90 text-xs sm:text-sm font-semibold text-slate-800 shadow-2xs">
+            
+            <!-- BADGE CHỨA TỪ KHÓA SEO QUAN TRỌNG -->
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-stone-200/90 text-xs sm:text-sm font-bold text-slate-800 shadow-2xs">
               <span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
-              <span>Native Tutor</span>
+              <span>Online Vietnamese Tutor & 1-on-1 Lessons</span>
               <span class="text-stone-300">•</span>
-              <span>Northern & Southern Accents</span>
+              <span class="text-stone-500 font-medium">Northern & Southern Accents</span>
             </div>
 
+            <!-- THẺ H1 CHÍNH -->
             <h1 class="font-extrabold text-slate-900 tracking-tight font-brand text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-[1.15]">
               <span>Vietnamese isn’t hard.</span>
               <span class="block mt-1 sm:mt-2">
-                You just need <span class="text-red-600">the right</span>
-              </span>
-              <span class="block mt-1">
-                <span class="curved-underline text-red-600">approach.</span>
+                You just need <span class="curved-underline text-red-600">the right approach.</span>
               </span>
             </h1>
 
@@ -213,7 +214,7 @@
                   />
                 </div>
                 <div>
-                  <h2 class="text-lg sm:text-xl font-extrabold text-slate-900 leading-tight">Hang Luu</h2>
+                  <h3 class="text-lg sm:text-xl font-extrabold text-slate-900 leading-tight">Hang Luu</h3>
                   <p class="text-xs sm:text-sm text-stone-500 font-medium mt-0.5">Professional Vietnamese Tutor</p>
                   <div class="flex items-center gap-1 text-amber-500 text-xs sm:text-sm mt-1">
                     <span>★★★★★</span>
@@ -273,7 +274,7 @@
       </div>
     </section>
 
-    <!-- ABOUT ME SECTION (Đã thêm pt-10 sm:pt-14 để khi bấm vào About Me nội dung tụt xuống thấp, hiển thị cực kỳ đẹp mắt) -->
+    <!-- ABOUT ME SECTION -->
     <section id="about" class="pt-10 sm:pt-14 pb-14 sm:py-20 bg-white">
       <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
@@ -836,8 +837,9 @@
     if (btnCloseSuccess) closeModalBtn.addEventListener('click', hideModal);
     modal.addEventListener('click', (e) => { if (e.target === modal) hideModal(); });
 
-    consultForm.addEventListener('submit', (e) => {
+    consultForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+      
       const formData = {
         name: document.getElementById('cName').value,
         country: document.getElementById('cCountry').value,
@@ -845,11 +847,30 @@
         email: document.getElementById('cEmail').value,
         goals: document.getElementById('cGoals').value,
       };
-      console.log("Consultation Booking Submitted:", formData);
 
-      consultForm.classList.add('hidden');
-      successMessage.classList.remove('hidden');
-      consultForm.reset();
+      try {
+        // Dán URL Web App của Google Apps Script vào đây
+        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycb.../exec'; 
+
+        const response = await fetch(WEB_APP_URL, {
+          method: 'POST',
+          body: JSON.stringify(formData),
+          headers: { 'Content-Type': 'application/json' }
+        });
+
+        if (response.ok) {
+          consultForm.classList.add('hidden');
+          successMessage.classList.remove('hidden');
+          consultForm.reset();
+        } else {
+          alert("Gửi thông tin thất bại, vui lòng thử lại sau!");
+        }
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        consultForm.classList.add('hidden');
+        successMessage.classList.remove('hidden');
+        consultForm.reset();
+      }
     });
   </script>
 </body>

@@ -1,5 +1,5 @@
 ---
-// src/pages/student.astro - Secure Access Portal (Clean & Private)
+// src/pages/student.astro - Secure Access Portal (Fully Synced & Refined)
 ---
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -9,10 +9,11 @@
   <title>Student Portal | Havie Learn Vietnamese</title>
   <meta name="description" content="Secure student portal for Hang's Vietnamese learners." />
 
-  <!-- FAVICON & MOBILE TOUCH ICONS -->
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="shortcut icon" href="/favicon.ico" />
+  <!-- CANONICAL URL -->
+  <link rel="canonical" href="https://havielearn.com/student" />
+
+  <!-- FAVICON NHÚNG TRỰC TIẾP -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22><rect width=%22512%22 height=%22512%22 rx=%22110%22 fill=%22%23dc2626%22/><path d=%22M136 116h68v110h104V116h68v280h-68V290H204v106h-68V116z%22 fill=%22%23ffffff%22/></svg>" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
 
@@ -22,7 +23,7 @@
   <!-- Google Fonts: DM Sans & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -32,7 +33,7 @@
     }
 
     html {
-      scroll-padding-top: 85px;
+      scroll-padding-top: 100px;
     }
 
     body {
@@ -54,12 +55,12 @@
 
   <!-- NAVBAR -->
   <header class="sticky top-0 z-40 bg-[#fffaf5]/90 backdrop-blur-md border-b border-stone-200/80 h-20">
-    <div class="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 h-full flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 h-full flex items-center justify-between">
       
-      <!-- LOGO -->
+      <!-- LOGO BÊN TRÁI -->
       <a href="/" class="group flex flex-col select-none text-left shrink-0">
-        <div class="h-6 sm:h-7 flex items-center">
-          <svg class="h-6 sm:h-7 w-auto overflow-visible" viewBox="0 0 175 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div class="h-7 sm:h-8 flex items-center">
+          <svg class="h-7 sm:h-8 w-auto overflow-visible" viewBox="0 0 175 30" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 2H6V12H18V2H24V28H18V17H6V28H0V2Z" fill="#dc2626"/>
             <path d="M41 2L52 28H45.5L43.2 22H33.8L31.5 28H25L36 2H41ZM38.5 8.5L35.2 17.5H41.8L38.5 8.5Z" fill="#dc2626"/>
             <path d="M53 2H59.5L67 21L74.5 2H81L70.5 28H63.5L53 2Z" fill="#dc2626"/>
@@ -67,54 +68,57 @@
             <path d="M98 2H117V7.5H104V12H115V17H104V22.5H117V28H98V2Z" fill="#dc2626"/>
           </svg>
         </div>
-        <span class="text-[9px] sm:text-[9.5px] font-bold tracking-[0.2em] sm:tracking-[0.24em] text-stone-400 uppercase mt-1 pl-0.5 leading-none">
+        <span class="text-[9.5px] sm:text-[10px] font-bold tracking-[0.22em] sm:tracking-[0.26em] text-stone-400 uppercase mt-1 pl-0.5 leading-none">
           Learn Vietnamese Online
         </span>
       </a>
 
-      <!-- CỤM ĐIỀU HƯỚNG & NÚT BẤM -->
-      <div class="hidden lg:flex items-center space-x-7 text-sm font-semibold text-slate-700">
-        <a href="/#about" class="hover:text-red-600 transition">About Me</a>
-        <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
-        <a href="/resources" class="hover:text-red-600 transition">Resources</a>
-        <a href="/student" class="text-red-600 font-bold transition">Student Portal</a>
-        <a href="/test" class="hover:text-red-600 transition">Level Test</a>
-        
-        <div class="flex items-center pl-2">
-          <button
-            type="button"
-            class="open-modal-trigger inline-flex items-center justify-center px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-bold text-white bg-red-600 hover:bg-red-700 rounded-xl shadow-lg shadow-red-600/25 transition hover:-translate-y-0.5 cursor-pointer"
-          >
-            Book 25-Min Trial Lesson →
-          </button>
-        </div>
+      <!-- CỤM PHẢI: MENU -->
+      <div class="hidden md:flex items-center gap-7 lg:gap-8 ml-auto mr-4">
+        <nav class="flex items-center space-x-7 lg:space-x-8 text-base font-bold text-slate-800 tracking-normal font-[inherit]">
+          <a href="/#about" class="hover:text-red-600 transition text-base font-bold text-slate-800">About Me</a>
+          <a href="/#curriculum" class="hover:text-red-600 transition text-base font-bold text-slate-800">Learning Tracks</a>
+          <a href="/resources" class="hover:text-red-600 transition text-base font-bold text-slate-800">Resources</a>
+          <a href="/student" class="text-red-600 font-bold transition">Student Portal</a>
+          <a href="/test" class="hover:text-red-600 transition text-base font-bold text-slate-800">Level Test</a>
+        </nav>
       </div>
 
-      <!-- Mobile Menu Hamburger Button -->
-      <button 
-        id="mobileMenuBtn" 
-        type="button" 
-        aria-label="Toggle Menu"
-        class="lg:hidden w-10 h-10 rounded-xl bg-stone-100 hover:bg-stone-200 text-slate-800 flex items-center justify-center font-bold transition cursor-pointer"
-      >
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-      </button>
+      <!-- DESKTOP CTA & MOBILE TOGGLE -->
+      <div class="flex items-center gap-3 shrink-0">
+        <button
+          type="button"
+          class="open-modal-trigger hidden sm:inline-flex items-center justify-center px-5 py-3 text-sm font-extrabold text-white bg-red-600 hover:bg-red-700 rounded-xl shadow-lg shadow-red-600/25 transition hover:-translate-y-0.5 cursor-pointer"
+        >
+          Book 25-Min Trial Lesson →
+        </button>
+
+        <!-- Mobile Menu Hamburger Button -->
+        <button 
+          id="mobileMenuBtn" 
+          type="button" 
+          aria-label="Toggle Menu"
+          class="md:hidden w-10 h-10 rounded-xl bg-stone-100 hover:bg-stone-200 text-slate-800 flex items-center justify-center font-bold transition cursor-pointer"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
 
     </div>
 
     <!-- Mobile Dropdown Menu -->
-    <div id="mobileMenu" class="hidden lg:hidden absolute top-20 left-0 w-full bg-[#fffaf5] border-b border-stone-200 shadow-xl px-6 py-5 space-y-3 font-semibold text-slate-700 text-sm">
-      <a href="/#about" class="mobile-link block hover:text-red-600 transition py-1">About Me</a>
-      <a href="/#curriculum" class="mobile-link block hover:text-red-600 transition py-1">Learning Tracks</a>
-      <a href="/resources" class="mobile-link block hover:text-red-600 transition py-1">Resources</a>
-      <a href="/student" class="mobile-link block hover:text-red-600 transition py-1">Student Portal</a>
-      <a href="/test" class="mobile-link block hover:text-red-600 transition py-1">Level Test</a>
+    <div id="mobileMenu" class="hidden md:hidden absolute top-20 left-0 w-full bg-[#fffaf5] border-b border-stone-200 shadow-xl px-6 py-5 space-y-4 font-semibold text-slate-800 text-base">
+      <a href="/#about" class="mobile-link block hover:text-red-600 transition">About Me</a>
+      <a href="/#curriculum" class="mobile-link block hover:text-red-600 transition">Learning Tracks</a>
+      <a href="/resources" class="mobile-link block hover:text-red-600 transition">Resources</a>
+      <a href="/student" class="mobile-link block text-red-600 font-bold">Student Portal</a>
+      <a href="/test" class="mobile-link block hover:text-red-600 transition">Level Test</a>
       <div class="pt-3 border-t border-stone-200">
         <button
           type="button"
-          class="open-modal-trigger w-full py-3 text-xs font-bold text-white bg-red-600 rounded-xl text-center shadow-md cursor-pointer"
+          class="open-modal-trigger w-full py-3.5 text-sm font-bold text-white bg-red-600 rounded-xl text-center shadow-md cursor-pointer"
         >
           Book 25-Min Trial Lesson →
         </button>
@@ -123,19 +127,19 @@
   </header>
 
   <!-- MAIN CONTENT -->
-  <main class="flex-grow flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8 relative">
+  <main class="flex-grow flex items-center justify-center py-12 sm:py-16 px-4 sm:px-6 lg:px-8 relative">
     <div class="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
-      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[450px] h-[450px] hero-glow rounded-full blur-3xl"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] hero-glow rounded-full blur-3xl"></div>
     </div>
 
-    <div class="w-full max-w-xl">
-      <div class="bg-white rounded-[32px] p-8 sm:p-12 shadow-2xl border border-stone-200/90 text-center space-y-6">
+    <div class="w-full max-w-lg">
+      <div class="bg-white rounded-[32px] p-8 sm:p-10 shadow-2xl shadow-stone-300/50 border border-stone-200/90 text-center space-y-6">
         <div class="w-16 h-16 bg-red-50 text-red-600 rounded-2xl mx-auto flex items-center justify-center text-2xl shadow-inner border border-red-100">
           🔐
         </div>
         
         <div class="space-y-2">
-          <h1 class="text-2xl sm:text-3xl font-black text-slate-900 font-brand">Enter Lesson Access Code</h1>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-brand">Enter Lesson Access Code</h1>
           <p class="text-stone-500 text-xs sm:text-sm">
             Please enter your 5-character access code provided by Hang.
           </p>
@@ -153,11 +157,11 @@
 
           <input type="hidden" id="accessCodeInput" required />
 
-          <div id="errorMessage" class="hidden text-xs font-bold text-red-600 bg-red-50 py-2.5 rounded-xl border border-red-100 text-center">
+          <div id="errorMessage" class="hidden text-xs font-bold text-red-600 bg-red-50 py-3 rounded-xl border border-red-100 text-center">
             ❌ Invalid access code. Please try again!
           </div>
 
-          <button type="submit" class="w-full py-4 bg-red-600 hover:bg-red-700 text-white font-black font-brand rounded-2xl text-base shadow-lg shadow-red-600/25 transition cursor-pointer">
+          <button type="submit" class="w-full py-4 bg-red-600 hover:bg-red-700 text-white font-extrabold font-brand rounded-2xl text-base shadow-xl shadow-red-600/25 transition hover:-translate-y-0.5 cursor-pointer">
             Open exercise →
           </button>
         </form>
@@ -166,18 +170,18 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="bg-[#fffaf5] text-stone-600 py-8 text-xs border-t border-stone-200/80">
-    <div class="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-2.5">
-        <span class="font-brand font-black text-slate-900 tracking-widest text-sm">HAVIE.</span>
-        <span class="text-stone-400">•</span>
-        <span class="font-medium">Learn Vietnamese with Hang</span>
+  <footer class="bg-[#fffaf5] text-stone-600 py-10 border-t border-stone-200/80">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <div class="flex items-center justify-center gap-2.5">
+        <span class="font-brand font-black text-slate-900 tracking-wider text-base sm:text-lg">HAVIE</span>
+        <span class="text-stone-300">•</span>
+        <span class="text-xs sm:text-sm font-medium text-stone-500">Learn Vietnamese with Hang</span>
       </div>
-      <div class="flex items-center gap-5 sm:gap-6 font-semibold text-stone-700 flex-wrap justify-center">
+      <div class="flex items-center gap-5 sm:gap-7 font-semibold text-xs sm:text-sm text-stone-700 flex-wrap justify-center">
         <a href="/#about" class="hover:text-red-600 transition">About Me</a>
         <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
         <a href="/resources" class="hover:text-red-600 transition">Resources</a>
-        <a href="/student" class="text-red-600 font-bold hover:underline transition">Student Portal</a>
+        <a href="/student" class="text-red-600 font-bold transition">Student Portal</a>
         <a href="/test" class="hover:text-red-600 transition">Level Test</a>
         <button type="button" class="open-modal-trigger text-red-600 font-bold hover:underline cursor-pointer">Book Trial</button>
       </div>
@@ -186,58 +190,58 @@
 
   <!-- CONSULTATION / BOOKING MODAL -->
   <div id="consultModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-stone-200 space-y-5 text-left">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-stone-200 space-y-6 text-left">
       
-      <div class="flex items-center justify-between border-b border-stone-100 pb-3">
+      <div class="flex items-center justify-between border-b border-stone-100 pb-4">
         <div>
-          <span class="text-[10px] font-black text-red-600 uppercase tracking-widest bg-red-50 px-2.5 py-0.5 rounded border border-red-200">1-on-1 Coaching</span>
-          <h3 class="text-xl font-black text-slate-900 font-brand mt-1">Book 25-Min Trial Lesson</h3>
+          <span class="text-xs sm:text-sm font-black text-red-600 uppercase tracking-widest bg-red-50 px-3.5 py-1.5 rounded-lg border border-red-200 inline-block font-brand">1-ON-1 LESSONS</span>
+          <h3 class="text-2xl sm:text-3xl font-black text-slate-900 font-brand mt-1.5">Book 25-Min Trial Lesson</h3>
         </div>
-        <button id="closeModalBtn" type="button" class="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 font-bold flex items-center justify-center cursor-pointer">
+        <button id="closeModalBtn" type="button" class="w-10 h-10 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 font-bold flex items-center justify-center text-lg cursor-pointer">
           ✕
         </button>
       </div>
 
-      <form id="consultForm" class="space-y-3.5 text-xs">
+      <form id="consultForm" class="space-y-4 text-sm">
         <div>
-          <label class="block font-bold text-slate-700 mb-1">Full Name / Tên của bạn *</label>
-          <input type="text" id="cName" required placeholder="e.g. Alex Smith" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50" />
+          <label class="block font-bold text-slate-800 mb-1.5 text-base">Full Name / Tên của bạn *</label>
+          <input type="text" id="cName" required placeholder="e.g. Alex Smith" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
         </div>
 
-        <div class="grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block font-bold text-slate-700 mb-1">Country / Quốc gia *</label>
-            <input type="text" id="cCountry" required placeholder="e.g. Germany, USA" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50" />
+            <label class="block font-bold text-slate-800 mb-1.5 text-base">Country / Quốc gia *</label>
+            <input type="text" id="cCountry" required placeholder="e.g. Germany, USA" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
           </div>
           <div>
-            <label class="block font-bold text-slate-700 mb-1">Phone / SĐT</label>
-            <input type="tel" id="cPhone" placeholder="e.g. +49..." class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50" />
+            <label class="block font-bold text-slate-800 mb-1.5 text-base">Phone / SĐT</label>
+            <input type="tel" id="cPhone" placeholder="e.g. +49..." class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
           </div>
         </div>
 
         <div>
-          <label class="block font-bold text-slate-700 mb-1">Email Address *</label>
-          <input type="email" id="cEmail" required placeholder="name@example.com" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50" />
+          <label class="block font-bold text-slate-800 mb-1.5 text-base">Email Address *</label>
+          <input type="email" id="cEmail" required placeholder="name@example.com" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
         </div>
 
         <div>
-          <label class="block font-bold text-slate-700 mb-1">Learning Goals / Mục tiêu học tập *</label>
-          <textarea id="cGoals" rows="3" required placeholder="Current level, target dialect (Hanoi/Saigon), goals..." class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50 resize-none"></textarea>
+          <label class="block font-bold text-slate-800 mb-1.5 text-base">Learning Goals / Mục tiêu học tập *</label>
+          <textarea id="cGoals" rows="3" required placeholder="Current level, target dialect (Hanoi/Saigon), goals..." class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 resize-none text-base"></textarea>
         </div>
 
         <button
           type="submit"
-          class="w-full py-3.5 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl text-xs sm:text-sm shadow-md transition cursor-pointer mt-2"
+          class="w-full py-4 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl text-base shadow-md transition cursor-pointer mt-3"
         >
           Submit Request to Hang →
         </button>
       </form>
 
       <div id="successMessage" class="hidden text-center py-6 space-y-3">
-        <div class="text-3xl">🎉</div>
-        <h4 class="font-black text-slate-900 text-base font-brand">Request Sent Successfully!</h4>
-        <p class="text-stone-600 text-xs leading-relaxed">Thank you! Hang has received your details and goals. She will reach out via email within 24 hours.</p>
-        <button id="btnCloseSuccess" type="button" class="px-6 py-2.5 bg-slate-900 text-white font-bold rounded-xl text-xs cursor-pointer">
+        <div class="text-4xl">🎉</div>
+        <h4 class="font-black text-slate-900 text-lg font-brand">Request Sent Successfully!</h4>
+        <p class="text-stone-600 text-sm leading-relaxed">Thank you! Hang has received your details and goals. She will reach out via email within 24 hours.</p>
+        <button id="btnCloseSuccess" type="button" class="px-6 py-3 bg-slate-900 text-white font-bold rounded-xl text-sm cursor-pointer">
           Close Window
         </button>
       </div>
@@ -300,8 +304,8 @@
       consultForm.reset();
     });
 
-    // Danh sách các mã hợp lệ cả đóng vai (FCS) và bài nghe (SLS)
-    const validCodes = ["FCS01", "SLS01"];
+    // Danh sách các mã hợp lệ (đã thêm SLN01)
+    const validCodes = ["FCS01", "SLS01", "SLN01"];
 
     const inputs = document.querySelectorAll('.otp-input');
     const hiddenInput = document.getElementById('accessCodeInput');
@@ -339,8 +343,7 @@
       if (validCodes.includes(code)) {
         errorMessage.classList.add('hidden');
         
-        // Điều hướng tự động: Mã bắt đầu bằng SLS qua trang listening, còn lại qua exercise
-        if (code.startsWith('SLS')) {
+        if (code.startsWith('SLS') || code.startsWith('SLN')) {
           window.location.href = `/listening?code=${code}`;
         } else {
           window.location.href = `/exercise?code=${code}`;
