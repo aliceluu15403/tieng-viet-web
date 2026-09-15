@@ -1,0 +1,404 @@
+---
+// src/pages/listening.astro - Dedicated Listening & Fill-in-the-Blank Exercise Room
+---
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Listening Practice | Havie Learn Vietnamese</title>
+  <meta name="description" content="Dedicated listening and fill-in-the-blank exercise." />
+
+  <!-- FAVICON & MOBILE TOUCH ICONS -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- Tailwind CSS CDN -->
+  <script is:inline src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #fffaf5;
+      --navy: #0f172a;
+      --brand-red: #dc2626;
+    }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--cream);
+      color: var(--navy);
+    }
+    .font-brand {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .hero-glow {
+      background: radial-gradient(circle, rgba(220, 38, 38, 0.12) 0%, rgba(245, 158, 11, 0.06) 50%, transparent 80%);
+    }
+  </style>
+</head>
+<body class="selection:bg-red-600 selection:text-white min-h-screen flex flex-col antialiased relative overflow-x-hidden">
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-40 bg-[#fffaf5]/90 backdrop-blur-md border-b border-stone-200/80 h-20">
+    <div class="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 h-full flex items-center justify-between">
+      <a href="/" class="group flex flex-col select-none text-left shrink-0">
+        <div class="h-6 sm:h-7 flex items-center">
+          <svg class="h-6 sm:h-7 w-auto overflow-visible" viewBox="0 0 175 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 2H6V12H18V2H24V28H18V17H6V28H0V2Z" fill="#dc2626"/>
+            <path d="M41 2L52 28H45.5L43.2 22H33.8L31.5 28H25L36 2H41ZM38.5 8.5L35.2 17.5H41.8L38.5 8.5Z" fill="#dc2626"/>
+            <path d="M53 2H59.5L67 21L74.5 2H81L70.5 28H63.5L53 2Z" fill="#dc2626"/>
+            <path d="M86 2H92V28H86V2Z" fill="#dc2626"/>
+            <path d="M98 2H117V7.5H104V12H115V17H104V22.5H117V28H98V2Z" fill="#dc2626"/>
+          </svg>
+        </div>
+        <span class="text-[9px] sm:text-[9.5px] font-bold tracking-[0.2em] text-stone-400 uppercase mt-1 leading-none">
+          Learn Vietnamese Online
+        </span>
+      </a>
+
+      <div class="hidden lg:flex items-center space-x-7 text-sm font-semibold text-slate-700">
+        <a href="/student" class="text-red-600 font-bold transition flex items-center gap-1">← Back to Portal</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-grow flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8 relative">
+    <div class="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
+      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[450px] h-[450px] hero-glow rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- KHUNG BÀI TẬP LISTENING -->
+    <div class="w-full max-w-3xl">
+      <div class="bg-white rounded-[32px] p-8 sm:p-12 shadow-2xl border border-stone-200/90 space-y-6">
+        
+        <!-- HEADER BÀI NGHE & MODE SWITCHER -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-stone-100">
+          <div>
+            <span class="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-md bg-red-50 text-red-600 border border-red-100">LISTENING PRACTICE</span>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 font-brand mt-1">Trip to Vietnam Dialogue</h2>
+          </div>
+          <!-- Mode Switcher Buttons -->
+          <div class="flex items-center gap-2 bg-stone-100 p-1 rounded-xl">
+            <button type="button" id="modeTypeBtn" class="px-3.5 py-2 rounded-lg text-xs font-bold transition cursor-pointer bg-red-600 text-white shadow-sm">
+              ✍️ Type-in Mode
+            </button>
+            <button type="button" id="modeMcqBtn" class="px-3.5 py-2 rounded-lg text-xs font-bold transition cursor-pointer text-stone-600 hover:text-slate-900">
+              🔠 MCQ Mode
+            </button>
+          </div>
+        </div>
+
+        <!-- KHUNG PHÁT ÂM THANH -->
+        <div class="p-5 rounded-2xl bg-red-50/50 border border-red-100 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center font-bold text-lg shadow-md shrink-0">🎧</div>
+            <div>
+              <div class="text-[10px] font-extrabold text-red-600 uppercase tracking-wider">Audio File: SLS01.wav</div>
+              <div id="modeHintText" class="text-sm font-bold text-slate-800">Type missing words (No diacritics needed)</div>
+            </div>
+          </div>
+          <audio controls preload="metadata" class="w-full md:w-72 h-11 shrink-0">
+            <source src="/audio/SLS01.wav" type="audio/wav">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+
+        <!-- NỘI DUNG BÀI TẬP -->
+        <div id="exerciseArea" class="space-y-4"></div>
+
+        <!-- NÚT ĐIỀU KHIỂN & KIỂM TRA -->
+        <div class="flex items-center justify-between pt-4 border-t border-stone-100">
+          <button id="resetBtn" type="button" class="text-xs font-bold text-stone-500 hover:text-red-600 transition bg-stone-50 px-4 py-2.5 rounded-xl border border-stone-200 cursor-pointer flex items-center gap-1.5">
+            <span>Reset</span> 🔄
+          </button>
+          <div id="submitContainer"></div>
+        </div>
+
+        <div id="resultBox" class="hidden p-5 rounded-2xl border text-center space-y-2"></div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#fffaf5] text-stone-600 py-8 text-xs border-t border-stone-200/80 text-center">
+    <p>© 2026 Learn Vietnamese with Hang</p>
+  </footer>
+
+  <!-- SCRIPT LOGIC -->
+  <script is:inline>
+    const questions = [
+      {
+        id: 1,
+        part1: "<b>A:</b> Đây là lần",
+        part2: "anh tới Việt Nam? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Lần thứ ba rồi.",
+        typeAnswer: "thu may",
+        correctMcq: "thứ mấy",
+        mcqOptions: ["thứ mấy", "thư mấy", "thú mấy"]
+      },
+      {
+        id: 2,
+        part1: "<b>A:</b> Anh tới Cần Thơ",
+        part2: "chưa? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Anh chưa đi Cần Thơ.",
+        typeAnswer: "bao gio",
+        correctMcq: "bao giờ",
+        mcqOptions: ["bao giờ", "báo giờ", "bảo giở"]
+      },
+      {
+        id: 3,
+        part1: "<b>A:</b> Vậy còn Đà Nẵng? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Đà Nẵng thì anh đi",
+        part2: ".",
+        typeAnswer: "roi",
+        correctMcq: "rồi",
+        mcqOptions: ["rồi", "rối", "roi"]
+      },
+      {
+        id: 4,
+        part1: "<b>A:</b> Anh đi mấy lần rồi? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b>",
+        part2: "lần.",
+        typeAnswer: "hai",
+        correctMcq: "hai",
+        mcqOptions: ["hai", "hài", "hải"]
+      }
+    ];
+
+    let currentMode = 'type'; 
+    let mcqAnswers = {}; 
+    let shuffledOptions = {}; // Lưu thứ tự đã xáo trộn cho từng câu MCQ
+
+    // Hàm xáo trộn mảng ngẫu nhiên (Fisher-Yates shuffle)
+    function shuffleArray(array) {
+      let arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    // Chuẩn bị sẵn thứ tự xáo trộn cho MCQ
+    questions.forEach(q => {
+      shuffledOptions[q.id] = shuffleArray(q.mcqOptions);
+    });
+
+    const modeTypeBtn = document.getElementById('modeTypeBtn');
+    const modeMcqBtn = document.getElementById('modeMcqBtn');
+    const modeHintText = document.getElementById('modeHintText');
+    const exerciseArea = document.getElementById('exerciseArea');
+    const submitContainer = document.getElementById('submitContainer');
+    const resultBox = document.getElementById('resultBox');
+
+    modeTypeBtn.addEventListener('click', () => {
+      currentMode = 'type';
+      modeTypeBtn.className = "px-3.5 py-2 rounded-lg text-xs font-bold transition cursor-pointer bg-red-600 text-white shadow-sm";
+      modeMcqBtn.className = "px-3.5 py-2 rounded-lg text-xs font-bold transition cursor-pointer text-stone-600 hover:text-slate-900";
+      modeHintText.textContent = "Type missing words (No diacritics needed)";
+      resultBox.classList.add('hidden');
+      renderExercise();
+    });
+
+    modeMcqBtn.addEventListener('click', () => {
+      currentMode = 'mcq';
+      modeMcqBtn.className = "px-3.5 py-2 rounded-lg text-xs font-bold transition cursor-pointer bg-red-600 text-white shadow-sm";
+      modeTypeBtn.className = "px-3.5 py-2 rounded-lg text-xs font-bold transition cursor-pointer text-stone-600 hover:text-slate-900";
+      modeHintText.textContent = "Choose the correct word (Watch out for tones!)";
+      resultBox.classList.add('hidden');
+      renderExercise();
+    });
+
+    function renderExercise() {
+      exerciseArea.innerHTML = "";
+      resultBox.classList.add('hidden');
+
+      if (currentMode === 'type') {
+        let html = '<div class="space-y-4">';
+        questions.forEach((q, index) => {
+          html += `
+            <div class="p-5 rounded-2xl bg-stone-50 border border-stone-200 space-y-2">
+              <div class="text-xs font-bold text-stone-400 uppercase">Question ${index + 1}</div>
+              <div class="text-slate-800 text-sm sm:text-base leading-relaxed flex flex-wrap items-center gap-2">
+                <span>${q.part1}</span>
+                <input type="text" data-id="${q.id}" placeholder="type here..." class="type-input px-4 py-2 w-36 text-center font-bold text-red-600 bg-white border-2 border-stone-300 rounded-xl focus:border-red-600 focus:outline-none transition shadow-2xs" />
+                <span>${q.part2}</span>
+              </div>
+              <div id="answer-feedback-${q.id}" class="hidden text-xs font-bold mt-1"></div>
+            </div>
+          `;
+        });
+        html += '</div>';
+        exerciseArea.innerHTML = html;
+
+        submitContainer.innerHTML = `
+          <button type="button" id="checkTypeBtn" class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-black font-brand rounded-xl text-xs sm:text-sm shadow-md transition cursor-pointer">
+            Check Answers →
+          </button>
+        `;
+
+        document.getElementById('checkTypeBtn').addEventListener('click', checkTypeAnswers);
+
+      } else {
+        let html = '<div class="space-y-4">';
+        questions.forEach((q, index) => {
+          html += `
+            <div class="p-5 rounded-2xl bg-stone-50 border border-stone-200 space-y-3">
+              <div class="text-xs font-bold text-stone-400 uppercase">Question ${index + 1}</div>
+              <div class="text-slate-800 text-sm sm:text-base leading-relaxed flex flex-wrap items-center gap-2">
+                <span>${q.part1}</span>
+                <span class="text-red-600 font-bold underline px-3 bg-red-50 py-1 rounded-lg border border-red-200">[ ... ]</span>
+                <span>${q.part2}</span>
+              </div>
+              <div class="grid grid-cols-3 gap-3 pt-2">
+          `;
+
+          // Sử dụng mảng đã được xáo trộn ngẫu nhiên
+          shuffledOptions[q.id].forEach(opt => {
+            let isSelected = mcqAnswers[q.id] === opt;
+            let btnClass = isSelected 
+              ? "bg-red-600 text-white border-red-600 shadow-sm" 
+              : "bg-white text-slate-700 hover:bg-red-50 border-stone-200";
+
+            html += `
+              <button type="button" class="mcq-option px-4 py-3 rounded-xl border text-xs sm:text-sm font-bold transition cursor-pointer text-center ${btnClass}" data-qid="${q.id}" data-val="${opt}">
+                ${opt}
+              </button>
+            `;
+          });
+
+          html += `</div>
+            <div id="mcq-feedback-${q.id}" class="hidden text-xs font-bold mt-1"></div>
+          </div>`;
+        });
+        html += '</div>';
+        exerciseArea.innerHTML = html;
+
+        submitContainer.innerHTML = `
+          <button type="button" id="checkMcqBtn" class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-black font-brand rounded-xl text-xs sm:text-sm shadow-md transition cursor-pointer">
+            Check Answers →
+          </button>
+        `;
+
+        document.querySelectorAll('.mcq-option').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            let qId = e.currentTarget.getAttribute('data-qid');
+            let val = e.currentTarget.getAttribute('data-val');
+            mcqAnswers[qId] = val;
+            
+            document.querySelectorAll(`.mcq-option[data-qid="${qId}"]`).forEach(b => {
+              b.className = "mcq-option px-4 py-3 rounded-xl border text-xs sm:text-sm font-bold transition cursor-pointer text-center bg-white text-slate-700 hover:bg-red-50 border-stone-200";
+            });
+            e.currentTarget.className = "mcq-option px-4 py-3 rounded-xl border text-xs sm:text-sm font-bold transition cursor-pointer text-center bg-red-600 text-white border-red-600 shadow-sm";
+          });
+        });
+
+        document.getElementById('checkMcqBtn').addEventListener('click', checkMcqAnswers);
+      }
+    }
+
+    function normalizeStr(str) {
+      return str.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+
+    function checkTypeAnswers() {
+      let inputs = document.querySelectorAll('.type-input');
+      let allCorrect = true;
+
+      inputs.forEach(input => {
+        let qId = parseInt(input.getAttribute('data-id'));
+        let userVal = normalizeStr(input.value);
+        let targetQ = questions.find(q => q.id === qId);
+        let feedbackEl = document.getElementById(`answer-feedback-${qId}`);
+
+        feedbackEl.classList.remove('hidden');
+
+        if (userVal === targetQ.typeAnswer) {
+          input.classList.remove('border-red-500', 'bg-red-50');
+          input.classList.add('border-emerald-500', 'bg-emerald-50');
+          feedbackEl.className = "text-xs font-bold mt-1 text-emerald-600";
+          feedbackEl.textContent = `✓ Correct! (Answer: "${targetQ.correctMcq}")`;
+        } else {
+          input.classList.remove('border-emerald-500', 'bg-emerald-50');
+          input.classList.add('border-red-500', 'bg-red-50');
+          feedbackEl.className = "text-xs font-bold mt-1 text-red-600";
+          feedbackEl.textContent = `✗ Incorrect. Correct answer: "${targetQ.correctMcq}"`;
+          allCorrect = false;
+        }
+      });
+
+      resultBox.classList.remove('hidden');
+      if (allCorrect) {
+        resultBox.className = "p-5 rounded-2xl border bg-emerald-50 border-emerald-200 text-emerald-800 text-center space-y-1";
+        resultBox.innerHTML = `
+          <div class="text-base font-black font-brand">🎉 Outstanding! All answers are correct.</div>
+          <div class="text-xs">Your typing and listening skills are top-notch!</div>
+        `;
+      } else {
+        resultBox.className = "p-5 rounded-2xl border bg-amber-50 border-amber-200 text-amber-800 text-center space-y-1";
+        resultBox.innerHTML = `
+          <div class="text-base font-black font-brand">⚠️ Some answers have mistakes. Check the correct answers shown above.</div>
+        `;
+      }
+    }
+
+    function checkMcqAnswers() {
+      let allCorrect = true;
+      let answeredCount = Object.keys(mcqAnswers).length;
+
+      if (answeredCount < questions.length) {
+        resultBox.classList.remove('hidden');
+        resultBox.className = "p-5 rounded-2xl border bg-amber-50 border-amber-200 text-amber-800 text-center space-y-1";
+        resultBox.innerHTML = `
+          <div class="text-base font-black font-brand">⚠️ Please answer all questions before checking!</div>
+        `;
+        return;
+      }
+
+      questions.forEach(q => {
+        let feedbackEl = document.getElementById(`mcq-feedback-${q.id}`);
+        feedbackEl.classList.remove('hidden');
+
+        if (mcqAnswers[q.id] === q.correctMcq) {
+          feedbackEl.className = "text-xs font-bold mt-2 text-emerald-600";
+          feedbackEl.textContent = `✓ Correct!`;
+        } else {
+          feedbackEl.className = "text-xs font-bold mt-2 text-red-600";
+          feedbackEl.textContent = `✗ Incorrect. Correct answer: "${q.correctMcq}"`;
+          allCorrect = false;
+        }
+      });
+
+      resultBox.classList.remove('hidden');
+      if (allCorrect) {
+        resultBox.className = "p-5 rounded-2xl border bg-emerald-50 border-emerald-200 text-emerald-800 text-center space-y-1";
+        resultBox.innerHTML = `
+          <div class="text-base font-black font-brand">🎉 Perfect! You mastered the tone distinctions.</div>
+          <div class="text-xs">Great job listening carefully to the subtle tones!</div>
+        `;
+      } else {
+        resultBox.className = "p-5 rounded-2xl border bg-amber-50 border-amber-200 text-amber-800 text-center space-y-1";
+        resultBox.innerHTML = `
+          <div class="text-base font-black font-brand">⚠️ Check your choices! See the correct answers highlighted above.</div>
+        `;
+      }
+    }
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      mcqAnswers = {};
+      // Xáo trộn lại vị trí đáp án mỗi khi bấm Reset
+      questions.forEach(q => {
+        shuffledOptions[q.id] = shuffleArray(q.mcqOptions);
+      });
+      renderExercise();
+    });
+
+    renderExercise();
+  </script>
+</body>
+</html>
