@@ -14,7 +14,7 @@ const TONES = [
     mechanic: 'Keep pitch steady at mid level. Relax your jaw and vocal cords, like humming.'
   },
   { 
-    id: 'sac',   
+    id: 'sac',    
     num: '2', 
     name: 'Sắc', 
     type: 'Up', 
@@ -38,28 +38,28 @@ const TONES = [
     mechanic: 'Start at lower-mid pitch and glide down gently. Drop chin like a relaxed sigh: "Ahhh".'
   },
   { 
-    id: 'hoi',   
+    id: 'hoi',    
     num: '4', 
     name: 'Hỏi', 
     type: 'Question Mark', 
     word: 'mả', 
     en: 'Tomb', 
-    path: 'M 10,18 Q 60,44 110,20', 
+    path: 'M 10,20 Q 60,46 110,18', 
     color: '#d97706', 
     bg: 'hover:border-amber-400',
     mechanic: 'Dip deep into low pitch, then scoop upward with a questioning curve: "Reaaally?".'
   },
   { 
-    id: 'nga',   
+    id: 'nga',    
     num: '5', 
     name: 'Ngã', 
-    type: 'Wave', 
+    type: 'Question Mark', 
     word: 'mã', 
     en: 'Horse', 
-    path: 'M 10,28 L 50,32 M 70,24 L 110,10', 
+    path: 'M 10,20 Q 60,46 110,18', 
     color: '#8b5cf6', 
     bg: 'hover:border-purple-400',
-    mechanic: 'High rising pitch broken midway by a brief throat stop before rising: "Uh-oh!".'
+    mechanic: 'In Southern accent, it is the same as Tone 4: dip down and scoop upward with a questioning curve: "Reaaally?".'
   },
   { 
     id: 'nang',  
@@ -488,7 +488,7 @@ const TONES = [
       sac:   'Tone 2 (Up)', 
       huyen: 'Tone 3 (Down)', 
       hoi:   'Tone 4 (Question Mark)', 
-      nga:   'Tone 5 (Wave)', 
+      nga:   'Tone 5 (Question Mark)', 
       nang:  'Tone 6 (Dot)' 
     };
     
@@ -535,7 +535,7 @@ const TONES = [
         sac:   'Up',
         huyen: 'Down',
         hoi:   'Question Mark',
-        nga:   'Wave',
+        nga:   'Question Mark',
         nang:  'Dot'
       };
 
@@ -555,15 +555,14 @@ const TONES = [
         }
       });
 
-      // Xử lý riêng đồ thị và mô tả cho Tone 5 (Ngã - giữ tên Ngã nhưng đồ thị giống Hỏi) và Tone 6 (Nặng) ở miền Nam
+      // Xử lý riêng đồ thị và mô tả cho Tone 5 (Ngã) và Tone 6 (Nặng) ở miền Nam
       const ngaGraph = document.querySelector('#svg-graph-nga .tone-path');
       const ngaMechanic = document.getElementById('tone-mechanic-nga');
-
       const nangMechanic = document.getElementById('tone-mechanic-nang');
 
       if (d === 'south') {
-        if (ngaGraph) ngaGraph.setAttribute('d', 'M 10,18 Q 60,44 110,20'); // Đồ thị dạng dấu Hỏi
-        if (ngaMechanic) ngaMechanic.innerText = 'Dip deep into low pitch, then scoop upward with a questioning curve: "Reaaally?".';
+        if (ngaGraph) ngaGraph.setAttribute('d', 'M 10,20 Q 60,46 110,18'); // Đồ thị dạng dấu hỏi
+        if (ngaMechanic) ngaMechanic.innerText = 'In Southern accent, Tone 5 (Ngã) merges with Tone 4, sounding like a questioning curve: "Reaaally?".';
 
         if (nangMechanic) nangMechanic.innerText = 'Drop pitch immediately to the bottom and cut airflow dead short, but held slightly longer than in Northern accent.';
       } else {
@@ -771,6 +770,7 @@ const TONES = [
     const successMessage = document.getElementById('successMessage');
     const btnCloseSuccess = document.getElementById('btnCloseSuccess');
 
+    openTriggers.txt = ''; // safe
     openTriggers.forEach(btn => {
       if (btn) {
         btn.addEventListener('click', () => {
@@ -782,10 +782,10 @@ const TONES = [
       }
     });
 
-    const hideModal = () => modal.classList.add('hidden');
-    if (closeModalBtn) closeModalBtn.addEventListener('click', hideModal);
-    if (btnCloseSuccess) closeModalBtn.addEventListener('click', hideModal);
-    modal.addEventListener('click', (e) => { if (e.target === modal) hideModal(); });
+    const hideModalSafe = () => modal.classList.add('hidden');
+    if (closeModalBtn) closeModalBtn.addEventListener('click', hideModalSafe);
+    if (btnCloseSuccess) closeModalBtn.addEventListener('click', hideModalSafe);
+    modal.addEventListener('click', (e) => { if (e.target === modal) hideModalSafe(); });
 
     consultForm.addEventListener('submit', (e) => {
       e.preventDefault();
