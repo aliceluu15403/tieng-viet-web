@@ -1,14 +1,13 @@
 ---
-// src/pages/exercise.astro - Dynamic Interactive Exercise Room
+// src/pages/conversation.astro - Dynamic Interactive Exercise Room
 import '../styles/global.css';
-import { exerciseDatabase } from '../data/exerciseDatabase.js';
 ---
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Interactive Exercise | Havie Learn Vietnamese</title>
+  <title>Conversations | Havie</title>
   <meta name="description" content="Interactive visual roleplay exercise." />
 
   <!-- FAVICON -->
@@ -112,8 +111,77 @@ import { exerciseDatabase } from '../data/exerciseDatabase.js';
     <p>© 2026 Learn Vietnamese with Hang</p>
   </footer>
 
-  <!-- SCRIPT LOGIC -->
-  <script define:vars={{ exerciseDatabase }}>
+  <!-- SCRIPT LOGIC TRỰC TIẾP -->
+  <script>
+    // Nhúng trực tiếp cơ sở dữ liệu bài tập tại đây để loại bỏ mọi lỗi import module SSR
+    const exerciseDatabase = {
+      "FCS01": {
+        topic: "SOUTHERN FOOD & RESTAURANT CONVERSATION",
+        title: "Bài tập: Gọi món tại quán ăn (Miền Nam)",
+        getStep: function(state) {
+          if (state.step === 0) {
+            return {
+              npc: "Quán em có phở với cơm, anh muốn ăn gì?",
+              choices: [
+                { text: "Cho anh phở bò", main: "phở bò", type: "pho" },
+                { text: "Cho anh phở gà", main: "phở gà", type: "pho" },
+                { text: "Cho anh cơm bò", main: "cơm bò", type: "com" },
+                { text: "Cho anh cơm gà", main: "cơm gà", type: "com" }
+              ]
+            };
+          } else if (state.step === 1) {
+            if (state.dishType === "pho") {
+              return {
+                npc: "Anh có ăn hành lá không?",
+                choices: [
+                  { text: "Có", detail: "có hành" },
+                  { text: "Không", detail: "không hành" }
+                ]
+              };
+            } else {
+              return {
+                npc: "Anh có ăn ớt không?",
+                choices: [
+                  { text: "Có", detail: "có ớt" },
+                  { text: "Không", detail: "không ớt" }
+                ]
+              };
+            }
+          } else if (state.step === 2) {
+            return {
+              npc: "Anh có muốn uống gì không?",
+              choices: [
+                { text: "Cho anh ly coca", drink: "coca" },
+                { text: "Cho anh ly trà đá", drink: "trà đá" },
+                { text: "Không, anh không uống gì thêm", drink: "không uống gì" }
+              ]
+            };
+          } else if (state.step === 3) {
+            let summary = `Dạ vậy mình gọi ${state.selectedMain}`;
+            if (state.selectedDetail) summary += `, ${state.selectedDetail}`;
+            if (state.selectedDrink) summary += ` và ${state.selectedDrink}`;
+            summary += " nha.";
+
+            return {
+              npc: summary,
+              isConfirm: true
+            };
+          } else if (state.step === 4) {
+            return {
+              npc: "Tổng cộng của mình là 60k.",
+              isPayment: true,
+              choices: [
+                { text: "Đưa tờ 60k (Đúng tiền)", amount: 60 },
+                { text: "Đưa tờ 100k", amount: 100 },
+                { text: "Đưa tờ 200k", amount: 200 }
+              ]
+            };
+          }
+          return null;
+        }
+      }
+    };
+
     const urlParams = new URLSearchParams(window.location.search);
     const lessonCode = urlParams.get('code') || 'FCS01';
 

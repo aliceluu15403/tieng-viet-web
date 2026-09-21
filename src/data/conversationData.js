@@ -1,5 +1,5 @@
-// src/data/exerciseData.js
-export const exerciseDatabase = {
+// src/data/conversationData.js
+export const conversationDatabase = {
   "FCS01": {
     topic: "SOUTHERN FOOD & RESTAURANT CONVERSATION",
     title: "Bài tập: Gọi món tại quán ăn (Miền Nam)",
@@ -64,6 +64,5 @@ export const exerciseDatabase = {
       }
       return null;
     }
-  },
-
-  
+  }
+};
