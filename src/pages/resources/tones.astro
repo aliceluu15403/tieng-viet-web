@@ -1,103 +1,25 @@
 ---
-// src/pages/resources/tones.astro - Havie Vietnamese Tones Studio
-const TONES = [
-  { 
-    id: 'ngang', 
-    num: '1', 
-    name: 'Ngang', 
-    type: 'Flat', 
-    word: 'ma', 
-    en: 'Ghost', 
-    path: 'M 10,25 L 110,25', 
-    color: '#10b981', 
-    bg: 'hover:border-emerald-400',
-    mechanic: 'Keep pitch steady at mid level. Relax your jaw and vocal cords, like humming.'
-  },
-  { 
-    id: 'sac',    
-    num: '2', 
-    name: 'Sắc', 
-    type: 'Up', 
-    word: 'má', 
-    en: 'Mother', 
-    path: 'M 10,38 L 110,12', 
-    color: '#e52b27', 
-    bg: 'hover:border-red-400',
-    mechanic: 'Start at mid pitch and shoot sharply upward. Tighten cords quickly, like asking: "WHAT?!".'
-  },
-  { 
-    id: 'huyen', 
-    num: '3', 
-    name: 'Huyền', 
-    type: 'Down', 
-    word: 'mà', 
-    en: 'But', 
-    path: 'M 10,15 L 110,38', 
-    color: '#3b82f6', 
-    bg: 'hover:border-blue-400',
-    mechanic: 'Start at lower-mid pitch and glide down gently. Drop chin like a relaxed sigh: "Ahhh".'
-  },
-  { 
-    id: 'hoi',    
-    num: '4', 
-    name: 'Hỏi', 
-    type: 'Question Mark', 
-    word: 'mả', 
-    en: 'Tomb', 
-    path: 'M 10,20 Q 60,46 110,18', 
-    color: '#d97706', 
-    bg: 'hover:border-amber-400',
-    mechanic: 'Dip deep into low pitch, then scoop upward with a questioning curve: "Reaaally?".'
-  },
-  { 
-    id: 'nga',    
-    num: '5', 
-    name: 'Ngã', 
-    type: 'Question Mark', 
-    word: 'mã', 
-    en: 'Horse', 
-    path: 'M 10,20 Q 60,46 110,18', 
-    color: '#8b5cf6', 
-    bg: 'hover:border-purple-400',
-    mechanic: 'In Southern accent, it is the same as Tone 4: dip down and scoop upward with a questioning curve: "Reaaally?".'
-  },
-  { 
-    id: 'nang',  
-    num: '6', 
-    name: 'Nặng', 
-    type: 'Dot', 
-    word: 'mạ', 
-    en: 'Seedling', 
-    path: 'M 10,18 L 85,38', 
-    dot: true, 
-    color: '#ea580c', 
-    bg: 'hover:border-orange-400',
-    mechanic: 'Drop pitch immediately to the bottom and cut airflow dead short, like a blunt "Yup!".'
-  },
-];
+// src/pages/resources/tones.astro - Havie Tones Studio (Fully Synced Dynamic Dialect Switcher & Accurate Audio)
+import '../../styles/global.css';
 ---
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vietnamese Tones Studio — Havie</title>
+  <title>Vietnamese Tones | Havie</title>
   <meta name="description" content="Master 6 Vietnamese tones with native audio, vocal mechanics, dialect switcher, and interactive ear workout." />
 
-  <!-- FAVICON & MOBILE TOUCH ICONS -->
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <!-- CANONICAL URL -->
+  <link rel="canonical" href="https://havielearn.com/resources/tones" />
+
+  <!-- FAVICON -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- Tailwind CSS CDN -->
-  <script is:inline src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Google Fonts: Inter -->
+  <!-- Google Fonts: DM Sans & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -108,11 +30,11 @@ const TONES = [
     }
 
     html {
-      scroll-padding-top: 85px;
+      scroll-padding-top: 100px;
     }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: 'DM Sans', sans-serif;
       background-color: var(--cream);
       color: var(--navy);
     }
@@ -122,7 +44,7 @@ const TONES = [
     }
 
     .font-tone {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: 'DM Sans', sans-serif;
     }
 
     .curved-underline {
@@ -141,7 +63,7 @@ const TONES = [
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col antialiased selection:bg-red-600 selection:text-white relative overflow-x-hidden">
+<body class="selection:bg-red-600 selection:text-white min-h-screen flex flex-col antialiased relative overflow-x-hidden">
 
   <!-- BACKGROUND GLOW -->
   <div class="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
@@ -153,10 +75,10 @@ const TONES = [
   <header class="sticky top-0 z-40 bg-[#fffaf5]/90 backdrop-blur-md border-b border-stone-200/80 h-20">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 h-full flex items-center justify-between">
       
-      <!-- LOGO -->
-      <a href="/" class="group flex flex-col select-none text-left">
-        <div class="h-6 sm:h-7 flex items-center">
-          <svg class="h-6 sm:h-7 w-auto overflow-visible" viewBox="0 0 175 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- LOGO BÊN TRÁI -->
+      <a href="/" class="group flex flex-col select-none text-left shrink-0">
+        <div class="h-7 sm:h-8 flex items-center">
+          <svg class="h-7 sm:h-8 w-auto overflow-visible" viewBox="0 0 175 30" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 2H6V12H18V2H24V28H18V17H6V28H0V2Z" fill="#dc2626"/>
             <path d="M41 2L52 28H45.5L43.2 22H33.8L31.5 28H25L36 2H41ZM38.5 8.5L35.2 17.5H41.8L38.5 8.5Z" fill="#dc2626"/>
             <path d="M53 2H59.5L67 21L74.5 2H81L70.5 28H63.5L53 2Z" fill="#dc2626"/>
@@ -164,36 +86,37 @@ const TONES = [
             <path d="M98 2H117V7.5H104V12H115V17H104V22.5H117V28H98V2Z" fill="#dc2626"/>
           </svg>
         </div>
-        <span class="text-[9px] sm:text-[9.5px] font-bold tracking-[0.2em] sm:tracking-[0.24em] text-stone-400 uppercase mt-1 pl-0.5 leading-none">
+        <span class="text-[9.5px] sm:text-[10px] font-bold tracking-[0.22em] sm:tracking-[0.26em] text-stone-400 uppercase mt-1 pl-0.5 leading-none">
           Learn Vietnamese Online
         </span>
       </a>
 
-      <!-- Desktop Menu Links -->
-      <nav class="hidden md:flex items-center space-x-6 lg:space-x-7 text-sm font-semibold text-slate-700">
+      <!-- CỤM MENU CHỮ Ở GIỮA -->
+      <nav class="hidden md:flex items-center space-x-7 lg:space-x-8 text-base font-bold text-slate-800">
         <a href="/#about" class="hover:text-red-600 transition">About Me</a>
         <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
-        <a href="/#reviews" class="hover:text-red-600 transition">Student Stories</a>
-        <a href="/resources" class="text-red-600 font-bold transition">Resources</a>
+        <a href="/resources" class="text-red-600 font-brand font-extrabold transition">Resources</a>
+        <a href="/student" class="hover:text-red-600 transition">Student Portal</a>
         <a href="/test" class="hover:text-red-600 transition">Level Test</a>
-        <a href="/#faq" class="hover:text-red-600 transition">FAQ</a>
       </nav>
 
-      <!-- Desktop CTA & Mobile Toggle Button -->
-      <div class="flex items-center gap-3">
+      <!-- NÚT BOOK -->
+      <div class="hidden md:flex items-center pl-6 shrink-0">
         <button
           type="button"
-          class="open-modal-trigger hidden sm:inline-flex items-center justify-center px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-bold text-white bg-red-600 hover:bg-red-700 rounded-xl shadow-lg shadow-red-600/25 transition hover:-translate-y-0.5 cursor-pointer"
+          class="open-modal-trigger inline-flex items-center justify-center px-5 py-3 text-sm font-extrabold text-white bg-red-600 hover:bg-red-700 rounded-xl shadow-lg shadow-red-600/25 transition hover:-translate-y-0.5 cursor-pointer"
         >
           Book 25-Min Trial Lesson →
         </button>
+      </div>
 
-        <!-- Mobile Menu Hamburger Button -->
+      <!-- MOBILE TOGGLE BUTTON -->
+      <div class="flex items-center md:hidden">
         <button 
           id="mobileMenuBtn" 
           type="button" 
           aria-label="Toggle Menu"
-          class="md:hidden w-10 h-10 rounded-xl bg-stone-100 hover:bg-stone-200 text-slate-800 flex items-center justify-center font-bold transition cursor-pointer"
+          class="w-10 h-10 rounded-xl bg-stone-100 hover:bg-stone-200 text-slate-800 flex items-center justify-center font-bold transition cursor-pointer"
         >
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -204,17 +127,16 @@ const TONES = [
     </div>
 
     <!-- Mobile Dropdown Menu -->
-    <div id="mobileMenu" class="hidden md:hidden absolute top-20 left-0 w-full bg-[#fffaf5] border-b border-stone-200 shadow-xl px-6 py-5 space-y-4 font-semibold text-slate-700 text-sm">
+    <div id="mobileMenu" class="hidden md:hidden absolute top-20 left-0 w-full bg-[#fffaf5] border-b border-stone-200 shadow-xl px-6 py-5 space-y-4 font-semibold text-slate-800 text-base">
       <a href="/#about" class="mobile-link block hover:text-red-600 transition">About Me</a>
       <a href="/#curriculum" class="mobile-link block hover:text-red-600 transition">Learning Tracks</a>
-      <a href="/#reviews" class="mobile-link block hover:text-red-600 transition">Student Stories</a>
       <a href="/resources" class="mobile-link block text-red-600 font-bold">Resources</a>
+      <a href="/student" class="mobile-link block hover:text-red-600 transition">Student Portal</a>
       <a href="/test" class="mobile-link block hover:text-red-600 transition">Level Test</a>
-      <a href="/#faq" class="mobile-link block hover:text-red-600 transition">FAQ</a>
       <div class="pt-3 border-t border-stone-200">
         <button
           type="button"
-          class="open-modal-trigger w-full py-3 text-xs font-bold text-white bg-red-600 rounded-xl text-center shadow-md cursor-pointer"
+          class="open-modal-trigger w-full py-3.5 text-sm font-bold text-white bg-red-600 rounded-xl text-center shadow-md cursor-pointer"
         >
           Book 25-Min Trial Lesson →
         </button>
@@ -231,10 +153,10 @@ const TONES = [
           <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest bg-red-50 px-4 py-1.5 rounded-full border border-red-200 inline-block shadow-2xs">
             Tones Studio
           </span>
-          <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight font-brand whitespace-nowrap pt-1">
+          <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight font-brand pt-1">
             Master the 6 <span class="curved-underline text-red-600">Vietnamese Tones.</span>
           </h1>
-          <p class="text-stone-600 text-sm sm:text-base leading-relaxed pt-2">
+          <p class="text-stone-600 text-base sm:text-lg leading-relaxed pt-2">
             Select your accent first, click any tone card to hear native pronunciation, and <a href="#workout" class="text-red-600 font-bold underline underline-offset-4 decoration-red-300 hover:decoration-red-600 transition cursor-pointer">practice</a> ↓.
           </p>
         </div>
@@ -261,56 +183,7 @@ const TONES = [
 
     <!-- 6 TONE CARDS GRID -->
     <section class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pb-16">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {TONES.map(t => (
-          <div 
-            onclick={`playTone('${t.id}')`}
-            class={`group bg-white rounded-3xl p-6 lg:p-7 border border-stone-200/90 ${t.bg} shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between relative select-none`}
-          >
-            <div class="relative z-10">
-              <!-- Top Info -->
-              <div class="flex items-center justify-between pb-4 border-b border-stone-100">
-                <span class="font-mono font-extrabold text-xs text-stone-400 uppercase tracking-widest">TONE {t.num}</span>
-                <span id={`tone-badge-${t.id}`} class="font-bold text-xs text-slate-800 bg-stone-100/90 px-3 py-1 rounded-full border border-stone-200/60">
-                  {t.name} • {t.type}
-                </span>
-              </div>
-
-              <!-- Main Word & SVG Graph -->
-              <div class="py-5 flex items-center justify-between gap-4">
-                <div>
-                  <span class="text-4xl sm:text-5xl font-black font-tone text-slate-900 group-hover:text-red-600 transition-colors leading-none block">
-                    {t.word}
-                  </span>
-                  <span id={`tone-en-${t.id}`} class="text-xs sm:text-sm font-bold text-stone-400 mt-1.5 block">
-                    {t.en}
-                  </span>
-                </div>
-
-                <div class="w-24 h-12 flex items-center justify-center bg-stone-50/80 rounded-2xl p-2 border border-stone-100">
-                  <svg id={`svg-graph-${t.id}`} class="w-full h-full" viewBox="0 0 120 50">
-                    <path class="tone-path" d={t.path} fill="none" stroke={t.color} stroke-width="5" stroke-linecap="round" />
-                    {t.dot && <circle class="tone-dot" cx="102" cy="38" r="5" fill={t.color} />}
-                  </svg>
-                </div>
-              </div>
-
-              <!-- Vocal Mechanic Tip -->
-              <p id={`tone-mechanic-${t.id}`} class="text-xs sm:text-sm text-stone-600 leading-relaxed pt-1">
-                {t.mechanic}
-              </p>
-            </div>
-
-            <!-- Footer Audio Trigger -->
-            <div class="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between text-xs font-bold text-stone-400 group-hover:text-red-600 transition-colors relative z-10">
-              <span>Click to listen & repeat</span>
-              <div class="w-8 h-8 rounded-full bg-stone-100 group-hover:bg-red-600 group-hover:text-white flex items-center justify-center transition-colors text-xs shadow-2xs">
-                🔊
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+      <div id="tonesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </section>
 
     <!-- PRACTICE WORKOUT SECTION -->
@@ -320,7 +193,7 @@ const TONES = [
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-stone-100">
           <div>
             <span id="practiceSubtitle" class="text-xs font-extrabold text-red-600 uppercase tracking-widest block mb-1">Practice • 6 Questions</span>
-            <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Which Tone Did You Hear?</h2>
+            <h2 class="text-2xl sm:text-3xl font-black text-slate-900 font-brand">Which Tone Did You Hear?</h2>
             <p class="text-stone-500 text-xs sm:text-sm mt-1">Play the audio and test your ear by selecting the exact tone match below.</p>
           </div>
           <div class="flex items-center gap-4 bg-stone-50 px-5 py-2.5 rounded-2xl border border-stone-200 shrink-0 text-sm font-bold self-start sm:self-auto">
@@ -360,7 +233,7 @@ const TONES = [
         <!-- SUMMARY -->
         <div id="quizSummaryArea" class="hidden py-12 text-center space-y-4">
           <div class="w-16 h-16 rounded-3xl bg-amber-100 text-amber-700 flex items-center justify-center text-3xl mx-auto shadow-xs">🏆</div>
-          <h3 class="text-3xl font-black text-slate-900">Workout Completed!</h3>
+          <h3 class="text-3xl font-black text-slate-900 font-brand">Workout Completed!</h3>
           <p id="quizFinalResultText" class="text-stone-600 text-sm sm:text-base max-w-md mx-auto leading-relaxed"></p>
           <div class="pt-4 flex justify-center gap-4">
             <button type="button" class="open-modal-trigger px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-xs sm:text-sm shadow-md transition cursor-pointer">Book Trial Lesson →</button>
@@ -374,7 +247,7 @@ const TONES = [
       <div class="mt-10 rounded-3xl bg-gradient-to-r from-red-50 via-white to-amber-50 border border-red-200/80 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
         <div class="space-y-1 text-center md:text-left">
           <span class="text-xs font-bold uppercase tracking-wider text-red-600">Personalized Coaching</span>
-          <h3 class="text-xl font-extrabold text-slate-900">Want to fix your pronunciation with Hang Luu?</h3>
+          <h3 class="text-xl font-extrabold text-slate-900 font-brand">Want to fix your pronunciation with Hang Luu?</h3>
           <p class="text-xs sm:text-sm text-stone-600">Let's figure out where you're getting stuck and practice together in a 25-minute trial session.</p>
         </div>
         <button 
@@ -389,18 +262,18 @@ const TONES = [
   </main>
 
   <!-- FOOTER -->
-  <footer class="bg-[#fffaf5] text-stone-600 py-8 text-xs border-t border-stone-200/80">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+  <footer class="bg-[#fffaf5] text-stone-600 py-10 border-t border-stone-200/80">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
       <div class="flex items-center justify-center gap-2.5">
-        <span class="font-brand font-black text-slate-900 tracking-widest text-sm">HAVIE.</span>
-        <span class="text-stone-400">•</span>
-        <span class="font-medium">Learn Vietnamese with Hang</span>
+        <span class="font-brand font-black text-slate-900 tracking-wider text-base sm:text-lg">HAVIE</span>
+        <span class="text-stone-300">•</span>
+        <span class="text-xs sm:text-sm font-medium text-stone-500">Learn Vietnamese with Hang</span>
       </div>
-      <div class="flex items-center gap-4 sm:gap-6 font-semibold text-stone-700 flex-wrap justify-center">
+      <div class="flex items-center gap-5 sm:gap-7 font-semibold text-xs sm:text-sm text-stone-700 flex-wrap justify-center">
         <a href="/#about" class="hover:text-red-600 transition">About Me</a>
         <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
-        <a href="/#reviews" class="hover:text-red-600 transition">Student Stories</a>
-        <a href="/resources" class="text-red-600 transition font-bold">Resources</a>
+        <a href="/resources" class="hover:text-red-600 transition">Resources</a>
+        <a href="/student" class="hover:text-red-600 transition">Student Portal</a>
         <a href="/test" class="hover:text-red-600 transition">Level Test</a>
         <button type="button" class="open-modal-trigger text-red-600 font-bold hover:underline cursor-pointer">Book Trial</button>
       </div>
@@ -409,58 +282,58 @@ const TONES = [
 
   <!-- CONSULTATION / BOOKING MODAL -->
   <div id="consultModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-stone-200 space-y-5 text-left">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-stone-200 space-y-6 text-left">
       
-      <div class="flex items-center justify-between border-b border-stone-100 pb-3">
+      <div class="flex items-center justify-between border-b border-stone-100 pb-4">
         <div>
-          <span class="text-[10px] font-black text-red-600 uppercase tracking-widest bg-red-50 px-2.5 py-0.5 rounded border border-red-200">1-on-1 Coaching</span>
-          <h3 class="text-xl font-black text-slate-900 font-brand mt-1">Book 25-Min Trial Lesson</h3>
+          <span class="text-xs sm:text-sm font-black text-red-600 uppercase tracking-widest bg-red-50 px-3.5 py-1.5 rounded-lg border border-red-200 inline-block font-brand">1-ON-1 LESSONS</span>
+          <h3 class="text-2xl sm:text-3xl font-black text-slate-900 font-brand mt-1.5">Book 25-Min Trial Lesson</h3>
         </div>
-        <button id="closeModalBtn" type="button" class="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 font-bold flex items-center justify-center cursor-pointer">
+        <button id="closeModalBtn" type="button" class="w-10 h-10 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 font-bold flex items-center justify-center text-lg cursor-pointer">
           ✕
         </button>
       </div>
 
-      <form id="consultForm" class="space-y-3.5 text-xs">
+      <form id="consultForm" class="space-y-4 text-sm">
         <div>
-          <label class="block font-bold text-slate-700 mb-1">Full Name / Tên của bạn *</label>
-          <input type="text" id="cName" required placeholder="e.g. Alex Smith" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50" />
+          <label class="block font-bold text-slate-800 mb-1.5 text-base">Full Name / Tên của bạn *</label>
+          <input type="text" id="cName" required placeholder="e.g. Alex Smith" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
         </div>
 
-        <div class="grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block font-bold text-slate-700 mb-1">Country / Quốc gia *</label>
-            <input type="text" id="cCountry" required placeholder="e.g. Germany, USA" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50" />
+            <label class="block font-bold text-slate-800 mb-1.5 text-base">Country / Quốc gia *</label>
+            <input type="text" id="cCountry" required placeholder="e.g. Germany, USA" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
           </div>
           <div>
-            <label class="block font-bold text-slate-700 mb-1">Phone / SĐT</label>
-            <input type="tel" id="cPhone" placeholder="e.g. +49..." class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50" />
+            <label class="block font-bold text-slate-800 mb-1.5 text-base">Phone / SĐT</label>
+            <input type="tel" id="cPhone" placeholder="e.g. +49..." class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
           </div>
         </div>
 
         <div>
-          <label class="block font-bold text-slate-700 mb-1">Email Address *</label>
-          <input type="email" id="cEmail" required placeholder="name@example.com" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50" />
+          <label class="block font-bold text-slate-800 mb-1.5 text-base">Email Address *</label>
+          <input type="email" id="cEmail" required placeholder="name@example.com" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
         </div>
 
         <div>
-          <label class="block font-bold text-slate-700 mb-1">Learning Goals / Mục tiêu học tập *</label>
-          <textarea id="cGoals" rows="3" required placeholder="Current level, target dialect (Hanoi/Saigon), goals..." class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50 resize-none"></textarea>
+          <label class="block font-bold text-slate-800 mb-1.5 text-base">Learning Goals / Mục tiêu học tập *</label>
+          <textarea id="cGoals" rows="3" required placeholder="Current level, target dialect (Hanoi/Saigon), goals..." class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 resize-none text-base"></textarea>
         </div>
 
         <button
           type="submit"
-          class="w-full py-3.5 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl text-xs sm:text-sm shadow-md transition cursor-pointer mt-2"
+          class="w-full py-4 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl text-base shadow-md transition cursor-pointer mt-3"
         >
           Submit Request to Hang →
         </button>
       </form>
 
       <div id="successMessage" class="hidden text-center py-6 space-y-3">
-        <div class="text-3xl">🎉</div>
-        <h4 class="font-black text-slate-900 text-base font-brand">Request Sent Successfully!</h4>
-        <p class="text-stone-600 text-xs leading-relaxed">Thank you! Hang has received your details and goals. She will reach out via email within 24 hours.</p>
-        <button id="btnCloseSuccess" type="button" class="px-6 py-2.5 bg-slate-900 text-white font-bold rounded-xl text-xs cursor-pointer">
+        <div class="text-4xl">🎉</div>
+        <h4 class="font-black text-slate-900 text-lg font-brand">Request Sent Successfully!</h4>
+        <p class="text-stone-600 text-sm leading-relaxed">Thank you! Hang has received your details and goals. She will reach out via email within 24 hours.</p>
+        <button id="btnCloseSuccess" type="button" class="px-6 py-3 bg-slate-900 text-white font-bold rounded-xl text-sm cursor-pointer">
           Close Window
         </button>
       </div>
@@ -483,15 +356,26 @@ const TONES = [
       });
     }
 
-    const TONE_NAMES = { 
-      ngang: 'Tone 1 (Flat)', 
-      sac:   'Tone 2 (Up)', 
-      huyen: 'Tone 3 (Down)', 
-      hoi:   'Tone 4 (Question Mark)', 
-      nga:   'Tone 5 (Question Mark)', 
-      nang:  'Tone 6 (Dot)' 
+    // ĐỊNH NGHĨA DỮ LIỆU ĐỘC LẬP CHO 2 MIỀN
+    const TONES_DATA = {
+      north: [
+        { id: 'ngang', num: '1', name: 'Ngang', type: 'Flat', word: 'ma', en: 'Ghost', path: 'M 10,25 L 110,25', color: '#10b981', bg: 'hover:border-emerald-400', mechanic: 'Keep pitch steady at mid level. Relax your jaw and vocal cords, like humming.' },
+        { id: 'sac', num: '2', name: 'Sắc', type: 'Up', word: 'má', en: 'Mother', path: 'M 10,38 L 110,12', color: '#e52b27', bg: 'hover:border-red-400', mechanic: 'Start at mid pitch and shoot sharply upward. Tighten cords quickly, like asking: "WHAT?!".' },
+        { id: 'huyen', num: '3', name: 'Huyền', type: 'Down', word: 'mà', en: 'But', path: 'M 10,15 L 110,38', color: '#3b82f6', bg: 'hover:border-blue-400', mechanic: 'Start at lower-mid pitch and glide down gently. Drop chin like a relaxed sigh: "Ahhh".' },
+        { id: 'hoi', num: '4', name: 'Hỏi', type: 'Question Mark', word: 'mả', en: 'Tomb', path: 'M 10,20 Q 60,46 110,18', color: '#d97706', bg: 'hover:border-amber-400', mechanic: 'Dip deep into low pitch, then scoop upward with a questioning curve: "Reaaally?".' },
+        { id: 'nga', num: '5', name: 'Ngã', type: 'Question Mark', word: 'mã', en: 'Horse', path: 'M 10,28 L 50,32 M 70,24 L 110,10', color: '#8b5cf6', bg: 'hover:border-purple-400', mechanic: 'High rising pitch broken midway by a brief throat stop before rising: "Uh-oh!".' },
+        { id: 'nang', num: '6', name: 'Nặng', type: 'Dot', word: 'mạ', en: 'Seedling', path: 'M 10,18 L 85,38', dot: true, color: '#ea580c', bg: 'hover:border-orange-400', mechanic: 'Drop pitch immediately to the bottom and cut airflow dead short, like a blunt "Yup!".' }
+      ],
+      south: [
+        { id: 'ngang', num: '1', name: 'Ngang', type: 'Flat', word: 'ma', en: 'Ghost', path: 'M 10,25 L 110,25', color: '#10b981', bg: 'hover:border-emerald-400', mechanic: 'Keep pitch steady at mid level. Relax your jaw and vocal cords, like humming.' },
+        { id: 'sac', num: '2', name: 'Sắc', type: 'Up', word: 'má', en: 'Mother', path: 'M 10,38 L 110,12', color: '#e52b27', bg: 'hover:border-red-400', mechanic: 'Start at mid pitch and shoot sharply upward. Tighten cords quickly, like asking: "WHAT?!".' },
+        { id: 'huyen', num: '3', name: 'Huyền', type: 'Down', word: 'mà', en: 'But', path: 'M 10,15 L 110,38', color: '#3b82f6', bg: 'hover:border-blue-400', mechanic: 'Start at lower-mid pitch and glide down gently. Drop chin like a relaxed sigh: "Ahhh".' },
+        { id: 'hoi', num: '4', name: 'Hỏi', type: 'Question Mark', word: 'mả', en: 'Tomb', path: 'M 10,20 Q 60,46 110,18', color: '#d97706', bg: 'hover:border-amber-400', mechanic: 'Dip deep into low pitch, then scoop upward with a questioning curve: "Reaaally?".' },
+        { id: 'nga', num: '5', name: 'Ngã', type: 'Question Mark', word: 'mã', en: 'Horse', path: 'M 10,20 Q 60,46 110,18', color: '#8b5cf6', bg: 'hover:border-purple-400', mechanic: 'In Southern accent, it is the same as Tone 4: dip down and scoop upward with a questioning curve: "Reaaally?".' },
+        { id: 'nang', num: '6', name: 'Nặng', type: 'Dot', word: 'mạ', en: 'Seedling', path: 'M 10,18 L 85,38', dot: true, color: '#ea580c', bg: 'hover:border-orange-400', mechanic: 'Drop pitch immediately to the bottom and cut airflow dead short, but held slightly longer than in Northern accent.' }
+      ]
     };
-    
+
     // Miền Bắc: 6 câu
     const QUIZ_ROUNDS_NORTH = [
       { correctIndex: 2, choices: [{ word: 'ca', tone: 'ngang' }, { word: 'cà', tone: 'huyen' }, { word: 'cá', tone: 'sac' }, { word: 'cả', tone: 'hoi' }] },
@@ -502,7 +386,7 @@ const TONES = [
       { correctIndex: 1, choices: [{ word: 'ga', tone: 'ngang' }, { word: 'gà', tone: 'huyen' }, { word: 'gá', tone: 'sac' }, { word: 'gả', tone: 'hoi' }] }
     ];
 
-    // Miền Nam: 5 câu (bỏ câu sữa)
+    // Miền Nam: 5 câu
     const QUIZ_ROUNDS_SOUTH = [
       { correctIndex: 2, choices: [{ word: 'ca', tone: 'ngang' }, { word: 'cà', tone: 'huyen' }, { word: 'cá', tone: 'sac' }, { word: 'cả', tone: 'hoi' }] },
       { correctIndex: 3, choices: [{ word: 'phơ', tone: 'ngang' }, { word: 'phờ', tone: 'huyen' }, { word: 'phớ', tone: 'sac' }, { word: 'phở', tone: 'hoi' }] },
@@ -520,6 +404,55 @@ const TONES = [
       return currentDialect === 'north' ? QUIZ_ROUNDS_NORTH : QUIZ_ROUNDS_SOUTH;
     }
 
+    // RENDER LẠI LƯỚI CARD TÙY THEO DIALECT
+    function renderTonesGrid() {
+      const grid = document.getElementById('tonesGrid');
+      const data = TONES_DATA[currentDialect];
+      grid.innerHTML = '';
+
+      data.forEach(t => {
+        const card = document.createElement('div');
+        card.onclick = () => playTone(t.id);
+        card.className = `group bg-white rounded-3xl p-6 lg:p-7 border border-stone-200/90 ${t.bg} shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between relative select-none`;
+        card.innerHTML = `
+          <div class="relative z-10">
+            <div class="flex items-center justify-between pb-4 border-b border-stone-100">
+              <span class="font-mono font-extrabold text-xs text-stone-400 uppercase tracking-widest">TONE ${t.num}</span>
+              <span class="font-bold text-xs text-slate-800 bg-stone-100/90 px-3 py-1 rounded-full border border-stone-200/60">
+                ${t.name} • ${t.type}
+              </span>
+            </div>
+            <div class="py-5 flex items-center justify-between gap-4">
+              <div>
+                <span class="text-4xl sm:text-5xl font-black font-tone text-slate-900 group-hover:text-red-600 transition-colors leading-none block">
+                  ${t.word}
+                </span>
+                <span class="text-xs sm:text-sm font-bold text-stone-400 mt-1.5 block">
+                  ${t.en}
+                </span>
+              </div>
+              <div class="w-24 h-12 flex items-center justify-center bg-stone-50/80 rounded-2xl p-2 border border-stone-100">
+                <svg class="w-full h-full" viewBox="0 0 120 50">
+                  <path class="tone-path" d="${t.path}" fill="none" stroke="${t.color}" stroke-width="5" stroke-linecap="round" />
+                  ${t.dot ? `<circle class="tone-dot" cx="102" cy="38" r="5" fill="${t.color}" />` : ''}
+                </svg>
+              </div>
+            </div>
+            <p class="text-xs sm:text-sm text-stone-600 leading-relaxed pt-1">
+              ${t.mechanic}
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between text-xs font-bold text-stone-400 group-hover:text-red-600 transition-colors relative z-10">
+            <span>Click to listen & repeat</span>
+            <div class="w-8 h-8 rounded-full bg-stone-100 group-hover:bg-red-600 group-hover:text-white flex items-center justify-center transition-colors text-xs shadow-2xs">
+              🔊
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
     function setDialect(d) {
       currentDialect = d;
       currentRoundIndex = 0;
@@ -529,48 +462,7 @@ const TONES = [
       document.getElementById('btn-north').className = d === 'north' ? 'px-4 py-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs sm:text-sm transition shadow-xs cursor-pointer' : 'px-4 py-2.5 rounded-xl text-stone-500 hover:text-slate-900 font-bold text-xs sm:text-sm transition cursor-pointer';
       document.getElementById('btn-south').className = d === 'south' ? 'px-4 py-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs sm:text-sm transition shadow-xs cursor-pointer' : 'px-4 py-2.5 rounded-xl text-stone-500 hover:text-slate-900 font-bold text-xs sm:text-sm transition cursor-pointer';
 
-      // Cập nhật tên type (Flat, Up, Down...) cho tất cả các thẻ Tone
-      const typeBadges = {
-        ngang: 'Flat',
-        sac:   'Up',
-        huyen: 'Down',
-        hoi:   'Question Mark',
-        nga:   'Question Mark',
-        nang:  'Dot'
-      };
-
-      const toneNames = {
-        ngang: 'Ngang',
-        sac:   'Sắc',
-        huyen: 'Huyền',
-        hoi:   'Hỏi',
-        nga:   'Ngã',
-        nang:  'Nặng'
-      };
-
-      ['ngang', 'sac', 'huyen', 'hoi', 'nga', 'nang'].forEach(id => {
-        const badge = document.getElementById(`tone-badge-${id}`);
-        if (badge) {
-          badge.innerText = `${toneNames[id]} • ${typeBadges[id]}`;
-        }
-      });
-
-      // Xử lý riêng đồ thị và mô tả cho Tone 5 (Ngã) và Tone 6 (Nặng) ở miền Nam
-      const ngaGraph = document.querySelector('#svg-graph-nga .tone-path');
-      const ngaMechanic = document.getElementById('tone-mechanic-nga');
-      const nangMechanic = document.getElementById('tone-mechanic-nang');
-
-      if (d === 'south') {
-        if (ngaGraph) ngaGraph.setAttribute('d', 'M 10,20 Q 60,46 110,18'); // Đồ thị dạng dấu hỏi
-        if (ngaMechanic) ngaMechanic.innerText = 'In Southern accent, Tone 5 (Ngã) merges with Tone 4, sounding like a questioning curve: "Reaaally?".';
-
-        if (nangMechanic) nangMechanic.innerText = 'Drop pitch immediately to the bottom and cut airflow dead short, but held slightly longer than in Northern accent.';
-      } else {
-        if (ngaGraph) ngaGraph.setAttribute('d', 'M 10,28 L 50,32 M 70,24 L 110,10'); // Miền Bắc chuẩn (Wave)
-        if (ngaMechanic) ngaMechanic.innerText = 'High rising pitch broken midway by a brief throat stop before rising: "Uh-oh!".';
-
-        if (nangMechanic) nangMechanic.innerText = 'Drop pitch immediately to the bottom and cut airflow dead short, like a blunt "Yup!".';
-      }
+      renderTonesGrid();
 
       document.getElementById('quizSummaryArea').classList.add('hidden');
       document.getElementById('quizPlayArea').classList.remove('hidden');
@@ -583,32 +475,44 @@ const TONES = [
     const practiceNorthAudio = new Audio('/audio/tones/practice - north.m4a');
     const practiceSouthAudio = new Audio('/audio/tones/practice - south.m4a');
 
-    const cardTimestamps = {
+    // Mốc thời gian chuẩn riêng cho miền Bắc (đã tách riêng thanh Ngã và Hỏi)
+    const cardTimestampsNorth = {
       ngang: { start: 0.6, end: 1.4 },
       sac:   { start: 1.9, end: 2.7 },
-      huyen: { start: 2.9, end: 3.7 },
+      huyen: { start: 2.9, end: 3.9 },
       hoi:   { start: 4.6, end: 5.4 },
-      nga:   { start: 5.9, end: 6.7 },
+      nga:   { start: 5.9, end: 6.7 }, 
       nang:  { start: 7.2, end: 8.0 }
     };
 
-    // Mốc 6 câu miền Bắc (practice - north.m4a)
+    const cardTimestampsSouthNang = {
+      start: 4.9, end: 5.7 
+    };
+
+    const cardTimestampsSouth = {
+      ngang: { start: 0.6, end: 1.4 },
+      sac:   { start: 1.9, end: 2.7 },
+      huyen: { start: 2.9, end: 3.9 },
+      hoi:   { start: 4.6, end: 5.4 },
+      nga:   { start: 4.6, end: 5.4 }, 
+      nang:  cardTimestampsSouthNang
+    };
+
     const practiceNorthTimestamps = [
-      { start: 0.6, end: 1.2 }, // cá
-      { start: 2.1, end: 2.8 }, // sữa
-      { start: 3.6, end: 4.3 }, // phở
-      { start: 4.9, end: 5.5 }, // lạ
-      { start: 6.2, end: 6.9 }, // to
-      { start: 7.5, end: 8.2 }  // gà
+      { start: 0.6, end: 1.5 },
+      { start: 2.1, end: 3.1 },
+      { start: 3.6, end: 4.6 },
+      { start: 4.9, end: 5.5 },
+      { start: 6.2, end: 6.9 },
+      { start: 7.5, end: 8.2 }
     ];
 
-    // Mốc 5 câu miền Nam (practice - south.m4a)
     const practiceSouthTimestamps = [
-      { start: 0.9, end: 1.5 }, // cá
-      { start: 2.5, end: 3.1 }, // phở
-      { start: 3.9, end: 4.5 }, // lạ
-      { start: 5.1, end: 5.7 }, // to
-      { start: 6.1, end: 6.8 }  // gà
+      { start: 0.9, end: 1.5 },
+      { start: 2.5, end: 3.1 },
+      { start: 3.7, end: 4.5 },
+      { start: 4.9, end: 5.7 },
+      { start: 6.1, end: 6.8 }
     ];
 
     function playTone(toneKey) {
@@ -618,19 +522,19 @@ const TONES = [
       practiceSouthAudio.pause();
 
       let activeAudio = northAudio;
-      let range = cardTimestamps[toneKey];
+      let range;
 
-      if (currentDialect === 'north') {
-        if (toneKey === 'huyen') {
+      if (currentDialect === 'south') {
+        if (toneKey === 'nang') {
           activeAudio = southAudio;
-          range = { start: 2.9, end: 3.7 };
+          range = cardTimestampsSouthNang;
+        } else {
+          range = cardTimestampsSouth[toneKey];
         }
       } else {
-        if (toneKey === 'huyen' || toneKey === 'nang') {
-          activeAudio = southAudio;
-        }
+        range = cardTimestampsNorth[toneKey];
       }
-      
+
       if (!range) return;
 
       activeAudio.currentTime = range.start;
@@ -770,7 +674,6 @@ const TONES = [
     const successMessage = document.getElementById('successMessage');
     const btnCloseSuccess = document.getElementById('btnCloseSuccess');
 
-    openTriggers.txt = ''; // safe
     openTriggers.forEach(btn => {
       if (btn) {
         btn.addEventListener('click', () => {
@@ -787,23 +690,55 @@ const TONES = [
     if (btnCloseSuccess) closeModalBtn.addEventListener('click', hideModalSafe);
     modal.addEventListener('click', (e) => { if (e.target === modal) hideModalSafe(); });
 
-    consultForm.addEventListener('submit', (e) => {
+    // FORM SUBMISSION (Google Sheets)
+    consultForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const formData = {
-        name: document.getElementById('cName').value,
-        country: document.getElementById('cCountry').value,
-        phone: document.getElementById('cPhone').value,
-        email: document.getElementById('cEmail').value,
-        goals: document.getElementById('cGoals').value,
-      };
-      console.log("Consultation Booking Submitted:", formData);
+      
+      const submitBtn = consultForm.querySelector('button[type="submit"]');
+      if (submitBtn.disabled) return;
 
-      consultForm.classList.add('hidden');
-      successMessage.classList.remove('hidden');
-      consultForm.reset();
+      const name = document.getElementById('cName').value;
+      const country = document.getElementById('cCountry').value;
+      const phone = document.getElementById('cPhone').value;
+      const email = document.getElementById('cEmail').value;
+      const goals = document.getElementById('cGoals').value;
+
+      const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwALyCIFh4XLjpYQCaJxQH3S3krOkcRJERXz9IcAPWpUK3QKOpj583xWw6A31TfgvSDqw/exec'; 
+      const payload = { name, country, phone, email, goals };
+
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.7';
+      submitBtn.style.cursor = 'not-allowed';
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = 'Sending request... ⏳';
+
+      try {
+        await fetch(WEB_APP_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8',
+          },
+          body: JSON.stringify(payload)
+        });
+
+        consultForm.classList.add('hidden');
+        successMessage.classList.remove('hidden');
+
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        consultForm.classList.add('hidden');
+        successMessage.classList.add('hidden');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+        submitBtn.style.cursor = 'pointer';
+        submitBtn.innerHTML = originalText;
+      }
     });
 
     window.addEventListener('DOMContentLoaded', () => {
+      renderTonesGrid();
       renderCurrentQuestion();
     });
   </script>

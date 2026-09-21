@@ -1,28 +1,25 @@
 ---
-// src/pages/resources/streetwise.astro - Spoken Vietnamese Sandbox & WH-Questions Lab
+// src/pages/resources/streetwise.astro - Clean, Enlarged & Fully Natural Conversations
+import '../../styles/global.css';
 ---
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Real Spoken Vietnamese Lab — Havie</title>
-  <meta name="description" content="Build modular Vietnamese sentences block by block and practice everyday WH-Questions and natural spoken answers." />
+  <title>Daily Conversations & Phrase Templates — Havie</title>
+  <meta name="description" content="Natural phrase templates for ordering food, shopping, getting around, and everyday small talk with Northern and Southern dialects." />
 
-  <!-- FAVICON & MOBILE TOUCH ICONS -->
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <!-- CANONICAL URL -->
+  <link rel="canonical" href="https://havielearn.com/resources/streetwise" />
+
+  <!-- FAVICON -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- Tailwind CSS CDN -->
-  <script is:inline src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Google Fonts -->
+  <!-- Google Fonts: DM Sans & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -33,17 +30,32 @@
     }
 
     html {
-      scroll-padding-top: 85px;
+      scroll-padding-top: 100px;
     }
 
     body {
-      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: 'DM Sans', sans-serif;
       background-color: var(--cream);
       color: var(--navy);
     }
 
     .font-brand {
       font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .curved-underline {
+      position: relative;
+    }
+    .curved-underline::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 6px;
+      border-bottom: 3px solid var(--orange);
+      border-radius: 50%;
+      transform: rotate(-1.5deg);
     }
   </style>
 </head>
@@ -59,10 +71,10 @@
   <header class="sticky top-0 z-40 bg-[#fffaf5]/90 backdrop-blur-md border-b border-stone-200/80 h-20">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 h-full flex items-center justify-between">
       
-      <!-- LOGO -->
-      <a href="/" class="group flex flex-col select-none text-left">
-        <div class="h-6 sm:h-7 flex items-center">
-          <svg class="h-6 sm:h-7 w-auto overflow-visible" viewBox="0 0 175 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- LOGO BÊN TRÁI -->
+      <a href="/" class="group flex flex-col select-none text-left shrink-0">
+        <div class="h-7 sm:h-8 flex items-center">
+          <svg class="h-7 sm:h-8 w-auto overflow-visible" viewBox="0 0 175 30" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 2H6V12H18V2H24V28H18V17H6V28H0V2Z" fill="#dc2626"/>
             <path d="M41 2L52 28H45.5L43.2 22H33.8L31.5 28H25L36 2H41ZM38.5 8.5L35.2 17.5H41.8L38.5 8.5Z" fill="#dc2626"/>
             <path d="M53 2H59.5L67 21L74.5 2H81L70.5 28H63.5L53 2Z" fill="#dc2626"/>
@@ -70,36 +82,37 @@
             <path d="M98 2H117V7.5H104V12H115V17H104V22.5H117V28H98V2Z" fill="#dc2626"/>
           </svg>
         </div>
-        <span class="text-[9px] sm:text-[9.5px] font-bold tracking-[0.2em] sm:tracking-[0.24em] text-stone-400 uppercase mt-1 pl-0.5 leading-none">
+        <span class="text-[9.5px] sm:text-[10px] font-bold tracking-[0.22em] sm:tracking-[0.26em] text-stone-400 uppercase mt-1 pl-0.5 leading-none">
           Learn Vietnamese Online
         </span>
       </a>
 
-      <!-- Desktop Menu Links -->
-      <nav class="hidden md:flex items-center space-x-6 lg:space-x-7 text-sm font-semibold text-slate-700">
+      <!-- CỤM MENU CHỮ Ở GIỮA -->
+      <nav class="hidden md:flex items-center space-x-7 lg:space-x-8 text-base font-bold text-slate-800">
         <a href="/#about" class="hover:text-red-600 transition">About Me</a>
         <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
-        <a href="/#reviews" class="hover:text-red-600 transition">Student Stories</a>
-        <a href="/resources" class="text-red-600 font-bold transition">Resources</a>
+        <a href="/resources" class="text-red-600 font-brand font-extrabold transition">Resources</a>
+        <a href="/student" class="hover:text-red-600 transition">Student Portal</a>
         <a href="/test" class="hover:text-red-600 transition">Level Test</a>
-        <a href="/#faq" class="hover:text-red-600 transition">FAQ</a>
       </nav>
 
-      <!-- Desktop CTA & Mobile Toggle Button -->
-      <div class="flex items-center gap-3">
+      <!-- NÚT BOOK -->
+      <div class="hidden md:flex items-center pl-6 shrink-0">
         <button
           type="button"
-          class="open-modal-trigger hidden sm:inline-flex items-center justify-center px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-bold text-white bg-red-600 hover:bg-red-700 rounded-xl shadow-lg shadow-red-600/25 transition hover:-translate-y-0.5 cursor-pointer"
+          class="open-modal-trigger inline-flex items-center justify-center px-5 py-3 text-sm font-extrabold text-white bg-red-600 hover:bg-red-700 rounded-xl shadow-lg shadow-red-600/25 transition hover:-translate-y-0.5 cursor-pointer"
         >
           Book 25-Min Trial Lesson →
         </button>
+      </div>
 
-        <!-- Mobile Menu Hamburger Button -->
+      <!-- MOBILE TOGGLE BUTTON -->
+      <div class="flex items-center md:hidden">
         <button 
           id="mobileMenuBtn" 
           type="button" 
           aria-label="Toggle Menu"
-          class="md:hidden w-10 h-10 rounded-xl bg-stone-100 hover:bg-stone-200 text-slate-800 flex items-center justify-center font-bold transition cursor-pointer"
+          class="w-10 h-10 rounded-xl bg-stone-100 hover:bg-stone-200 text-slate-800 flex items-center justify-center font-bold transition cursor-pointer"
         >
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -110,17 +123,16 @@
     </div>
 
     <!-- Mobile Dropdown Menu -->
-    <div id="mobileMenu" class="hidden md:hidden absolute top-20 left-0 w-full bg-[#fffaf5] border-b border-stone-200 shadow-xl px-6 py-5 space-y-4 font-semibold text-slate-700 text-sm">
+    <div id="mobileMenu" class="hidden md:hidden absolute top-20 left-0 w-full bg-[#fffaf5] border-b border-stone-200 shadow-xl px-6 py-5 space-y-4 font-semibold text-slate-800 text-base">
       <a href="/#about" class="mobile-link block hover:text-red-600 transition">About Me</a>
       <a href="/#curriculum" class="mobile-link block hover:text-red-600 transition">Learning Tracks</a>
-      <a href="/#reviews" class="mobile-link block hover:text-red-600 transition">Student Stories</a>
       <a href="/resources" class="mobile-link block text-red-600 font-bold">Resources</a>
+      <a href="/student" class="mobile-link block hover:text-red-600 transition">Student Portal</a>
       <a href="/test" class="mobile-link block hover:text-red-600 transition">Level Test</a>
-      <a href="/#faq" class="mobile-link block hover:text-red-600 transition">FAQ</a>
       <div class="pt-3 border-t border-stone-200">
         <button
           type="button"
-          class="open-modal-trigger w-full py-3 text-xs font-bold text-white bg-red-600 rounded-xl text-center shadow-md cursor-pointer"
+          class="open-modal-trigger w-full py-3.5 text-sm font-bold text-white bg-red-600 rounded-xl text-center shadow-md cursor-pointer"
         >
           Book 25-Min Trial Lesson →
         </button>
@@ -130,188 +142,74 @@
 
   <!-- MAIN CONTENT -->
   <main class="flex-grow py-10 lg:py-14">
-    <div class="max-w-5xl mx-auto px-5 sm:px-8 space-y-16">
+    <div class="max-w-5xl mx-auto px-5 sm:px-8 space-y-12">
       
-      <!-- HERO HEADER -->
-      <div class="text-center max-w-2xl mx-auto space-y-3">
-        <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-widest bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-200 inline-block shadow-2xs">
-          Tactile Practice • Real-Time Reflex
-        </span>
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-brand">
-          Real Spoken Vietnamese Lab
-        </h1>
-        <p class="text-stone-600 text-sm leading-relaxed">
-          In <strong>Part 1</strong>, construct flexible sentences using 5 modular blocks. In <strong>Part 2</strong>, practice spontaneous conversations by responding to everyday WH-Questions.
-        </p>
-      </div>
-
-      <!-- ================================================================ -->
-      <!-- PART 1: 5-BLOCK LEGO SANDBOX -->
-      <!-- ================================================================ -->
-      <section class="space-y-6">
-        <div class="flex items-center justify-between border-b border-stone-200/80 pb-3">
-          <div>
-            <span class="text-[10px] font-extrabold uppercase tracking-wider text-red-600 bg-red-50 px-2 py-0.5 rounded border border-red-200">Part 1 • Dynamic Lego Sandbox</span>
-            <h2 class="text-xl font-extrabold text-slate-900 font-brand mt-1">Build Your Own Sentence</h2>
-          </div>
-          <button id="resetSandboxBtn" class="text-xs font-bold text-stone-500 hover:text-red-600 transition flex items-center gap-1 cursor-pointer">
-            <span>↺</span> Reset
-          </button>
-        </div>
-
-        <!-- Live Display Box -->
-        <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-stone-200/90 space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="text-[10px] font-extrabold uppercase tracking-wider text-stone-400">
-              Live Sentence:
-            </span>
-            <div class="flex items-center gap-2">
-              <button 
-                id="speakSandboxBtn" 
-                type="button"
-                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#fffaf5] border border-stone-200 text-slate-800 text-xs font-bold hover:border-red-500 hover:text-red-600 transition cursor-pointer shadow-2xs"
-              >
-                <span>🔊</span>
-                <span>Listen</span>
-              </button>
-              <button 
-                id="randomSandboxBtn" 
-                type="button"
-                class="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition cursor-pointer shadow-xs"
-                title="Shuffle realistic combinations"
-              >
-                <span>🎲</span>
-                <span>Shuffle</span>
-              </button>
-            </div>
-          </div>
-
-          <div id="sandboxViet" class="text-2xl sm:text-3xl font-black text-slate-900 leading-snug font-brand tracking-tight">
-            “Tối nay em uống cà phê ở gần đây với bạn”
-          </div>
-          
-          <p id="sandboxEng" class="text-xs sm:text-sm text-stone-500 italic">
-            “Tonight I drink coffee nearby with a friend”
+      <!-- HERO HEADER & DIALECT SWITCHER -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-stone-200/80">
+        <div class="max-w-2xl space-y-3">
+          <span class="text-xs font-extrabold text-orange-600 uppercase tracking-widest bg-amber-50 px-4 py-1.5 rounded-full border border-amber-200 inline-block shadow-2xs font-brand">
+            Everyday Life
+          </span>
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-brand pt-1">
+            Daily <span class="curved-underline text-orange-600">Conversations.</span>
+          </h1>
+          <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
+            Natural phrase templates for ordering food, shopping, getting around, and everyday small talk with Northern and Southern dialects.
           </p>
         </div>
 
-        <!-- 5 Compact Clickable Blocks -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-          
-          <!-- Block 1: When -->
-          <div class="relative">
-            <button class="block-trigger-btn w-full p-3 rounded-2xl bg-white border border-stone-200/90 text-left hover:border-slate-800 transition shadow-2xs cursor-pointer" data-block="time">
-              <span class="text-[10px] uppercase font-bold text-stone-400 block">1. When?</span>
-              <span id="label-time" class="text-xs font-bold text-slate-900 block mt-1 truncate">Tối nay</span>
-            </button>
-            <div id="menu-time" class="block-menu hidden absolute top-full left-0 mt-1.5 w-72 bg-white rounded-2xl p-2 shadow-xl border border-stone-200 z-30 max-h-72 overflow-y-auto space-y-1"></div>
-          </div>
-
-          <!-- Block 2: Who -->
-          <div class="relative">
-            <button class="block-trigger-btn w-full p-3 rounded-2xl bg-white border border-stone-200/90 text-left hover:border-slate-800 transition shadow-2xs cursor-pointer" data-block="subject">
-              <span class="text-[10px] uppercase font-bold text-stone-400 block">2. Who?</span>
-              <span id="label-subject" class="text-xs font-bold text-slate-900 block mt-1 truncate">em</span>
-            </button>
-            <div id="menu-subject" class="block-menu hidden absolute top-full left-0 mt-1.5 w-72 bg-white rounded-2xl p-2 shadow-xl border border-stone-200 z-30 max-h-72 overflow-y-auto space-y-1"></div>
-          </div>
-
-          <!-- Block 3: Action -->
-          <div class="relative col-span-2 sm:col-span-1">
-            <button class="block-trigger-btn w-full p-3 rounded-2xl bg-white border border-stone-200/90 text-left hover:border-slate-800 transition shadow-2xs cursor-pointer" data-block="action">
-              <span class="text-[10px] uppercase font-bold text-stone-400 block">3. Action</span>
-              <span id="label-action" class="text-xs font-bold text-slate-900 block mt-1 truncate">uống cà phê</span>
-            </button>
-            <div id="menu-action" class="block-menu hidden absolute top-full left-0 sm:left-auto sm:right-0 lg:left-0 mt-1.5 w-80 bg-white rounded-2xl p-2 shadow-xl border border-stone-200 z-30 max-h-72 overflow-y-auto space-y-1"></div>
-          </div>
-
-          <!-- Block 4: Where -->
-          <div class="relative">
-            <button class="block-trigger-btn w-full p-3 rounded-2xl bg-white border border-stone-200/90 text-left hover:border-slate-800 transition shadow-2xs cursor-pointer" data-block="location">
-              <span class="text-[10px] uppercase font-bold text-stone-400 block">4. Where?</span>
-              <span id="label-location" class="text-xs font-bold text-slate-900 block mt-1 truncate">ở gần đây</span>
-            </button>
-            <div id="menu-location" class="block-menu hidden absolute top-full left-0 sm:left-auto sm:right-0 lg:left-0 mt-1.5 w-72 bg-white rounded-2xl p-2 shadow-xl border border-stone-200 z-30 max-h-72 overflow-y-auto space-y-1"></div>
-          </div>
-
-          <!-- Block 5: With Whom -->
-          <div class="relative col-span-2 sm:col-span-2 lg:col-span-1">
-            <button class="block-trigger-btn w-full p-3 rounded-2xl bg-white border border-stone-200/90 text-left hover:border-slate-800 transition shadow-2xs cursor-pointer" data-block="companion">
-              <span class="text-[10px] uppercase font-bold text-stone-400 block">5. With?</span>
-              <span id="label-companion" class="text-xs font-bold text-slate-900 block mt-1 truncate">với bạn</span>
-            </button>
-            <div id="menu-companion" class="block-menu hidden absolute top-full right-0 mt-1.5 w-72 bg-white rounded-2xl p-2 shadow-xl border border-stone-200 z-30 max-h-72 overflow-y-auto space-y-1"></div>
-          </div>
-
-        </div>
-
-        <p class="text-xs text-stone-500 italic text-center">
-          💡 Click any box to browse vocabulary or choose <strong class="text-slate-800">"🚫 None"</strong>. Tap <strong class="text-slate-800">"Shuffle"</strong> for verified natural sentences!
-        </p>
-      </section>
-
-      <!-- ================================================================ -->
-      <!-- PART 2: EVERYDAY WH-QUESTIONS & ANSWER PAIRS (INTERACTIVE LAB) -->
-      <!-- ================================================================ -->
-      <section class="space-y-6 pt-6 border-t border-stone-200/80">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-200/80 pb-4">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="text-[10px] font-extrabold uppercase tracking-wider text-red-600 bg-red-50 px-2.5 py-0.5 rounded border border-red-200">
-                Part 2 • Spoken Q&A Reflex
-              </span>
-              <span id="qaCounter" class="text-xs font-bold text-slate-900 bg-stone-100 px-2.5 py-0.5 rounded-full">
-                24 Question Prompts
-              </span>
-            </div>
-            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 font-brand mt-1">
-              Everyday WH-Questions Lab
-            </h2>
-          </div>
-
-          <!-- Random Question Prompt Button -->
+        <!-- DIALECT SWITCHER -->
+        <div class="inline-flex items-center p-1.5 bg-white rounded-2xl border border-stone-200 shadow-xs shrink-0 self-start md:self-auto font-brand">
           <button 
-            type="button" 
-            id="randomQBtn"
-            class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition cursor-pointer shadow-xs"
+            id="btn-north" 
+            onclick="setDialect('north')" 
+            class="px-4 py-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs sm:text-sm transition shadow-xs cursor-pointer"
           >
-            <span>🎲</span>
-            <span>Random Question</span>
+            🇻🇳 Northern (Hanoi)
+          </button>
+          <button 
+            id="btn-south" 
+            onclick="setDialect('south')" 
+            class="px-4 py-2.5 rounded-xl text-stone-500 hover:text-slate-900 font-bold text-xs sm:text-sm transition cursor-pointer"
+          >
+            🇻🇳 Southern (Saigon)
           </button>
         </div>
+      </div>
 
-        <!-- Filter Question Type Tabs -->
-        <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-          <button class="q-filter-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold shrink-0 transition bg-slate-900 text-white cursor-pointer" data-type="all">All WH-Types</button>
-          <button class="q-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold shrink-0 transition bg-white text-stone-600 border border-stone-200 hover:border-stone-300 cursor-pointer" data-type="what">❓ Làm gì? (What?)</button>
-          <button class="q-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold shrink-0 transition bg-white text-stone-600 border border-stone-200 hover:border-stone-300 cursor-pointer" data-type="where">📍 Ở đâu? (Where?)</button>
-          <button class="q-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold shrink-0 transition bg-white text-stone-600 border border-stone-200 hover:border-stone-300 cursor-pointer" data-type="who">👥 Với ai? (With whom?)</button>
-          <button class="q-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold shrink-0 transition bg-white text-stone-600 border border-stone-200 hover:border-stone-300 cursor-pointer" data-type="when">⏰ Khi nào? (When?)</button>
+      <!-- CATEGORY TABS & CARDS GRID -->
+      <section class="space-y-6">
+        <div class="flex items-center gap-3 overflow-x-auto pb-3 scrollbar-none font-brand">
+          <button class="cat-filter-btn active px-5 py-3 rounded-2xl text-sm font-bold shrink-0 transition bg-slate-900 text-white cursor-pointer shadow-sm" data-cat="all">All Topics</button>
+          <button class="cat-filter-btn px-5 py-3 rounded-2xl text-sm font-bold shrink-0 transition bg-white text-stone-700 border-2 border-stone-200 hover:border-stone-400 cursor-pointer shadow-2xs" data-cat="food">🍜 Ordering Food & Drink</button>
+          <button class="cat-filter-btn px-5 py-3 rounded-2xl text-sm font-bold shrink-0 transition bg-white text-stone-700 border-2 border-stone-200 hover:border-stone-400 cursor-pointer shadow-2xs" data-cat="shop">🛍️ Shopping & Prices</button>
+          <button class="cat-filter-btn px-5 py-3 rounded-2xl text-sm font-bold shrink-0 transition bg-white text-stone-700 border-2 border-stone-200 hover:border-stone-400 cursor-pointer shadow-2xs" data-cat="transport">🛵 Getting Around</button>
+          <button class="cat-filter-btn px-5 py-3 rounded-2xl text-sm font-bold shrink-0 transition bg-white text-stone-700 border-2 border-stone-200 hover:border-stone-400 cursor-pointer shadow-2xs" data-cat="chat">💬 Everyday Small Talk</button>
         </div>
 
-        <!-- Q&A Cards Grid -->
-        <div id="qaGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <!-- Rendered via JavaScript -->
+        <!-- Cards Container -->
+        <div id="dialogueGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Rendered via JS -->
         </div>
       </section>
 
       <!-- CTA LESSON -->
-      <div class="rounded-3xl bg-white p-7 sm:p-9 border border-stone-200/90 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
-        <div class="space-y-2 text-center md:text-left max-w-lg">
-          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 text-red-600 text-[11px] font-bold tracking-wide border border-red-100">
-            <span>🎯 1-on-1 Pronunciation Coaching</span>
+      <div class="rounded-3xl bg-white p-8 sm:p-10 border border-stone-200/90 shadow-md flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="space-y-3 text-center md:text-left max-w-xl">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-50 text-orange-600 text-sm font-bold tracking-wide border border-orange-100 font-brand">
+            <span>🎯 1-on-1 Conversational Coaching</span>
           </div>
-          <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight font-brand">
-            Sound Like a Local in Natural Conversations.
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight font-brand">
+            Master Natural Dialogue
           </h2>
-          <p class="text-stone-600 text-xs sm:text-sm leading-relaxed">
-            Practice conversational reflex, question answering, and regional accents with live teacher feedback.
+          <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
+            Practice real-world ordering, market bargaining, and natural small talk through 1-on-1 live roleplay sessions.
           </p>
         </div>
-        <div class="shrink-0 w-full md:w-auto text-center">
+        <div class="shrink-0 w-full md:w-auto text-center font-brand">
           <button
             type="button"
-            class="open-modal-trigger inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-xs sm:text-sm shadow-sm transition hover:-translate-y-0.5 cursor-pointer"
+            class="open-modal-trigger inline-flex items-center justify-center px-8 py-4 bg-orange-600 hover:bg-orange-700 text-white font-bold rounded-2xl text-base shadow-md transition hover:-translate-y-0.5 cursor-pointer whitespace-nowrap"
           >
             Book Free 25-Min Trial Lesson →
           </button>
@@ -322,18 +220,18 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="bg-[#fffaf5] text-stone-600 py-8 text-xs border-t border-stone-200/80">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-      <div class="flex items-center justify-center gap-2.5">
-        <span class="font-brand font-black text-slate-900 tracking-widest text-sm">HAVIE.</span>
-        <span class="text-stone-400">•</span>
-        <span class="font-medium">Learn Vietnamese with Hang</span>
+  <footer class="bg-[#fffaf5] text-stone-600 py-10 border-t border-stone-200/80">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <div class="flex items-center justify-center gap-2.5 font-brand">
+        <span class="font-black text-slate-900 tracking-wider text-base sm:text-lg">HAVIE</span>
+        <span class="text-stone-300">•</span>
+        <span class="text-xs sm:text-sm font-medium text-stone-500">Learn Vietnamese with Hang</span>
       </div>
-      <div class="flex items-center gap-4 sm:gap-6 font-semibold text-stone-700 flex-wrap justify-center">
+      <div class="flex items-center gap-5 sm:gap-7 font-semibold text-xs sm:text-sm text-stone-700 flex-wrap justify-center font-brand">
         <a href="/#about" class="hover:text-red-600 transition">About Me</a>
         <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
-        <a href="/#reviews" class="hover:text-red-600 transition">Student Stories</a>
-        <a href="/resources" class="text-red-600 transition font-bold">Resources</a>
+        <a href="/resources" class="hover:text-red-600 transition">Resources</a>
+        <a href="/student" class="hover:text-red-600 transition">Student Portal</a>
         <a href="/test" class="hover:text-red-600 transition">Level Test</a>
         <button type="button" class="open-modal-trigger text-red-600 font-bold hover:underline cursor-pointer">Book Trial</button>
       </div>
@@ -342,58 +240,58 @@
 
   <!-- CONSULTATION / BOOKING MODAL -->
   <div id="consultModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-stone-200 space-y-5 text-left">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-stone-200 space-y-6 text-left">
       
-      <div class="flex items-center justify-between border-b border-stone-100 pb-3">
+      <div class="flex items-center justify-between border-b border-stone-100 pb-4">
         <div>
-          <span class="text-[10px] font-black text-red-600 uppercase tracking-widest bg-red-50 px-2.5 py-0.5 rounded border border-red-200">1-on-1 Coaching</span>
-          <h3 class="text-xl font-black text-slate-900 font-brand mt-1">Book 25-Min Trial Lesson</h3>
+          <span class="text-xs sm:text-sm font-black text-red-600 uppercase tracking-widest bg-red-50 px-3.5 py-1.5 rounded-lg border border-red-200 inline-block font-brand">1-ON-1 LESSONS</span>
+          <h3 class="text-2xl sm:text-3xl font-black text-slate-900 font-brand mt-1.5">Book 25-Min Trial Lesson</h3>
         </div>
-        <button id="closeModalBtn" type="button" class="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 font-bold flex items-center justify-center cursor-pointer">
+        <button id="closeModalBtn" type="button" class="w-10 h-10 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 font-bold flex items-center justify-center text-lg cursor-pointer">
           ✕
         </button>
       </div>
 
-      <form id="consultForm" class="space-y-3.5 text-xs">
+      <form id="consultForm" class="space-y-4 text-sm">
         <div>
-          <label class="block font-bold text-slate-700 mb-1">Full Name / Tên của bạn *</label>
-          <input type="text" id="cName" required placeholder="e.g. Alex Smith" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50" />
+          <label class="block font-bold text-slate-800 mb-1.5 text-base">Full Name / Tên của bạn *</label>
+          <input type="text" id="cName" required placeholder="e.g. Alex Smith" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
         </div>
 
-        <div class="grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block font-bold text-slate-700 mb-1">Country / Quốc gia *</label>
-            <input type="text" id="cCountry" required placeholder="e.g. Germany, USA" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50" />
+            <label class="block font-bold text-slate-800 mb-1.5 text-base">Country / Quốc gia *</label>
+            <input type="text" id="cCountry" required placeholder="e.g. Germany, USA" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
           </div>
           <div>
-            <label class="block font-bold text-slate-700 mb-1">Phone / SĐT</label>
-            <input type="tel" id="cPhone" placeholder="e.g. +49..." class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50" />
+            <label class="block font-bold text-slate-800 mb-1.5 text-base">Phone / SĐT</label>
+            <input type="tel" id="cPhone" placeholder="e.g. +49..." class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
           </div>
         </div>
 
         <div>
-          <label class="block font-bold text-slate-700 mb-1">Email Address *</label>
-          <input type="email" id="cEmail" required placeholder="name@example.com" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50" />
+          <label class="block font-bold text-slate-800 mb-1.5 text-base">Email Address *</label>
+          <input type="email" id="cEmail" required placeholder="name@example.com" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
         </div>
 
         <div>
-          <label class="block font-bold text-slate-700 mb-1">Learning Goals / Mục tiêu học tập *</label>
-          <textarea id="cGoals" rows="3" required placeholder="Current level, target dialect (Hanoi/Saigon), goals..." class="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:border-red-500 bg-stone-50/50 resize-none"></textarea>
+          <label class="block font-bold text-slate-800 mb-1.5 text-base">Learning Goals / Mục tiêu học tập *</label>
+          <textarea id="cGoals" rows="3" required placeholder="Current level, target dialect (Hanoi/Saigon), goals..." class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 resize-none text-base"></textarea>
         </div>
 
         <button
           type="submit"
-          class="w-full py-3.5 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl text-xs sm:text-sm shadow-md transition cursor-pointer mt-2"
+          class="w-full py-4 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl text-base shadow-md transition cursor-pointer mt-3 font-brand"
         >
           Submit Request to Hang →
         </button>
       </form>
 
       <div id="successMessage" class="hidden text-center py-6 space-y-3">
-        <div class="text-3xl">🎉</div>
-        <h4 class="font-black text-slate-900 text-base font-brand">Request Sent Successfully!</h4>
-        <p class="text-stone-600 text-xs leading-relaxed">Thank you! Hang has received your details and goals. She will reach out via email within 24 hours.</p>
-        <button id="btnCloseSuccess" type="button" class="px-6 py-2.5 bg-slate-900 text-white font-bold rounded-xl text-xs cursor-pointer">
+        <div class="text-4xl">🎉</div>
+        <h4 class="font-black text-slate-900 text-lg font-brand">Request Sent Successfully!</h4>
+        <p class="text-stone-600 text-sm leading-relaxed">Thank you! Hang has received your details and goals. She will reach out via email within 24 hours.</p>
+        <button id="btnCloseSuccess" type="button" class="px-6 py-3 bg-slate-900 text-white font-bold rounded-xl text-sm cursor-pointer font-brand">
           Close Window
         </button>
       </div>
@@ -416,434 +314,384 @@
       });
     }
 
-    // ==========================================
-    // PART 1: 5-BLOCK LEGO VOCABULARY
-    // ==========================================
-    const sandboxVocab = {
-      time: [
-        { vi: null, en: "", label: "🚫 None (Skip)" },
-        { vi: "Bây giờ", en: "Right now", label: "⚡ Bây giờ (Right now)" },
-        { vi: "Lát nữa", en: "In a little bit", label: "⏳ Lát nữa (In a bit)" },
-        { vi: "Tí nữa", en: "In a little bit (North)", label: "⏱️ Tí nữa (In a bit)" },
-        { vi: "Ban nãy", en: "Just a while ago", label: "🕒 Ban nãy (A while ago)" },
-        { vi: "Tối nay", en: "Tonight", label: "🌙 Tối nay (Tonight)" },
-        { vi: "Sáng mai", en: "Tomorrow morning", label: "🌅 Sáng mai (Tomorrow morning)" },
-        { vi: "Trưa mai", en: "Tomorrow noon", label: "☀️ Trưa mai (Tomorrow noon)" },
-        { vi: "Chiều nay", en: "This afternoon", label: "⛅ Chiều nay (This afternoon)" },
-        { vi: "Tối mai", en: "Tomorrow night", label: "🌃 Tối mai (Tomorrow night)" },
-        { vi: "Cuối tuần này", en: "This weekend", label: "🎉 Cuối tuần này (This weekend)" },
-        { vi: "Tan làm", en: "After work", label: "💼 Tan làm (After work)" },
-        { vi: "Hôm nào rảnh", en: "Whenever free", label: "🗓️ Hôm nào rảnh (When free)" },
-        { vi: "Thứ bảy tuần này", en: "This Saturday", label: "📅 Thứ bảy này (This Saturday)" },
-        { vi: "Chủ nhật", en: "Sunday", label: "☕ Chủ nhật (Sunday)" },
-        { vi: "Đầu tuần sau", en: "Early next week", label: "🗓️ Đầu tuần sau (Early next week)" },
-        { vi: "Tháng sau", en: "Next month", label: "🗓️ Tháng sau (Next month)" }
-      ],
-      subject: [
-        { vi: null, en: "", label: "🚫 None (Casual drop)" },
-        { vi: "em", en: "I (em)", label: "🙋 em (I - younger)" },
-        { vi: "anh", en: "I (anh)", label: "🙋‍♂️ anh (I - older male)" },
-        { vi: "chị", en: "I (chị)", label: "🙋‍♀️ chị (I - older female)" },
-        { vi: "mình", en: "I / We (peer)", label: "🤝 mình (I / We - peer)" },
-        { vi: "tụi em", en: "we (younger group)", label: "👥 tụi em (we - younger group)" },
-        { vi: "bọn em", en: "we (Northern group)", label: "👥 bọn em (we - Northern)" },
-        { vi: "tụi mình", en: "we (close friends)", label: "🧑‍🤝‍🧑 tụi mình (we - friends)" },
-        { vi: "hai đứa mình", en: "the two of us", label: "✌️ hai đứa mình (the two of us)" },
-        { vi: "con", en: "I (to elders)", label: "🙇 con (I - to elder)" },
-        { vi: "cháu", en: "I (Northern elder respect)", label: "🙏 cháu (I - Northern elder)" }
-      ],
-      action: [
-        { vi: "uống cà phê", en: "drink coffee", label: "☕ uống cà phê (drink coffee)" },
-        { vi: "cà phê bệt", en: "sit on sidewalk for coffee", label: "🪑 cà phê bệt (sidewalk coffee)" },
-        { vi: "uống trà đá vỉa hè", en: "drink sidewalk iced tea", label: "🧊 uống trà đá (sidewalk iced tea)" },
-        { vi: "đi ăn tối", en: "have dinner", label: "🍜 đi ăn tối (have dinner)" },
-        { vi: "ăn trưa", en: "eat lunch", label: "🍲 ăn trưa (eat lunch)" },
-        { vi: "nhậu", en: "go drinking / party", label: "🍻 nhậu (go drinking)" },
-        { vi: "uống bia hơi", en: "drink draft beer", label: "🍺 uống bia hơi (draft beer)" },
-        { vi: "ăn bún chả", en: "eat bun cha", label: "🥢 ăn bún chả (bun cha)" },
-        { vi: "ăn phở bò", en: "eat beef pho", label: "🥣 ăn phở bò (beef pho)" },
-        { vi: "ăn cơm tấm", en: "eat broken rice", label: "🍚 ăn cơm tấm (broken rice)" },
-        { vi: "ăn ốc vỉa hè", en: "eat street seafood snails", label: "🐚 ăn ốc vỉa hè (street snails)" },
-        { vi: "uống trà sữa", en: "drink boba milk tea", label: "🧋 uống trà sữa (boba tea)" },
-        { vi: "ăn vặt", en: "eat street snacks", label: "🍢 ăn vặt (street snacks)" },
-        { vi: "đi dạo mát", en: "go for a stroll", label: "🚶 đi dạo mát (take a stroll)" },
-        { vi: "chạy xe hóng gió", en: "ride motorcycle for breeze", label: "🛵 chạy xe hóng gió (scooter ride)" },
-        { vi: "lượn phố", en: "cruise around town", label: "🛵 lượn phố (cruise streets)" },
-        { vi: "đi coi phim", en: "watch a movie (South)", label: "🎬 đi coi phim (movie - South)" },
-        { vi: "đi xem phim", en: "watch a movie (North)", label: "🎬 đi xem phim (movie - North)" },
-        { vi: "đi mua sắm", en: "go shopping", label: "🛍️ đi mua sắm (shopping)" },
-        { vi: "đi cắt tóc", en: "get a haircut", label: "✂️ đi cắt tóc (haircut)" },
-        { vi: "đi chợ", en: "go to the market", label: "🧺 đi chợ (market)" },
-        { vi: "làm việc", en: "work", label: "💻 làm việc (work)" },
-        { vi: "học tiếng Việt", en: "study Vietnamese", label: "📚 học tiếng Việt (study Vietnamese)" },
-        { vi: "ch chạy deadline", en: "rush project deadline", label: "⏰ chạy deadline (rush deadline)" }
-      ],
-      location: [
-        { vi: null, en: "", label: "🚫 None (Skip)" },
-        { vi: "ở gần đây", en: "nearby", label: "📍 ở gần đây (nearby)" },
-        { vi: "ở quán quen", en: "at my usual spot", label: "☕ ở quán quen (usual spot)" },
-        { vi: "ở quán vỉa hè", en: "at sidewalk stall", label: "🪑 ở quán vỉa hè (sidewalk stall)" },
-        { vi: "ở trung tâm thương mại", en: "at the shopping mall", label: "🏬 ở trung tâm thương mại (shopping mall)" },
-        { vi: "ở siêu thị", en: "at the supermarket", label: "🛒 ở siêu thị (supermarket)" },
-        { vi: "ở công viên", en: "at the park", label: "🌳 ở công viên (park)" },
-        { vi: "ở bãi biển", en: "at the beach", label: "🏖️ ở bãi biển (beach)" },
-        { vi: "ở gần bờ sông", en: "by the riverside", label: "🌊 ở gần bờ sông (riverside)" },
-        { vi: "ở quanh hồ", en: "around the lake", label: "🌊 ở quanh hồ (around the lake)" },
-        { vi: "ở phố đi bộ", en: "at the walking street", label: "🚶 ở phố đi bộ (walking street)" },
-        { vi: "ở sảnh chung cư", en: "at condo lobby", label: "🛎️ ở sảnh chung cư (building lobby)" },
-        { vi: "ở sảnh toà nhà", en: "at office building lobby", label: "🛎️ ở sảnh toà nhà (office lobby)" },
-        { vi: "ở văn phòng", en: "at the office", label: "🏢 ở văn phòng (at office)" },
-        { vi: "ở nhà", en: "at home", label: "🏠 ở nhà (at home)" },
-        { vi: "ở quán bar", en: "at the pub / bar", label: "🍸 ở quán bar (pub / bar)" }
-      ],
-      companion: [
-        { vi: null, en: "", label: "🚫 None (Skip)" },
-        { vi: "một mình", en: "alone / by myself", label: "🧘 một mình (alone / solo)" },
-        { vi: "với bạn", en: "with a friend", label: "👤 với bạn (with a friend)" },
-        { vi: "với đồng nghiệp", en: "with colleague", label: "💼 với đồng nghiệp (colleague)" },
-        { vi: "với người yêu", en: "with partner", label: "❤️ với người yêu (partner/date)" },
-        { vi: "với crush", en: "with my crush", label: "💘 với crush (with crush)" },
-        { vi: "với gia đình", en: "with family", label: "👨‍👩‍👧 với gia đình (family)" },
-        { vi: "với sếp", en: "with boss", label: "👔 với sếp (boss)" },
-        { vi: "với đối tác", en: "with business partner", label: "🤝 với đối tác (business partner)" },
-        { vi: "với bạn cùng phòng", en: "with roommate", label: "🏠 với bạn cùng phòng (roommate)" },
-        { vi: "với cô giáo", en: "with teacher", label: "👩‍🏫 với cô giáo (teacher)" }
-      ]
+    // Modal Control Script
+    const modal = document.getElementById('consultModal');
+    const openTriggers = document.querySelectorAll('.open-modal-trigger');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const consultForm = document.getElementById('consultForm');
+    const successMessage = document.getElementById('successMessage');
+    const btnCloseSuccess = document.getElementById('btnCloseSuccess');
+
+    openTriggers.forEach(btn => {
+      if (btn) {
+        btn.addEventListener('click', () => {
+          modal.classList.remove('hidden');
+          consultForm.classList.remove('hidden');
+          successMessage.classList.add('hidden');
+          if (mobileMenu) mobileMenu.classList.add('hidden');
+        });
+      }
+    });
+
+    const hideModal = () => {
+      modal.classList.add('hidden');
+      if (consultForm && successMessage) {
+        consultForm.classList.remove('hidden');
+        successMessage.classList.add('hidden');
+        consultForm.reset();
+      }
     };
 
-    const realisticPresets = [
-      { time: "Sáng mai", subject: "em", action: "uống cà phê", location: "ở quán quen", companion: "với bạn" },
-      { time: "Sáng mai", subject: "hai đứa mình", action: "cà phê bệt", location: "ở công viên", companion: null },
-      { time: "Trưa mai", subject: "anh", action: "ăn cơm tấm", location: "ở quán vỉa hè", companion: "với đồng nghiệp" },
-      { time: "Trưa mai", subject: "tụi em", action: "ăn trưa", location: "ở trung tâm thương mại", companion: "với sếp" },
-      { time: "Bây giờ", subject: "em", action: "uống trà sữa", location: null, companion: "với bạn cùng phòng" },
-      { time: "Chiều nay", subject: "chị", action: "đi dạo mát", location: "ở công viên", companion: "với gia đình" },
-      { time: "Chiều nay", subject: "em", action: "chạy xe hóng gió", location: "ở gần bờ sông", companion: "với crush" },
-      { time: "Tan làm", subject: "tụi mình", action: "nhậu", location: "ở quán vỉa hè", companion: "với đồng nghiệp" },
-      { time: "Tối nay", subject: "anh", action: "đi ăn tối", location: "ở trung tâm thương mại", companion: "với người yêu" },
-      { time: "Tối nay", subject: "hai đứa mình", action: "ăn ốc vỉa hè", location: null, companion: null },
-      { time: "Tối nay", subject: "tụi mình", action: "đi coi phim", location: null, companion: "với bạn" },
-      { time: "Bây giờ", subject: "em", action: "làm việc", location: "ở văn phòng", companion: "một mình" },
-      { time: "Lát nữa", subject: "anh", action: "chạy deadline", location: "ở nhà", companion: "một mình" },
-      { time: "Chút xíu nữa", subject: "em", action: "đi cắt tóc", location: null, companion: "một mình" },
-      { time: "Cuối tuần này", subject: "con", action: "đi chợ", location: null, companion: "với gia đình" },
-      { time: "Cuối tuần này", subject: "hai đứa mình", action: "đi dạo mát", location: "ở bãi biển", companion: null },
-      { time: "Chủ nhật", subject: "tụi mình", action: "học tiếng Việt", location: null, companion: "với cô giáo" }
-    ];
+    if (closeModalBtn) closeModalBtn.addEventListener('click', hideModal);
+    if (btnCloseSuccess) closeModalBtn.addEventListener('click', hideModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) hideModal(); });
 
-    let currentSandbox = { time: 5, subject: 1, action: 0, location: 1, companion: 2 };
+    // FORM SUBMISSION
+    consultForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const submitBtn = consultForm.querySelector('button[type="submit"]');
+      if (submitBtn.disabled) return;
 
-    const sandboxVietEl = document.getElementById('sandboxViet');
-    const sandboxEngEl = document.getElementById('sandboxEng');
+      const name = document.getElementById('cName').value;
+      const country = document.getElementById('cCountry').value;
+      const phone = document.getElementById('cPhone').value;
+      const email = document.getElementById('cEmail').value;
+      const goals = document.getElementById('cGoals').value;
 
-    function initSandboxMenus() {
-      Object.keys(sandboxVocab).forEach(key => {
-        const menuEl = document.getElementById(`menu-${key}`);
-        if (!menuEl) return;
-        menuEl.innerHTML = '';
+      const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwALyCIFh4XLjpYQCaJxQH3S3krOkcRJERXz9IcAPWpUK3QKOpj583xWw6A31TfgvSDqw/exec'; 
+      const payload = { name, country, phone, email, goals };
 
-        sandboxVocab[key].forEach((item, index) => {
-          const btn = document.createElement('button');
-          btn.type = 'button';
-          btn.className = 'w-full text-left px-3 py-2 rounded-xl text-xs font-semibold hover:bg-stone-100 transition flex items-center justify-between text-slate-800 cursor-pointer';
-          btn.innerHTML = `<span>${item.label}</span>`;
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.7';
+      submitBtn.style.cursor = 'not-allowed';
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = 'Sending request... ⏳';
 
-          btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            currentSandbox[key] = index;
-            closeAllMenus();
-            updateSandboxDisplay();
-          });
-
-          menuEl.appendChild(btn);
+      try {
+        await fetch(WEB_APP_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8',
+          },
+          body: JSON.stringify(payload)
         });
-      });
-    }
 
-    document.querySelectorAll('.block-trigger-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const blockName = btn.getAttribute('data-block');
-        const targetMenu = document.getElementById(`menu-${blockName}`);
-        const isAlreadyOpen = !targetMenu.classList.contains('hidden');
-        closeAllMenus();
-        if (!isAlreadyOpen) {
-          targetMenu.classList.remove('hidden');
-        }
-      });
-    });
+        consultForm.classList.add('hidden');
+        successMessage.classList.remove('hidden');
 
-    function closeAllMenus() {
-      document.querySelectorAll('.block-menu').forEach(m => m.classList.add('hidden'));
-    }
-    document.addEventListener('click', closeAllMenus);
-
-    function updateSandboxDisplay() {
-      const partsVi = [];
-      const partsEn = [];
-
-      Object.keys(sandboxVocab).forEach(key => {
-        const selectedObj = sandboxVocab[key][currentSandbox[key]] || sandboxVocab[key][0];
-        const labelEl = document.getElementById(`label-${key}`);
-        if (labelEl) {
-          labelEl.textContent = selectedObj.vi || "🚫 None";
-          if (!selectedObj.vi) {
-            labelEl.classList.add('text-stone-400');
-            labelEl.classList.remove('text-slate-900');
-          } else {
-            labelEl.classList.remove('text-stone-400');
-            labelEl.classList.add('text-slate-900');
-          }
-        }
-
-        if (selectedObj.vi) partsVi.push(selectedObj.vi);
-        if (selectedObj.en) partsEn.push(selectedObj.en);
-      });
-
-      sandboxVietEl.textContent = partsVi.length > 0 ? `“${partsVi.join(' ')}”` : "“...”";
-      sandboxEngEl.textContent = partsEn.length > 0 ? `“${partsEn.join(' ')}”` : "“...”";
-    }
-
-    document.getElementById('resetSandboxBtn').addEventListener('click', () => {
-      currentSandbox = { time: 5, subject: 1, action: 0, location: 1, companion: 2 };
-      updateSandboxDisplay();
-    });
-
-    document.getElementById('randomSandboxBtn').addEventListener('click', () => {
-      const randomPreset = realisticPresets[Math.floor(Math.random() * realisticPresets.length)];
-
-      const tIdx = randomPreset.time ? sandboxVocab.time.findIndex(item => item.vi === randomPreset.time) : 0;
-      const sIdx = randomPreset.subject ? sandboxVocab.subject.findIndex(item => item.vi === randomPreset.subject) : 0;
-      const aIdx = randomPreset.action ? sandboxVocab.action.findIndex(item => item.vi === randomPreset.action) : 0;
-      const lIdx = randomPreset.location ? sandboxVocab.location.findIndex(item => item.vi === randomPreset.location) : 0;
-      const cIdx = randomPreset.companion ? sandboxVocab.companion.findIndex(item => item.vi === randomPreset.companion) : 0;
-
-      currentSandbox = {
-        time: tIdx !== -1 ? tIdx : 0,
-        subject: sIdx !== -1 ? sIdx : 1,
-        action: aIdx !== -1 ? aIdx : 0,
-        location: lIdx !== -1 ? lIdx : 0,
-        companion: cIdx !== -1 ? cIdx : 0
-      };
-
-      updateSandboxDisplay();
-    });
-
-    document.getElementById('speakSandboxBtn').addEventListener('click', () => {
-      const textToSpeak = sandboxVietEl.textContent.replace(/[“”"']/g, '');
-      if (!('speechSynthesis' in window)) return;
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(textToSpeak);
-      utterance.lang = 'vi-VN';
-      utterance.rate = 0.9;
-      window.speechSynthesis.speak(utterance);
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        consultForm.classList.add('hidden');
+        successMessage.classList.add('hidden');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+        submitBtn.style.cursor = 'pointer';
+        submitBtn.innerHTML = originalText;
+      }
     });
 
     // ==========================================
-    // PART 2: EVERYDAY WH-QUESTIONS & ANSWERS
+    // REVISED NATURAL DIALOGUE DATABASE (100% UNTOUCHED CONTENT)
     // ==========================================
-    const whQuestionsDatabase = [
+    const dialoguesDatabase = [
+      // --- 1. ORDERING FOOD & DRINK ---
       {
-        type: "what",
-        qVi: "Tối nay em làm gì?",
-        qEn: "What are you doing tonight?",
-        aVi: "Tối nay em uống cà phê ở quán quen với bạn.",
-        aEn: "Tonight I drink coffee at my usual spot with a friend.",
-        preset: { time: "Tối nay", subject: "em", action: "uống cà phê", location: "ở quán quen", companion: "với bạn" }
+        category: "food",
+        title: "Ordering Pho",
+        prompt: { north: "Em ăn gì?", south: "Em ăn gì?" },
+        response: { north: "Cho anh một bát phở bò, không hành nhé.", south: "Cho anh một tô phở bò, không hành nha." },
+        translation: "What would you like to eat? ➔ Give me a bowl of beef pho, no green onions please."
       },
       {
-        type: "what",
-        qVi: "Tan làm tụi mình làm gì?",
-        qEn: "What are we doing after work?",
-        aVi: "Tan làm tụi mình nhậu ở quán vỉa hè với đồng nghiệp.",
-        aEn: "After work we go drinking at a sidewalk stall with colleagues.",
-        preset: { time: "Tan làm", subject: "tụi mình", action: "nhậu", location: "ở quán vỉa hè", companion: "với đồng nghiệp" }
+        category: "food",
+        title: "Ordering Coffee",
+        prompt: { north: "Em uống gì?", south: "Em uống gì?" },
+        response: { north: "Cho em một cốc cà phê sữa, ít đường nhé.", south: "Cho em một ly cà phê sữa đá, ít đá nha." },
+        translation: "What would you like to drink? ➔ Give me an iced milk coffee, less sugar please."
       },
       {
-        type: "where",
-        qVi: "Em uống cà phê ở đâu?",
-        qEn: "Where are you drinking coffee?",
-        aVi: "Em uống cà phê ở quán quen với bạn.",
-        aEn: "I drink coffee at my usual spot with a friend.",
-        preset: { time: null, subject: "em", action: "uống cà phê", location: "ở quán quen", companion: "với bạn" }
+        category: "food",
+        title: "Street Snacks",
+        prompt: { north: "Mua gì đấy em?", south: "Mua gì đó em?" },
+        response: { north: "Cho em hai ổ bánh mì pate, nhiều thịt nhé.", south: "Cho em hai ổ bánh mì pate, nhiều thịt nghen." },
+        translation: "What are you buying? ➔ Give me two pate banh mi, extra meat please."
       },
       {
-        type: "where",
-        qVi: "Trưa mai tụi em ăn trưa ở đâu?",
-        qEn: "Where are you having lunch tomorrow noon?",
-        aVi: "Trưa mai tụi em ăn trưa ở trung tâm thương mại với sếp.",
-        aEn: "Tomorrow noon we have lunch at the shopping mall with our boss.",
-        preset: { time: "Trưa mai", subject: "tụi em", action: "ăn trưa", location: "ở trung tâm thương mại", companion: "với sếp" }
+        category: "food",
+        title: "Asking for the Bill",
+        prompt: { north: "Em ơi, tính tiền nhé.", south: "Em ơi, tính tiền nha." },
+        response: { north: "Của chị hết ba mươi nghìn", south: "Của chị hết ba mươi ngàn?" },
+        translation: "Check please. ➔ That will be thirty thousand dong."
       },
       {
-        type: "who",
-        qVi: "Tối nay anh đi ăn tối với ai?",
-        qEn: "Who are you having dinner with tonight?",
-        aVi: "Tối nay anh đi ăn tối ở trung tâm thương mại với người yêu.",
-        aEn: "Tonight I have dinner at the shopping mall with my partner.",
-        preset: { time: "Tối nay", subject: "anh", action: "đi ăn tối", location: "ở trung tâm thương mại", companion: "với người yêu" }
+        category: "food",
+        title: "Takeaway Request",
+        prompt: { north: "Ăn ở đây hay mang về?", south: "Ăn ở đây hay mang về?" },
+        response: { north: "Cho em mang về nhé.", south: "Cho em mang về nha." },
+        translation: "Dine in or to go? ➔ Please pack it to go."
       },
       {
-        type: "who",
-        qVi: "Bây giờ em uống trà sữa với ai?",
-        qEn: "Who are you drinking milk tea with right now?",
-        aVi: "Bây giờ em uống trà sữa với bạn cùng phòng.",
-        aEn: "Right now I drink boba milk tea with my roommate.",
-        preset: { time: "Bây giờ", subject: "em", action: "uống trà sữa", location: null, companion: "với bạn cùng phòng" }
+        category: "food",
+        title: "Asking for Extra Bowl",
+        prompt: { north: "Anh/chị cần thêm gì nữa không?", south: "Anh/chị cần thêm gì nữa không?" },
+        response: { north: "Cho anh xin thêm một bát con nhé.", south: "Cho anh xin thêm một cái chén nhỏ nha." },
+        translation: "Do you need anything else? ➔ Please give me an extra small bowl."
       },
       {
-        type: "when",
-        qVi: "Khi nào em đi cắt tóc?",
-        qEn: "When are you getting a haircut?",
-        aVi: "Chút xíu nữa em đi cắt tóc một mình.",
-        aEn: "In just a moment I get a haircut alone.",
-        preset: { time: "Chút xíu nữa", subject: "em", action: "đi cắt tóc", location: null, companion: "một mình" }
+        category: "food",
+        title: "Spiciness Preference",
+        prompt: { north: "Có ăn được cay không?", south: "Có ăn cay được không?" },
+        response: { north: "Cho anh ít ớt thôi nhé.", south: "Cho anh ít ớt thôi nha." },
+        translation: "Can you eat spicy food? ➔ Just a little bit of chili for me please."
       },
       {
-        type: "when",
-        qVi: "Khi nào anh chạy deadline?",
-        qEn: "When are you rushing your deadline?",
-        aVi: "Lát nữa anh chạy deadline ở nhà một mình.",
-        aEn: "In a bit I rush my deadline at home alone.",
-        preset: { time: "Lát nữa", subject: "anh", action: "chạy deadline", location: "ở nhà", companion: "một mình" }
+        category: "food",
+        title: "Checking Availability",
+        prompt: { north: "Quán còn món này không em?", south: "Quán còn món này không em?" },
+        response: { north: "Hết mất rồi anh ạ, gọi món khác nhé.", south: "Hết mất tiêu rồi anh, gọi món khác nha." },
+        translation: "Do you still have this dish? ➔ It's sold out, please choose another dish."
+      },
+
+      // --- 2. SHOPPING & BARGAINING ---
+      {
+        category: "shop",
+        title: "Asking Prices",
+        prompt: { north: "Cái này bao nhiêu tiền?", south: "Cái này bao nhiêu tiền?" },
+        response: { north: "Cái này hai trăm nghìn anh ạ.", south: "Cái này hai trăm ngàn nha anh." },
+        translation: "How much is this? ➔ This is two hundred thousand dong."
+      },
+      {
+        category: "shop",
+        title: "Asking for Color",
+        prompt: { north: "Còn màu khác không?", south: "Bên mình còn màu khác không?" },
+        response: { north: "Có màu trắng với màu đen anh nhé.", south: "Có màu trắng với màu đen nha anh." },
+        translation: "Do you have other colors? ➔ Yes, we have white and black."
+      },
+      {
+        category: "shop",
+        title: "Bargaining",
+        prompt: { north: "Mua hai cái bớt chút nhé?", south: "Mua hai cái bớt chút nghen?" },
+        response: { north: "Bớt cho anh năm mươi nghìn nhé.", south: "Bớt cho anh năm mươi ngàn nha." },
+        translation: "If I buy two, can you give a discount? ➔ Let's take off fifty thousand dong."
+      },
+      {
+        category: "shop",
+        title: "Looking Around",
+        prompt: { north: "Anh cần em tư vấn gì không?", south: "Anh cần em hỗ trợ gì không?" },
+        response: { north: "Không, cảm ơn em, anh tự xem nhé.", south: "Không, cảm ơn em, anh tự coi được rồi." },
+        translation: "Do you need any assistance? ➔ No thanks, I'm just browsing."
+      },
+      {
+        category: "shop",
+        title: "Asking for Payment Methods",
+        prompt: { north: "Thanh toán tiền mặt hay chuyển khoản?", south: "Thanh toán tiền mặt hay chuyển khoản anh?" },
+        response: { north: "Cho anh chuyển khoản nhé.", south: "Cho anh chuyển khoản nha." },
+        translation: "Cash or bank transfer? ➔ I will pay via bank transfer."
+      },
+      {
+        category: "shop",
+        title: "Trying Clothes On",
+        prompt: { north: "Phòng thử đồ ở đằng kia anh nhé.", south: "Phòng thử đồ ở đằng kia nha anh." },
+        response: { north: "Cảm ơn em", south: "Cảm ơn em" },
+        translation: "The fitting room is right over there. ➔ Thank you."
+      },
+      {
+        category: "shop",
+        title: "Asking for a Bag",
+        prompt: { north: "Anh có lấy túi không?", south: "Anh có lấy bịch không?" },
+        response: { north: "Có", south: "Có" },
+        translation: "Would you like a bag? ➔ Yes, please."
+      },
+      {
+        category: "shop",
+        title: "Returning or Exchanging",
+        prompt: { north: "Hàng mua rồi có được đổi không em?", south: "Đồ mua rồi có được đổi không em?" },
+        response: { north: "Đổi trong vòng ba ngày anh nhé.", south: "Đổi trong vòng ba ngày nha anh." },
+        translation: "Can I exchange purchased items? ➔ You can exchange within three days."
+      },
+
+      // --- 3. GETTING AROUND & TRANSPORT ---
+      {
+        category: "transport",
+        title: "Taking a Ride",
+        prompt: { north: "Anh đi đâu đấy ạ?", south: "Anh đi đâu vậy anh?" },
+        response: { north: "Chở anh ra phố đi bộ nhé.", south: "Chở anh ra phố đi bộ nha." },
+        translation: "Where are you heading? ➔ Please take me to the walking street."
+      },
+      {
+        category: "transport",
+        title: "Asking to Stop",
+        prompt: { north: "Đến nơi rồi anh nhé.", south: "Tới nơi rồi nha anh." },
+        response: { north: "Cho anh xuống ở đây nhé, cảm ơn em.", south: "Cho anh xuống ở đây nha, cảm ơn em." },
+        translation: "We have arrived. ➔ Please let me get off here, thank you."
+      },
+      {
+        category: "transport",
+        title: "Asking about Distance",
+        prompt: { north: "Từ đây ra đấy có xa không em?", south: "Từ đây ra đó có xa không em?" },
+        response: { north: "Khoảng hai cây số thôi anh ạ.", south: "Khoảng hai cây số thôi anh." },
+        translation: "Is it far from here? ➔ It's about two kilometers away."
+      },
+      {
+        category: "transport",
+        title: "Confirming App Ride",
+        prompt: { north: "Anh đặt xe phải không?", south: "Anh đặt xe đúng không?" },
+        response: { north: "Đúng rồi em, anh đây.", south: "Đúng rồi em ơi, anh đây nè." },
+        translation: "Did you book the ride? ➔ Yes that's me, right here."
+      },
+      {
+        category: "transport",
+        title: "Asking to Turn on AC",
+        prompt: { north: "Lên xe đi anh.", south: "Lên xe đi anh." },
+        response: { north: "Mở điều hòa giúp anh nhé.", south: "Mở máy lạnh giùm anh nha." },
+        translation: "Hop in. ➔ Please turn on the AC for me."
+      },
+      {
+        category: "transport",
+        title: "Asking for Fare",
+        prompt: { north: "Đến nơi rồi anh nhé.", south: "Tới nơi rồi anh ơi." },
+        response: { north: "Hết bao nhiêu tiền vậy em?", south: "Hết bao nhiêu tiền vậy em?" },
+        translation: "We've arrived. ➔ How much is the fare?"
+      },
+      {
+        category: "transport",
+        title: "Waiting for Grab",
+        prompt: { north: "Anh đang đứng ở đâu thế?", south: "Anh đang đứng ở đâu vậy?" },
+        response: { north: "Anh đang đứng trước cửa hàng tiện lợi nhé.", south: "Anh đang đứng trước cửa hàng tiện lợi nha." },
+        translation: "Where are you standing? ➔ I'm standing in front of the convenience store."
+      },
+      {
+        category: "transport",
+        title: "Asking about Traffic",
+        prompt: { north: "Đường phía trước có bị tắc không em?", south: "Đường phía trước có bị kẹt không em?" },
+        response: { north: "Đang hơi tắc một chút ở ngã tư anh ạ.", south: "Đang hơi kẹt xe một chút ở ngã tư anh." },
+        translation: "Is the road ahead jammed? ➔ It's a bit congested at the intersection ahead."
+      },
+
+      // --- 4. EVERYDAY SMALL TALK ---
+      {
+        category: "chat",
+        title: "Making Plans",
+        prompt: { north: "Hôm nào rảnh đi cà phê nhé?", south: "Hôm nào rảnh đi cà phê nghen?" },
+        response: { north: "Ừ, cuối tuần này đi nhé!", south: "Ừ, cuối tuần này đi nha!" },
+        translation: "Let's grab coffee sometime when you're free? ➔ Sure, let's go this weekend!"
+      },
+      {
+        category: "chat",
+        title: "Asking About Work",
+        prompt: { north: "Công việc dạo này bận không?", south: "Công việc dạo này bận không?" },
+        response: { north: "Anh hơi nhiều việc.", south: "Anh hơi nhiều việc." },
+        translation: "Have you been busy with work lately? ➔ I've been quite busy."
+      },
+      {
+        category: "chat",
+        title: "Talking About Weather",
+        prompt: { north: "Hôm nay trời nóng nhỉ?", south: "Hôm nay trời nóng quá ha?" },
+        response: { north: "Ừ, nắng gắt từ sáng đến giờ.", south: "Đúng rồi, oi từ sáng tới giờ." },
+        translation: "It's hot today, isn't it? ➔ Yes, it's been scorching since morning."
+      },
+      {
+        category: "chat",
+        title: "Asking for Opinions",
+        prompt: { north: "Anh thấy món này thế nào?", south: "Anh thấy món này sao?" },
+        response: { north: "Anh thấy rất ngon.", south: "Anh thấy rất ngon." },
+        translation: "What do you think of this dish? ➔ I think it's very delicious."
+      },
+      {
+        category: "chat",
+        title: "Saying Goodbye",
+        prompt: { north: "Thế nhé, anh về trước đây.", south: "Thôi nha, anh về trước đây." },
+        response: { north: "Ừ, về cẩn thận nhé!", south: "Ừ, về cẩn thận nha!" },
+        translation: "Alright, I'm heading home now. ➔ Okay, get home safely!"
+      },
+      {
+        category: "chat",
+        title: "Asking for Help",
+        prompt: { north: "Giúp anh việc này một tí được không?", south: "Giúp anh việc này một chút được không?" },
+        response: { north: "Được chứ, việc gì thế anh?", south: "Được chứ, chuyện gì vậy anh?" },
+        translation: "Can you help me with this for a moment? ➔ Sure, what is it?"
+      },
+      {
+        category: "chat",
+        title: "Expressing Surprise",
+        prompt: { north: "Thật á? Không ngờ luôn.", south: "Thật luôn hả? Bất ngờ ghê." },
+        response: { north: "Thật chứ, anh vừa nghe xong.", south: "Thật chứ, anh mới nghe hồi nãy." },
+        translation: "Really? I can't believe it. ➔ True, I just heard about it."
       }
     ];
 
-    let currentQType = 'all';
-    const qaGrid = document.getElementById('qaGrid');
-    const qaCounterEl = document.getElementById('qaCounter');
+    let currentDialect = 'north';
+    let currentCat = 'all';
 
-    function renderQACards() {
-      qaGrid.innerHTML = '';
-      const filtered = currentQType === 'all' 
-        ? whQuestionsDatabase 
-        : whQuestionsDatabase.filter(item => item.type === currentQType);
+    function setDialect(d) {
+      currentDialect = d;
+      document.getElementById('btn-north').className = d === 'north' ? 'px-4 py-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs sm:text-sm transition shadow-xs cursor-pointer font-brand' : 'px-4 py-2.5 rounded-xl text-stone-500 hover:text-slate-900 font-bold text-xs sm:text-sm transition cursor-pointer font-brand';
+      document.getElementById('btn-south').className = d === 'south' ? 'px-4 py-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs sm:text-sm transition shadow-xs cursor-pointer font-brand' : 'px-4 py-2.5 rounded-xl text-stone-500 hover:text-slate-900 font-bold text-xs sm:text-sm transition cursor-pointer font-brand';
+      renderDialogues();
+    }
 
-      qaCounterEl.textContent = `${filtered.length} Question Prompts`;
+    function renderDialogues() {
+      const grid = document.getElementById('dialogueGrid');
+      grid.innerHTML = '';
+
+      const filtered = currentCat === 'all' 
+        ? dialoguesDatabase 
+        : dialoguesDatabase.filter(item => item.category === currentCat);
 
       filtered.forEach(item => {
         const card = document.createElement('div');
-        card.className = 'bg-white rounded-2xl p-5 border border-stone-200/90 shadow-2xs space-y-4 flex flex-col justify-between hover:border-stone-400 transition';
+        card.className = 'bg-white rounded-3xl p-6 sm:p-7 border border-stone-200/90 shadow-2xs space-y-4 flex flex-col justify-between hover:border-stone-400 transition';
 
-        let badgeLabel = "What?";
-        let badgeStyle = "bg-amber-50 text-amber-800 border-amber-200";
-        if (item.type === "where") { badgeLabel = "Where?"; badgeStyle = "bg-purple-50 text-purple-800 border-purple-200"; }
-        else if (item.type === "who") { badgeLabel = "With whom?"; badgeStyle = "bg-blue-50 text-blue-800 border-blue-200"; }
-        else if (item.type === "when") { badgeLabel = "When?"; badgeStyle = "bg-emerald-50 text-emerald-800 border-emerald-200"; }
+        let catLabel = "Food & Drink";
+        let catStyle = "bg-amber-50 text-amber-800 border-amber-200";
+        if (item.category === "shop") { catLabel = "Shopping"; catStyle = "bg-purple-50 text-purple-800 border-purple-200"; }
+        else if (item.category === "transport") { catLabel = "Transport"; catStyle = "bg-emerald-50 text-emerald-800 border-emerald-200"; }
+        else if (item.category === "chat") { catLabel = "Small Talk"; catStyle = "bg-blue-50 text-blue-800 border-blue-200"; }
 
         card.innerHTML = `
-          <div class="space-y-3">
-            <div class="flex items-center justify-between pb-2 border-b border-stone-100">
-              <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded border ${badgeStyle}">
-                ${badgeLabel}
+          <div class="space-y-3.5">
+            <div class="flex items-center justify-between pb-3 border-b border-stone-100">
+              <span class="text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md border ${catStyle}">
+                ${catLabel}
               </span>
-              <button class="speak-q-btn inline-flex items-center gap-1 text-xs font-bold text-stone-500 hover:text-red-600 transition cursor-pointer" data-text="${item.qVi}">
-                <span>🔊</span>
-                <span>Listen Q</span>
-              </button>
+              <span class="text-xs font-semibold text-stone-400">${item.title}</span>
             </div>
 
             <div>
-              <span class="text-[10px] font-bold text-stone-400 uppercase tracking-wider block">Question:</span>
-              <div class="text-base font-extrabold text-slate-900 font-brand">“${item.qVi}”</div>
-              <div class="text-xs text-stone-500 italic mt-0.5">“${item.qEn}”</div>
+              <span class="text-[10px] font-bold text-stone-400 uppercase tracking-wider block">Prompt:</span>
+              <div class="text-base sm:text-lg font-semibold text-slate-900 mt-1 not-italic">“${item.prompt[currentDialect]}”</div>
             </div>
 
-            <div class="p-3.5 rounded-xl bg-[#fffaf5] border border-stone-200/80 space-y-1">
-              <span class="text-[10px] font-bold text-emerald-700 uppercase tracking-wider block">Spoken Answer:</span>
-              <div class="text-sm font-bold text-slate-900">“${item.aVi}”</div>
-              <div class="text-[11px] text-stone-500 italic">“${item.aEn}”</div>
+            <div class="p-4 sm:p-5 rounded-2xl bg-[#fffaf5] border border-stone-200/80 space-y-1.5">
+              <span class="text-[10px] font-bold text-orange-600 uppercase tracking-wider block">Natural Response:</span>
+              <div class="text-lg sm:text-xl font-bold text-slate-900 not-italic">“${item.response[currentDialect]}”</div>
+              <div class="text-xs sm:text-sm text-stone-500 font-normal mt-1.5 not-italic">“${item.translation}”</div>
             </div>
-          </div>
-
-          <div class="pt-2 border-t border-stone-100 flex items-center justify-between">
-            <button 
-              type="button" 
-              class="load-to-sandbox-btn text-xs font-bold text-red-600 hover:text-red-700 flex items-center gap-1 cursor-pointer transition"
-            >
-              <span>↑ Build this in Sandbox</span>
-            </button>
-            <button class="speak-a-btn text-xs font-bold text-stone-500 hover:text-slate-800 transition cursor-pointer flex items-center gap-1" data-text="${item.aVi}">
-              <span>🔊 Answer</span>
-            </button>
           </div>
         `;
 
-        card.querySelector('.load-to-sandbox-btn').addEventListener('click', () => {
-          const p = item.preset;
-          const tIdx = p.time ? sandboxVocab.time.findIndex(x => x.vi === p.time) : 0;
-          const sIdx = p.subject ? sandboxVocab.subject.findIndex(x => x.vi === p.subject) : 0;
-          const aIdx = p.action ? sandboxVocab.action.findIndex(x => x.vi === p.action) : 0;
-          const lIdx = p.location ? sandboxVocab.location.findIndex(x => x.vi === p.location) : 0;
-          const cIdx = p.companion ? sandboxVocab.companion.findIndex(x => x.vi === p.companion) : 0;
-
-          currentSandbox = {
-            time: tIdx !== -1 ? tIdx : 0,
-            subject: sIdx !== -1 ? sIdx : 1,
-            action: aIdx !== -1 ? aIdx : 0,
-            location: lIdx !== -1 ? lIdx : 0,
-            companion: cIdx !== -1 ? cIdx : 0
-          };
-
-          updateSandboxDisplay();
-          document.getElementById('sandboxViet').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        });
-
-        qaGrid.appendChild(card);
-      });
-
-      document.querySelectorAll('.speak-q-btn, .speak-a-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const text = btn.getAttribute('data-text');
-          if (!('speechSynthesis' in window)) return;
-          window.speechSynthesis.cancel();
-          const utterance = new SpeechSynthesisUtterance(text);
-          utterance.lang = 'vi-VN';
-          utterance.rate = 0.9;
-          window.speechSynthesis.speak(utterance);
-        });
+        grid.appendChild(card);
       });
     }
 
-    document.querySelectorAll('.q-filter-btn').forEach(btn => {
+    document.querySelectorAll('.cat-filter-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        document.querySelectorAll('.q-filter-btn').forEach(b => {
+        document.querySelectorAll('.cat-filter-btn').forEach(b => {
           b.classList.remove('active', 'bg-slate-900', 'text-white');
-          b.classList.add('bg-white', 'text-stone-600', 'border', 'border-stone-200');
+          b.classList.add('bg-white', 'text-stone-700', 'border-2', 'border-stone-200');
         });
         btn.classList.add('active', 'bg-slate-900', 'text-white');
-        btn.classList.remove('bg-white', 'text-stone-600', 'border', 'border-stone-200');
-        currentQType = btn.getAttribute('data-type');
-        renderQACards();
+        btn.classList.remove('bg-white', 'text-stone-700', 'border-2', 'border-stone-200');
+        currentCat = btn.getAttribute('data-cat');
+        renderDialogues();
       });
     });
 
-    document.getElementById('randomQBtn').addEventListener('click', () => {
-      const randomItem = whQuestionsDatabase[Math.floor(Math.random() * whQuestionsDatabase.length)];
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(randomItem.qVi);
-        utterance.lang = 'vi-VN';
-        utterance.rate = 0.9;
-        window.speechSynthesis.speak(utterance);
-      }
-      currentQType = randomItem.type;
-      document.querySelectorAll('.q-filter-btn').forEach(b => {
-        if (b.getAttribute('data-type') === currentQType) {
-          b.classList.add('active', 'bg-slate-900', 'text-white');
-          b.classList.remove('bg-white', 'text-stone-600', 'border', 'border-stone-200');
-        } else {
-          b.classList.remove('active', 'bg-slate-900', 'text-white');
-          b.classList.add('bg-white', 'text-stone-600', 'border', 'border-stone-200');
-        }
-      });
-      renderQACards();
-    });
-
-    // Initial Execution
-    initSandboxMenus();
-    updateSandboxDisplay();
-    renderQACards();
+    // Initial Render
+    renderDialogues();
   </script>
 </body>
 </html>

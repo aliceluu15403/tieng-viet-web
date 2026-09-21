@@ -1,5 +1,6 @@
 ---
-// src/pages/index.astro - Havie Landing Page (Updated Navbar Layout)
+// src/pages/index.astro - Havie Homepage with Preloaded Audio & Full Layout
+import '../styles/global.css';
 ---
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -12,13 +13,19 @@
   <!-- CANONICAL URL -->
   <link rel="canonical" href="https://havielearn.com/" />
 
-  <!-- FAVICON NHÚNG TRỰC TIẾP -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22><rect width=%22512%22 height=%22512%22 rx=%22110%22 fill=%22%23dc2626%22/><path d=%22M136 116h68v110h104V116h68v280h-68V290H204v106h-68V116z%22 fill=%22%23ffffff%22/></svg>" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="manifest" href="/site.webmanifest" />
+  <!-- SCHEMA.ORG ORGANIZATION / WEBSITE -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Havie",
+    "alternateName": ["Havie Learn Vietnamese", "Havie Learn Vietnamese Online"],
+    "url": "https://havielearn.com/"
+  }
+  </script>
 
-  <!-- Tailwind CSS CDN -->
-  <script is:inline src="https://cdn.tailwindcss.com"></script>
+  <!-- FAVICON -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   
   <!-- Google Fonts: DM Sans & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,7 +75,7 @@
 </head>
 <body class="selection:bg-red-600 selection:text-white min-h-screen flex flex-col antialiased relative overflow-x-hidden">
 
-  <!-- NAVBAR (Tách biệt menu chữ và đẩy nút Book sang phải) -->
+  <!-- NAVBAR -->
   <header class="sticky top-0 z-40 bg-[#fffaf5]/90 backdrop-blur-md border-b border-stone-200/80 h-20">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 h-full flex items-center justify-between">
       
@@ -97,7 +104,7 @@
         <a href="/test" class="hover:text-red-600 transition">Level Test</a>
       </nav>
 
-      <!-- NÚT BOOK ĐƯỢC TÁCH RIÊNG VÀ ĐẨY SANG PHẢI VỚI KHOẢNG CÁCH AN TOÀN -->
+      <!-- NÚT BOOK -->
       <div class="hidden md:flex items-center pl-6 shrink-0">
         <button
           type="button"
@@ -154,7 +161,6 @@
           <!-- CỘT BÊN TRÁI -->
           <div class="lg:col-span-7 text-center lg:text-left space-y-5 sm:space-y-6">
             
-            <!-- BADGE CHỨA TỪ KHÓA SEO QUAN TRỌNG -->
             <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-stone-200/90 text-xs sm:text-sm font-bold text-slate-800 shadow-2xs">
               <span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
               <span>Online Vietnamese Tutor & 1-on-1 Lessons</span>
@@ -162,7 +168,6 @@
               <span class="text-stone-500 font-medium">Northern & Southern Accents</span>
             </div>
 
-            <!-- THẺ H1 CHÍNH -->
             <h1 class="font-extrabold text-slate-900 tracking-tight font-brand text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-[1.15]">
               <span>Vietnamese isn’t hard.</span>
               <span class="block mt-1 sm:mt-2">
@@ -191,7 +196,6 @@
               </a>
             </div>
 
-            <!-- 3 DẤU TÍCH -->
             <div class="pt-4 border-t border-stone-200/80 flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 text-sm sm:text-base text-stone-700 font-semibold">
               <div class="flex items-center gap-2"><span class="text-emerald-600 font-bold text-base sm:text-lg">✓</span> 1,200+ Hours Taught</div>
               <div class="flex items-center gap-2"><span class="text-emerald-600 font-bold text-base sm:text-lg">✓</span> Beginners, Expats & Heritage learners</div>
@@ -242,12 +246,12 @@
                     </div>
                     <div class="text-xs sm:text-sm text-stone-600 mt-1.5 font-semibold whitespace-nowrap">Mother 👩🏻</div>
                   </button>
-                  <button onclick="playHeroAudio('hoi')" type="button" class="bg-white px-2 py-3.5 sm:py-4 rounded-2xl border border-stone-200/90 hover:border-red-500 hover:shadow-md transition cursor-pointer group">
+                  <button onclick="playHeroAudio('nga')" type="button" class="bg-white px-2 py-3.5 sm:py-4 rounded-2xl border border-stone-200/90 hover:border-red-500 hover:shadow-md transition cursor-pointer group">
                     <div class="text-base sm:text-lg font-extrabold text-red-600 font-brand group-hover:scale-105 transition-transform flex items-center justify-center gap-1">
-                      <span>mả</span>
+                      <span>mã</span>
                       <span class="text-xs">🔊</span>
                     </div>
-                    <div class="text-xs sm:text-sm text-stone-600 mt-1.5 font-semibold whitespace-nowrap">Tomb ⚰️</div>
+                    <div class="text-xs sm:text-sm text-stone-600 mt-1.5 font-semibold whitespace-nowrap">Horse 🐎</div>
                   </button>
                 </div>
               </div>
@@ -342,48 +346,48 @@
     </section>
 
     <!-- LEARNING TRACKS -->
-    <section id="curriculum" class="py-12 sm:py-16 bg-white">
+    <section id="curriculum" class="py-12 sm:py-16 bg-white border-t border-stone-200/60">
       <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
         <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
-          <span class="text-xs font-bold text-red-600 uppercase tracking-widest">Tailored Programs</span>
+          <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest bg-red-50 px-3 py-1 rounded-md border border-red-200">Tailored Programs</span>
           <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-2.5 tracking-tight font-brand">
             Find the Path That Fits Your Goals
           </h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-start">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
           
           <!-- Track 01 -->
-          <div class="bg-[#fffaf5] rounded-3xl p-6 sm:p-8 border border-stone-200/90 shadow-2xs hover:shadow-xl transition-all duration-300">
+          <div class="bg-[#fffaf5] rounded-3xl p-6 sm:p-8 border border-stone-200/90 shadow-2xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
             <div>
               <div class="inline-block text-[11px] font-bold text-slate-700 bg-stone-100 px-3 py-1 rounded-lg uppercase tracking-wider">
                 Track 01 • 5–10 Sessions
               </div>
-              <h3 class="text-lg sm:text-xl font-bold text-slate-900 mt-3.5 mb-2 font-brand">
+              <h3 class="text-xl sm:text-2xl font-black text-slate-900 mt-3.5 mb-3 font-brand">
                 Pronunciation
               </h3>
-              <p class="text-xs sm:text-sm text-stone-600 leading-relaxed mb-5">
-                Master the foundations. Learn exact mouth and tongue mechanics for the alphabet (vowels, consonants) and the 6 tones from day one.
+              <p class="text-sm sm:text-base text-stone-600 leading-relaxed mb-6 font-medium">
+                Master exact mouth/tongue mechanics for vowels, consonants, and the 6 tones from day one.
               </p>
-              <ul class="space-y-3 text-xs sm:text-sm text-stone-700">
-                <li class="flex items-start gap-2">
+              <ul class="space-y-3.5 text-sm sm:text-base text-slate-800 font-semibold">
+                <li class="flex items-start gap-2.5">
                   <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
-                  <span>Step-by-step guidance on mouth, jaw, and lip positioning</span>
+                  <span>Mouth, jaw & lip positioning</span>
                 </li>
-                <li class="flex items-start gap-2">
+                <li class="flex items-start gap-2.5">
                   <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
-                  <span>Concrete real-world examples and interactive drills</span>
+                  <span>Interactive tone Drills</span>
                 </li>
-                <li class="flex items-start gap-2">
+                <li class="flex items-start gap-2.5">
                   <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
-                  <span>Custom practice audio exercises included for every session</span>
+                  <span>Custom practice audio files</span>
                 </li>
               </ul>
             </div>
             <div class="mt-8 pt-6 border-t border-stone-100">
               <button
                 type="button"
-                class="open-modal-trigger block w-full text-center py-3.5 bg-stone-100 hover:bg-stone-200 text-slate-900 font-bold rounded-xl text-xs transition cursor-pointer"
+                class="open-modal-trigger block w-full text-center py-3.5 bg-stone-100 hover:bg-stone-200 text-slate-900 font-extrabold rounded-xl text-xs sm:text-sm transition cursor-pointer"
               >
                 Book 25-Min Trial Lesson →
               </button>
@@ -391,7 +395,7 @@
           </div>
 
           <!-- Track 02 (Featured) -->
-          <div class="bg-[#fffaf5] rounded-3xl p-6 sm:p-8 border-2 border-red-600 shadow-xl relative md:-translate-y-3">
+          <div class="bg-[#fffaf5] rounded-3xl p-6 sm:p-8 border-2 border-red-600 shadow-xl relative md:-translate-y-3 flex flex-col justify-between">
             <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-red-600 text-white text-[11px] font-extrabold px-4 py-1 rounded-full uppercase tracking-wider shadow-md whitespace-nowrap">
               🔥 Most Popular for Expats
             </div>
@@ -399,31 +403,31 @@
               <div class="inline-block text-[11px] font-bold text-red-600 bg-red-50 px-3 py-1 rounded-lg border border-red-200 uppercase tracking-wider">
                 Track 02 • 10–20 Sessions
               </div>
-              <h3 class="text-lg sm:text-xl font-bold text-slate-900 mt-3.5 mb-2 font-brand">
+              <h3 class="text-xl sm:text-2xl font-black text-slate-900 mt-3.5 mb-3 font-brand">
                 Real-World Street Vietnamese
               </h3>
-              <p class="text-xs sm:text-sm text-stone-600 leading-relaxed mb-5">
-                Cut through textbook stiffness. Speak natural, conversational Vietnamese for daily life, social settings, and travel.
+              <p class="text-sm sm:text-base text-stone-600 leading-relaxed mb-6 font-medium">
+                Cut through textbook stiffness. Speak natural, conversational Vietnamese for daily life and travel.
               </p>
-              <ul class="space-y-3 text-xs sm:text-sm text-stone-700">
-                <li class="flex items-start gap-2">
+              <ul class="space-y-3.5 text-sm sm:text-base text-slate-800 font-semibold">
+                <li class="flex items-start gap-2.5">
                   <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
-                  <span>Order food and refreshing drinks seamlessly at local spots</span>
+                  <span>Ordering food & drinks locally</span>
                 </li>
-                <li class="flex items-start gap-2">
+                <li class="flex items-start gap-2.5">
                   <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
-                  <span>Communicate smoothly with ride-hailing drivers, delivery couriers, and neighbors</span>
+                  <span>Rides, deliveries & daily errands</span>
                 </li>
-                <li class="flex items-start gap-2">
+                <li class="flex items-start gap-2.5">
                   <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
-                  <span>Master marketplace bargaining, checking costs, and everyday shopping</span>
+                  <span>Marketplace bargaining & shopping</span>
                 </li>
               </ul>
             </div>
             <div class="mt-8 pt-6 border-t border-stone-100">
               <button
                 type="button"
-                class="open-modal-trigger block w-full text-center py-3.5 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-xl text-xs transition shadow-lg shadow-red-600/20 hover:-translate-y-0.5 cursor-pointer"
+                class="open-modal-trigger block w-full text-center py-3.5 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl text-xs sm:text-sm transition shadow-lg shadow-red-600/20 hover:-translate-y-0.5 cursor-pointer font-brand"
               >
                 Book 25-Min Trial Lesson →
               </button>
@@ -431,36 +435,36 @@
           </div>
 
           <!-- Track 03 -->
-          <div class="bg-[#fffaf5] rounded-3xl p-6 sm:p-8 border border-stone-200/90 shadow-2xs hover:shadow-xl transition-all duration-300">
+          <div class="bg-[#fffaf5] rounded-3xl p-6 sm:p-8 border border-stone-200/90 shadow-2xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
             <div>
               <div class="inline-block text-[11px] font-bold text-slate-700 bg-stone-100 px-3 py-1 rounded-lg uppercase tracking-wider">
                 Track 03 • Flexible / Ongoing
               </div>
-              <h3 class="text-lg sm:text-xl font-bold text-slate-900 mt-3.5 mb-2 font-brand">
+              <h3 class="text-xl sm:text-2xl font-black text-slate-900 mt-3.5 mb-3 font-brand">
                 Family & Heritage Roots
               </h3>
-              <p class="text-xs sm:text-sm text-stone-600 leading-relaxed mb-5">
+              <p class="text-sm sm:text-base text-stone-600 leading-relaxed mb-6 font-medium">
                 Bridge the gap with your family, partner, and relatives through warm, culturally grounded speech.
               </p>
-              <ul class="space-y-3 text-xs sm:text-sm text-stone-700">
-                <li class="flex items-start gap-2">
+              <ul class="space-y-3.5 text-sm sm:text-base text-slate-800 font-semibold">
+                <li class="flex items-start gap-2.5">
                   <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
-                  <span>Natural dining table chats and family bonding phrases</span>
+                  <span>Dining table chats & bonding</span>
                 </li>
-                <li class="flex items-start gap-2">
+                <li class="flex items-start gap-2.5">
                   <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
-                  <span>Essential cultural etiquette for Tết, weddings, and gatherings</span>
+                  <span>Cultural etiquette for Tết & weddings</span>
                 </li>
-                <li class="flex items-start gap-2">
+                <li class="flex items-start gap-2.5">
                   <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
-                  <span>Reconnect with your or your partner's family & regional accent</span>
+                  <span>Regional accents & family terms</span>
                 </li>
               </ul>
             </div>
             <div class="mt-8 pt-6 border-t border-stone-100">
               <button
                 type="button"
-                class="open-modal-trigger block w-full text-center py-3.5 bg-stone-100 hover:bg-stone-200 text-slate-900 font-bold rounded-xl text-xs transition cursor-pointer"
+                class="open-modal-trigger block w-full text-center py-3.5 bg-stone-100 hover:bg-stone-200 text-slate-900 font-bold rounded-xl text-xs sm:text-sm transition cursor-pointer"
               >
                 Book 25-Min Trial Lesson →
               </button>
@@ -731,66 +735,36 @@
 
   <!-- SCRIPTS -->
   <script is:inline>
-    let heroAudioCtx = null;
-    let heroSourceNode = null;
-    let heroGainNode = null;
-    let isHeroAudioLoaded = false;
-    let heroAudioBuffer = null;
+    // --- STANDARD AUDIO (Giống bên Tones Studio, có preload sẵn) ---
+    const heroAudio = new Audio('/audio/tones/ma-all.m4a');
+    heroAudio.preload = 'auto';
 
     const heroTimestamps = {
-      ngang: { start: 0.55, end: 1.49 },
-      sac:   { start: 1.85, end: 2.75 },
-      hoi:   { start: 4.55, end: 5.45 }
+      ngang: { start: 0.6, end: 1.4 },
+      sac:   { start: 1.9, end: 2.7 },
+      nga:   { start: 5.9, end: 6.7 }
     };
 
-    async function initHeroAudio() {
-      if (isHeroAudioLoaded) return;
-      try {
-        heroAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const response = await fetch('/audio/tones/ma-all.m4a');
-        const arrayBuffer = await response.arrayBuffer();
-        heroAudioBuffer = await heroAudioCtx.decodeAudioData(arrayBuffer);
-        isHeroAudioLoaded = true;
-      } catch (e) {
-        console.log("Web Audio init error:", e);
-      }
-    }
-
-    async function playHeroAudio(toneKey) {
-      if (!isHeroAudioLoaded) {
-        await initHeroAudio();
-      }
-      if (!heroAudioCtx || !heroAudioBuffer) return;
-
-      if (heroAudioCtx.state === 'suspended') {
-        await heroAudioCtx.resume();
-      }
-
-      if (heroSourceNode) {
-        try { heroSourceNode.stop(); } catch(e) {}
-      }
-
+    function playHeroAudio(toneKey) {
+      heroAudio.pause();
       const range = heroTimestamps[toneKey];
       if (!range) return;
 
-      heroSourceNode = heroAudioCtx.createBufferSource();
-      heroSourceNode.buffer = heroAudioBuffer;
+      heroAudio.currentTime = range.start;
+      heroAudio.play().catch(err => {
+        console.log("Audio play error:", err);
+        heroAudio.play();
+      });
 
-      heroGainNode = heroAudioCtx.createGain();
-      heroGainNode.gain.value = 2.5; 
-
-      heroSourceNode.connect(heroGainNode);
-      heroGainNode.connect(heroAudioCtx.destination);
-
-      const duration = range.end - range.start;
-      heroSourceNode.start(0, range.start, duration);
+      const checkTime = () => {
+        if (heroAudio.currentTime >= range.end) {
+          heroAudio.pause();
+          heroAudio.removeEventListener('timeupdate', checkTime);
+        }
+      };
+      
+      heroAudio.addEventListener('timeupdate', checkTime);
     }
-
-    document.addEventListener('click', () => {
-      if (!isHeroAudioLoaded) {
-        initHeroAudio();
-      }
-    }, { once: true });
 
     // Mobile Menu Toggle
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -832,44 +806,64 @@
       }
     });
 
-    const hideModal = () => modal.classList.add('hidden');
+    const hideModal = () => {
+      modal.classList.add('hidden');
+      if (consultForm && successMessage) {
+        consultForm.classList.remove('hidden');
+        successMessage.classList.add('hidden');
+        consultForm.reset();
+      }
+    };
+
     if (closeModalBtn) closeModalBtn.addEventListener('click', hideModal);
     if (btnCloseSuccess) closeModalBtn.addEventListener('click', hideModal);
     modal.addEventListener('click', (e) => { if (e.target === modal) hideModal(); });
 
+    // FORM SUBMISSION
     consultForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       
-      const formData = {
-        name: document.getElementById('cName').value,
-        country: document.getElementById('cCountry').value,
-        phone: document.getElementById('cPhone').value,
-        email: document.getElementById('cEmail').value,
-        goals: document.getElementById('cGoals').value,
-      };
+      const submitBtn = consultForm.querySelector('button[type="submit"]');
+      if (submitBtn.disabled) return;
+
+      const name = document.getElementById('cName').value;
+      const country = document.getElementById('cCountry').value;
+      const phone = document.getElementById('cPhone').value;
+      const email = document.getElementById('cEmail').value;
+      const goals = document.getElementById('cGoals').value;
+
+      const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwALyCIFh4XLjpYQCaJxQH3S3krOkcRJERXz9IcAPWpUK3QKOpj583xWw6A31TfgvSDqw/exec'; 
+
+      const payload = { name, country, phone, email, goals };
+
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.7';
+      submitBtn.style.cursor = 'not-allowed';
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = 'Sending request... ⏳';
 
       try {
-        // Dán URL Web App của Google Apps Script vào đây
-        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycb.../exec'; 
-
-        const response = await fetch(WEB_APP_URL, {
+        await fetch(WEB_APP_URL, {
           method: 'POST',
-          body: JSON.stringify(formData),
-          headers: { 'Content-Type': 'application/json' }
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8',
+          },
+          body: JSON.stringify(payload)
         });
 
-        if (response.ok) {
-          consultForm.classList.add('hidden');
-          successMessage.classList.remove('hidden');
-          consultForm.reset();
-        } else {
-          alert("Gửi thông tin thất bại, vui lòng thử lại sau!");
-        }
+        consultForm.classList.add('hidden');
+        successMessage.classList.remove('hidden');
+
       } catch (error) {
         console.error("Error submitting form:", error);
         consultForm.classList.add('hidden');
-        successMessage.classList.remove('hidden');
-        consultForm.reset();
+        successMessage.classList.add('hidden');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+        submitBtn.style.cursor = 'pointer';
+        submitBtn.innerHTML = originalText;
       }
     });
   </script>

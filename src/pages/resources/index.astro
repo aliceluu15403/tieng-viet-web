@@ -1,5 +1,6 @@
 ---
-// src/pages/resources/index.astro - Havie Resources Hub (Perfect Spacing & Natural Copy)
+// src/pages/resources/index.astro - Havie Resources Hub (Vocabulary Lab First & Unified Header/Footer)
+import '../../styles/global.css';
 ---
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -7,34 +8,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Free Vietnamese Learning Tools & Practice Resources | Havie</title>
-  <meta name="description" content="Master Vietnamese online with free interactive tools: 6 Tones Audio Studio, Pronoun Calculator, and Everyday Conversation Practice Labs." />
+  <meta name="description" content="Master Vietnamese online with free interactive tools: Vocabulary Lab, 6 Tones Audio Studio, Pronoun Calculator, and Conversation Practice." />
 
   <!-- CANONICAL URL -->
   <link rel="canonical" href="https://havielearn.com/resources" />
 
-  <!-- FAVICON NHÚNG TRỰC TIẾP -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22><rect width=%22512%22 height=%22512%22 rx=%22110%22 fill=%22%23dc2626%22/><path d=%22M136 116h68v110h104V116h68v280h-68V290H204v106h-68V116z%22 fill=%22%23ffffff%22/></svg>" />
+  <!-- FAVICON SVG TRỰC TIẾP CHUẨN XỊN -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
-
-  <!-- Tailwind CSS CDN -->
-  <script is:inline src="https://cdn.tailwindcss.com"></script>
 
   <!-- Google Fonts: DM Sans & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
-
-  <!-- STRUCTURED DATA (SCHEMA.ORG) FOR GOOGLE RICH SNIPPETS -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Free Vietnamese Learning Resources & Tools",
-    "url": "https://havielearn.com/resources",
-    "description": "Interactive tools designed to master Vietnamese tones, pronouns, and natural conversation blocks."
-  }
-  </script>
 
   <style>
     :root {
@@ -104,32 +91,32 @@
         </span>
       </a>
 
-      <!-- CỤM PHẢI: MENU -->
-      <div class="hidden md:flex items-center gap-7 lg:gap-8 ml-auto mr-4">
-        <nav class="flex items-center space-x-7 lg:space-x-8 text-base font-bold text-slate-800 tracking-normal font-[inherit]">
-          <a href="/#about" class="hover:text-red-600 transition text-base font-bold text-slate-800">About Me</a>
-          <a href="/#curriculum" class="hover:text-red-600 transition text-base font-bold text-slate-800">Learning Tracks</a>
-          <a href="/resources" class="text-red-600 font-bold transition">Resources</a>
-          <a href="/student" class="hover:text-red-600 transition text-base font-bold text-slate-800">Student Portal</a>
-          <a href="/test" class="hover:text-red-600 transition text-base font-bold text-slate-800">Level Test</a>
-        </nav>
-      </div>
+      <!-- CỤM MENU CHỮ Ở GIỮA -->
+      <nav class="hidden md:flex items-center space-x-7 lg:space-x-8 text-base font-bold text-slate-800">
+        <a href="/#about" class="hover:text-red-600 transition">About Me</a>
+        <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
+        <a href="/resources" class="text-red-600 transition font-bold">Resources</a>
+        <a href="/student" class="hover:text-red-600 transition">Student Portal</a>
+        <a href="/test" class="hover:text-red-600 transition">Level Test</a>
+      </nav>
 
-      <!-- DESKTOP CTA & MOBILE TOGGLE -->
-      <div class="flex items-center gap-3 shrink-0">
+      <!-- NÚT BOOK -->
+      <div class="hidden md:flex items-center pl-6 shrink-0">
         <button
           type="button"
-          class="open-modal-trigger hidden sm:inline-flex items-center justify-center px-5 py-3 text-sm font-extrabold text-white bg-red-600 hover:bg-red-700 rounded-xl shadow-lg shadow-red-600/25 transition hover:-translate-y-0.5 cursor-pointer"
+          class="open-modal-trigger inline-flex items-center justify-center px-5 py-3 text-sm font-extrabold text-white bg-red-600 hover:bg-red-700 rounded-xl shadow-lg shadow-red-600/25 transition hover:-translate-y-0.5 cursor-pointer"
         >
           Book 25-Min Trial Lesson →
         </button>
+      </div>
 
-        <!-- Mobile Menu Hamburger Button -->
+      <!-- MOBILE TOGGLE BUTTON -->
+      <div class="flex items-center md:hidden">
         <button 
           id="mobileMenuBtn" 
           type="button" 
           aria-label="Toggle Menu"
-          class="md:hidden w-10 h-10 rounded-xl bg-stone-100 hover:bg-stone-200 text-slate-800 flex items-center justify-center font-bold transition cursor-pointer"
+          class="w-10 h-10 rounded-xl bg-stone-100 hover:bg-stone-200 text-slate-800 flex items-center justify-center font-bold transition cursor-pointer"
         >
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -143,7 +130,7 @@
     <div id="mobileMenu" class="hidden md:hidden absolute top-20 left-0 w-full bg-[#fffaf5] border-b border-stone-200 shadow-xl px-6 py-5 space-y-4 font-semibold text-slate-800 text-base">
       <a href="/#about" class="mobile-link block hover:text-red-600 transition">About Me</a>
       <a href="/#curriculum" class="mobile-link block hover:text-red-600 transition">Learning Tracks</a>
-      <a href="/resources" class="mobile-link block text-red-600 font-bold">Resources</a>
+      <a href="/resources" class="mobile-link block text-red-600 font-bold transition">Resources</a>
       <a href="/student" class="mobile-link block hover:text-red-600 transition">Student Portal</a>
       <a href="/test" class="mobile-link block hover:text-red-600 transition">Level Test</a>
       <div class="pt-3 border-t border-stone-200">
@@ -157,12 +144,10 @@
     </div>
   </header>
 
-  <main class="flex-grow pt-6 sm:pt-10 pb-16 sm:pb-20">
+  <main class="flex-grow pt-8 sm:pt-12 pb-16 sm:pb-24">
     
     <!-- HEADER INTRO -->
     <section class="max-w-3xl mx-auto px-5 sm:px-8 text-center mb-10 sm:mb-14 space-y-4">
-      
-      <!-- BADGE TỐI ƯU CÂN ĐỐI, GẦN HEADER -->
       <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-stone-200/90 text-xs sm:text-sm font-extrabold text-slate-800 shadow-2xs">
         <span class="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse"></span>
         <span>Free Vietnamese Learning Resources & Tools</span>
@@ -173,15 +158,38 @@
       </h1>
       
       <p class="text-stone-600 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-        Skip the boring books. Use these free online tools to practice Vietnamese tones, figure out pronouns easily, and speak naturally like a local.
+        Skip the boring books. Use these free online tools to practice vocabulary games, tones, pronouns, and speak naturally like a local.
       </p>
     </section>
 
-    <!-- RESOURCES CARDS (MODERN BENTO STYLE) -->
+    <!-- RESOURCES CARDS (VOCABULARY LAB FIRST) -->
     <section class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 pb-10">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8">
         
-        <!-- Tones Card -->
+        <!-- 1. Vocabulary Lab Card (VỊ TRÍ ĐẦU TIÊN) -->
+        <a href="/vocabulary?topic=airport_expert" class="group bg-[#fffaf5] rounded-[32px] p-7 sm:p-9 border border-stone-200/90 shadow-lg shadow-stone-200/40 hover:shadow-2xl hover:border-red-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-36 h-36 bg-red-100/50 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform"></div>
+
+          <div class="relative z-10 space-y-5">
+            <div class="w-14 h-14 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center text-2xl shadow-xs group-hover:rotate-6 transition-transform">
+              🧩
+            </div>
+            <div>
+              <span class="text-[11px] font-extrabold text-red-600 uppercase tracking-wider bg-red-50 px-2.5 py-1 rounded-md border border-red-200/60 inline-block mb-2.5">Interactive Games</span>
+              <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 group-hover:text-red-600 transition-colors font-brand">Vocabulary Lab</h2>
+              <p class="text-xs sm:text-sm text-stone-600 leading-relaxed mt-2.5">
+                Practice everyday topics with flashcards, matching games, multiple-choice quizzes, word unscramble, and true/false questions.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-5 border-t border-stone-200/70 flex items-center justify-between text-xs sm:text-sm font-bold text-slate-800 group-hover:text-red-600 transition-colors relative z-10">
+            <span>Launch Lab Games</span>
+            <span class="group-hover:translate-x-1.5 transition-transform text-base">→</span>
+          </div>
+        </a>
+
+        <!-- 2. Tones Card -->
         <a href="/resources/tones" class="group bg-[#fffaf5] rounded-[32px] p-7 sm:p-9 border border-stone-200/90 shadow-lg shadow-stone-200/40 hover:shadow-2xl hover:border-emerald-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
           <div class="absolute top-0 right-0 w-36 h-36 bg-emerald-100/50 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform"></div>
           
@@ -204,7 +212,7 @@
           </div>
         </a>
 
-        <!-- Pronouns Card -->
+        <!-- 3. Pronouns Card -->
         <a href="/resources/pronouns" class="group bg-[#fffaf5] rounded-[32px] p-7 sm:p-9 border border-stone-200/90 shadow-lg shadow-stone-200/40 hover:shadow-2xl hover:border-blue-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
           <div class="absolute top-0 right-0 w-36 h-36 bg-blue-100/50 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform"></div>
 
@@ -216,7 +224,7 @@
               <span class="text-[11px] font-extrabold text-blue-700 uppercase tracking-wider bg-blue-50 px-2.5 py-1 rounded-md border border-blue-200/60 inline-block mb-2.5">Social Etiquette</span>
               <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 group-hover:text-blue-700 transition-colors font-brand">Pronoun Matrix</h2>
               <p class="text-xs sm:text-sm text-stone-600 leading-relaxed mt-2.5">
-                Never get confused by "I" and "You". Instantly find out whether to use Anh, Chị, Em, Bác, or Cô.
+                Never get confused by "I" and "You". Instantly find out whether to use Anh, Chị, or Em.
               </p>
             </div>
           </div>
@@ -227,8 +235,8 @@
           </div>
         </a>
 
-        <!-- Streetwise Card -->
-        <a href="/resources/streetwise" class="group bg-[#fffaf5] rounded-[32px] p-7 sm:p-9 border border-stone-200/90 shadow-lg shadow-stone-200/40 hover:shadow-2xl hover:border-red-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+        <!-- 4. Streetwise / Daily Conversations Card -->
+        <a href="/resources/streetwise" class="group bg-[#fffaf5] rounded-[32px] p-7 sm:p-9 border border-stone-200/90 shadow-lg shadow-stone-200/40 hover:shadow-2xl hover:border-amber-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
           <div class="absolute top-0 right-0 w-36 h-36 bg-amber-100/50 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform"></div>
 
           <div class="relative z-10 space-y-5">
@@ -237,14 +245,14 @@
             </div>
             <div>
               <span class="text-[11px] font-extrabold text-amber-800 uppercase tracking-wider bg-amber-50 px-2.5 py-1 rounded-md border border-amber-200/60 inline-block mb-2.5">Everyday Life</span>
-              <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 group-hover:text-red-600 transition-colors font-brand">Daily Conversations</h2>
+              <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 group-hover:text-amber-700 transition-colors font-brand">Daily Conversations</h2>
               <p class="text-xs sm:text-sm text-stone-600 leading-relaxed mt-2.5">
                 Use natural phrase templates for ordering food, going shopping, and doing everyday small talk.
               </p>
             </div>
           </div>
 
-          <div class="mt-8 pt-5 border-t border-stone-200/70 flex items-center justify-between text-xs sm:text-sm font-bold text-slate-800 group-hover:text-red-600 transition-colors relative z-10">
+          <div class="mt-8 pt-5 border-t border-stone-200/70 flex items-center justify-between text-xs sm:text-sm font-bold text-slate-800 group-hover:text-amber-700 transition-colors relative z-10">
             <span>Launch Formula</span>
             <span class="group-hover:translate-x-1.5 transition-transform text-base">→</span>
           </div>
@@ -266,7 +274,7 @@
       <div class="flex items-center gap-5 sm:gap-7 font-semibold text-xs sm:text-sm text-stone-700 flex-wrap justify-center">
         <a href="/#about" class="hover:text-red-600 transition">About Me</a>
         <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
-        <a href="/resources" class="text-red-600 font-bold transition">Resources</a>
+        <a href="/resources" class="hover:text-red-600 transition font-bold">Resources</a>
         <a href="/student" class="hover:text-red-600 transition">Student Portal</a>
         <a href="/test" class="hover:text-red-600 transition">Level Test</a>
         <button type="button" class="open-modal-trigger text-red-600 font-bold hover:underline cursor-pointer">Book Trial</button>
@@ -369,25 +377,65 @@
       }
     });
 
-    const hideModal = () => modal.classList.add('hidden');
+    const hideModal = () => {
+      modal.classList.add('hidden');
+      if (consultForm && successMessage) {
+        consultForm.classList.remove('hidden');
+        successMessage.classList.add('hidden');
+        consultForm.reset();
+      }
+    };
+
     if (closeModalBtn) closeModalBtn.addEventListener('click', hideModal);
     if (btnCloseSuccess) closeModalBtn.addEventListener('click', hideModal);
     modal.addEventListener('click', (e) => { if (e.target === modal) hideModal(); });
 
-    consultForm.addEventListener('submit', (e) => {
+    // FORM SUBMISSION
+    consultForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const formData = {
-        name: document.getElementById('cName').value,
-        country: document.getElementById('cCountry').value,
-        phone: document.getElementById('cPhone').value,
-        email: document.getElementById('cEmail').value,
-        goals: document.getElementById('cGoals').value,
-      };
-      console.log("Consultation Booking Submitted:", formData);
+      
+      const submitBtn = consultForm.querySelector('button[type="submit"]');
+      if (submitBtn.disabled) return;
 
-      consultForm.classList.add('hidden');
-      successMessage.classList.remove('hidden');
-      consultForm.reset();
+      const name = document.getElementById('cName').value;
+      const country = document.getElementById('cCountry').value;
+      const phone = document.getElementById('cPhone').value;
+      const email = document.getElementById('cEmail').value;
+      const goals = document.getElementById('cGoals').value;
+
+      const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwALyCIFh4XLjpYQCaJxQH3S3krOkcRJERXz9IcAPWpUK3QKOpj583xWw6A31TfgvSDqw/exec'; 
+
+      const payload = { name, country, phone, email, goals };
+
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.7';
+      submitBtn.style.cursor = 'not-allowed';
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = 'Sending request... ⏳';
+
+      try {
+        await fetch(WEB_APP_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8',
+          },
+          body: JSON.stringify(payload)
+        });
+
+        consultForm.classList.add('hidden');
+        successMessage.classList.remove('hidden');
+
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        consultForm.classList.add('hidden');
+        successMessage.classList.remove('hidden');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+        submitBtn.style.cursor = 'pointer';
+        submitBtn.innerHTML = originalText;
+      }
     });
   </script>
 </body>

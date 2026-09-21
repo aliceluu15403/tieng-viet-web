@@ -1,0 +1,887 @@
+---
+// src/pages/vocabulary.astro - Standalone Vocabulary Lab with Sequential Flashcards & Randomized Games
+import '../styles/global.css';
+import allTopics from '../data/vocabData.js';
+---
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vocabulary Lab & Games | Havie Learn Vietnamese</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #fffaf5;
+      --navy: #0f172a;
+      --brand-red: #dc2626;
+      --orange: #ef7218;
+    }
+    html { scroll-padding-top: 100px; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--cream);
+      color: var(--navy);
+    }
+    .font-brand { font-family: 'Plus Jakarta Sans', sans-serif; }
+  </style>
+</head>
+<body class="selection:bg-red-600 selection:text-white min-h-screen flex flex-col antialiased relative overflow-x-hidden">
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-40 bg-[#fffaf5]/90 backdrop-blur-md border-b border-stone-200/80 h-20">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 h-full flex items-center justify-between">
+      
+      <!-- LOGO -->
+      <a href="/" class="group flex flex-col select-none text-left shrink-0">
+        <div class="h-7 sm:h-8 flex items-center">
+          <svg class="h-7 sm:h-8 w-auto overflow-visible" viewBox="0 0 175 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 2H6V12H18V2H24V28H18V17H6V28H0V2Z" fill="#dc2626"/>
+            <path d="M41 2L52 28H45.5L43.2 22H33.8L31.5 28H25L36 2H41ZM38.5 8.5L35.2 17.5H41.8L38.5 8.5Z" fill="#dc2626"/>
+            <path d="M53 2H59.5L67 21L74.5 2H81L70.5 28H63.5L53 2Z" fill="#dc2626"/>
+            <path d="M86 2H92V28H86V2Z" fill="#dc2626"/>
+            <path d="M98 2H117V7.5H104V12H115V17H104V22.5H117V28H98V2Z" fill="#dc2626"/>
+          </svg>
+        </div>
+        <span class="text-[9.5px] sm:text-[10px] font-bold tracking-[0.22em] sm:tracking-[0.26em] text-stone-400 uppercase mt-1 pl-0.5 leading-none">
+          Learn Vietnamese Online
+        </span>
+      </a>
+
+      <!-- MENU GIỮA -->
+      <nav class="hidden md:flex items-center space-x-7 lg:space-x-8 text-base font-bold text-slate-800">
+        <a href="/#about" class="hover:text-red-600 transition">About Me</a>
+        <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
+        <a href="/resources" class="hover:text-red-600 transition text-red-600 font-bold">Resources</a>
+        <a href="/student" class="hover:text-red-600 transition">Student Portal</a>
+        <a href="/test" class="hover:text-red-600 transition">Level Test</a>
+      </nav>
+
+      <!-- RIGHT SELECT: Tự động ẩn đi nếu vào bằng mã khóa -->
+      <div id="topicSelectorWrapper" class="hidden md:flex items-center gap-4 shrink-0 font-brand">
+        <div class="relative inline-block w-full max-w-[280px]">
+          <select id="topicSelect" class="w-full appearance-none px-5 py-3.5 pr-12 rounded-2xl bg-white border border-stone-200/90 text-sm font-bold text-slate-900 cursor-pointer outline-none hover:border-stone-300 focus:border-red-600 focus:ring-4 focus:ring-red-600/10 transition shadow-xs">
+            <option value="numbers_expert">Numbers</option>
+            <option value="airport_expert">Airport</option>
+            <option value="food_expert">Food</option>
+            <option value="shopping_expert">Shopping</option>
+            <option value="work_expert">Work</option>
+            <option value="health_expert">Health</option>
+            <option value="family_expert">Family</option>
+            <option value="hobbies_expert">Hobbies</option>
+            <option value="emotions_expert">Emotions</option>
+            <option value="housing_expert">Housing</option>
+            <option value="time_expert">Time</option>
+            <option value="frequency_expert">Frequency</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-stone-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOBILE TOGGLE -->
+      <div class="flex items-center md:hidden">
+        <button id="mobileMenuBtn" type="button" aria-label="Toggle Menu" class="w-10 h-10 rounded-xl bg-stone-100 hover:bg-stone-200 text-slate-800 flex items-center justify-center font-bold transition cursor-pointer">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- MOBILE MENU -->
+    <div id="mobileMenu" class="hidden md:hidden absolute top-20 left-0 w-full bg-[#fffaf5] border-b border-stone-200 shadow-xl px-6 py-5 space-y-4 font-semibold text-slate-800 text-base">
+      <div id="mobileTopicWrapper" class="pb-2">
+        <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">Select Topic:</label>
+        <div class="relative w-full">
+          <select id="topicSelectMobile" class="w-full appearance-none px-4 py-3.5 pr-10 rounded-xl bg-white border border-stone-200 text-sm font-bold text-slate-800 outline-none focus:border-red-600">
+            <option value="numbers_expert">Numbers</option>
+            <option value="airport_expert">Airport</option>
+            <option value="food_expert">Food</option>
+            <option value="shopping_expert">Shopping</option>
+            <option value="work_expert">Work</option>
+            <option value="health_expert">Health</option>
+            <option value="family_expert">Family</option>
+            <option value="hobbies_expert">Hobbies</option>
+            <option value="emotions_expert">Emotions</option>
+            <option value="housing_expert">Housing</option>
+            <option value="time_expert">Time</option>
+            <option value="frequency_expert">Frequency</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-stone-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <a href="/#about" class="mobile-link block hover:text-red-600 transition">About Me</a>
+      <a href="/#curriculum" class="mobile-link block hover:text-red-600 transition">Learning Tracks</a>
+      <a href="/resources" class="mobile-link block text-red-600 font-bold transition">Resources Hub</a>
+      <a href="/student" class="mobile-link block hover:text-red-600 transition">Student Portal</a>
+    </div>
+  </header>
+
+  <!-- MAIN LAB CONTAINER -->
+  <main class="flex-grow max-w-4xl w-full mx-auto px-5 sm:px-8 py-10 sm:py-14 flex flex-col gap-8 justify-center">
+    
+    <!-- TOPIC INFO -->
+    <div class="text-center flex flex-col items-center gap-3">
+      <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest bg-red-50 px-3.5 py-1.5 rounded-full border border-red-200 font-brand">
+        Vocabulary Lab
+      </span>
+      <h1 id="topicTitle" class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 font-brand tracking-tight">
+        Topic Title
+      </h1>
+      <p id="topicDesc" class="text-stone-600 text-sm sm:text-base max-w-xl mx-auto font-medium"></p>
+    </div>
+
+    <!-- GAME TABS -->
+    <div id="gameTabsWrapper" class="flex items-center justify-start md:justify-center gap-1 bg-stone-200/70 p-1.5 rounded-2xl max-w-2xl mx-auto w-full overflow-x-auto border border-stone-200/90 shadow-inner font-brand">
+      <button data-game="flashcard" class="game-tab flex-1 min-w-[100px] py-3 px-4 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer text-center text-stone-600 hover:text-slate-900">
+        Flashcards
+      </button>
+      <button data-game="matching" class="game-tab flex-1 min-w-[90px] py-3 px-4 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer text-center text-stone-600 hover:text-slate-900">
+        Matching
+      </button>
+      <button data-game="mcqs" class="game-tab flex-1 min-w-[80px] py-3 px-4 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer text-center text-stone-600 hover:text-slate-900">
+        MCQs
+      </button>
+      <button data-game="scramble" class="game-tab flex-1 min-w-[95px] py-3 px-4 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer text-center text-stone-600 hover:text-slate-900">
+        Scramble
+      </button>
+      <button data-game="truefalse" class="game-tab flex-1 min-w-[105px] py-3 px-4 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer text-center text-stone-600 hover:text-slate-900">
+        True/False
+      </button>
+    </div>
+
+    <!-- MAIN GAME BOX -->
+    <div id="mainGameBox" class="bg-white rounded-[32px] p-6 sm:p-10 shadow-2xl shadow-stone-300/50 border border-stone-200/90 min-h-[440px] flex flex-col justify-between relative">
+      
+      <!-- 1. FLASHCARD -->
+      <div id="game-flashcard" class="game-panel flex flex-col gap-6 w-full">
+        <div class="flex justify-between items-center text-xs font-bold text-stone-400 uppercase tracking-wider font-brand">
+          <span id="fc-counter">1 / 5</span>
+          <span>Click card to flip 🔄</span>
+        </div>
+        
+        <div class="perspective w-full max-w-md mx-auto h-[260px] cursor-pointer" id="flashcard-container" style="perspective: 1000px;">
+          <div class="card-inner relative w-full h-full transition-transform duration-500 rounded-3xl shadow-lg" id="flashcard-inner" style="transform-style: preserve-3d;">
+            
+            <div class="card-face absolute inset-0 w-full h-full rounded-3xl bg-gradient-to-br from-red-50/50 via-white to-stone-50 border-2 border-red-100 flex flex-col items-center justify-center p-6 text-center" style="backface-visibility: hidden;">
+              <span class="text-xs font-black uppercase tracking-widest text-red-600 mb-2 font-brand">Vietnamese Word</span>
+              <div class="font-brand text-2xl sm:text-3xl font-black text-slate-900 leading-tight px-4" id="fc-front">Word</div>
+            </div>
+
+            <div class="card-face absolute inset-0 w-full h-full rounded-3xl bg-slate-900 text-white flex flex-col items-center justify-center p-6 text-center" style="backface-visibility: hidden; transform: rotateY(180deg);">
+              <span class="text-xs font-black uppercase tracking-widest text-amber-400 mb-2 font-brand">English Meaning</span>
+              <div class="font-brand text-xl sm:text-2xl font-black text-white leading-tight px-4" id="fc-back">Meaning</div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="flex justify-center gap-4 pt-2 font-brand">
+          <button id="prevCardBtn" class="px-6 py-3 bg-stone-100 hover:bg-stone-200 text-slate-800 font-bold rounded-xl text-sm transition cursor-pointer">← Prev</button>
+          <button id="nextCardBtn" class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-xl text-sm shadow-lg shadow-red-600/20 transition cursor-pointer">Next →</button>
+        </div>
+      </div>
+
+      <!-- 2. MATCHING -->
+      <div id="game-matching" class="game-panel flex-col gap-6 w-full font-brand" style="display: none;">
+        <div class="flex justify-end items-center text-sm font-bold">
+          <span class="bg-red-50 text-red-600 px-3.5 py-1.5 rounded-xl border border-red-200 text-xs font-black" id="match-score">Matched: 0 / 5</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div id="match-vn-col" class="flex flex-col gap-3"></div>
+          <div id="match-en-col" class="flex flex-col gap-3"></div>
+        </div>
+        <div id="match-msg" class="text-center font-bold text-emerald-600 text-base" style="display: none;"></div>
+      </div>
+
+      <!-- 3. MCQS -->
+      <div id="game-mcqs" class="game-panel flex-col gap-6 w-full font-brand" style="display: none;">
+        <div class="flex justify-between items-center text-xs font-bold text-stone-400 uppercase tracking-wider">
+          <span id="mcq-progress">1 / 5</span>
+          <span id="mcq-score-box" class="text-red-600 font-black">Score: 0</span>
+        </div>
+        <div class="bg-stone-50 border border-stone-200/80 rounded-3xl p-8 text-center max-w-lg mx-auto w-full space-y-3 shadow-2xs">
+          <span class="text-xs font-extrabold uppercase tracking-widest text-red-600">What does this word mean?</span>
+          <h3 id="mcq-word" class="font-brand text-2xl sm:text-3xl font-black text-slate-900 leading-tight">Word</h3>
+        </div>
+        <div id="mcq-options" class="grid grid-cols-1 gap-3 max-w-lg mx-auto w-full"></div>
+        <div id="mcq-feedback-area" class="text-center pt-2"></div>
+      </div>
+
+      <!-- 4. SCRAMBLE -->
+      <div id="game-scramble" class="game-panel flex-col gap-6 w-full text-center font-brand" style="display: none;">
+        <div class="flex justify-between items-center text-xs font-bold text-stone-400 uppercase tracking-wider">
+          <span id="scramble-progress">1 / 5</span>
+          <span id="scramble-score-box" class="text-red-600 font-black">Score: 0</span>
+        </div>
+        <div class="bg-gradient-to-b from-stone-50/80 to-white border border-stone-200/90 rounded-[28px] p-8 sm:p-10 max-w-xl mx-auto w-full space-y-4 shadow-sm">
+          <div class="text-stone-400 font-bold text-xs uppercase tracking-widest">💡 Hint</div>
+          <div id="scramble-hint" class="text-slate-900 font-black text-xl sm:text-2xl font-brand">Meaning</div>
+          <div class="w-12 h-0.5 bg-stone-200 mx-auto"></div>
+          <div id="scramble-letters" class="font-brand text-xl sm:text-2xl font-black text-red-600 tracking-[0.15em] py-2">word</div>
+        </div>
+        <div class="flex gap-3 max-w-xl mx-auto w-full" id="scramble-action-area">
+          <input type="text" id="scramble-input" placeholder="Type correct word and press Enter..." class="w-full px-5 py-4 rounded-2xl border border-stone-300 font-bold text-center text-base outline-none focus:border-red-600 focus:ring-4 focus:ring-red-600/10 bg-stone-50/50 transition" />
+          <button id="checkScrambleBtn" class="px-7 py-4 bg-red-600 hover:bg-red-700 text-white font-black rounded-2xl text-sm shadow-md cursor-pointer transition shrink-0">Check</button>
+        </div>
+        <div id="scramble-feedback" class="text-sm font-bold min-h-[30px]"></div>
+      </div>
+
+      <!-- 5. TRUE / FALSE -->
+      <div id="game-truefalse" class="game-panel flex-col gap-8 w-full text-center font-brand" style="display: none;">
+        <div class="flex justify-between items-center text-xs font-bold text-stone-400 uppercase tracking-wider">
+          <span id="tf-progress">1 / 5</span>
+          <span id="tf-score-box" class="text-red-600 font-black">Score: 0</span>
+        </div>
+        <div class="bg-gradient-to-b from-stone-50/80 to-white border border-stone-200/90 rounded-[28px] p-8 sm:p-10 max-w-xl mx-auto w-full space-y-4 shadow-sm">
+          <span class="text-[11px] font-extrabold uppercase tracking-widest text-stone-400">Translate Check</span>
+          <div id="tf-word" class="font-brand text-2xl sm:text-3xl font-black text-slate-900 leading-tight px-2">Word</div>
+          <div class="w-12 h-0.5 bg-stone-200 mx-auto"></div>
+          <div id="tf-meaning" class="font-brand text-lg sm:text-xl font-extrabold text-red-600 px-2">Meaning</div>
+        </div>
+        <div class="flex justify-center gap-4" id="tf-buttons-wrapper">
+          <button id="tfTrueBtn" class="px-9 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold rounded-2xl text-base shadow-md transition hover:-translate-y-0.5 cursor-pointer">True</button>
+          <button id="tfFalseBtn" class="px-9 py-4 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-2xl text-base shadow-md transition hover:-translate-y-0.5 cursor-pointer">False</button>
+        </div>
+        <div id="tf-feedback" class="text-sm font-bold min-h-[30px]"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#fffaf5] text-stone-600 py-10 border-t border-stone-200/80 mt-auto">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left font-brand">
+      <div class="flex items-center justify-center gap-2.5">
+        <span class="font-brand font-black text-slate-900 tracking-wider text-base sm:text-lg">HAVIE</span>
+        <span class="text-stone-300">•</span>
+        <span class="text-xs sm:text-sm font-medium text-stone-500">Learn Vietnamese with Hang</span>
+      </div>
+      <div class="flex items-center gap-5 sm:gap-7 font-semibold text-xs sm:text-sm text-stone-700 flex-wrap justify-center">
+        <a href="/#about" class="hover:text-red-600 transition">About Me</a>
+        <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
+        <a href="/resources" class="hover:text-red-600 transition text-red-600 font-bold">Resources</a>
+        <a href="/student" class="hover:text-red-600 transition">Student Portal</a>
+        <a href="/test" class="hover:text-red-600 transition">Level Test</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT LOGIC -->
+  <script is:inline define:vars={{ allTopics }}>
+    const urlParams = new URLSearchParams(window.location.search);
+    let userCode = urlParams.get('code') ? urlParams.get('code').trim().toUpperCase() : '';
+    let currentTopicKey = urlParams.get('topic');
+
+    // Ánh xạ mã code từ Student Portal (AVB01, KVN01, KVS01)
+    if (userCode === 'AVB01') {
+      currentTopicKey = 'daily_activities';
+    } else if (userCode === 'KVN01') {
+      currentTopicKey = 'kitchen_north';
+    } else if (userCode === 'KVS01') {
+      currentTopicKey = 'kitchen_south';
+    }
+
+    if (!currentTopicKey || !allTopics[currentTopicKey]) {
+      currentTopicKey = 'numbers_expert';
+    }
+
+    const currentTopic = allTopics[currentTopicKey];
+
+    // NẾU VÀO BẰNG MÃ CODE (ĐỘC QUYỀN), TỰ ĐỘNG ẨN THANH DROPDOWN ĐI
+    if (userCode) {
+      const selectorWrapper = document.getElementById('topicSelectorWrapper');
+      const mobileTopicWrapper = document.getElementById('mobileTopicWrapper');
+      if (selectorWrapper) selectorWrapper.style.display = 'none';
+      if (mobileTopicWrapper) mobileTopicWrapper.style.display = 'none';
+    }
+
+    const topicSelect = document.getElementById('topicSelect');
+    const topicSelectMobile = document.getElementById('topicSelectMobile');
+    
+    if (currentTopicKey !== 'daily_activities' && currentTopicKey !== 'kitchen_north' && currentTopicKey !== 'kitchen_south') {
+      if (topicSelect) topicSelect.value = currentTopicKey;
+      if (topicSelectMobile) topicSelectMobile.value = currentTopicKey;
+    }
+
+    const handleTopicChange = (e) => {
+      const selectedKey = e.target.value;
+      window.location.href = `/vocabulary?topic=${selectedKey}`;
+    };
+    if (topicSelect) topicSelect.addEventListener('change', handleTopicChange);
+    if (topicSelectMobile) topicSelectMobile.addEventListener('change', handleTopicChange);
+
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // KHAI BÁO DANH SÁCH MÃ KHÓA BẢO MẬT TƯƠNG ỨNG
+    const lockedCodes = {
+      'daily_activities': 'AVB01',
+      'kitchen_north': 'KVN01',
+      'kitchen_south': 'KVS01'
+    };
+
+    // KIỂM TRA BẢO MẬT: NẾU VÀO BÀI KHÓA MÀ KHÔNG CÓ MÃ HOẶC SAI MÃ
+    if (lockedCodes[currentTopicKey] && userCode !== lockedCodes[currentTopicKey]) {
+      document.getElementById('gameTabsWrapper').style.display = 'none';
+      document.getElementById('topicTitle').textContent = `🔒 ${currentTopic.title} (Locked)`;
+      document.getElementById('topicDesc').textContent = "This content is exclusive to active students.";
+      
+      document.getElementById('mainGameBox').innerHTML = `
+        <div class="max-w-md mx-auto my-auto text-center space-y-6 py-6">
+          <div class="w-16 h-16 bg-red-50 text-red-600 rounded-2xl mx-auto flex items-center justify-center text-2xl shadow-inner border border-red-100">
+            🔐
+          </div>
+          <div class="space-y-2 font-brand">
+            <span class="text-[11px] font-extrabold uppercase tracking-widest text-red-600 bg-red-50 px-3.5 py-1.5 rounded-full border border-red-100 inline-block">Student Portal Exclusive</span>
+            <h2 class="text-2xl font-black text-slate-900 tracking-tight">Yêu cầu mã khóa học</h2>
+            <p class="text-stone-500 text-sm">Chủ đề này yêu cầu mã bài học hợp lệ. Vui lòng vào Student Portal để xác thực.</p>
+          </div>
+          <div class="space-y-3 font-brand">
+            <a href="/student" class="block w-full py-4 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-2xl text-sm shadow-md transition">
+              Đến Student Portal nhập mã →
+            </a>
+            <a href="/vocabulary?topic=numbers_expert" class="block w-full py-3 bg-stone-100 hover:bg-stone-200 text-slate-700 font-bold rounded-2xl text-sm transition">
+              Quay lại học các phần Free khác
+            </a>
+          </div>
+        </div>
+      `;
+    } else if (currentTopic) {
+      // NẾU LÀ BÀI FREE HOẶC ĐÃ NHẬP ĐÚNG MÃ -> CHẠY TOÀN BỘ GAME BÌNH THƯỜNG
+      document.getElementById('topicTitle').textContent = currentTopic.title;
+      document.getElementById('topicDesc').textContent = currentTopic.description || "";
+
+      let flashcardData = currentTopic.words || [];
+      let vocabData = [...flashcardData].sort(() => Math.random() - 0.5);
+
+      function removeDiacritics(str) {
+        return str.normalize('NFD')
+                  .replace(/[\u0300-\u036f]/g, '')
+                  .replace(/đ/g, 'd')
+                  .replace(/Đ/g, 'D');
+      }
+
+      let audioCtx = null;
+      function getAudioContext() {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        return audioCtx;
+      }
+
+      function playCorrectSound() {
+        try {
+          const ctx = getAudioContext();
+          const now = ctx.currentTime;
+          const osc1 = ctx.createOscillator();
+          const gain1 = ctx.createGain();
+          osc1.type = 'triangle';
+          osc1.frequency.setValueAtTime(523.25, now);
+          gain1.gain.setValueAtTime(0.2, now);
+          gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+          osc1.connect(gain1);
+          gain1.connect(ctx.destination);
+          osc1.start(now);
+          osc1.stop(now + 0.2);
+
+          const osc2 = ctx.createOscillator();
+          const gain2 = ctx.createGain();
+          osc2.type = 'triangle';
+          osc2.frequency.setValueAtTime(659.25, now + 0.1);
+          gain2.gain.setValueAtTime(0.2, now + 0.1);
+          gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+          osc2.connect(gain2);
+          gain2.connect(ctx.destination);
+          osc2.start(now + 0.1);
+          osc2.stop(now + 0.35);
+        } catch(e) {}
+      }
+
+      function playIncorrectSound() {
+        try {
+          const ctx = getAudioContext();
+          const now = ctx.currentTime;
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(180, now);
+          osc.frequency.setValueAtTime(130, now + 0.1);
+          gain.gain.setValueAtTime(0.12, now);
+          gain.gain.linearRampToValueAtTime(0.001, now + 0.25);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.25);
+        } catch(e) {}
+      }
+
+      function renderCompletionScreen(panelId, onRestartCallback, scoreText = '') {
+        const panel = document.getElementById(panelId);
+        panel.innerHTML = `
+          <div class="flex flex-col items-center justify-center text-center py-10 sm:py-14 my-auto space-y-5 w-full">
+            <div class="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center text-4xl shadow-sm border border-red-100 animate-bounce">
+              🎯
+            </div>
+            <div class="space-y-2">
+              <h3 class="font-brand text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">Challenge Finished!</h3>
+              ${scoreText ? `<div class="text-lg sm:text-xl font-extrabold text-red-600 bg-red-50 px-5 py-2 rounded-2xl border border-red-100 inline-block mt-1">${scoreText}</div>` : ''}
+              <p class="text-stone-500 font-medium text-sm sm:text-base">Great job completing this vocabulary session.</p>
+            </div>
+            <button type="button" class="restart-btn px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-2xl text-base shadow-lg shadow-red-600/25 transition transform hover:-translate-y-0.5 cursor-pointer mt-3 pointer-events-auto">
+              Play Again
+            </button>
+          </div>
+        `;
+        const restartBtn = panel.querySelector('.restart-btn');
+        if (restartBtn) {
+          restartBtn.addEventListener('click', () => {
+            onRestartCallback();
+          });
+        }
+      }
+
+      function switchGame(gameId) {
+        document.querySelectorAll('.game-panel').forEach(p => p.style.display = 'none');
+        document.querySelectorAll('.game-tab').forEach(t => {
+          t.classList.remove('bg-white', 'text-slate-900', 'shadow-md', 'active');
+          t.classList.add('text-stone-600');
+        });
+        
+        const panel = document.getElementById(`game-${gameId}`);
+        if(panel) panel.style.display = 'flex';
+        
+        const activeTab = document.querySelector(`[data-game="${gameId}"]`);
+        if(activeTab) {
+          activeTab.classList.add('bg-white', 'text-slate-900', 'shadow-md', 'active');
+          activeTab.classList.remove('text-stone-600');
+        }
+
+        if (gameId === 'matching') initMatching();
+        if (gameId === 'mcqs') initMcq();
+        if (gameId === 'scramble') initScramble();
+        if (gameId === 'truefalse') initTrueFalse();
+      }
+
+      document.querySelectorAll('.game-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          switchGame(tab.getAttribute('data-game'));
+        });
+      });
+
+      const defaultTab = document.querySelector('[data-game="flashcard"]');
+      if(defaultTab) {
+        defaultTab.classList.add('bg-white', 'text-slate-900', 'shadow-md', 'active');
+        defaultTab.classList.remove('text-stone-600');
+      }
+
+      let fcIndex = 0;
+      let isFlipped = false;
+      function updateFlashcard() {
+        document.getElementById('fc-front').textContent = flashcardData[fcIndex].vn;
+        document.getElementById('fc-back').textContent = flashcardData[fcIndex].en;
+        document.getElementById('fc-counter').textContent = `${fcIndex + 1} / ${flashcardData.length}`;
+        if(isFlipped) {
+          isFlipped = false;
+          document.getElementById('flashcard-inner').style.transform = 'rotateY(0deg)';
+        }
+      }
+      document.getElementById('flashcard-container').addEventListener('click', () => {
+        isFlipped = !isFlipped;
+        document.getElementById('flashcard-inner').style.transform = isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
+      });
+      document.getElementById('nextCardBtn').addEventListener('click', () => {
+        fcIndex = (fcIndex + 1) % flashcardData.length;
+        updateFlashcard();
+      });
+      document.getElementById('prevCardBtn').addEventListener('click', () => {
+        fcIndex = (fcIndex - 1 + flashcardData.length) % flashcardData.length;
+        updateFlashcard();
+      });
+      updateFlashcard();
+
+      let selectedVn = null, selectedEn = null, matchCount = 0;
+      function initMatching() {
+        matchCount = 0; selectedVn = null; selectedEn = null;
+        document.getElementById('match-score').textContent = `Matched: 0 / ${vocabData.length}`;
+        let msg = document.getElementById('match-msg');
+        msg.style.display = 'none';
+
+        const vnCol = document.getElementById('match-vn-col'), enCol = document.getElementById('match-en-col');
+        vnCol.innerHTML = ''; enCol.innerHTML = '';
+
+        let shuffledVn = [...vocabData].sort(() => Math.random() - 0.5);
+        let shuffledEn = [...vocabData].sort(() => Math.random() - 0.5);
+
+        shuffledVn.forEach(item => {
+          let btn = document.createElement('button');
+          btn.className = "w-full p-4 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-sm text-slate-800 text-left transition cursor-pointer";
+          btn.textContent = item.vn;
+          btn.addEventListener('click', () => selectMatch(btn, item.vn, 'vn'));
+          vnCol.appendChild(btn);
+        });
+        shuffledEn.forEach(item => {
+          let btn = document.createElement('button');
+          btn.className = "w-full p-4 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-sm text-slate-800 text-left transition cursor-pointer";
+          btn.textContent = item.en;
+          btn.addEventListener('click', () => selectMatch(btn, item.en, 'en'));
+          enCol.appendChild(btn);
+        });
+      }
+
+      function selectMatch(btn, val, type) {
+        if(btn.classList.contains('bg-emerald-50')) return;
+        if(type === 'vn') {
+          document.querySelectorAll('#match-vn-col button').forEach(b => { if(!b.classList.contains('bg-emerald-50')) { b.classList.remove('bg-red-50', 'border-red-500', 'text-red-600'); b.classList.add('bg-stone-50', 'border-stone-200', 'text-slate-800'); } });
+          btn.classList.remove('bg-stone-50', 'border-stone-200', 'text-slate-800');
+          btn.classList.add('bg-red-50', 'border-red-500', 'text-red-600');
+          selectedVn = val;
+        } else {
+          document.querySelectorAll('#match-en-col button').forEach(b => { if(!b.classList.contains('bg-emerald-50')) { b.classList.remove('bg-red-50', 'border-red-500', 'text-red-600'); b.classList.add('bg-stone-50', 'border-stone-200', 'text-slate-800'); } });
+          btn.classList.remove('bg-stone-50', 'border-stone-200', 'text-slate-800');
+          btn.classList.add('bg-red-50', 'border-red-500', 'text-red-600');
+          selectedEn = val;
+        }
+        if(selectedVn && selectedEn) {
+          let match = vocabData.find(i => i.vn === selectedVn && i.en === selectedEn);
+          if(match) {
+            matchCount++;
+            playCorrectSound();
+            document.getElementById('match-score').textContent = `Matched: ${matchCount} / ${vocabData.length}`;
+            document.querySelectorAll('#match-vn-col button, #match-en-col button').forEach(b => {
+              if(b.textContent === selectedVn || b.textContent === selectedEn) {
+                b.className = "w-full p-4 bg-emerald-50 border border-emerald-300 rounded-xl font-bold text-sm text-emerald-700 text-left cursor-default opacity-80 pointer-events-none";
+              }
+            });
+            selectedVn = null; selectedEn = null;
+            if(matchCount === vocabData.length) {
+              let msg = document.getElementById('match-msg');
+              msg.textContent = "🎉 Awesome! All matched correctly!";
+              msg.style.display = 'block';
+            }
+          } else {
+            playIncorrectSound();
+            setTimeout(() => {
+              selectedVn = null; selectedEn = null;
+              document.querySelectorAll('#match-vn-col button, #match-en-col button').forEach(b => {
+                if(!b.classList.contains('bg-emerald-50')) {
+                  b.className = "w-full p-4 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-sm text-slate-800 text-left transition cursor-pointer";
+                }
+              });
+            }, 400);
+          }
+        }
+      }
+
+      let mcqIndex = 0, mcqScore = 0;
+      function initMcq() {
+        mcqIndex = 0;
+        mcqScore = 0;
+        vocabData = [...flashcardData].sort(() => Math.random() - 0.5);
+        const panel = document.getElementById('game-mcqs');
+        if (panel) panel.style.display = 'flex';
+        loadMcq();
+      }
+
+      function loadMcq() {
+        const panel = document.getElementById('game-mcqs');
+        if (!panel) return;
+
+        if(mcqIndex >= vocabData.length) {
+          renderCompletionScreen('game-mcqs', initMcq, `Final Score: ${mcqScore} / ${vocabData.length}`);
+          return;
+        }
+
+        panel.innerHTML = `
+          <div class="flex justify-between items-center text-xs font-bold text-stone-400 uppercase tracking-wider">
+            <span id="mcq-progress">1 / 5</span>
+            <span id="mcq-score-box" class="text-red-600 font-black">Score: 0</span>
+          </div>
+          <div class="bg-stone-50 border border-stone-200/80 rounded-3xl p-8 text-center max-w-lg mx-auto w-full space-y-3 shadow-2xs">
+            <span class="text-xs font-extrabold uppercase tracking-widest text-red-600">What does this word mean?</span>
+            <h3 id="mcq-word" class="font-brand text-2xl sm:text-3xl font-black text-slate-900 leading-tight">Word</h3>
+          </div>
+          <div id="mcq-options" class="grid grid-cols-1 gap-3 max-w-lg mx-auto w-full"></div>
+          <div id="mcq-feedback-area" class="text-center pt-2"></div>
+        `;
+
+        let cur = vocabData[mcqIndex];
+        document.getElementById('mcq-progress').textContent = `${mcqIndex + 1} / ${vocabData.length}`;
+        document.getElementById('mcq-score-box').textContent = `Score: ${mcqScore}`;
+        document.getElementById('mcq-word').textContent = cur.vn;
+
+        let opts = [cur.en];
+        while(opts.length < 3 && opts.length < flashcardData.length) {
+          let r = flashcardData[Math.floor(Math.random() * flashcardData.length)].en;
+          if(!opts.includes(r)) opts.push(r);
+        }
+        opts.sort(() => Math.random() - 0.5);
+
+        let box = document.getElementById('mcq-options');
+        let feedbackArea = document.getElementById('mcq-feedback-area');
+        box.innerHTML = '';
+        feedbackArea.innerHTML = '';
+
+        opts.forEach(o => {
+          let b = document.createElement('button');
+          b.className = "w-full p-4 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-sm text-slate-800 transition cursor-pointer text-center";
+          b.textContent = o;
+          b.addEventListener('click', () => {
+            box.querySelectorAll('button').forEach(btn => btn.style.pointerEvents = 'none');
+
+            if(o === cur.en) {
+              mcqScore++;
+              playCorrectSound();
+              b.className = "w-full p-4 bg-emerald-50 border border-emerald-300 rounded-xl font-bold text-sm text-emerald-700 text-center";
+              setTimeout(() => { mcqIndex++; loadMcq(); }, 700);
+            } else {
+              playIncorrectSound();
+              b.className = "w-full p-4 bg-red-50 border border-red-300 rounded-xl font-bold text-sm text-red-600 text-center";
+              box.querySelectorAll('button').forEach(btn => {
+                if (btn.textContent === cur.en) {
+                  btn.className = "w-full p-4 bg-emerald-50 border border-emerald-300 rounded-xl font-bold text-sm text-emerald-700 text-center";
+                }
+              });
+              feedbackArea.innerHTML = `
+                <button type="button" id="mcqNextBtn" class="px-8 py-3 bg-slate-900 hover:bg-slate-800 text-white font-extrabold rounded-xl text-sm shadow-md cursor-pointer transition">
+                  Tiếp tục →
+                </button>
+              `;
+              document.getElementById('mcqNextBtn').addEventListener('click', () => {
+                mcqIndex++;
+                loadMcq();
+              });
+            }
+          });
+          box.appendChild(b);
+        });
+      }
+
+      let scrIdx = 0, scrScore = 0;
+      function initScramble() {
+        scrIdx = 0;
+        scrScore = 0;
+        const panel = document.getElementById('game-scramble');
+        if (panel) panel.style.display = 'flex';
+        loadScramble();
+      }
+      
+      function shuffleWord(word) {
+        const normalized = word.normalize('NFC');
+        let arr = Array.from(normalized);
+        let shuffled;
+        do {
+          for (let i = arr.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+          }
+          shuffled = arr.join('');
+        } while (shuffled === normalized && arr.length > 1);
+        return shuffled.toLowerCase();
+      }
+
+      function shuffleString(str) {
+        return str.split(' ').map(shuffleWord).join(' ');
+      }
+
+      function loadScramble() {
+        const scramblePanel = document.getElementById('game-scramble');
+        if (!scramblePanel) return;
+
+        if(scrIdx >= vocabData.length) {
+          renderCompletionScreen('game-scramble', initScramble, `Final Score: ${scrScore} / ${vocabData.length}`);
+          return;
+        }
+
+        scramblePanel.innerHTML = `
+          <div class="flex justify-between items-center text-xs font-bold text-stone-400 uppercase tracking-wider">
+            <span id="scramble-progress">1 / 5</span>
+            <span id="scramble-score-box" class="text-red-600 font-black">Score: 0</span>
+          </div>
+          <div class="bg-gradient-to-b from-stone-50/80 to-white border border-stone-200/90 rounded-[28px] p-8 sm:p-10 max-w-xl mx-auto w-full space-y-4 shadow-sm">
+            <div class="text-stone-400 font-bold text-xs uppercase tracking-widest">💡 Hint</div>
+            <div id="scramble-hint" class="text-slate-900 font-black text-xl sm:text-2xl font-brand">Meaning</div>
+            <div class="w-12 h-0.5 bg-stone-200 mx-auto"></div>
+            <div id="scramble-letters" class="font-brand text-xl sm:text-2xl font-black text-red-600 tracking-[0.15em] py-2">word</div>
+          </div>
+          <div class="flex gap-3 max-w-xl mx-auto w-full" id="scramble-action-area">
+            <input type="text" id="scramble-input" placeholder="Type correct word and press Enter..." class="w-full px-5 py-4 rounded-2xl border border-stone-300 font-bold text-center text-base outline-none focus:border-red-600 focus:ring-4 focus:ring-red-600/10 bg-stone-50/50 transition" />
+            <button id="checkScrambleBtn" class="px-7 py-4 bg-red-600 hover:bg-red-700 text-white font-black rounded-2xl text-sm shadow-md cursor-pointer transition shrink-0">Check</button>
+          </div>
+          <div id="scramble-feedback" class="text-sm font-bold min-h-[30px]"></div>
+        `;
+        
+        document.getElementById('scramble-progress').textContent = `${scrIdx + 1} / ${vocabData.length}`;
+        document.getElementById('scramble-score-box').textContent = `Score: ${scrScore}`;
+
+        document.getElementById('checkScrambleBtn').addEventListener('click', checkScramble);
+        const inputEl = document.getElementById('scramble-input');
+        inputEl.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            checkScramble();
+          }
+        });
+
+        let w = vocabData[scrIdx].vn;
+        document.getElementById('scramble-hint').textContent = vocabData[scrIdx].en;
+        document.getElementById('scramble-letters').textContent = shuffleString(w);
+      }
+      
+      function checkScramble() {
+        let inputEl = document.getElementById('scramble-input');
+        let checkBtn = document.getElementById('checkScrambleBtn');
+        if (!inputEl || !checkBtn || inputEl.disabled) return;
+
+        let valClean = removeDiacritics(inputEl.value.trim().toLowerCase());
+        let rawVn = vocabData[scrIdx].vn.replace(/[^\p{L}\s]/gu, '').trim();
+        let targetClean = removeDiacritics(rawVn.toLowerCase());
+
+        let fb = document.getElementById('scramble-feedback');
+        let actionArea = document.getElementById('scramble-action-area');
+        
+        inputEl.disabled = true;
+        checkBtn.style.pointerEvents = 'none';
+
+        if(valClean === targetClean) {
+          scrScore++;
+          playCorrectSound();
+          document.getElementById('scramble-score-box').textContent = `Score: ${scrScore}`;
+          fb.textContent = "✓ Correct!"; fb.style.color = "#059669";
+          setTimeout(() => { scrIdx++; loadScramble(); }, 800);
+        } else {
+          playIncorrectSound();
+          fb.innerHTML = `❌ Sai rồi! Đáp án đúng là: <strong class="text-slate-900 underline">${vocabData[scrIdx].vn}</strong>`; 
+          fb.style.color = "#dc2626";
+
+          actionArea.innerHTML = `
+            <button type="button" id="scrNextBtn" class="w-full py-4 bg-slate-900 hover:bg-slate-800 text-white font-extrabold rounded-2xl text-sm shadow-md cursor-pointer transition text-center">
+              Tiếp tục →
+            </button>
+          `;
+          document.getElementById('scrNextBtn').addEventListener('click', () => {
+            scrIdx++;
+            loadScramble();
+          });
+        }
+      }
+
+      let tfIdx = 0, tfScore = 0;
+      let tfCurrentPair = null;
+      let tfIsCorrect = true;
+
+      function initTrueFalse() {
+        tfIdx = 0;
+        tfScore = 0;
+        const panel = document.getElementById('game-truefalse');
+        if (panel) panel.style.display = 'flex';
+        loadTf();
+      }
+
+      function loadTf() {
+        const tfPanel = document.getElementById('game-truefalse');
+        if (!tfPanel) return;
+
+        if(tfIdx >= vocabData.length) {
+          renderCompletionScreen('game-truefalse', initTrueFalse, `Final Score: ${tfScore} / ${vocabData.length}`);
+          return;
+        }
+
+        tfPanel.innerHTML = `
+          <div class="flex justify-between items-center text-xs font-bold text-stone-400 uppercase tracking-wider">
+            <span id="tf-progress">1 / 5</span>
+            <span id="tf-score-box" class="text-red-600 font-black">Score: 0</span>
+          </div>
+          <div class="bg-gradient-to-b from-stone-50/80 to-white border border-stone-200/90 rounded-[28px] p-8 sm:p-10 max-w-xl mx-auto w-full space-y-4 shadow-sm">
+            <span class="text-[11px] font-extrabold uppercase tracking-widest text-stone-400">Translate Check</span>
+            <div id="tf-word" class="font-brand text-2xl sm:text-3xl font-black text-slate-900 leading-tight px-2">Word</div>
+            <div class="w-12 h-0.5 bg-stone-200 mx-auto"></div>
+            <div id="tf-meaning" class="font-brand text-lg sm:text-xl font-extrabold text-red-600 px-2">Meaning</div>
+          </div>
+          <div class="flex justify-center gap-4" id="tf-buttons-wrapper">
+            <button id="tfTrueBtn" class="px-9 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold rounded-2xl text-base shadow-md transition hover:-translate-y-0.5 cursor-pointer">True</button>
+            <button id="tfFalseBtn" class="px-9 py-4 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-2xl text-base shadow-md transition hover:-translate-y-0.5 cursor-pointer">False</button>
+          </div>
+          <div id="tf-feedback" class="text-sm font-bold min-h-[30px]"></div>
+        `;
+
+        document.getElementById('tf-progress').textContent = `${tfIdx + 1} / ${vocabData.length}`;
+        document.getElementById('tf-score-box').textContent = `Score: ${tfScore}`;
+
+        document.getElementById('tfTrueBtn').addEventListener('click', () => checkTf(true));
+        document.getElementById('tfFalseBtn').addEventListener('click', () => checkTf(false));
+
+        let item = vocabData[tfIdx];
+        tfIsCorrect = Math.random() < 0.5;
+        let displayMeaning = item.en;
+
+        if (!tfIsCorrect) {
+          let otherItems = vocabData.filter(i => i.en !== item.en);
+          if (otherItems.length > 0) {
+            let randomOther = otherItems[Math.floor(Math.random() * otherItems.length)];
+            displayMeaning = randomOther.en;
+          }
+        }
+
+        tfCurrentPair = { vn: item.vn, correctEn: item.en, shownEn: displayMeaning, isTrulyCorrect: tfIsCorrect };
+
+        document.getElementById('tf-word').textContent = tfCurrentPair.vn;
+        document.getElementById('tf-meaning').textContent = tfCurrentPair.shownEn;
+      }
+
+      function checkTf(userGuessedTrue) {
+        let fb = document.getElementById('tf-feedback');
+        let btnWrapper = document.getElementById('tf-buttons-wrapper');
+        if (!fb || !btnWrapper) return;
+
+        document.getElementById('tfTrueBtn').style.pointerEvents = 'none';
+        document.getElementById('tfFalseBtn').style.pointerEvents = 'none';
+
+        let isRight = (userGuessedTrue === tfCurrentPair.isTrulyCorrect);
+
+        if(isRight) {
+          tfScore++;
+          playCorrectSound();
+          document.getElementById('tf-score-box').textContent = `Score: ${tfScore}`;
+          fb.textContent = "✓ Correct!"; fb.style.color = "#059669";
+          setTimeout(() => { tfIdx++; loadTf(); }, 800);
+        } else {
+          playIncorrectSound();
+          fb.innerHTML = `❌ Sai rồi! Đáp án chính xác: Từ <strong class="text-slate-900">${tfCurrentPair.vn}</strong> nghĩa là <em class="text-red-600">${tfCurrentPair.correctEn}</em>`; 
+          fb.style.color = "#dc2626";
+
+          btnWrapper.innerHTML = `
+            <button type="button" id="tfNextBtn" class="px-10 py-4 bg-slate-900 hover:bg-slate-800 text-white font-extrabold rounded-2xl text-base shadow-md cursor-pointer transition">
+              Tiếp tục →
+            </button>
+          `;
+          document.getElementById('tfNextBtn').addEventListener('click', () => {
+            tfIdx++;
+            loadTf();
+          });
+        }
+      }
+    }
+  </script>
+</body>
+</html>

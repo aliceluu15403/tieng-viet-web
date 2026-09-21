@@ -1,35 +1,34 @@
 ---
-// src/pages/student.astro - Secure Access Portal (Fully Synced & Refined)
+// src/pages/student.astro - Secure Access Portal
+import '../styles/global.css';
 ---
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Student Portal | Havie Learn Vietnamese</title>
+  <title>Student Portal | Havie </title>
   <meta name="description" content="Secure student portal for Hang's Vietnamese learners." />
 
   <!-- CANONICAL URL -->
   <link rel="canonical" href="https://havielearn.com/student" />
 
-  <!-- FAVICON NHÚNG TRỰC TIẾP -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22><rect width=%22512%22 height=%22512%22 rx=%22110%22 fill=%22%23dc2626%22/><path d=%22M136 116h68v110h104V116h68v280h-68V290H204v106h-68V116z%22 fill=%22%23ffffff%22/></svg>" />
+  <!-- FAVICON -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- Tailwind CSS CDN -->
-  <script is:inline src="https://cdn.tailwindcss.com"></script>
-  
   <!-- Google Fonts: DM Sans & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --cream: #fffaf5;
       --navy: #0f172a;
       --brand-red: #dc2626;
+      --orange: #ef7218;
     }
 
     html {
@@ -46,8 +45,23 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
+    .curved-underline {
+      position: relative;
+    }
+    .curved-underline::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 6px;
+      border-bottom: 3px solid var(--orange);
+      border-radius: 50%;
+      transform: rotate(-1.5deg);
+    }
+
     .hero-glow {
-      background: radial-gradient(circle, rgba(220, 38, 38, 0.12) 0%, rgba(245, 158, 11, 0.06) 50%, transparent 80%);
+      background: radial-gradient(circle at 30% 50%, rgba(220, 38, 38, 0.05) 0%, rgba(245, 158, 11, 0.02) 50%, transparent 75%);
     }
   </style>
 </head>
@@ -74,15 +88,13 @@
       </a>
 
       <!-- CỤM PHẢI: MENU -->
-      <div class="hidden md:flex items-center gap-7 lg:gap-8 ml-auto mr-4">
-        <nav class="flex items-center space-x-7 lg:space-x-8 text-base font-bold text-slate-800 tracking-normal font-[inherit]">
-          <a href="/#about" class="hover:text-red-600 transition text-base font-bold text-slate-800">About Me</a>
-          <a href="/#curriculum" class="hover:text-red-600 transition text-base font-bold text-slate-800">Learning Tracks</a>
-          <a href="/resources" class="hover:text-red-600 transition text-base font-bold text-slate-800">Resources</a>
-          <a href="/student" class="text-red-600 font-bold transition">Student Portal</a>
-          <a href="/test" class="hover:text-red-600 transition text-base font-bold text-slate-800">Level Test</a>
-        </nav>
-      </div>
+      <nav class="hidden md:flex items-center space-x-7 lg:space-x-8 text-base font-bold text-slate-800">
+        <a href="/#about" class="hover:text-red-600 transition">About Me</a>
+        <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
+        <a href="/resources" class="hover:text-red-600 transition">Resources</a>
+        <a href="/student" class="text-red-600 font-brand font-extrabold transition">Student Portal</a>
+        <a href="/test" class="hover:text-red-600 transition">Level Test</a>
+      </nav>
 
       <!-- DESKTOP CTA & MOBILE TOGGLE -->
       <div class="flex items-center gap-3 shrink-0">
@@ -127,53 +139,76 @@
   </header>
 
   <!-- MAIN CONTENT -->
-  <main class="flex-grow flex items-center justify-center py-12 sm:py-16 px-4 sm:px-6 lg:px-8 relative">
+  <main class="flex-grow flex items-center justify-center py-12 sm:py-16 px-5 sm:px-8 relative">
     <div class="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] hero-glow rounded-full blur-3xl"></div>
+      <div class="absolute top-1/2 left-[25%] -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] hero-glow rounded-full blur-3xl"></div>
     </div>
 
-    <div class="w-full max-w-lg">
-      <div class="bg-white rounded-[32px] p-8 sm:p-10 shadow-2xl shadow-stone-300/50 border border-stone-200/90 text-center space-y-6">
-        <div class="w-16 h-16 bg-red-50 text-red-600 rounded-2xl mx-auto flex items-center justify-center text-2xl shadow-inner border border-red-100">
-          🔐
-        </div>
-        
-        <div class="space-y-2">
-          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-brand">Enter Lesson Access Code</h1>
-          <p class="text-stone-500 text-xs sm:text-sm">
-            Please enter your 5-character access code provided by Hang.
-          </p>
+    <div class="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+      
+      <!-- CỘT TRÁI -->
+      <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 border border-red-200 text-xs font-extrabold text-red-600 uppercase tracking-widest font-brand">
+          <span>🎓</span>
+          <span>Current Students Only</span>
         </div>
 
-        <!-- FORM 5 Ô OTP BẢO MẬT -->
-        <form id="codeForm" class="space-y-6 max-w-sm mx-auto">
-          <div class="flex justify-center gap-2.5 sm:gap-3" id="otpContainer">
-            <input type="text" maxlength="1" autocomplete="off" class="otp-input w-12 h-14 sm:w-13 sm:h-15 text-center text-xl font-extrabold font-mono uppercase bg-stone-50 border-2 border-stone-200 rounded-2xl focus:border-red-600 focus:bg-white focus:outline-none transition-all shadow-2xs" />
-            <input type="text" maxlength="1" autocomplete="off" class="otp-input w-12 h-14 sm:w-13 sm:h-15 text-center text-xl font-extrabold font-mono uppercase bg-stone-50 border-2 border-stone-200 rounded-2xl focus:border-red-600 focus:bg-white focus:outline-none transition-all shadow-2xs" />
-            <input type="text" maxlength="1" autocomplete="off" class="otp-input w-12 h-14 sm:w-13 sm:h-15 text-center text-xl font-extrabold font-mono uppercase bg-stone-50 border-2 border-stone-200 rounded-2xl focus:border-red-600 focus:bg-white focus:outline-none transition-all shadow-2xs" />
-            <input type="text" maxlength="1" autocomplete="off" class="otp-input w-12 h-14 sm:w-13 sm:h-15 text-center text-xl font-extrabold font-mono uppercase bg-stone-50 border-2 border-stone-200 rounded-2xl focus:border-red-600 focus:bg-white focus:outline-none transition-all shadow-2xs" />
-            <input type="text" maxlength="1" autocomplete="off" class="otp-input w-12 h-14 sm:w-13 sm:h-15 text-center text-xl font-extrabold font-mono uppercase bg-stone-50 border-2 border-stone-200 rounded-2xl focus:border-red-600 focus:bg-white focus:outline-none transition-all shadow-2xs" />
-          </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 font-brand tracking-tight leading-[1.15]">
+          Welcome back to <br /><span class="curved-underline text-red-600">your portal!</span>
+        </h1>
 
-          <input type="hidden" id="accessCodeInput" required />
-
-          <div id="errorMessage" class="hidden text-xs font-bold text-red-600 bg-red-50 py-3 rounded-xl border border-red-100 text-center">
-            ❌ Invalid access code. Please try again!
-          </div>
-
-          <button type="submit" class="w-full py-4 bg-red-600 hover:bg-red-700 text-white font-extrabold font-brand rounded-2xl text-base shadow-xl shadow-red-600/25 transition hover:-translate-y-0.5 cursor-pointer">
-            Open exercise →
-          </button>
-        </form>
+        <p class="text-stone-600 text-base sm:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
+          This space is exclusively reserved for Hang's active students. Enter your lesson code to access custom audio exercises, vocabulary labs, and interactive practice materials for our upcoming or recent sessions.
+        </p>
       </div>
+
+      <!-- CỘT PHẢI: KHUNG NHẬP MÃ BẢO MẬT (OTP) -->
+      <div class="lg:col-span-6 flex justify-center">
+        <div class="w-full max-w-md bg-white rounded-[32px] p-8 sm:p-10 shadow-2xl shadow-stone-300/50 border border-stone-200/90 text-center space-y-6">
+          
+          <div class="w-16 h-16 bg-red-50 text-red-600 rounded-2xl mx-auto flex items-center justify-center text-2xl shadow-inner border border-red-100">
+            🔐
+          </div>
+          
+          <div class="space-y-2">
+            <span class="text-[11px] font-extrabold uppercase tracking-widest text-red-600 bg-red-50 px-3.5 py-1.5 rounded-full border border-red-200 inline-block font-brand">Secure Access</span>
+            <h2 class="text-2xl sm:text-3xl font-black text-slate-900 font-brand tracking-tight">Enter Lesson Code</h2>
+            <p class="text-stone-500 text-xs sm:text-sm font-medium">
+              Please enter your 5-character access code provided by Hang.
+            </p>
+          </div>
+
+          <!-- FORM 5 Ô OTP -->
+          <form id="codeForm" class="space-y-6 max-w-sm mx-auto">
+            <div class="flex justify-center gap-2 sm:gap-2.5" id="otpContainer">
+              <input type="text" maxlength="1" autocomplete="off" class="otp-input w-12 h-14 sm:w-13 sm:h-15 text-center text-xl font-extrabold font-mono uppercase bg-stone-50/80 border-2 border-stone-200 rounded-2xl focus:border-red-600 focus:bg-white focus:ring-4 focus:ring-red-600/10 focus:outline-none transition-all shadow-xs" />
+              <input type="text" maxlength="1" autocomplete="off" class="otp-input w-12 h-14 sm:w-13 sm:h-15 text-center text-xl font-extrabold font-mono uppercase bg-stone-50/80 border-2 border-stone-200 rounded-2xl focus:border-red-600 focus:bg-white focus:ring-4 focus:ring-red-600/10 focus:outline-none transition-all shadow-xs" />
+              <input type="text" maxlength="1" autocomplete="off" class="otp-input w-12 h-14 sm:w-13 sm:h-15 text-center text-xl font-extrabold font-mono uppercase bg-stone-50/80 border-2 border-stone-200 rounded-2xl focus:border-red-600 focus:bg-white focus:ring-4 focus:ring-red-600/10 focus:outline-none transition-all shadow-xs" />
+              <input type="text" maxlength="1" autocomplete="off" class="otp-input w-12 h-14 sm:w-13 sm:h-15 text-center text-xl font-extrabold font-mono uppercase bg-stone-50/80 border-2 border-stone-200 rounded-2xl focus:border-red-600 focus:bg-white focus:ring-4 focus:ring-red-600/10 focus:outline-none transition-all shadow-xs" />
+              <input type="text" maxlength="1" autocomplete="off" class="otp-input w-12 h-14 sm:w-13 sm:h-15 text-center text-xl font-extrabold font-mono uppercase bg-stone-50/80 border-2 border-stone-200 rounded-2xl focus:border-red-600 focus:bg-white focus:ring-4 focus:ring-red-600/10 focus:outline-none transition-all shadow-xs" />
+            </div>
+
+            <input type="hidden" id="accessCodeInput" required />
+
+            <div id="errorMessage" class="hidden text-xs font-bold text-red-600 bg-red-50 py-3 px-4 rounded-xl border border-red-100 text-center">
+              ❌ Invalid access code. Please try again!
+            </div>
+
+            <button type="submit" class="w-full py-4 bg-red-600 hover:bg-red-700 text-white font-extrabold font-brand rounded-2xl text-base shadow-lg shadow-red-600/25 transition transform hover:-translate-y-0.5 cursor-pointer">
+              Open exercise →
+            </button>
+          </form>
+        </div>
+      </div>
+
     </div>
   </main>
 
   <!-- FOOTER -->
-  <footer class="bg-[#fffaf5] text-stone-600 py-10 border-t border-stone-200/80">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+  <footer class="bg-[#fffaf5] text-stone-600 py-10 border-t border-stone-200/80 mt-auto">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left font-brand">
       <div class="flex items-center justify-center gap-2.5">
-        <span class="font-brand font-black text-slate-900 tracking-wider text-base sm:text-lg">HAVIE</span>
+        <span class="font-black text-slate-900 tracking-wider text-base sm:text-lg">HAVIE</span>
         <span class="text-stone-300">•</span>
         <span class="text-xs sm:text-sm font-medium text-stone-500">Learn Vietnamese with Hang</span>
       </div>
@@ -188,10 +223,9 @@
     </div>
   </footer>
 
-  <!-- CONSULTATION / BOOKING MODAL -->
+  <!-- MODAL -->
   <div id="consultModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-stone-200 space-y-6 text-left">
-      
+    <div class="bg-white rounded-[32px] p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-stone-200 space-y-6 text-left">
       <div class="flex items-center justify-between border-b border-stone-100 pb-4">
         <div>
           <span class="text-xs sm:text-sm font-black text-red-600 uppercase tracking-widest bg-red-50 px-3.5 py-1.5 rounded-lg border border-red-200 inline-block font-brand">1-ON-1 LESSONS</span>
@@ -207,7 +241,6 @@
           <label class="block font-bold text-slate-800 mb-1.5 text-base">Full Name / Tên của bạn *</label>
           <input type="text" id="cName" required placeholder="e.g. Alex Smith" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
         </div>
-
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="block font-bold text-slate-800 mb-1.5 text-base">Country / Quốc gia *</label>
@@ -218,21 +251,15 @@
             <input type="tel" id="cPhone" placeholder="e.g. +49..." class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
           </div>
         </div>
-
         <div>
           <label class="block font-bold text-slate-800 mb-1.5 text-base">Email Address *</label>
           <input type="email" id="cEmail" required placeholder="name@example.com" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
         </div>
-
         <div>
           <label class="block font-bold text-slate-800 mb-1.5 text-base">Learning Goals / Mục tiêu học tập *</label>
           <textarea id="cGoals" rows="3" required placeholder="Current level, target dialect (Hanoi/Saigon), goals..." class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 resize-none text-base"></textarea>
         </div>
-
-        <button
-          type="submit"
-          class="w-full py-4 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl text-base shadow-md transition cursor-pointer mt-3"
-        >
+        <button type="submit" class="w-full py-4 bg-red-600 hover:bg-red-700 text-white font-black rounded-2xl text-base shadow-md transition cursor-pointer mt-3 font-brand">
           Submit Request to Hang →
         </button>
       </form>
@@ -241,11 +268,10 @@
         <div class="text-4xl">🎉</div>
         <h4 class="font-black text-slate-900 text-lg font-brand">Request Sent Successfully!</h4>
         <p class="text-stone-600 text-sm leading-relaxed">Thank you! Hang has received your details and goals. She will reach out via email within 24 hours.</p>
-        <button id="btnCloseSuccess" type="button" class="px-6 py-3 bg-slate-900 text-white font-bold rounded-xl text-sm cursor-pointer">
+        <button id="btnCloseSuccess" type="button" class="px-6 py-3 bg-slate-900 text-white font-bold rounded-xl text-sm cursor-pointer font-brand">
           Close Window
         </button>
       </div>
-
     </div>
   </div>
 
@@ -288,24 +314,54 @@
     if (btnCloseSuccess) closeModalBtn.addEventListener('click', hideModal);
     modal.addEventListener('click', (e) => { if (e.target === modal) hideModal(); });
 
-    consultForm.addEventListener('submit', (e) => {
+    consultForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const formData = {
-        name: document.getElementById('cName').value,
-        country: document.getElementById('cCountry').value,
-        phone: document.getElementById('cPhone').value,
-        email: document.getElementById('cEmail').value,
-        goals: document.getElementById('cGoals').value,
-      };
-      console.log("Consultation Booking Submitted:", formData);
+      
+      const submitBtn = consultForm.querySelector('button[type="submit"]');
+      if (submitBtn.disabled) return;
 
-      consultForm.classList.add('hidden');
-      successMessage.classList.remove('hidden');
-      consultForm.reset();
+      const name = document.getElementById('cName').value;
+      const country = document.getElementById('cCountry').value;
+      const phone = document.getElementById('cPhone').value;
+      const email = document.getElementById('cEmail').value;
+      const goals = document.getElementById('cGoals').value;
+
+      const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwALyCIFh4XLjpYQCaJxQH3S3krOkcRJERXz9IcAPWpUK3QKOpj583xWw6A31TfgvSDqw/exec'; 
+      const payload = { name, country, phone, email, goals };
+
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.7';
+      submitBtn.style.cursor = 'not-allowed';
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = 'Sending request... ⏳';
+
+      try {
+        await fetch(WEB_APP_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8',
+          },
+          body: JSON.stringify(payload)
+        });
+
+        consultForm.classList.add('hidden');
+        successMessage.classList.remove('hidden');
+
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        consultForm.classList.add('hidden');
+        successMessage.classList.add('hidden');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+        submitBtn.style.cursor = 'pointer';
+        submitBtn.innerHTML = originalText;
+      }
     });
 
-    // Danh sách các mã hợp lệ (đã thêm SLN01)
-    const validCodes = ["FCS01", "SLS01", "SLN01"];
+    // DANH SÁCH MÃ BÀI HỌC HỢP LỆ (Đã bổ sung KVN01 và KVS01)
+    const validCodes = ["FLN01", "FLS01", "WLN01", "WLS01", "SLN01", "SLS01", "FCS01", "AVB01", "KVN01", "KVS01"];
 
     const inputs = document.querySelectorAll('.otp-input');
     const hiddenInput = document.getElementById('accessCodeInput');
@@ -343,11 +399,15 @@
       if (validCodes.includes(code)) {
         errorMessage.classList.add('hidden');
         
-        if (code.startsWith('SLS') || code.startsWith('SLN')) {
+        // ĐIỀU HƯỚNG ĐẾN TRANG TƯƠNG ỨNG
+        if (code.startsWith("FL") || code.startsWith("WL") || code.startsWith("SL")) {
           window.location.href = `/listening?code=${code}`;
+        } else if (code.startsWith("AVB") || code.startsWith("KV")) {
+          window.location.href = `/vocabulary?code=${code}`;
         } else {
-          window.location.href = `/exercise?code=${code}`;
+          window.location.href = `/conversation?code=${code}`;
         }
+
       } else {
         errorMessage.classList.remove('hidden');
         inputs.forEach(input => input.value = '');

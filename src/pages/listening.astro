@@ -1,5 +1,6 @@
 ---
 // src/pages/listening.astro - Dedicated Listening & Fill-in-the-Blank Exercise Room
+import allListeningLessons from '../data/listeningData.js';
 ---
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -97,23 +98,25 @@
         </div>
 
         <!-- KHUNG PHÁT ÂM THANH -->
-        <div class="p-5 rounded-2xl bg-red-50/50 border border-red-100 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center font-bold text-lg shadow-md shrink-0">🎧</div>
-            <div>
-              <div id="audioFileName" class="text-[10px] font-extrabold text-red-600 uppercase tracking-wider">Audio File: Loading...</div>
-              <div id="modeHintText" class="text-sm font-bold text-slate-800">Type missing words (No diacritics needed)</div>
+        <div class="p-5 rounded-2xl bg-red-50/50 border border-red-100 space-y-4">
+          <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center font-bold text-lg shadow-md shrink-0">🎧</div>
+              <div>
+                <div id="audioFileName" class="text-[10px] font-extrabold text-red-600 uppercase tracking-wider">Audio File: Loading...</div>
+                <div id="modeHintText" class="text-sm font-bold text-slate-800">Type missing words (No diacritics needed)</div>
+              </div>
             </div>
+            <audio id="audioPlayer" controls preload="auto" class="w-full md:w-72 h-11 shrink-0">
+              <source id="audioSource" src="" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
           </div>
-          <audio id="audioPlayer" controls preload="auto" class="w-full md:w-72 h-11 shrink-0">
-            <source id="audioSource" src="" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
         </div>
 
         <!-- THÔNG BÁO LỖI AUDIO NẾU CÓ -->
         <div id="audioErrorBox" class="hidden p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-bold">
-          ⚠️ Không tìm thấy file âm thanh hoặc sai định dạng. Vui lòng kiểm tra lại file trong thư mục <code class="bg-red-100 px-1 py-0.5 rounded">public/audio/</code>.
+          ⚠️ Không tìm thấy file âm thanh hoặc sai định dạng. Vui lòng kiểm tra lại file trong thư mục <code class="bg-red-100 px-1 py-0.5 rounded">public/audio/listening/</code>.
         </div>
 
         <!-- NỘI DUNG BÀI TẬP -->
@@ -138,11 +141,10 @@
     <p>© 2026 Learn Vietnamese with Hang</p>
   </footer>
 
-  <!-- SCRIPT LOGIC -->
-  <script is:inline>
-    // 1. Nhận diện mã bài học từ URL (mặc định là SLN01 nếu không có)
+  <!-- SCRIPT LOGIC TRUYỀN DỮ LIỆU TỪ listeningData.js -->
+  <script define:vars={{ lessonData: allListeningLessons }}>
     const urlParams = new URLSearchParams(window.location.search);
-    const lessonCode = (urlParams.get('code') || 'SLN01').trim().toUpperCase();
+    const lessonCode = (urlParams.get('code') || 'FLN01').trim().toUpperCase();
 
     const audioSource = document.getElementById('audioSource');
     const audioPlayer = document.getElementById('audioPlayer');
@@ -150,124 +152,20 @@
     const audioErrorBox = document.getElementById('audioErrorBox');
     const pageTitle = document.getElementById('pageTitle');
 
-    // Thiết lập file audio tương ứng với mã bài (hỗ trợ cả SLS01 và SLN01)
-    const targetAudioFile = `${lessonCode}.wav`; // Hoặc .mp3 tùy thuộc vào định dạng thực tế của bạn
-    audioSource.src = `/audio/${targetAudioFile}`;
-    audioFileName.textContent = `Audio File: ${targetAudioFile}`;
-
-    // 2. Kho dữ liệu chứa câu hỏi riêng biệt cho từng bài học
-    const lessonData = {
-      "SLS01": {
-        title: "Trip to Vietnam Dialogue (Southern Accent)",
-        questions: [
-          {
-            id: 1,
-            part1: "<b>A:</b> Đây là lần",
-            part2: "anh tới Việt Nam? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Lần thứ ba rồi.",
-            typeAnswer: "thu may",
-            correctMcq: "thứ mấy",
-            mcqOptions: ["thứ mấy", "thư mấy", "thú mấy"]
-          },
-          {
-            id: 2,
-            part1: "<b>A:</b> Anh tới Cần Thơ",
-            part2: "chưa? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Anh chưa đi Cần Thơ.",
-            typeAnswer: "bao gio",
-            correctMcq: "bao giờ",
-            mcqOptions: ["bao giờ", "báo giờ", "bảo giở"]
-          },
-          {
-            id: 3,
-            part1: "<b>A:</b> Vậy còn Đà Nẵng? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Đà Nẵng thì anh đi",
-            part2: ".",
-            typeAnswer: "roi",
-            correctMcq: "rồi",
-            mcqOptions: ["rồi", "rối", "roi"]
-          },
-          {
-            id: 4,
-            part1: "<b>A:</b> Anh đi mấy lần rồi? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b>",
-            part2: "lần.",
-            typeAnswer: "hai",
-            correctMcq: "hai",
-            mcqOptions: ["hai", "hài", "hải"]
-          }
-        ]
-      },
-      "SLN01": {
-        title: "Northern Accent Dialogue",
-        questions: [
-          {
-            id: 1,
-            part1: "<b>A:</b> Chào con. Con bay có",
-            part2: "không? &nbsp;&nbsp;|&nbsp;&nbsp; <span class='text-slate-700 font-normal'><b>B:</b> Dạ, cũng hơi mệt.</span>",
-            typeAnswer: "met",
-            correctMcq: "mệt",
-            mcqOptions: ["mệt", "mết"]
-          },
-          {
-            id: 2,
-            part1: "<b>A:</b> Con bay sang đây",
-            part2: "?",
-            typeAnswer: "the nao",
-            correctMcq: "thế nào",
-            mcqOptions: ["thế nào", "thế nao"]
-          },
-          {
-            id: 3,
-            part1: "<b>B:</b> Khoảng 13",
-            part2: "ạ.",
-            typeAnswer: "tieng",
-            correctMcq: "tiếng",
-            mcqOptions: ["tiếng", "tieng"]
-          },
-          {
-            id: 4,
-            part1: "<b>A:</b> Đây là lần",
-            part2: "con đến Việt Nam? &nbsp;&nbsp;|&nbsp;&nbsp; <span class='text-slate-700 font-normal'><b>B:</b> Lần thứ hai rồi ạ.</span>",
-            typeAnswer: "thu may",
-            correctMcq: "thứ mấy",
-            mcqOptions: ["thứ mấy", "thư mấy"]
-          },
-          {
-            id: 5,
-            part1: "<b>A:</b> Con đi Hạ Long",
-            part2: "chưa? &nbsp;&nbsp;|&nbsp;&nbsp; <span class='text-slate-700 font-normal'><b>B:</b> Chưa ạ.</span>",
-            typeAnswer: "bao gio",
-            correctMcq: "bao giờ",
-            mcqOptions: ["bao giờ", "báo giờ"]
-          },
-          {
-            id: 6,
-            part1: "<b>B:</b> Cô chú đi Hạ Long",
-            part2: "rồi ạ?",
-            typeAnswer: "may lan",
-            correctMcq: "mấy lần",
-            mcqOptions: ["mấy lần", "máy lần"]
-          },
-          {
-            id: 7,
-            part1: "<b>A:</b> Khoảng",
-            part2: "lần rồi.",
-            typeAnswer: "ba",
-            correctMcq: "ba",
-            mcqOptions: ["ba", "bà"]
-          }
-        ]
-      }
-    };
-
-    // Lấy dữ liệu bài học dựa theo mã code (mặc định lấy SLN01 nếu không tìm thấy)
-    const currentLesson = lessonData[lessonCode] || lessonData["SLN01"];
+    const currentLesson = lessonData[lessonCode] || lessonData["FLN01"];
     pageTitle.textContent = currentLesson.title;
     const questions = currentLesson.questions;
 
+    const targetAudioFile = currentLesson.audioFile;
+    // Tự động gán đúng vào thư mục con /audio/listening/
+    audioSource.src = `/audio/listening/${targetAudioFile.replace(/^listening\//, '')}`;
+    audioFileName.textContent = `Audio File: ${targetAudioFile}`;
     audioPlayer.load();
 
     audioPlayer.addEventListener('error', (e) => {
       console.error("Audio loading error:", e);
       audioErrorBox.classList.remove('hidden');
-      audioErrorBox.textContent = `⚠️ Không thể tải file âm thanh cho bài ${lessonCode}. Hãy đảm bảo file ${targetAudioFile} đã được đặt trong thư mục public/audio/!`;
+      audioErrorBox.textContent = `⚠️ Không thể tải file âm thanh cho bài ${lessonCode}. Hãy đảm bảo file ${targetAudioFile} đã được đặt trong thư mục public/audio/listening/!`;
     });
 
     audioPlayer.addEventListener('loadedmetadata', () => {
@@ -403,7 +301,6 @@
       }
     }
 
-    // Hàm chuẩn hóa chuỗi
     function normalizeStr(str) {
       return str
         .trim()
@@ -419,10 +316,13 @@
       let allCorrect = true;
 
       inputs.forEach(input => {
-        let qId = parseInt(input.getAttribute('data-id'));
+        // Hỗ trợ so sánh an toàn bằng string hoặc number tùy thuộc vào dữ liệu q.id
+        let qIdRaw = input.getAttribute('data-id');
+        let targetQ = questions.find(q => String(q.id) === String(qIdRaw));
+        if (!targetQ) return;
+
         let userVal = normalizeStr(input.value);
-        let targetQ = questions.find(q => q.id === qId);
-        let feedbackEl = document.getElementById(`answer-feedback-${qId}`);
+        let feedbackEl = document.getElementById(`answer-feedback-${targetQ.id}`);
 
         feedbackEl.classList.remove('hidden');
 

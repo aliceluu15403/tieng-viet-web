@@ -1,5 +1,7 @@
 ---
 // src/pages/exercise.astro - Dynamic Interactive Exercise Room
+import '../styles/global.css';
+import { exerciseDatabase } from '../data/exerciseDatabase.js';
 ---
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -9,17 +11,8 @@
   <title>Interactive Exercise | Havie Learn Vietnamese</title>
   <meta name="description" content="Interactive visual roleplay exercise." />
 
-  <!-- FAVICON & MOBILE TOUCH ICONS -->
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <!-- FAVICON -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="manifest" href="/site.webmanifest" />
-
-  <!-- Tailwind CSS CDN -->
-  <script is:inline src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Google Fonts: DM Sans & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
@@ -44,7 +37,6 @@
     .hero-glow {
       background: radial-gradient(circle, rgba(220, 38, 38, 0.12) 0%, rgba(245, 158, 11, 0.06) 50%, transparent 80%);
     }
-    /* Tùy chỉnh thanh cuộn đẹp mắt */
     #chatBox::-webkit-scrollbar {
       width: 6px;
     }
@@ -76,12 +68,12 @@
             <path d="M98 2H117V7.5H104V12H115V17H104V22.5H117V28H98V2Z" fill="#dc2626"/>
           </svg>
         </div>
-        <span class="text-[9px] sm:text-[9.5px] font-bold tracking-[0.2em] text-stone-400 uppercase mt-1 leading-none">
+        <span class="text-[9px] sm:text-[9.5px] font-bold tracking-[0.2em] text-stone-400 uppercase mt-1 leading-none font-brand">
           Learn Vietnamese Online
         </span>
       </a>
 
-      <div class="hidden lg:flex items-center space-x-7 text-sm font-semibold text-slate-700">
+      <div class="hidden lg:flex items-center space-x-7 text-sm font-semibold text-slate-700 font-brand">
         <a href="/student" class="text-red-600 font-bold transition flex items-center gap-1">← Back to Portal</a>
       </div>
     </div>
@@ -96,7 +88,7 @@
     <!-- KHUNG BÀI TẬP max-w-3xl -->
     <div class="w-full max-w-3xl">
       <div id="lessonScreen" class="bg-white rounded-[32px] p-8 sm:p-12 shadow-2xl border border-stone-200/90 space-y-6">
-        <div class="flex items-center justify-between pb-4 border-b border-stone-100">
+        <div class="flex items-center justify-between pb-4 border-b border-stone-100 font-brand">
           <div>
             <span id="lessonCategory" class="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-md bg-stone-100 text-stone-700"></span>
             <h2 id="lessonHeaderTitle" class="text-xl sm:text-2xl font-extrabold text-slate-900 font-brand mt-1"></h2>
@@ -106,7 +98,7 @@
           </button>
         </div>
 
-        <!-- Khung chat co giãn linh hoạt, chỉ xuất hiện thanh cuộn khi nội dung dài -->
+        <!-- Khung chat co giãn linh hoạt -->
         <div id="chatBox" class="space-y-4 min-h-[120px] max-h-[380px] overflow-y-auto pr-2 flex flex-col"></div>
 
         <!-- Khung chọn câu trả lời -->
@@ -116,83 +108,16 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="bg-[#fffaf5] text-stone-600 py-8 text-xs border-t border-stone-200/80 text-center">
+  <footer class="bg-[#fffaf5] text-stone-600 py-8 text-xs border-t border-stone-200/80 text-center font-brand">
     <p>© 2026 Learn Vietnamese with Hang</p>
   </footer>
 
-  <script is:inline>
+  <!-- SCRIPT LOGIC -->
+  <script define:vars={{ exerciseDatabase }}>
     const urlParams = new URLSearchParams(window.location.search);
-    const lessonCode = urlParams.get('code');
+    const lessonCode = urlParams.get('code') || 'FCS01';
 
-    const database = {
-      "FCS01": {
-        topic: "SOUTHERN FOOD & RESTAURANT CONVERSATION",
-        title: "Bài tập: Gọi món tại quán ăn (Miền Nam)",
-        getStep: function(state) {
-          if (state.step === 0) {
-            return {
-              npc: "Quán em có phở với cơm, anh muốn ăn gì?",
-              choices: [
-                { text: "Cho anh phở bò", main: "phở bò", type: "pho" },
-                { text: "Cho anh phở gà", main: "phở gà", type: "pho" },
-                { text: "Cho anh cơm bò", main: "cơm bò", type: "com" },
-                { text: "Cho anh cơm gà", main: "cơm gà", type: "com" }
-              ]
-            };
-          } else if (state.step === 1) {
-            if (state.dishType === "pho") {
-              return {
-                npc: "Anh có ăn hành lá không?",
-                choices: [
-                  { text: "Có", detail: "có hành" },
-                  { text: "Không", detail: "không hành" }
-                ]
-              };
-            } else {
-              return {
-                npc: "Anh có ăn ớt không?",
-                choices: [
-                  { text: "Có", detail: "có ớt" },
-                  { text: "Không", detail: "không ớt" }
-                ]
-              };
-            }
-          } else if (state.step === 2) {
-            return {
-              npc: "Anh có muốn uống gì không?",
-              choices: [
-                { text: "Cho anh ly coca", drink: "coca" },
-                { text: "Cho anh ly trà đá", drink: "trà đá" },
-                { text: "Không, anh không uống gì thêm", drink: "" }
-              ]
-            };
-          } else if (state.step === 3) {
-            let summary = `Dạ vậy mình gọi ${state.selectedMain}`;
-            if (state.selectedDetail) summary += `, ${state.selectedDetail}`;
-            if (state.selectedDrink) summary += ` và ${state.selectedDrink}`;
-            summary += " nha.";
-
-            return {
-              npc: summary,
-              isConfirm: true
-            };
-          } else if (state.step === 4) {
-            return {
-              npc: "Tổng cộng của mình là 60k.",
-              isPayment: true,
-              choices: [
-                { text: "Đưa tờ 60k (Đúng tiền)", amount: 60 },
-                { text: "Đưa tờ 100k", amount: 100 },
-                { text: "Đưa tờ 200k", amount: 200 }
-              ]
-            };
-          }
-          return null;
-        }
-      }
-    };
-
-    if (!lessonCode || !database[lessonCode]) {
+    if (!lessonCode || !exerciseDatabase[lessonCode]) {
       window.location.href = '/student';
     }
 
@@ -214,7 +139,7 @@
       currentState = { step: 0, dishType: "", selectedMain: "", selectedDetail: "", selectedDrink: "" };
       chatBox.innerHTML = "";
 
-      const lesson = database[lessonCode];
+      const lesson = exerciseDatabase[lessonCode];
       lessonCategory.textContent = lesson.topic;
       lessonHeaderTitle.textContent = lesson.title;
       renderCurrentStep();
@@ -227,7 +152,7 @@
     }
 
     function renderCurrentStep() {
-      const lesson = database[lessonCode];
+      const lesson = exerciseDatabase[lessonCode];
       const stepData = lesson.getStep(currentState);
 
       let npcBubble = document.createElement('div');
@@ -243,7 +168,7 @@
 
       if (stepData.isConfirm) {
         choiceArea.innerHTML = `
-          <div class="space-y-3">
+          <div class="space-y-3 font-brand">
             <div class="text-xs sm:text-sm font-bold text-slate-700">💡 How to say: <span class="text-red-600 font-extrabold">"I want to pay"</span>?</div>
             <div>
               <button type="button" id="hintBtn" class="w-full py-4 px-5 bg-red-50 hover:bg-red-100 text-red-600 font-bold rounded-2xl text-xs sm:text-sm transition border border-red-200 cursor-pointer flex items-center justify-center gap-2">
@@ -275,7 +200,7 @@
       }
 
       choiceArea.innerHTML = `
-        <div class="text-xs font-extrabold text-stone-400 uppercase tracking-wider mb-3">Chọn câu trả lời của bạn:</div>
+        <div class="text-xs font-extrabold text-stone-400 uppercase tracking-wider mb-3 font-brand">Chọn câu trả lời của bạn:</div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5" id="choiceBtnsContainer"></div>
       `;
 
@@ -283,20 +208,22 @@
       stepData.choices.forEach((choice) => {
         let btn = document.createElement('button');
         btn.type = "button";
-        btn.className = "p-4 rounded-2xl bg-stone-50 hover:bg-red-50 border border-stone-200 hover:border-red-300 text-center transition cursor-pointer shadow-2xs group font-bold text-xs sm:text-sm text-slate-700 hover:text-red-600";
+        btn.className = "p-4 rounded-2xl bg-stone-50 hover:bg-red-50 border border-stone-200 hover:border-red-300 text-center transition cursor-pointer shadow-2xs group font-bold text-xs sm:text-sm text-slate-700 hover:text-red-600 font-brand";
         btn.textContent = choice.text;
 
         btn.addEventListener('click', () => {
-          if (currentState.step === 0) {
-            currentState.selectedMain = choice.main;
-            currentState.dishType = choice.type;
-          } else if (currentState.step === 1) {
-            currentState.selectedDetail = choice.detail;
-          } else if (currentState.step === 2) {
-            currentState.selectedDrink = choice.drink;
-          } else if (currentState.step === 4) {
-            handlePayment(choice.amount);
-            return;
+          if (lessonCode === "FCS01") {
+            if (currentState.step === 0) {
+              currentState.selectedMain = choice.main;
+              currentState.dishType = choice.type;
+            } else if (currentState.step === 1) {
+              currentState.selectedDetail = choice.detail;
+            } else if (currentState.step === 2) {
+              currentState.selectedDrink = choice.drink;
+            } else if (currentState.step === 4) {
+              handlePayment(choice.amount);
+              return;
+            }
           }
 
           appendStudentBubble(choice.text);
@@ -338,7 +265,7 @@
         scrollToBottom();
 
         choiceArea.innerHTML = `
-          <div class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200 text-center space-y-3 mt-2">
+          <div class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200 text-center space-y-3 mt-2 font-brand">
             <div class="text-sm sm:text-base font-bold text-emerald-800">🎉 Xuất sắc! Bạn đã hoàn thành toàn bộ cuộc hội thoại.</div>
             <button type="button" id="resetBtn" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs sm:text-sm transition cursor-pointer inline-flex items-center gap-2">
               <span>Chơi lại</span> 🔄
