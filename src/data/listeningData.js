@@ -216,9 +216,9 @@ const allListeningLessons = {
         id: 2,
         part1: "<b>A:</b> Con bay sang đây",
         part2: "?",
-        typeAnswer: "the nao",
-        correctMcq: "thế nào",
-        mcqOptions: ["thế nào", "thế nao", "thế nảo"]
+        typeAnswer: "mat bao lau",
+        correctMcq: "mất bao lâu",
+        mcqOptions: ["mất bao lâu", "mất bào lâu", "mất bao lấu"]
       },
       {
         id: 3,

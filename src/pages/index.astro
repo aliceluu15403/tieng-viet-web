@@ -816,7 +816,7 @@ import '../styles/global.css';
     };
 
     if (closeModalBtn) closeModalBtn.addEventListener('click', hideModal);
-    if (btnCloseSuccess) closeModalBtn.addEventListener('click', hideModal);
+    if (btnCloseSuccess) btnCloseSuccess.addEventListener('click', hideModal);
     modal.addEventListener('click', (e) => { if (e.target === modal) hideModal(); });
 
     // FORM SUBMISSION
@@ -834,7 +834,12 @@ import '../styles/global.css';
 
       const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwALyCIFh4XLjpYQCaJxQH3S3krOkcRJERXz9IcAPWpUK3QKOpj583xWw6A31TfgvSDqw/exec'; 
 
-      const payload = { name, country, phone, email, goals };
+      const formData = new URLSearchParams();
+      formData.append('name', name);
+      formData.append('country', country);
+      formData.append('phone', phone);
+      formData.append('email', email);
+      formData.append('goals', goals);
 
       submitBtn.disabled = true;
       submitBtn.style.opacity = '0.7';
@@ -846,10 +851,7 @@ import '../styles/global.css';
         await fetch(WEB_APP_URL, {
           method: 'POST',
           mode: 'no-cors',
-          headers: {
-            'Content-Type': 'text/plain;charset=utf-8',
-          },
-          body: JSON.stringify(payload)
+          body: formData
         });
 
         consultForm.classList.add('hidden');
@@ -858,7 +860,7 @@ import '../styles/global.css';
       } catch (error) {
         console.error("Error submitting form:", error);
         consultForm.classList.add('hidden');
-        successMessage.classList.add('hidden');
+        successMessage.classList.remove('hidden');
       } finally {
         submitBtn.disabled = false;
         submitBtn.style.opacity = '1';

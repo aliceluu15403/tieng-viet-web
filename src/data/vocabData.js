@@ -212,8 +212,44 @@ export default {
       { vn: "mua sắm", en: "to go shopping" }
     ]
   },
+"bedroom_expert": {
+    title: "Bedroom",
+    type: "locked",
+    words: [
+      { vn: "Giường", en: "Bed" },
+      { vn: "Chăn / Mền", en: "Blanket" },
+      { vn: "Gối", en: "Pillow" },
+      { vn: "Đệm / Nệm", en: "Mattress" },
+      { vn: "Móc", en: "Hanger" },
+      { vn: "Rèm cửa", en: "Curtain" },
+      { vn: "Thảm", en: "Rug" },
+      { vn: "Tủ quần áo", en: "Wardrobe" },
+      { vn: "Tủ kéo", en: "Drawer" },
+      { vn: "Đèn", en: "Lamp" }
+    ]
+  },
 
-  "frequency_expert": {
+  "bathroom_expert": {
+    title: "Bathroom",
+    type: "locked",
+    words: [
+      { vn: "Dầu gội", en: "Shampoo" },
+      { vn: "Xà phòng / Xà bông", en: "Soap" },
+      { vn: "Sữa tắm", en: "Shower gel" },
+      { vn: "Bàn chải đánh răng", en: "Toothbrush" },
+      { vn: "Kem đánh răng", en: "Toothpaste" },
+      { vn: "Giấy vệ sinh", en: "Toilet paper" },
+      { vn: "Gương / Kiếng", en: "Mirror" },
+      { vn: "Dao cạo", en: "Razor" },
+      { vn: "Kem cạo râu", en: "Shaving cream" },
+      { vn: "Khăn", en: "Towel" },
+      { vn: "Vòi nước", en: "Tap" },
+      { vn: "Bông tắm", en: "Loofah" },
+      { vn: "Bồn cầu", en: "Toilet" }
+    ]
+  }
+  
+  ,"frequency_expert": {
     title: "Frequency",
     type: "free",
     words: [
