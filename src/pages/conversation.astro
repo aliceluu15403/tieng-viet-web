@@ -14,16 +14,17 @@ import '../styles/global.css';
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --cream: #fffaf5;
       --navy: #0f172a;
       --brand-red: #dc2626;
+      --orange: #ef7218;
     }
     html {
-      scroll-padding-top: 85px;
+      scroll-padding-top: 100px;
     }
     body {
       font-family: 'DM Sans', sans-serif;
@@ -34,7 +35,7 @@ import '../styles/global.css';
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
     .hero-glow {
-      background: radial-gradient(circle, rgba(220, 38, 38, 0.12) 0%, rgba(245, 158, 11, 0.06) 50%, transparent 80%);
+      background: radial-gradient(circle at 30% 50%, rgba(220, 38, 38, 0.05) 0%, rgba(245, 158, 11, 0.02) 50%, transparent 75%);
     }
     #chatBox::-webkit-scrollbar {
       width: 6px;
@@ -54,12 +55,14 @@ import '../styles/global.css';
 </head>
 <body class="selection:bg-red-600 selection:text-white min-h-screen flex flex-col antialiased relative overflow-x-hidden">
 
-  <!-- NAVBAR -->
+  <!-- NAVBAR CHUẨN ĐẦY ĐỦ -->
   <header class="sticky top-0 z-40 bg-[#fffaf5]/90 backdrop-blur-md border-b border-stone-200/80 h-20">
-    <div class="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 h-full flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 h-full flex items-center justify-between">
+      
+      <!-- LOGO BÊN TRÁI -->
       <a href="/" class="group flex flex-col select-none text-left shrink-0">
-        <div class="h-6 sm:h-7 flex items-center">
-          <svg class="h-6 sm:h-7 w-auto overflow-visible" viewBox="0 0 175 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div class="h-7 sm:h-8 flex items-center">
+          <svg class="h-7 sm:h-8 w-auto overflow-visible" viewBox="0 0 175 30" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 2H6V12H18V2H24V28H18V17H6V28H0V2Z" fill="#dc2626"/>
             <path d="M41 2L52 28H45.5L43.2 22H33.8L31.5 28H25L36 2H41ZM38.5 8.5L35.2 17.5H41.8L38.5 8.5Z" fill="#dc2626"/>
             <path d="M53 2H59.5L67 21L74.5 2H81L70.5 28H63.5L53 2Z" fill="#dc2626"/>
@@ -67,37 +70,108 @@ import '../styles/global.css';
             <path d="M98 2H117V7.5H104V12H115V17H104V22.5H117V28H98V2Z" fill="#dc2626"/>
           </svg>
         </div>
-        <span class="text-[9px] sm:text-[9.5px] font-bold tracking-[0.2em] text-stone-400 uppercase mt-1 leading-none font-brand">
+        <span class="text-[9.5px] sm:text-[10px] font-bold tracking-[0.22em] sm:tracking-[0.26em] text-stone-400 uppercase mt-1 pl-0.5 leading-none">
           Learn Vietnamese Online
         </span>
       </a>
 
-      <div class="hidden lg:flex items-center space-x-7 text-sm font-semibold text-slate-700 font-brand">
-        <a href="/student" class="text-red-600 font-bold transition flex items-center gap-1">← Back to Portal</a>
+      <!-- CỤM PHẢI: MENU -->
+      <nav class="hidden md:flex items-center space-x-7 lg:space-x-8 text-base font-bold text-slate-800">
+        <a href="/#about" class="hover:text-red-600 transition">About Me</a>
+        <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
+        <a href="/resources" class="hover:text-red-600 transition">Resources</a>
+        <a href="/student" class="text-red-600 font-brand font-extrabold transition">Student Portal</a>
+        <a href="/test" class="hover:text-red-600 transition">Level Test</a>
+      </nav>
+
+      <!-- DESKTOP CTA & MOBILE TOGGLE -->
+      <div class="flex items-center gap-3 shrink-0">
+        <a href="/student" class="hidden sm:inline-flex items-center justify-center px-5 py-3 text-sm font-extrabold text-white bg-red-600 hover:bg-red-700 rounded-xl shadow-lg shadow-red-600/25 transition hover:-translate-y-0.5">
+          ← Back to Portal
+        </a>
+
+        <!-- Mobile Menu Hamburger Button -->
+        <button 
+          id="mobileMenuBtn" 
+          type="button" 
+          aria-label="Toggle Menu"
+          class="md:hidden w-10 h-10 rounded-xl bg-stone-100 hover:bg-stone-200 text-slate-800 flex items-center justify-center font-bold transition cursor-pointer"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden absolute top-20 left-0 w-full bg-[#fffaf5] border-b border-stone-200 shadow-xl px-6 py-5 space-y-4 font-semibold text-slate-800 text-base">
+      <a href="/#about" class="mobile-link block hover:text-red-600 transition">About Me</a>
+      <a href="/#curriculum" class="mobile-link block hover:text-red-600 transition">Learning Tracks</a>
+      <a href="/resources" class="mobile-link block hover:text-red-600 transition">Resources</a>
+      <a href="/student" class="mobile-link block text-red-600 font-bold">Student Portal</a>
+      <a href="/test" class="mobile-link block hover:text-red-600 transition">Level Test</a>
+      <div class="pt-3 border-t border-stone-200">
+        <a href="/student" class="block w-full py-3.5 text-sm font-bold text-white bg-red-600 rounded-xl text-center shadow-md">
+          ← Back to Portal
+        </a>
       </div>
     </div>
   </header>
 
   <!-- MAIN CONTENT -->
-  <main class="flex-grow flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8 relative">
+  <main class="flex-grow flex items-center justify-center py-12 sm:py-16 px-5 sm:px-8 relative">
     <div class="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
-      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[450px] h-[450px] hero-glow rounded-full blur-3xl"></div>
+      <div class="absolute top-1/2 left-[25%] -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] hero-glow rounded-full blur-3xl"></div>
     </div>
 
-    <!-- KHUNG BÀI TẬP max-w-3xl -->
-    <div class="w-full max-w-3xl">
-      <div id="lessonScreen" class="bg-white rounded-[32px] p-8 sm:p-12 shadow-2xl border border-stone-200/90 space-y-6">
+    <!-- KHUNG CHỌN CHẾ ĐỘ XƯNG HÔ -->
+    <div id="roleSelectScreen" class="w-full max-w-lg bg-white rounded-[32px] p-8 sm:p-10 shadow-2xl border border-stone-200/90 text-center space-y-6">
+      <div class="w-16 h-16 bg-red-50 text-red-600 rounded-2xl mx-auto flex items-center justify-center text-2xl shadow-inner border border-red-100">
+        👥
+      </div>
+      <div class="space-y-2 font-brand">
+        <span class="text-[11px] font-extrabold uppercase tracking-widest text-red-600 bg-red-50 px-3.5 py-1.5 rounded-full border border-red-200 inline-block">Roleplay Mode</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">Choose Your Role</h2>
+        <p class="text-stone-500 text-xs sm:text-sm font-medium">
+          How would you like to address the restaurant staff?
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-3.5 font-brand">
+        <button type="button" onclick="setRole('em', 'em', 'em', 'em')" class="p-4 rounded-2xl bg-stone-50 hover:bg-red-50 border border-stone-200 hover:border-red-300 font-bold text-sm text-slate-700 hover:text-red-600 transition cursor-pointer text-left flex items-center justify-between">
+          <span>👶 You are <strong>"em"</strong> (Younger)</span>
+          <span>→</span>
+        </button>
+        <button type="button" onclick="setRole('anh', 'anh', 'em', 'anh')" class="p-4 rounded-2xl bg-stone-50 hover:bg-red-50 border border-stone-200 hover:border-red-300 font-bold text-sm text-slate-700 hover:text-red-600 transition cursor-pointer text-left flex items-center justify-between">
+          <span>👨 You are <strong>"anh"</strong> (Older Male)</span>
+          <span>→</span>
+        </button>
+        <button type="button" onclick="setRole('chị', 'chị', 'em', 'chị')" class="p-4 rounded-2xl bg-stone-50 hover:bg-red-50 border border-stone-200 hover:border-red-300 font-bold text-sm text-slate-700 hover:text-red-600 transition cursor-pointer text-left flex items-center justify-between">
+          <span>👩 You are <strong>"chị"</strong> (Older Female)</span>
+          <span>→</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- KHUNG BÀI TẬP CHÍNH -->
+    <div id="lessonScreen" class="hidden w-full max-w-3xl">
+      <div class="bg-white rounded-[32px] p-8 sm:p-12 shadow-2xl border border-stone-200/90 space-y-6">
         <div class="flex items-center justify-between pb-4 border-b border-stone-100 font-brand">
           <div>
-            <span id="lessonCategory" class="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-md bg-stone-100 text-stone-700"></span>
+            <div class="flex items-center gap-2">
+              <span id="lessonCategory" class="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-md bg-stone-100 text-stone-700"></span>
+              <span id="currentRoleBadge" class="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-md bg-red-50 text-red-600 border border-red-200"></span>
+            </div>
             <h2 id="lessonHeaderTitle" class="text-xl sm:text-2xl font-extrabold text-slate-900 font-brand mt-1"></h2>
           </div>
           <button id="resetTopBtn" type="button" class="text-xs font-bold text-stone-500 hover:text-red-600 transition bg-stone-50 px-4 py-2 rounded-xl border border-stone-200 cursor-pointer flex items-center gap-1.5">
-            <span>Chơi lại</span> 🔄
+            <span>Đổi vai / Chơi lại</span> 🔄
           </button>
         </div>
 
-        <!-- Khung chat co giãn linh hoạt -->
+        <!-- Khung chat -->
         <div id="chatBox" class="space-y-4 min-h-[120px] max-h-[380px] overflow-y-auto pr-2 flex flex-col"></div>
 
         <!-- Khung chọn câu trả lời -->
@@ -106,58 +180,126 @@ import '../styles/global.css';
     </div>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="bg-[#fffaf5] text-stone-600 py-8 text-xs border-t border-stone-200/80 text-center font-brand">
-    <p>© 2026 Learn Vietnamese with Hang</p>
+  <!-- FOOTER CHUẨN ĐẦY ĐỦ -->
+  <footer class="bg-[#fffaf5] text-stone-600 py-10 border-t border-stone-200/80 mt-auto">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left font-brand">
+      <div class="flex items-center justify-center gap-2.5">
+        <span class="font-black text-slate-900 tracking-wider text-base sm:text-lg">HAVIE</span>
+        <span class="text-stone-300">•</span>
+        <span class="text-xs sm:text-sm font-medium text-stone-500">Learn Vietnamese with Hang</span>
+      </div>
+      <div class="flex items-center gap-5 sm:gap-7 font-semibold text-xs sm:text-sm text-stone-700 flex-wrap justify-center">
+        <a href="/#about" class="hover:text-red-600 transition">About Me</a>
+        <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
+        <a href="/resources" class="hover:text-red-600 transition">Resources</a>
+        <a href="/student" class="text-red-600 font-bold transition">Student Portal</a>
+        <a href="/test" class="hover:text-red-600 transition">Level Test</a>
+      </div>
+    </div>
   </footer>
 
-  <!-- SCRIPT LOGIC TRỰC TIẾP -->
-  <script>
-    // Nhúng trực tiếp cơ sở dữ liệu bài tập tại đây để loại bỏ mọi lỗi import module SSR
+  <!-- SCRIPT LOGIC -->
+  <script is:inline>
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+      });
+    }
+
+    let userRole = {
+      name: "anh",
+      callStaff: "em",
+      staffCallUser: "anh"
+    };
+
     const exerciseDatabase = {
       "FCS01": {
-        topic: "SOUTHERN FOOD & RESTAURANT CONVERSATION",
+        topic: "SOUTHERN RESTAURANT CONVERSATION",
         title: "Bài tập: Gọi món tại quán ăn (Miền Nam)",
-        getStep: function(state) {
+        getStep: function(state, role) {
           if (state.step === 0) {
             return {
-              npc: "Quán em có phở với cơm, anh muốn ăn gì?",
+              npc: `Dạ chào ${role.staffCallUser}, dạ mình đi mấy người ạ?`,
               choices: [
-                { text: "Cho anh phở bò", main: "phở bò", type: "pho" },
-                { text: "Cho anh phở gà", main: "phở gà", type: "pho" },
-                { text: "Cho anh cơm bò", main: "cơm bò", type: "com" },
-                { text: "Cho anh cơm gà", main: "cơm gà", type: "com" }
+                { text: `Dạ ${role.name} đi 1 người`, count: 1 },
+                { text: `Dạ ${role.name} đi 2 người`, count: 2 },
+                { text: `Dạ ${role.name} đi 3 người`, count: 3 },
+                { text: `Dạ ${role.name} đi 4 người`, count: 4 }
               ]
             };
           } else if (state.step === 1) {
+            return {
+              npc: `Dạ vâng, 1 bàn ${state.partyCount} người. Quán em có bánh mì, phở với cơm, ${role.staffCallUser} muốn ăn gì ạ?`,
+              choices: [
+                { text: `Cho ${role.callStaff} bánh mì`, main: "bánh mì", type: "banhmi" },
+                { text: `Cho ${role.callStaff} phở`, main: "phở", type: "pho" },
+                { text: `Cho ${role.callStaff} cơm`, main: "cơm", type: "com" }
+              ]
+            };
+          } else if (state.step === 2) {
+            // Phở không có thịt heo, chỉ có bò hoặc gà
             if (state.dishType === "pho") {
               return {
-                npc: "Anh có ăn hành lá không?",
+                npc: `Dạ ${state.selectedMain}, ${role.staffCallUser} muốn ăn thịt bò hay thịt gà ạ?`,
                 choices: [
-                  { text: "Có", detail: "có hành" },
-                  { text: "Không", detail: "không hành" }
+                  { text: `Thịt bò`, meat: "bò" },
+                  { text: `Thịt gà`, meat: "gà" }
                 ]
               };
             } else {
               return {
-                npc: "Anh có ăn ớt không?",
+                npc: `Dạ ${state.selectedMain}, ${role.staffCallUser} muốn ăn thịt bò, thịt gà hay thịt heo ạ?`,
                 choices: [
-                  { text: "Có", detail: "có ớt" },
-                  { text: "Không", detail: "không ớt" }
+                  { text: `Thịt bò`, meat: "bò" },
+                  { text: `Thịt gà`, meat: "gà" },
+                  { text: `Thịt heo`, meat: "heo" }
                 ]
               };
             }
-          } else if (state.step === 2) {
+          } else if (state.step === 3) {
+            if (state.dishType === "pho") {
+              return {
+                npc: `${role.staffCallUser} có ăn hành lá không ạ?`,
+                choices: [
+                  { text: "Có, cho nhiều hành", detail: "có hành" },
+                  { text: "Không, không ăn hành", detail: "không hành" }
+                ]
+              };
+            } else if (state.dishType === "banhmi") {
+              return {
+                npc: `${role.staffCallUser} có ăn ớt và ngò rí không ạ?`,
+                choices: [
+                  { text: "Có, đầy đủ nha", detail: "có ớt và ngò" },
+                  { text: "Không bỏ ớt", detail: "không ớt" }
+                ]
+              };
+            } else {
+              return {
+                npc: `${role.staffCallUser} có ăn cay không ạ?`,
+                choices: [
+                  { text: "Có, bỏ cay", detail: "có cay" },
+                  { text: "Không ăn cay", detail: "không cay" }
+                ]
+              };
+            }
+          } else if (state.step === 4) {
             return {
-              npc: "Anh có muốn uống gì không?",
+              npc: `${role.staffCallUser} có muốn uống gì không ạ?`,
               choices: [
-                { text: "Cho anh ly coca", drink: "coca" },
-                { text: "Cho anh ly trà đá", drink: "trà đá" },
-                { text: "Không, anh không uống gì thêm", drink: "không uống gì" }
+                { text: `Cho ${role.callStaff} ly coca`, drink: "coca" },
+                { text: `Cho ${role.callStaff} ly trà đá`, drink: "trà đá" },
+                { text: `Không, ${role.name} không uống gì thêm`, drink: "không uống gì" }
               ]
             };
-          } else if (state.step === 3) {
-            let summary = `Dạ vậy mình gọi ${state.selectedMain}`;
+          } else if (state.step === 5) {
+            let summary = `Dạ vậy ${role.name} gọi ${state.selectedMain} ${state.selectedMeat}`;
             if (state.selectedDetail) summary += `, ${state.selectedDetail}`;
             if (state.selectedDrink) summary += ` và ${state.selectedDrink}`;
             summary += " nha.";
@@ -166,9 +308,9 @@ import '../styles/global.css';
               npc: summary,
               isConfirm: true
             };
-          } else if (state.step === 4) {
+          } else if (state.step === 6) {
             return {
-              npc: "Tổng cộng của mình là 60k.",
+              npc: `Dạ tổng cộng hóa đơn của ${role.staffCallUser} là 60k ạ.`,
               isPayment: true,
               choices: [
                 { text: "Đưa tờ 60k (Đúng tiền)", amount: 60 },
@@ -189,7 +331,10 @@ import '../styles/global.css';
       window.location.href = '/student';
     }
 
+    const roleSelectScreen = document.getElementById('roleSelectScreen');
+    const lessonScreen = document.getElementById('lessonScreen');
     const lessonCategory = document.getElementById('lessonCategory');
+    const currentRoleBadge = document.getElementById('currentRoleBadge');
     const lessonHeaderTitle = document.getElementById('lessonHeaderTitle');
     const chatBox = document.getElementById('chatBox');
     const choiceArea = document.getElementById('choiceArea');
@@ -197,18 +342,33 @@ import '../styles/global.css';
 
     let currentState = {
       step: 0,
+      partyCount: 1,
       dishType: "",
       selectedMain: "",
+      selectedMeat: "",
       selectedDetail: "",
       selectedDrink: ""
     };
 
+    window.setRole = function(roleKey, nameLabel, callStaffLabel, staffCallUserLabel) {
+      userRole = {
+        name: nameLabel,
+        callStaff: callStaffLabel,
+        staffCallUser: staffCallUserLabel
+      };
+
+      roleSelectScreen.classList.add('hidden');
+      lessonScreen.classList.remove('hidden');
+      startLesson();
+    };
+
     function startLesson() {
-      currentState = { step: 0, dishType: "", selectedMain: "", selectedDetail: "", selectedDrink: "" };
+      currentState = { step: 0, partyCount: 1, dishType: "", selectedMain: "", selectedMeat: "", selectedDetail: "", selectedDrink: "" };
       chatBox.innerHTML = "";
 
       const lesson = exerciseDatabase[lessonCode];
       lessonCategory.textContent = lesson.topic;
+      currentRoleBadge.textContent = `Role: ${userRole.name}`;
       lessonHeaderTitle.textContent = lesson.title;
       renderCurrentStep();
     }
@@ -221,7 +381,7 @@ import '../styles/global.css';
 
     function renderCurrentStep() {
       const lesson = exerciseDatabase[lessonCode];
-      const stepData = lesson.getStep(currentState);
+      const stepData = lesson.getStep(currentState, userRole);
 
       let npcBubble = document.createElement('div');
       npcBubble.className = "flex items-center gap-3 shrink-0";
@@ -244,11 +404,11 @@ import '../styles/global.css';
               </button>
             </div>
             <div id="hintOptions" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-              <button type="button" class="pay-option p-4 rounded-2xl bg-stone-50 hover:bg-red-50 border border-stone-200 text-xs sm:text-sm font-bold text-slate-700 text-center transition cursor-pointer" data-text="Em ơi, tính tiền cho anh!">
-                <span>Em ơi, tính tiền cho anh!</span>
+              <button type="button" class="pay-option p-4 rounded-2xl bg-stone-50 hover:bg-red-50 border border-stone-200 text-xs sm:text-sm font-bold text-slate-700 text-center transition cursor-pointer" data-text="${userRole.callStaff} ơi, tính tiền cho ${userRole.name}!">
+                <span>${userRole.callStaff} ơi, tính tiền cho ${userRole.name}!</span>
               </button>
-              <button type="button" class="pay-option p-4 rounded-2xl bg-stone-50 hover:bg-red-50 border border-stone-200 text-xs sm:text-sm font-bold text-slate-700 text-center transition cursor-pointer" data-text="Cho anh xin cái hóa đơn!">
-                <span>Cho anh xin cái hóa đơn!</span>
+              <button type="button" class="pay-option p-4 rounded-2xl bg-stone-50 hover:bg-red-50 border border-stone-200 text-xs sm:text-sm font-bold text-slate-700 text-center transition cursor-pointer" data-text="Cho ${userRole.callStaff} xin cái hóa đơn!">
+                <span>Cho ${userRole.callStaff} xin cái hóa đơn!</span>
               </button>
             </div>
           </div>
@@ -280,18 +440,20 @@ import '../styles/global.css';
         btn.textContent = choice.text;
 
         btn.addEventListener('click', () => {
-          if (lessonCode === "FCS01") {
-            if (currentState.step === 0) {
-              currentState.selectedMain = choice.main;
-              currentState.dishType = choice.type;
-            } else if (currentState.step === 1) {
-              currentState.selectedDetail = choice.detail;
-            } else if (currentState.step === 2) {
-              currentState.selectedDrink = choice.drink;
-            } else if (currentState.step === 4) {
-              handlePayment(choice.amount);
-              return;
-            }
+          if (currentState.step === 0) {
+            currentState.partyCount = choice.count;
+          } else if (currentState.step === 1) {
+            currentState.selectedMain = choice.main;
+            currentState.dishType = choice.type;
+          } else if (currentState.step === 2) {
+            currentState.selectedMeat = choice.meat;
+          } else if (currentState.step === 3) {
+            currentState.selectedDetail = choice.detail;
+          } else if (currentState.step === 4) {
+            currentState.selectedDrink = choice.drink;
+          } else if (currentState.step === 6) {
+            handlePayment(choice.amount);
+            return;
           }
 
           appendStudentBubble(choice.text);
@@ -314,10 +476,10 @@ import '../styles/global.css';
 
       let responseText = "";
       if (paidAmount === 60) {
-        responseText = `Em nhận của anh ${paidAmount}k. Em cảm ơn anh!`;
+        responseText = `Dạ em nhận của ${userRole.staffCallUser} ${paidAmount}k. Em cảm ơn ${userRole.staffCallUser} ạ!`;
       } else {
         let excess = paidAmount - 60;
-        responseText = `Em nhận của anh ${paidAmount}k, em thối lại mình ${excess}k. Em cảm ơn anh!`;
+        responseText = `Dạ em nhận của ${userRole.staffCallUser} ${paidAmount}k, em thối lại ${userRole.staffCallUser} ${excess}k. Em cảm ơn ${userRole.staffCallUser} ạ!`;
       }
 
       setTimeout(() => {
@@ -336,11 +498,14 @@ import '../styles/global.css';
           <div class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200 text-center space-y-3 mt-2 font-brand">
             <div class="text-sm sm:text-base font-bold text-emerald-800">🎉 Xuất sắc! Bạn đã hoàn thành toàn bộ cuộc hội thoại.</div>
             <button type="button" id="resetBtn" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs sm:text-sm transition cursor-pointer inline-flex items-center gap-2">
-              <span>Chơi lại</span> 🔄
+              <span>Chơi lại từ đầu</span> 🔄
             </button>
           </div>
         `;
-        document.getElementById('resetBtn').addEventListener('click', startLesson);
+        document.getElementById('resetBtn').addEventListener('click', () => {
+          lessonScreen.classList.add('hidden');
+          roleSelectScreen.classList.remove('hidden');
+        });
       }, 500);
     }
 
@@ -358,10 +523,9 @@ import '../styles/global.css';
     }
 
     resetTopBtn.addEventListener('click', () => {
-      startLesson();
+      lessonScreen.classList.add('hidden');
+      roleSelectScreen.classList.remove('hidden');
     });
-
-    startLesson();
   </script>
 </body>
 </html>
