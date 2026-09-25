@@ -1,37 +1,13 @@
 ---
-// src/pages/vocabulary.astro - Standalone Vocabulary Lab with Sequential Flashcards & Randomized Games
-import '../styles/global.css';
-import allTopics from '../data/vocabData.js';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import allTopics from '../../data/vocabData.js';
 ---
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vocabulary Games | Havie</title>
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --cream: #fffaf5;
-      --navy: #0f172a;
-      --brand-red: #dc2626;
-      --orange: #ef7218;
-    }
-    html { scroll-padding-top: 100px; }
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background-color: var(--cream);
-      color: var(--navy);
-    }
-    .font-brand { font-family: 'Plus Jakarta Sans', sans-serif; }
-  </style>
-</head>
-<body class="selection:bg-red-600 selection:text-white min-h-screen flex flex-col antialiased relative overflow-x-hidden">
-
+<BaseLayout 
+  title="Vocabulary Games | Havie" 
+  description="Practice Vietnamese vocabulary with interactive flashcards, matching games, multiple-choice quizzes, word unscramble, and true/false challenges."
+  canonical="https://havielearn.com/resources/vocabulary"
+>
   <!-- NAVBAR -->
   <header class="sticky top-0 z-40 bg-[#fffaf5]/90 backdrop-blur-md border-b border-stone-200/80 h-20">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 h-full flex items-center justify-between">
@@ -61,7 +37,7 @@ import allTopics from '../data/vocabData.js';
         <a href="/test" class="hover:text-red-600 transition">Level Test</a>
       </nav>
 
-      <!-- RIGHT SELECT: Tự động ẩn đi nếu vào bằng mã khóa -->
+      <!-- RIGHT SELECT: ĐẦY ĐỦ TẤT CẢ CÁC MỤC -->
       <div id="topicSelectorWrapper" class="hidden md:flex items-center gap-4 shrink-0 font-brand">
         <div class="relative inline-block w-full max-w-[280px]">
           <select id="topicSelect" class="w-full appearance-none px-5 py-3.5 pr-12 rounded-2xl bg-white border border-stone-200/90 text-sm font-bold text-slate-900 cursor-pointer outline-none hover:border-stone-300 focus:border-red-600 focus:ring-4 focus:ring-red-600/10 transition shadow-xs">
@@ -115,6 +91,8 @@ import allTopics from '../data/vocabData.js';
             <option value="hobbies_expert">Hobbies</option>
             <option value="emotions_expert">Emotions</option>
             <option value="housing_expert">Housing</option>
+            <option value="bedroom_expert">Bedroom</option>
+            <option value="bathroom_expert">Bathroom</option>
             <option value="time_expert">Time</option>
             <option value="frequency_expert">Frequency</option>
           </select>
@@ -321,7 +299,7 @@ import allTopics from '../data/vocabData.js';
 
     const handleTopicChange = (e) => {
       const selectedKey = e.target.value;
-      window.location.href = `/vocabulary?topic=${selectedKey}`;
+      window.location.href = `/resources/vocabulary?topic=${selectedKey}`;
     };
     if (topicSelect) topicSelect.addEventListener('change', handleTopicChange);
     if (topicSelectMobile) topicSelectMobile.addEventListener('change', handleTopicChange);
@@ -361,7 +339,7 @@ import allTopics from '../data/vocabData.js';
             <a href="/student" class="block w-full py-4 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-2xl text-sm shadow-md transition">
               Đến Student Portal nhập mã →
             </a>
-            <a href="/vocabulary?topic=numbers_expert" class="block w-full py-3 bg-stone-100 hover:bg-stone-200 text-slate-700 font-bold rounded-2xl text-sm transition">
+            <a href="/resources/vocabulary?topic=numbers_expert" class="block w-full py-3 bg-stone-100 hover:bg-stone-200 text-slate-700 font-bold rounded-2xl text-sm transition">
               Quay lại học các phần Free khác
             </a>
           </div>
@@ -750,29 +728,21 @@ import allTopics from '../data/vocabData.js';
         document.getElementById('scramble-letters').textContent = shuffleString(w);
       }
       
-function checkScramble() {
+      function checkScramble() {
         let inputEl = document.getElementById('scramble-input');
         let checkBtn = document.getElementById('checkScrambleBtn');
         if (!inputEl || !checkBtn || inputEl.disabled) return;
 
         let userRaw = inputEl.value.trim().toLowerCase();
-        // Chuẩn hóa chuỗi người dùng gõ: bỏ dấu tiếng Việt, và xóa toàn bộ khoảng trắng thừa xung quanh các dấu / hoặc chữ
         let valClean = removeDiacritics(userRaw).replace(/\s+/g, '');
-
-        // Lấy chuỗi gốc từ data (ví dụ: "Đệm / Nệm")
         let rawVnStr = vocabData[scrIdx].vn;
 
-        // Tạo ra các dạng đáp án chấp nhận được:
-        // 1. Dạng đầy đủ có chứa dấu / (ví dụ: "dem/nem")
         let fullAnswerClean = removeDiacritics(rawVnStr.toLowerCase()).replace(/\s+/g, '');
-
-        // 2. Dạng tách lẻ từng từ (ví dụ: "dem", "nem") để nếu gõ riêng từng từ vẫn đúng
         let splitAnswers = rawVnStr.split(/[\/,]/).map(ans => {
           let cleaned = ans.replace(/[^\p{L}\s]/gu, '').trim();
           return removeDiacritics(cleaned.toLowerCase()).replace(/\s+/g, '');
         });
 
-        // Gộp tất cả các trường hợp được phép tính là đúng vào một mảng
         let validAnswers = [fullAnswerClean, ...splitAnswers];
 
         let fb = document.getElementById('scramble-feedback');
@@ -781,7 +751,6 @@ function checkScramble() {
         inputEl.disabled = true;
         checkBtn.style.pointerEvents = 'none';
 
-        // Kiểm tra xem người dùng gõ có khớp với bất kỳ dạng nào không
         if(validAnswers.includes(valClean)) {
           scrScore++;
           playCorrectSound();
@@ -804,7 +773,7 @@ function checkScramble() {
           });
         }
       }
-            
+          
       let tfIdx = 0, tfScore = 0;
       let tfCurrentPair = null;
       let tfIsCorrect = true;
@@ -902,5 +871,4 @@ function checkScramble() {
       }
     }
   </script>
-</body>
-</html>
+</BaseLayout>

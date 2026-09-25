@@ -1,66 +1,12 @@
 ---
-// src/pages/resources/streetwise.astro - Clean, Enlarged & Fully Natural Conversations
-import '../../styles/global.css';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Daily Conversations & Phrase Templates — Havie</title>
-  <meta name="description" content="Natural phrase templates for ordering food, shopping, getting around, and everyday small talk with Northern and Southern dialects." />
 
-  <!-- CANONICAL URL -->
-  <link rel="canonical" href="https://havielearn.com/resources/streetwise" />
-
-  <!-- FAVICON -->
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-  <!-- Google Fonts: DM Sans & Plus Jakarta Sans -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --cream: #fffaf5;
-      --navy: #0f172a;
-      --brand-red: #dc2626;
-      --orange: #ef7218;
-    }
-
-    html {
-      scroll-padding-top: 100px;
-    }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background-color: var(--cream);
-      color: var(--navy);
-    }
-
-    .font-brand {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
-
-    .curved-underline {
-      position: relative;
-    }
-    .curved-underline::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -4px;
-      width: 100%;
-      height: 6px;
-      border-bottom: 3px solid var(--orange);
-      border-radius: 50%;
-      transform: rotate(-1.5deg);
-    }
-  </style>
-</head>
-<body class="selection:bg-red-600 selection:text-white min-h-screen flex flex-col antialiased relative overflow-x-hidden">
-
+<BaseLayout 
+  title="Daily Conversations & Phrase Templates — Havie" 
+  description="Natural phrase templates for ordering food, shopping, getting around, and everyday small talk with Northern and Southern dialects."
+  canonical="https://havielearn.com/resources/daily-conversation"
+>
   <!-- BACKGROUND GLOW -->
   <div class="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
     <div class="absolute top-0 right-[15%] w-[450px] h-[450px] bg-gradient-to-br from-amber-400/20 via-red-500/10 to-transparent rounded-full blur-3xl"></div>
@@ -693,5 +639,4 @@ import '../../styles/global.css';
     // Initial Render
     renderDialogues();
   </script>
-</body>
-</html>
+</BaseLayout>

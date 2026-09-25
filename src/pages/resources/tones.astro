@@ -1,70 +1,12 @@
 ---
-// src/pages/resources/tones.astro - Havie Tones Studio (Fully Synced Dynamic Dialect Switcher & Accurate Audio)
-import '../../styles/global.css';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vietnamese Tones | Havie</title>
-  <meta name="description" content="Master 6 Vietnamese tones with native audio, vocal mechanics, dialect switcher, and interactive ear workout." />
 
-  <!-- CANONICAL URL -->
-  <link rel="canonical" href="https://havielearn.com/resources/tones" />
-
-  <!-- FAVICON -->
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-  <!-- Google Fonts: DM Sans & Plus Jakarta Sans -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --cream: #fffaf5;
-      --navy: #0f172a;
-      --brand-red: #dc2626;
-      --orange: #ef7218;
-    }
-
-    html {
-      scroll-padding-top: 100px;
-    }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background-color: var(--cream);
-      color: var(--navy);
-    }
-
-    .font-brand {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
-
-    .font-tone {
-      font-family: 'DM Sans', sans-serif;
-    }
-
-    .curved-underline {
-      position: relative;
-    }
-    .curved-underline::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -4px;
-      width: 100%;
-      height: 6px;
-      border-bottom: 3px solid var(--orange);
-      border-radius: 50%;
-      transform: rotate(-1.5deg);
-    }
-  </style>
-</head>
-<body class="selection:bg-red-600 selection:text-white min-h-screen flex flex-col antialiased relative overflow-x-hidden">
-
+<BaseLayout 
+  title="Vietnamese Tones | Havie" 
+  description="Master 6 Vietnamese tones with native audio, vocal mechanics, dialect switcher, and interactive ear workout."
+  canonical="https://havielearn.com/resources/tones"
+>
   <!-- BACKGROUND GLOW -->
   <div class="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
     <div class="absolute top-0 right-[15%] w-[450px] h-[450px] bg-gradient-to-br from-amber-400/20 via-red-500/10 to-transparent rounded-full blur-3xl"></div>
@@ -272,7 +214,7 @@ import '../../styles/global.css';
       <div class="flex items-center gap-5 sm:gap-7 font-semibold text-xs sm:text-sm text-stone-700 flex-wrap justify-center">
         <a href="/#about" class="hover:text-red-600 transition">About Me</a>
         <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
-        <a href="/resources" class="hover:text-red-600 transition">Resources</a>
+        <a href="/resources" class="hover:text-red-600 transition font-bold">Resources</a>
         <a href="/student" class="hover:text-red-600 transition">Student Portal</a>
         <a href="/test" class="hover:text-red-600 transition">Level Test</a>
         <button type="button" class="open-modal-trigger text-red-600 font-bold hover:underline cursor-pointer">Book Trial</button>
@@ -341,7 +283,7 @@ import '../../styles/global.css';
     </div>
   </div>
 
-  <!-- SCRIPT LOGIC -->
+  <!-- SCRIPTS -->
   <script is:inline>
     // Mobile Menu Toggle
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -475,7 +417,6 @@ import '../../styles/global.css';
     const practiceNorthAudio = new Audio('/audio/tones/practice - north.m4a');
     const practiceSouthAudio = new Audio('/audio/tones/practice - south.m4a');
 
-    // Mốc thời gian chuẩn riêng cho miền Bắc (đã tách riêng thanh Ngã và Hỏi)
     const cardTimestampsNorth = {
       ngang: { start: 0.6, end: 1.4 },
       sac:   { start: 1.9, end: 2.7 },
@@ -742,5 +683,4 @@ import '../../styles/global.css';
       renderCurrentQuestion();
     });
   </script>
-</body>
-</html>
+</BaseLayout>

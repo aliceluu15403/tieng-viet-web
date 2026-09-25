@@ -1,0 +1,87 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+}
+
+const { 
+  title = "Online Vietnamese Tutor & 1-on-1 Lessons | Havie", 
+  description = "Master Vietnamese with Hang Luu. Personalized 1-on-1 online Vietnamese lessons, pronunciation mastery, and real conversations for beginners, expats, and heritage learners.",
+  canonical = "https://havielearn.com/"
+} = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  
+  <!-- CANONICAL URL -->
+  <link rel="canonical" href={canonical} />
+
+  <!-- GOOGLE ANALYTICS (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WGQRLL7424"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WGQRLL7424');
+  </script>
+
+  <!-- FAVICON -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  
+  <!-- Google Fonts: DM Sans & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #fffaf5;
+      --navy: #0f172a;
+      --brand-red: #dc2626;
+      --orange: #ef7218;
+    }
+    html {
+      scroll-padding-top: 100px;
+    }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--cream);
+      color: var(--navy);
+    }
+    .font-brand {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .curved-underline {
+      position: relative;
+      display: inline-block;
+      padding-bottom: 2px;
+    }
+    .curved-underline::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 6px;
+      border-bottom: 3.5px solid var(--orange);
+      border-radius: 50%;
+      transform: rotate(-1.5deg);
+    }
+    .hero-glow {
+      background: radial-gradient(circle, rgba(220, 38, 38, 0.12) 0%, rgba(245, 158, 11, 0.06) 50%, transparent 80%);
+    }
+  </style>
+  <slot name="head" />
+</head>
+<body class="selection:bg-red-600 selection:text-white min-h-screen flex flex-col antialiased relative overflow-x-hidden">
+  <slot />
+</body>
+</html>

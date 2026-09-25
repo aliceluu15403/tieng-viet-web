@@ -1,79 +1,27 @@
 ---
-// src/pages/index.astro - Havie Homepage with Preloaded Audio & Full Layout
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Online Vietnamese Tutor & 1-on-1 Lessons | Havie</title>
-  <meta name="description" content="Master Vietnamese with Hang Luu. Personalized 1-on-1 online Vietnamese lessons, pronunciation mastery, and real conversations for beginners, expats, and heritage learners." />
-  
-  <!-- CANONICAL URL -->
-  <link rel="canonical" href="https://havielearn.com/" />
 
-  <!-- SCHEMA.ORG ORGANIZATION / WEBSITE -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Havie",
-    "alternateName": ["Havie Learn Vietnamese", "Havie Learn Vietnamese Online"],
-    "url": "https://havielearn.com/"
-  }
-  </script>
-
-  <!-- FAVICON -->
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  
-  <!-- Google Fonts: DM Sans & Plus Jakarta Sans -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --cream: #fffaf5;
-      --navy: #0f172a;
-      --brand-red: #dc2626;
-    }
-
-    html {
-      scroll-padding-top: 100px;
-    }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background-color: var(--cream);
-      color: var(--navy);
-    }
-
-    .font-brand {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
-
-    .curved-underline {
-      position: relative;
-    }
-    .curved-underline::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -4px;
-      width: 100%;
-      height: 6px;
-      border-bottom: 3px solid var(--brand-red);
-      border-radius: 50%;
-      transform: rotate(-1.5deg);
-    }
-
-    .hero-glow {
-      background: radial-gradient(circle, rgba(220, 38, 38, 0.12) 0%, rgba(245, 158, 11, 0.06) 50%, transparent 80%);
-    }
-  </style>
-</head>
-<body class="selection:bg-red-600 selection:text-white min-h-screen flex flex-col antialiased relative overflow-x-hidden">
+<BaseLayout title="Online Vietnamese Tutor & 1-on-1 Lessons | Havie">
+  <Fragment slot="head">
+    <style>
+      .curved-underline {
+        position: relative;
+        display: inline-block;
+      }
+      .curved-underline::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 100%;
+        height: 6px;
+        border-bottom: 3.5px solid #ef7218;
+        border-radius: 50%;
+        transform: rotate(-1.5deg);
+      }
+    </style>
+  </Fragment>
 
   <!-- NAVBAR -->
   <header class="sticky top-0 z-40 bg-[#fffaf5]/90 backdrop-blur-md border-b border-stone-200/80 h-20">
@@ -150,7 +98,7 @@ import '../styles/global.css';
 
   <main class="flex-grow">
     <!-- HERO SECTION -->
-    <section class="relative flex items-center overflow-hidden py-6 sm:py-10 lg:py-14 min-h-[calc(100vh-80px)] lg:min-h-[80vh]">
+    <section class="relative flex items-center overflow-hidden py-10 sm:py-14 lg:py-16 min-h-[calc(100vh-80px)]">
       <div class="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
         <div class="absolute top-5 right-[10%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] hero-glow rounded-full blur-3xl"></div>
       </div>
@@ -168,10 +116,11 @@ import '../styles/global.css';
               <span class="text-stone-500 font-medium">Northern & Southern Accents</span>
             </div>
 
-            <h1 class="font-extrabold text-slate-900 tracking-tight font-brand text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-[1.15]">
-              <span>Vietnamese isn’t hard.</span>
-              <span class="block mt-1 sm:mt-2">
-                You just need <span class="curved-underline text-red-600">the right approach.</span>
+            <!-- TIÊU ĐỀ 2 DÒNG CÂN ĐỐI, GẠCH CHÂN ÔM KHÍT CHỮ APPROACH -->
+            <h1 class="font-extrabold text-slate-900 tracking-tight font-brand text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-[1.18] max-w-2xl mx-auto lg:mx-0">
+              <span>You just need the right</span>
+              <span class="block mt-1 sm:mt-1.5 text-red-600">
+                <span class="curved-underline">approach.</span>
               </span>
             </h1>
 
@@ -179,7 +128,7 @@ import '../styles/global.css';
               Personalized, 1-on-1 online coaching tailored for beginners, expats, and heritage learners. No robotic textbook phrases — just real everyday conversations and precise pronunciation.
             </p>
 
-            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-1">
               <button
                 type="button"
                 class="open-modal-trigger w-full sm:w-auto px-8 py-4 sm:py-4.5 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-2xl text-sm sm:text-base shadow-xl shadow-red-600/30 transition hover:-translate-y-0.5 text-center flex items-center justify-center gap-2.5 cursor-pointer"
@@ -203,7 +152,7 @@ import '../styles/global.css';
             </div>
           </div>
 
-          <!-- CỘT BÊN PHẢI: SUPER CARD -->
+          <!-- CỘT BÊN PHẢI -->
           <div class="lg:col-span-5 flex justify-center">
             <div class="w-full max-w-[420px] sm:max-w-[460px] bg-white rounded-[32px] p-7 sm:p-9 shadow-2xl shadow-stone-300/60 border border-stone-200/90 space-y-6 relative">
               
@@ -223,7 +172,7 @@ import '../styles/global.css';
                   <div class="flex items-center gap-1 text-amber-500 text-xs sm:text-sm mt-1">
                     <span>★★★★★</span>
                     <span class="text-slate-900 font-bold font-mono ml-1">5.0</span>
-                    <span class="text-stone-400 font-medium">(48 Reviews)</span>
+                    <span class="text-stone-400 font-medium">(50 Reviews)</span>
                   </div>
                 </div>
               </div>
@@ -735,7 +684,7 @@ import '../styles/global.css';
 
   <!-- SCRIPTS -->
   <script is:inline>
-    // --- STANDARD AUDIO (Giống bên Tones Studio, có preload sẵn) ---
+    // --- STANDARD AUDIO ---
     const heroAudio = new Audio('/audio/tones/ma-all.m4a');
     heroAudio.preload = 'auto';
 
@@ -816,7 +765,7 @@ import '../styles/global.css';
     };
 
     if (closeModalBtn) closeModalBtn.addEventListener('click', hideModal);
-    if (btnCloseSuccess) btnCloseSuccess.addEventListener('click', hideModal);
+    if (btnCloseSuccess) closeModalBtn.addEventListener('click', hideModal);
     modal.addEventListener('click', (e) => { if (e.target === modal) hideModal(); });
 
     // FORM SUBMISSION
@@ -860,7 +809,7 @@ import '../styles/global.css';
       } catch (error) {
         console.error("Error submitting form:", error);
         consultForm.classList.add('hidden');
-        successMessage.classList.remove('hidden');
+        successMessage.classList.add('hidden');
       } finally {
         submitBtn.disabled = false;
         submitBtn.style.opacity = '1';
@@ -869,5 +818,4 @@ import '../styles/global.css';
       }
     });
   </script>
-</body>
-</html>
+</BaseLayout>

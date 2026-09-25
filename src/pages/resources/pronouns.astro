@@ -1,67 +1,12 @@
 ---
-// src/pages/resources/pronouns.astro
-import '/src/styles/global.css';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vietnamese Pronouns | Havie</title>
-  <meta name="description" content="Interactive Vietnamese pronoun matrix calculator. Determine whether to use Anh, Chị, Em, or Cô/Chú based on age and social context, with Northern and Southern audio." />
-  
-  <!-- CANONICAL URL -->
-  <link rel="canonical" href="https://havielearn.com/resources/pronouns" />
-
-  <!-- FAVICON -->
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  
-  <!-- Google Fonts: DM Sans & Plus Jakarta Sans -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --cream: #fffaf5;
-      --navy: #0f172a;
-      --brand-red: #dc2626;
-      --orange: #ef7218;
-    }
-
-    html {
-      scroll-padding-top: 100px;
-    }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background-color: var(--cream);
-      color: var(--navy);
-    }
-
-    .font-brand {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
-
-    .curved-underline {
-      position: relative;
-    }
-    .curved-underline::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -4px;
-      width: 100%;
-      height: 6px;
-      border-bottom: 3px solid var(--orange);
-      border-radius: 50%;
-      transform: rotate(-1.5deg);
-    }
-  </style>
-</head>
-<body class="selection:bg-red-600 selection:text-white min-h-screen flex flex-col antialiased relative overflow-x-hidden">
-
+<BaseLayout 
+  title="Vietnamese Pronouns | Havie" 
+  description="Interactive Vietnamese pronoun matrix calculator. Determine whether to use Anh, Chị, Em, or Cô/Chú based on age and social context, with Northern and Southern audio."
+  canonical="https://havielearn.com/resources/pronouns"
+>
   <!-- BACKGROUND GLOW -->
   <div class="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
     <div class="absolute top-0 right-[15%] w-[450px] h-[450px] bg-gradient-to-br from-amber-400/20 via-red-500/10 to-transparent rounded-full blur-3xl"></div>
@@ -142,85 +87,82 @@ import '/src/styles/global.css';
   </header>
 
   <!-- MAIN CONTENT -->
-  <main class="flex-grow py-10 lg:py-14">
-    <div class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
+  <main class="flex-grow py-8 lg:py-12">
+    <div class="max-w-5xl mx-auto px-5 sm:px-8">
       
       <!-- Section Header -->
-      <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
-        <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest bg-red-50 px-4 py-1.5 rounded-full border border-red-200 inline-block shadow-2xs">
+      <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+        <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest bg-red-50 px-3.5 py-1.5 rounded-full border border-red-200 inline-block shadow-2xs">
           Pronoun Matrix
         </span>
-        <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-3 tracking-tight font-brand">
+        <h1 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-2.5 tracking-tight font-brand">
           Vietnamese <span class="curved-underline text-red-600">Pronoun Calculator.</span>
         </h1>
-        <p class="text-stone-600 text-base sm:text-lg mt-4 leading-relaxed max-w-xl mx-auto">
+        <p class="text-stone-600 text-sm sm:text-base mt-3 leading-relaxed max-w-lg mx-auto">
           Avoid translation words like <em class="text-slate-900 font-semibold">Tôi / Bạn</em> in daily speech. Proper pronouns build instant emotional connection and cultural warmth.
         </p>
       </div>
 
       <!-- Main Tool Box -->
-      <div class="bg-white rounded-3xl p-6 sm:p-10 lg:p-12 shadow-md border border-stone-200/90 relative space-y-8">
+      <div class="bg-white rounded-3xl p-5 sm:p-8 lg:p-10 shadow-md border border-stone-200/90 relative space-y-6">
         
         <!-- STEP 1: SOCIAL CONTEXT -->
-        <div class="pb-8 border-b border-stone-100">
-          <!-- ĐÃ LÀM TO CHỮ (text-base font-extrabold) -->
-          <label class="block text-base sm:text-lg font-extrabold uppercase tracking-wider text-stone-700 mb-4">
+        <div class="pb-6 border-b border-stone-100">
+          <label class="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-stone-500 mb-3">
             Step 1: Choose Your Social Setting
           </label>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
             <button 
               type="button" 
               data-context-btn="street"
-              class="context-card active p-5 rounded-2xl border text-left transition cursor-pointer border-red-600 bg-red-50/60 shadow-2xs flex flex-col justify-between"
+              class="context-card active p-4 rounded-2xl border text-left transition cursor-pointer border-red-600 bg-red-50/60 shadow-2xs flex flex-col justify-between"
             >
               <div>
-                <span class="block text-xl mb-1.5">☕</span>
-                <span class="block text-base sm:text-lg font-extrabold text-slate-900 leading-snug">Casual / Street / Cafe</span>
+                <span class="block text-lg mb-1">☕</span>
+                <span class="block text-sm sm:text-base font-extrabold text-slate-900 leading-snug">Casual / Street / Cafe</span>
               </div>
-              <span class="block text-sm sm:text-base text-stone-600 mt-2 font-medium">Cafes, restaurants, street vendors, peers</span>
+              <span class="block text-xs text-stone-500 mt-1.5 font-medium">Cafes, restaurants, street vendors, peers</span>
             </button>
             <button 
               type="button" 
               data-context-btn="work"
-              class="context-card p-5 rounded-2xl border text-left transition cursor-pointer border-stone-200 bg-white hover:border-stone-300 flex flex-col justify-between"
+              class="context-card p-4 rounded-2xl border text-left transition cursor-pointer border-stone-200 bg-white hover:border-stone-300 flex flex-col justify-between"
             >
               <div>
-                <span class="block text-xl mb-1.5">💼</span>
-                <span class="block text-base sm:text-lg font-extrabold text-slate-800 leading-snug">Workplace / Professional</span>
+                <span class="block text-lg mb-1">💼</span>
+                <span class="block text-sm sm:text-base font-extrabold text-slate-800 leading-snug">Workplace / Professional</span>
               </div>
-              <span class="block text-sm sm:text-base text-stone-600 mt-2 font-medium">Colleagues, managers, meetings</span>
+              <span class="block text-xs text-stone-500 mt-1.5 font-medium">Colleagues, managers, meetings</span>
             </button>
             <button 
               type="button" 
               data-context-btn="family"
-              class="context-card p-5 rounded-2xl border text-left transition cursor-pointer border-stone-200 bg-white hover:border-stone-300 flex flex-col justify-between"
+              class="context-card p-4 rounded-2xl border text-left transition cursor-pointer border-stone-200 bg-white hover:border-stone-300 flex flex-col justify-between"
             >
               <div>
-                <span class="block text-xl mb-1.5">🏡</span>
-                <span class="block text-base sm:text-lg font-extrabold text-slate-800 leading-snug">Partner’s Family (In-Laws)</span>
+                <span class="block text-lg mb-1">🏡</span>
+                <span class="block text-sm sm:text-base font-extrabold text-slate-800 leading-snug">Partner’s Family (In-Laws)</span>
               </div>
-              <span class="block text-sm sm:text-base text-stone-600 mt-2 font-medium">Complex family trees & relatives</span>
+              <span class="block text-xs text-stone-500 mt-1.5 font-medium">Complex family trees & relatives</span>
             </button>
           </div>
         </div>
 
         <!-- STEP 2: CALCULATOR INTERACTIVE AREA -->
-        <div id="calculatorInteractiveArea" class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+        <div id="calculatorInteractiveArea" class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
           
           <!-- Controls Column -->
-          <div class="lg:col-span-5 flex flex-col justify-between space-y-6 lg:border-r lg:border-stone-100 lg:pr-8 bg-stone-50/40 p-6 sm:p-8 rounded-3xl border border-stone-200/80">
+          <div class="lg:col-span-5 flex flex-col justify-between space-y-5 lg:border-r lg:border-stone-100 lg:pr-6 bg-stone-50/40 p-5 sm:p-6 rounded-2xl border border-stone-200/80">
             
-            <!-- ĐÃ LÀM TO CHỮ (text-base font-extrabold) -->
-            <div class="text-base sm:text-lg font-extrabold uppercase tracking-wider text-stone-700">
+            <div class="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-stone-500">
               Step 2: Set Ages & Genders
             </div>
 
             <!-- Speaker Profile -->
-            <div class="space-y-4">
-              <!-- ĐÃ LÀM TO CHỮ (text-lg font-extrabold) -->
-              <div class="flex items-center justify-between text-lg font-extrabold text-slate-900">
-                <span class="whitespace-nowrap">Your Age <span class="text-stone-500 font-bold text-sm">(Speaker)</span></span>
-                <span id="ageDisplay" class="px-4 py-2 rounded-xl bg-red-50 text-red-600 font-mono text-lg font-black border border-red-100 shadow-2xs min-w-[105px] text-center whitespace-nowrap">28 yrs</span>
+            <div class="space-y-3">
+              <div class="flex items-center justify-between text-sm sm:text-base font-extrabold text-slate-900">
+                <span class="whitespace-nowrap">Your Age <span class="text-stone-400 font-bold text-xs">(Speaker)</span></span>
+                <span id="ageDisplay" class="px-3 py-1 rounded-lg bg-red-50 text-red-600 font-mono text-sm font-black border border-red-100 shadow-2xs min-w-[75px] text-center whitespace-nowrap">28 yrs</span>
               </div>
               <input 
                 id="userAge" 
@@ -228,24 +170,23 @@ import '/src/styles/global.css';
                 min="10" 
                 max="85" 
                 value="28" 
-                class="w-full accent-red-600 h-3 bg-stone-200/70 rounded-lg cursor-pointer"
+                class="w-full accent-red-600 h-2 bg-stone-200/70 rounded-lg cursor-pointer"
               />
               
               <div class="pt-1">
-                <!-- ĐÃ LÀM TO CHỮ (text-base font-extrabold) -->
-                <span class="block text-base font-extrabold text-slate-800 mb-2.5">Your Gender</span>
-                <div class="grid grid-cols-2 gap-3">
+                <span class="block text-xs sm:text-sm font-bold text-stone-700 mb-2">Your Gender</span>
+                <div class="grid grid-cols-2 gap-2.5">
                   <button 
                     type="button" 
                     data-my-gender="male"
-                    class="my-gender-btn active px-4 py-3.5 rounded-xl border text-base font-extrabold text-center transition flex items-center justify-center gap-2 border-red-600 bg-red-50 text-red-600 cursor-pointer shadow-2xs"
+                    class="my-gender-btn active px-3 py-2.5 rounded-xl border text-sm font-extrabold text-center transition flex items-center justify-center gap-1.5 border-red-600 bg-red-50 text-red-600 cursor-pointer shadow-2xs"
                   >
                     <span>👨 Male</span>
                   </button>
                   <button 
                     type="button" 
                     data-my-gender="female"
-                    class="my-gender-btn px-4 py-3.5 rounded-xl border text-base font-extrabold text-center transition flex items-center justify-center gap-2 border-stone-200 bg-white text-stone-700 hover:border-stone-300 cursor-pointer"
+                    class="my-gender-btn px-3 py-2.5 rounded-xl border text-sm font-extrabold text-center transition flex items-center justify-center gap-1.5 border-stone-200 bg-white text-stone-700 hover:border-stone-300 cursor-pointer"
                   >
                     <span>👩 Female</span>
                   </button>
@@ -254,11 +195,10 @@ import '/src/styles/global.css';
             </div>
 
             <!-- Listener Profile -->
-            <div class="space-y-4 pt-4 border-t border-stone-200/60">
-              <!-- ĐÃ LÀM TO CHỮ (text-lg font-extrabold) -->
-              <div class="flex items-center justify-between text-lg font-extrabold text-slate-900">
-                <span class="whitespace-nowrap">Their Age <span class="text-stone-500 font-bold text-sm">(Listener)</span></span>
-                <span id="theirAgeDisplay" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-900 font-mono text-lg font-black border border-stone-200 shadow-2xs min-w-[105px] text-center whitespace-nowrap">35 yrs</span>
+            <div class="space-y-3 pt-3 border-t border-stone-200/60">
+              <div class="flex items-center justify-between text-sm sm:text-base font-extrabold text-slate-900">
+                <span class="whitespace-nowrap">Their Age <span class="text-stone-400 font-bold text-xs">(Listener)</span></span>
+                <span id="theirAgeDisplay" class="px-3 py-1 rounded-lg bg-slate-100 text-slate-900 font-mono text-sm font-black border border-stone-200 shadow-2xs min-w-[75px] text-center whitespace-nowrap">35 yrs</span>
               </div>
               <input 
                 id="theirAge" 
@@ -266,24 +206,23 @@ import '/src/styles/global.css';
                 min="5" 
                 max="85" 
                 value="35" 
-                class="w-full accent-slate-800 h-3 bg-stone-200/70 rounded-lg cursor-pointer"
+                class="w-full accent-slate-800 h-2 bg-stone-200/70 rounded-lg cursor-pointer"
               />
 
               <div class="pt-1">
-                <!-- ĐÃ LÀM TO CHỮ (text-base font-extrabold) -->
-                <span class="block text-base font-extrabold text-slate-800 mb-2.5">Their Gender</span>
-                <div class="grid grid-cols-2 gap-3">
+                <span class="block text-xs sm:text-sm font-bold text-stone-700 mb-2">Their Gender</span>
+                <div class="grid grid-cols-2 gap-2.5">
                   <button 
                     type="button" 
                     data-their-gender="male"
-                    class="their-gender-btn active px-4 py-3.5 rounded-xl border text-base font-extrabold text-center transition flex items-center justify-center gap-2 border-slate-900 bg-slate-100 text-slate-900 cursor-pointer shadow-2xs"
+                    class="their-gender-btn active px-3 py-2.5 rounded-xl border text-sm font-extrabold text-center transition flex items-center justify-center gap-1.5 border-slate-900 bg-slate-100 text-slate-900 cursor-pointer shadow-2xs"
                   >
                     <span>👨 Male</span>
                   </button>
                   <button 
                     type="button" 
                     data-their-gender="female"
-                    class="their-gender-btn px-4 py-3.5 rounded-xl border text-base font-extrabold text-center transition flex items-center justify-center gap-2 border-stone-200 bg-white text-stone-700 hover:border-stone-300 cursor-pointer"
+                    class="their-gender-btn px-3 py-2.5 rounded-xl border text-sm font-extrabold text-center transition flex items-center justify-center gap-1.5 border-stone-200 bg-white text-stone-700 hover:border-stone-300 cursor-pointer"
                   >
                     <span>👩 Female</span>
                   </button>
@@ -294,15 +233,12 @@ import '/src/styles/global.css';
           </div>
 
           <!-- Result Column -->
-          <div id="calculatorResultCol" class="lg:col-span-7 flex flex-col justify-between space-y-6 bg-stone-50/60 p-6 sm:p-8 rounded-3xl border border-stone-200/80">
-            <div class="space-y-6">
-              <div class="flex items-center justify-between pb-4 border-b border-stone-200/60">
-                
-                <!-- BỘ CHỌN VÙNG MIỀN: BẮC LÊN TRƯỚC, NAM XUỐNG SAU -->
-                <div class="flex items-center gap-3">
-                  <!-- ĐÃ LÀM TO CHỮ (text-base font-extrabold) -->
-                  <span class="text-base font-extrabold text-slate-800">Accent:</span>
-                  <select id="voiceRegionSelect" class="text-base font-extrabold bg-white border border-stone-300 rounded-xl px-4 py-2.5 outline-none cursor-pointer">
+          <div id="calculatorResultCol" class="lg:col-span-7 flex flex-col justify-between space-y-5 bg-stone-50/60 p-5 sm:p-6 rounded-2xl border border-stone-200/80">
+            <div class="space-y-5">
+              <div class="flex items-center justify-between pb-3 border-b border-stone-200/60">
+                <div class="flex items-center gap-2.5">
+                  <span class="text-sm font-bold text-stone-700">Accent:</span>
+                  <select id="voiceRegionSelect" class="text-sm font-bold bg-white border border-stone-300 rounded-lg px-3 py-1.5 outline-none cursor-pointer">
                     <option value="n">Northern (Hanoi)</option>
                     <option value="s">Southern (Saigon)</option>
                   </select>
@@ -310,36 +246,32 @@ import '/src/styles/global.css';
               </div>
 
               <!-- Pair Display Grid -->
-              <div class="grid grid-cols-2 gap-5 items-stretch pt-2">
+              <div class="grid grid-cols-2 gap-4 items-stretch">
                 <!-- Self -->
-                <div class="p-6 sm:p-8 rounded-2xl bg-white border border-stone-200/90 text-center flex flex-col justify-center shadow-xs">
-                  <!-- ĐÃ LÀM TO CHỮ (text-sm sm:text-base font-extrabold) -->
-                  <span class="text-sm sm:text-base uppercase font-extrabold tracking-wider text-stone-500 block mb-2">
+                <div class="p-5 rounded-2xl bg-white border border-stone-200/90 text-center flex flex-col justify-center shadow-xs">
+                  <span class="text-xs uppercase font-extrabold tracking-wider text-stone-400 block mb-1.5">
                     "I"
                   </span>
-                  <div class="flex items-center justify-center gap-3">
-                    <!-- CHỮ KẾT QUẢ ĐÃ ĐƯỢC THU NHỎ LẠI (text-xl sm:text-2xl) -->
+                  <div class="flex items-center justify-center gap-2">
                     <span id="selfPronoun" class="text-xl sm:text-2xl font-bold font-brand text-slate-900 tracking-tight">
                       Em
                     </span>
-                    <button type="button" id="speakSelfBtn" title="Listen Pronunciation" class="w-9 h-9 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 flex items-center justify-center text-base cursor-pointer transition shadow-2xs">
+                    <button type="button" id="speakSelfBtn" title="Listen Pronunciation" class="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 flex items-center justify-center text-sm cursor-pointer transition shadow-2xs">
                       🔊
                     </button>
                   </div>
                 </div>
 
                 <!-- Them -->
-                <div class="p-6 sm:p-8 rounded-2xl bg-red-50 border border-red-200 text-center flex flex-col justify-center shadow-xs">
-                  <!-- ĐÃ LÀM TO CHỮ (text-sm sm:text-base font-extrabold) -->
-                  <span class="text-sm sm:text-base uppercase font-extrabold tracking-wider text-red-600 block mb-2">
+                <div class="p-5 rounded-2xl bg-red-50 border border-red-200 text-center flex flex-col justify-center shadow-xs">
+                  <span class="text-xs uppercase font-extrabold tracking-wider text-red-500 block mb-1.5">
                     "YOU"
                   </span>
-                  <div class="flex items-center justify-center gap-3">
-                    <!-- CHỮ KẾT QUẢ ĐÃ ĐƯỢC THU NHỎ LẠI (text-xl sm:text-2xl) -->
+                  <div class="flex items-center justify-center gap-2">
                     <span id="themPronoun" class="text-xl sm:text-2xl font-bold font-brand text-red-600 tracking-tight">
                       Anh
                     </span>
-                    <button type="button" id="speakThemBtn" title="Listen Pronunciation" class="w-9 h-9 rounded-full bg-red-100 hover:bg-red-200 text-red-600 flex items-center justify-center text-base cursor-pointer transition shadow-2xs">
+                    <button type="button" id="speakThemBtn" title="Listen Pronunciation" class="w-8 h-8 rounded-full bg-red-100 hover:bg-red-200 text-red-600 flex items-center justify-center text-sm cursor-pointer transition shadow-2xs">
                       🔊
                     </button>
                   </div>
@@ -348,30 +280,29 @@ import '/src/styles/global.css';
             </div>
 
             <!-- Context Tip -->
-            <div class="bg-white rounded-2xl p-5 sm:p-6 border border-stone-200/90 flex items-start gap-4 shadow-2xs">
-              <span class="text-2xl shrink-0 mt-0.5">💡</span>
-              <!-- ĐÃ LÀM TO CHỮ (text-base sm:text-lg) -->
-              <p id="pairExplanation" class="text-base sm:text-lg text-stone-800 leading-relaxed font-medium">
+            <div class="bg-white rounded-xl p-4 border border-stone-200/90 flex items-start gap-3 shadow-2xs">
+              <span class="text-xl shrink-0 mt-0.5">💡</span>
+              <p id="pairExplanation" class="text-sm sm:text-base text-stone-700 leading-relaxed font-medium">
                 In casual social settings, whether they are slightly older or the exact same age, out of polite respect you call yourself <strong>Em</strong> and address them as <strong>Anh / Chị</strong>.
               </p>
             </div>
           </div>
 
           <!-- Family Course Banner -->
-          <div id="familyCourseBanner" class="hidden lg:col-span-12 bg-gradient-to-r from-red-50 via-amber-50/40 to-white rounded-3xl p-8 sm:p-12 border border-red-200/80 text-center space-y-4 shadow-sm">
-            <span class="text-sm font-black text-red-600 uppercase tracking-widest bg-white px-5 py-2.5 rounded-full border border-red-200 inline-block shadow-2xs">
+          <div id="familyCourseBanner" class="hidden lg:col-span-12 bg-gradient-to-r from-red-50 via-amber-50/40 to-white rounded-2xl p-6 sm:p-8 border border-red-200/80 text-center space-y-3 shadow-sm">
+            <span class="text-xs font-black text-red-600 uppercase tracking-widest bg-white px-4 py-1.5 rounded-full border border-red-200 inline-block shadow-2xs">
               🏡 In-Law Family Tree Masterclass
             </span>
-            <h3 class="text-3xl sm:text-5xl font-extrabold text-slate-900 font-brand">
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-brand">
               Navigating Vietnamese Family Titles is Complex!
             </h3>
-            <p class="text-stone-700 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
+            <p class="text-stone-700 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
               Family trees in Vietnam involve intricate generational ranks, maternal/paternal distinctions (bên nội/bên ngoại), and regional nuances. Don't guess—master it step-by-step with expert lessons.
             </p>
-            <div class="pt-3">
+            <div class="pt-2">
               <button
                 type="button"
-                class="open-modal-trigger px-9 py-4 bg-red-600 hover:bg-red-700 text-white font-black rounded-2xl text-base sm:text-lg shadow-md transition hover:-translate-y-0.5 cursor-pointer inline-flex items-center gap-2.5"
+                class="open-modal-trigger px-7 py-3 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl text-sm shadow-md transition hover:-translate-y-0.5 cursor-pointer inline-flex items-center gap-2"
               >
                 <span>Book Lessons to Master Family Tree</span>
                 <span>→</span>
@@ -384,22 +315,22 @@ import '/src/styles/global.css';
       </div>
 
       <!-- REFINED CTA SECTION -->
-      <div class="mt-12 rounded-3xl bg-white p-8 sm:p-10 border border-stone-200/90 shadow-md flex flex-col md:flex-row items-center justify-between gap-6">
-        <div class="space-y-3 text-center md:text-left max-w-xl">
-          <div class="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-red-50 text-red-600 text-base font-bold tracking-wide border border-red-100">
+      <div class="mt-8 rounded-3xl bg-white p-6 sm:p-8 border border-stone-200/90 shadow-md flex flex-col md:flex-row items-center justify-between gap-5">
+        <div class="space-y-2 text-center md:text-left max-w-lg">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 text-red-600 text-xs font-bold tracking-wide border border-red-100">
             <span>🎯 1-on-1 Pronoun & Nuance Mastery</span>
           </div>
-          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-brand">
-            Speak Vietnamese the Way People Actually Do
+          <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight font-brand">
+            Speak like a Vietnamese?
           </h2>
-          <p class="text-stone-700 text-base sm:text-lg leading-relaxed">
-            Vietnamese pronouns change depending on age, gender, relationship, and situation. Learn how to choose the right words — and when to switch them — through real-life conversations and 1-on-1 practice.
+          <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
+            Pronouns change depending on age, gender, relationship, and situation. Learn how to choose the right words with a native speaker.
           </p>
         </div>
         <div class="shrink-0 w-full md:w-auto text-center">
           <button
             type="button"
-            class="open-modal-trigger inline-flex items-center justify-center px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-bold rounded-2xl text-lg shadow-md transition hover:-translate-y-0.5 cursor-pointer whitespace-nowrap"
+            class="open-modal-trigger inline-flex items-center justify-center px-6 py-3.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-base shadow-md transition hover:-translate-y-0.5 cursor-pointer whitespace-nowrap"
           >
             Book a Trial Lesson →
           </button>
@@ -409,7 +340,7 @@ import '/src/styles/global.css';
     </div>
   </main>
 
-  <!-- FOOTER -->
+<!-- FOOTER -->
   <footer class="bg-[#fffaf5] text-stone-600 py-10 border-t border-stone-200/80">
     <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
       <div class="flex items-center justify-center gap-2.5">
@@ -427,7 +358,7 @@ import '/src/styles/global.css';
       </div>
     </div>
   </footer>
-
+  
   <!-- CONSULTATION / BOOKING MODAL -->
   <div id="consultModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-stone-200 space-y-6 text-left">
@@ -789,5 +720,4 @@ import '/src/styles/global.css';
 
     calculatePronouns();
   </script>
-</body>
-</html>
+</BaseLayout>
