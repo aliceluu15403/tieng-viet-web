@@ -31,9 +31,9 @@ import '../../styles/global.css';
     html { scroll-padding-top: 100px; }
     body { font-family: 'DM Sans', sans-serif; background-color: var(--cream); color: var(--navy); }
     .font-brand { font-family: 'Plus Jakarta Sans', sans-serif; }
-    .curved-underline { position: relative; }
+    .curved-underline { position: relative; display: inline-block; }
     .curved-underline::after {
-      content: ""; position: absolute; left: 0; bottom: -4px; width: 100%; height: 6px;
+      content: ""; position: absolute; left: 0; bottom: -6px; width: 100%; height: 6px;
       border-bottom: 3px solid var(--orange); border-radius: 50%; transform: rotate(-1.5deg);
     }
   </style>
@@ -82,6 +82,20 @@ import '../../styles/global.css';
         </button>
       </div>
     </div>
+
+    <!-- MOBILE DROPDOWN MENU -->
+    <div id="mobileMenu" class="hidden md:hidden absolute top-20 left-0 w-full bg-[#fffaf5] border-b border-stone-200 shadow-xl px-6 py-5 space-y-4 font-semibold text-slate-800 text-base font-brand">
+      <a href="/#about" class="mobile-link block hover:text-red-600 transition">About Me</a>
+      <a href="/#curriculum" class="mobile-link block hover:text-red-600 transition">Learning Tracks</a>
+      <a href="/resources" class="mobile-link block hover:text-red-600 transition">Resources</a>
+      <a href="/student" class="mobile-link block hover:text-red-600 transition">Student Portal</a>
+      <a href="/test" class="mobile-link block text-red-600 font-bold">Level Test</a>
+      <div class="pt-3 border-t border-stone-200">
+        <button type="button" class="open-modal-trigger block w-full py-3.5 text-sm font-bold text-white bg-red-600 rounded-xl text-center shadow-md cursor-pointer">
+          Book 25-Min Trial Lesson →
+        </button>
+      </div>
+    </div>
   </header>
 
   <!-- STICKY SCORE TRACKER -->
@@ -107,7 +121,7 @@ import '../../styles/global.css';
     </div>
   </div>
 
-  <!-- MAIN CONTAINER (TĂNG WIDTH LÊN MAX-W-4XL CHO THOÁNG) -->
+  <!-- MAIN CONTAINER -->
   <main class="flex-grow py-12 lg:py-16">
     <div class="max-w-4xl mx-auto px-5 sm:px-8 space-y-12">
       
@@ -115,7 +129,7 @@ import '../../styles/global.css';
       <div class="text-center max-w-2xl mx-auto space-y-3.5">
         <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest bg-red-50 px-4 py-1.5 rounded-full border border-red-200 inline-block shadow-2xs font-brand">Placement Assessment</span>
         <h1 class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight font-brand">
-          Vietnamese <span class="curved-underline text-red-600">Proficiency Test.</span>
+          Vietnamese <span class="whitespace-nowrap"><span class="curved-underline text-red-600">Proficiency Test.</span></span>
         </h1>
         <p class="text-stone-600 text-sm sm:text-base leading-relaxed">
           Choose your target dialect track, complete all sections below, and submit your test to get an instant evaluation summary and detailed answer review.
@@ -247,7 +261,7 @@ import '../../styles/global.css';
     </div>
   </footer>
 
-  <!-- SCRIPT LOGIC WITH REVIEW & CODE COMPRESSION -->
+  <!-- SCRIPT LOGIC -->
   <script is:inline>
     let activeDialect = 'north';
     let isSubmitted = false;
@@ -523,11 +537,16 @@ import '../../styles/global.css';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Mobile Menu
+    // Mobile Menu Toggle Fix
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    if(mobileMenuBtn) {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+    if (mobileMenuBtn && mobileMenu) {
       mobileMenuBtn.addEventListener('click', () => {
-        // Toggle action if needed
+        mobileMenu.classList.toggle('hidden');
+      });
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
       });
     }
 
@@ -537,6 +556,7 @@ import '../../styles/global.css';
       btn.addEventListener('click', () => {
         resultModal.classList.add('hidden');
         consultModal.classList.remove('hidden');
+        if (mobileMenu) mobileMenu.classList.add('hidden');
       });
     });
     document.getElementById('closeConsultModalBtn').addEventListener('click', () => consultModal.classList.add('hidden'));

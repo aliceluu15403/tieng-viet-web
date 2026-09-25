@@ -126,30 +126,26 @@ import '../styles/global.css';
       <div class="absolute top-1/2 left-[25%] -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] hero-glow rounded-full blur-3xl"></div>
     </div>
 
-    <!-- KHUNG CHỌN CHẾ ĐỘ XƯNG HÔ -->
+    <!-- KHUNG CHỌN GIỚI TÍNH -->
     <div id="roleSelectScreen" class="w-full max-w-lg bg-white rounded-[32px] p-8 sm:p-10 shadow-2xl border border-stone-200/90 text-center space-y-6">
       <div class="w-16 h-16 bg-red-50 text-red-600 rounded-2xl mx-auto flex items-center justify-center text-2xl shadow-inner border border-red-100">
-        👥
+        👤
       </div>
       <div class="space-y-2 font-brand">
         <span class="text-[11px] font-extrabold uppercase tracking-widest text-red-600 bg-red-50 px-3.5 py-1.5 rounded-full border border-red-200 inline-block">Roleplay Mode</span>
-        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">Choose Your Role</h2>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">Choose Your Gender</h2>
         <p class="text-stone-500 text-xs sm:text-sm font-medium">
-          How would you like to address the restaurant staff?
+          How will the restaurant staff address you?
         </p>
       </div>
 
       <div class="grid grid-cols-1 gap-3.5 font-brand">
-        <button type="button" onclick="setRole('em', 'em', 'em', 'em')" class="p-4 rounded-2xl bg-stone-50 hover:bg-red-50 border border-stone-200 hover:border-red-300 font-bold text-sm text-slate-700 hover:text-red-600 transition cursor-pointer text-left flex items-center justify-between">
-          <span>👶 You are <strong>"em"</strong> (Younger)</span>
+        <button type="button" onclick="setRole('anh')" class="p-4 rounded-2xl bg-stone-50 hover:bg-red-50 border border-stone-200 hover:border-red-300 font-bold text-sm text-slate-700 hover:text-red-600 transition cursor-pointer text-left flex items-center justify-between">
+          <span>👨 I am Male ➔ Staff calls you <strong>"anh"</strong></span>
           <span>→</span>
         </button>
-        <button type="button" onclick="setRole('anh', 'anh', 'em', 'anh')" class="p-4 rounded-2xl bg-stone-50 hover:bg-red-50 border border-stone-200 hover:border-red-300 font-bold text-sm text-slate-700 hover:text-red-600 transition cursor-pointer text-left flex items-center justify-between">
-          <span>👨 You are <strong>"anh"</strong> (Older Male)</span>
-          <span>→</span>
-        </button>
-        <button type="button" onclick="setRole('chị', 'chị', 'em', 'chị')" class="p-4 rounded-2xl bg-stone-50 hover:bg-red-50 border border-stone-200 hover:border-red-300 font-bold text-sm text-slate-700 hover:text-red-600 transition cursor-pointer text-left flex items-center justify-between">
-          <span>👩 You are <strong>"chị"</strong> (Older Female)</span>
+        <button type="button" onclick="setRole('chị')" class="p-4 rounded-2xl bg-stone-50 hover:bg-red-50 border border-stone-200 hover:border-red-300 font-bold text-sm text-slate-700 hover:text-red-600 transition cursor-pointer text-left flex items-center justify-between">
+          <span>👩 I am Female ➔ Staff calls you <strong>"chị"</strong></span>
           <span>→</span>
         </button>
       </div>
@@ -167,7 +163,7 @@ import '../styles/global.css';
             <h2 id="lessonHeaderTitle" class="text-xl sm:text-2xl font-extrabold text-slate-900 font-brand mt-1"></h2>
           </div>
           <button id="resetTopBtn" type="button" class="text-xs font-bold text-stone-500 hover:text-red-600 transition bg-stone-50 px-4 py-2 rounded-xl border border-stone-200 cursor-pointer flex items-center gap-1.5">
-            <span>Đổi vai / Chơi lại</span> 🔄
+            <span>Change Role / Restart</span> 🔄
           </button>
         </div>
 
@@ -214,95 +210,98 @@ import '../styles/global.css';
     }
 
     let userRole = {
-      name: "anh",
-      callStaff: "em",
-      staffCallUser: "anh"
+      name: "anh",       
+      selfCall: "anh"    
     };
 
     const exerciseDatabase = {
       "FCS01": {
         topic: "SOUTHERN RESTAURANT CONVERSATION",
-        title: "Bài tập: Gọi món tại quán ăn (Miền Nam)",
+        title: "Exercise: Ordering Food at a Restaurant (Southern accent)",
         getStep: function(state, role) {
+          let capitalizedSelf = role.selfCall.charAt(0).toUpperCase() + role.selfCall.slice(1);
+          let capitalizedName = role.name.charAt(0).toUpperCase() + role.name.slice(1);
+
           if (state.step === 0) {
             return {
-              npc: `Dạ chào ${role.staffCallUser}, dạ mình đi mấy người ạ?`,
+              npc: `Dạ chào ${role.name}, mình đi mấy người ạ?`,
               choices: [
-                { text: `Dạ ${role.name} đi 1 người`, count: 1 },
-                { text: `Dạ ${role.name} đi 2 người`, count: 2 },
-                { text: `Dạ ${role.name} đi 3 người`, count: 3 },
-                { text: `Dạ ${role.name} đi 4 người`, count: 4 }
+                { text: `${capitalizedSelf} đi 1 người`, count: 1 },
+                { text: `${capitalizedSelf} đi 2 người`, count: 2 },
+                { text: `${capitalizedSelf} đi 3 người`, count: 3 },
+                { text: `${capitalizedSelf} đi 4 người`, count: 4 }
               ]
             };
           } else if (state.step === 1) {
             return {
-              npc: `Dạ vâng, 1 bàn ${state.partyCount} người. Quán em có bánh mì, phở với cơm, ${role.staffCallUser} muốn ăn gì ạ?`,
+              npc: `Dạ vâng, 1 bàn ${state.partyCount} người. Quán em có bánh mì, phở với cơm, ${role.name} muốn ăn gì ạ?`,
               choices: [
-                { text: `Cho ${role.callStaff} bánh mì`, main: "bánh mì", type: "banhmi" },
-                { text: `Cho ${role.callStaff} phở`, main: "phở", type: "pho" },
-                { text: `Cho ${role.callStaff} cơm`, main: "cơm", type: "com" }
+                { text: `Cho ${role.selfCall} bánh mì`, main: "bánh mì", type: "banhmi" },
+                { text: `Cho ${role.selfCall} phở`, main: "phở", type: "pho" },
+                { text: `Cho ${role.selfCall} cơm`, main: "cơm", type: "com" }
               ]
             };
           } else if (state.step === 2) {
-            // Phở không có thịt heo, chỉ có bò hoặc gà
             if (state.dishType === "pho") {
               return {
-                npc: `Dạ ${state.selectedMain}, ${role.staffCallUser} muốn ăn thịt bò hay thịt gà ạ?`,
+                npc: `Dạ, ${role.name} muốn ăn phở bò hay phở gà ạ?`,
                 choices: [
-                  { text: `Thịt bò`, meat: "bò" },
-                  { text: `Thịt gà`, meat: "gà" }
+                  { text: `Phở bò`, meat: "bò" },
+                  { text: `Phở gà`, meat: "gà" }
                 ]
               };
             } else {
               return {
-                npc: `Dạ ${state.selectedMain}, ${role.staffCallUser} muốn ăn thịt bò, thịt gà hay thịt heo ạ?`,
+                npc: `Dạ, ${role.name} muốn ăn bò hay gà ạ?`,
                 choices: [
                   { text: `Thịt bò`, meat: "bò" },
                   { text: `Thịt gà`, meat: "gà" },
-                  { text: `Thịt heo`, meat: "heo" }
                 ]
               };
             }
           } else if (state.step === 3) {
             if (state.dishType === "pho") {
               return {
-                npc: `${role.staffCallUser} có ăn hành lá không ạ?`,
+                npc: `${capitalizedName} có ăn hành lá không ạ?`,
                 choices: [
-                  { text: "Có, cho nhiều hành", detail: "có hành" },
-                  { text: "Không, không ăn hành", detail: "không hành" }
+                  { text: "Có", detail: "có hành" },
+                  { text: "Không", detail: "không hành" }
                 ]
               };
             } else if (state.dishType === "banhmi") {
               return {
-                npc: `${role.staffCallUser} có ăn ớt và ngò rí không ạ?`,
+                npc: `${capitalizedName} có ăn rau ớt đầy đủ không ạ?`,
                 choices: [
-                  { text: "Có, đầy đủ nha", detail: "có ớt và ngò" },
-                  { text: "Không bỏ ớt", detail: "không ớt" }
+                  { text: "Không rau", detail: "không rau" },
+                  { text: "Không ớt", detail: "không ớt" },
+                  { text: "Không đồ chua", detail: "không đồ chua" },
+                  { text: "Đầy đủ", detail: "đầy đủ rau ớt" }
                 ]
               };
             } else {
               return {
-                npc: `${role.staffCallUser} có ăn cay không ạ?`,
+                npc: `${capitalizedName} có ăn cay không ạ?`,
                 choices: [
-                  { text: "Có, bỏ cay", detail: "có cay" },
-                  { text: "Không ăn cay", detail: "không cay" }
+                  { text: "Có", detail: "cay" },
+                  { text: "Không cay", detail: "không cay" }
                 ]
               };
             }
           } else if (state.step === 4) {
             return {
-              npc: `${role.staffCallUser} có muốn uống gì không ạ?`,
+              npc: `${capitalizedName} có muốn uống gì không ạ?`,
               choices: [
-                { text: `Cho ${role.callStaff} ly coca`, drink: "coca" },
-                { text: `Cho ${role.callStaff} ly trà đá`, drink: "trà đá" },
-                { text: `Không, ${role.name} không uống gì thêm`, drink: "không uống gì" }
+                { text: `Cho ${role.selfCall} ly coca`, drink: "coca" },
+                { text: `Cho ${role.selfCall} ly trà đá`, drink: "trà đá" },
+                { text: `Cho ${role.selfCall} ly nước lọc`, drink: "nước lọc" },
+                { text: `Không, cảm ơn`, drink: "" }
               ]
             };
           } else if (state.step === 5) {
-            let summary = `Dạ vậy ${role.name} gọi ${state.selectedMain} ${state.selectedMeat}`;
+            let dishName = state.dishType === "pho" ? `phở ${state.selectedMeat}` : `${state.selectedMain} ${state.selectedMeat}`;
+            let summary = `Dạ vậy ${role.name} gọi ${dishName}`;
             if (state.selectedDetail) summary += `, ${state.selectedDetail}`;
             if (state.selectedDrink) summary += ` và ${state.selectedDrink}`;
-            summary += " nha.";
 
             return {
               npc: summary,
@@ -310,7 +309,7 @@ import '../styles/global.css';
             };
           } else if (state.step === 6) {
             return {
-              npc: `Dạ tổng cộng hóa đơn của ${role.staffCallUser} là 60k ạ.`,
+              npc: `Dạ của mình là 60k ạ.`,
               isPayment: true,
               choices: [
                 { text: "Đưa tờ 60k (Đúng tiền)", amount: 60 },
@@ -350,11 +349,10 @@ import '../styles/global.css';
       selectedDrink: ""
     };
 
-    window.setRole = function(roleKey, nameLabel, callStaffLabel, staffCallUserLabel) {
+    window.setRole = function(gender) {
       userRole = {
-        name: nameLabel,
-        callStaff: callStaffLabel,
-        staffCallUser: staffCallUserLabel
+        name: gender,     
+        selfCall: gender  
       };
 
       roleSelectScreen.classList.add('hidden');
@@ -400,15 +398,15 @@ import '../styles/global.css';
             <div class="text-xs sm:text-sm font-bold text-slate-700">💡 How to say: <span class="text-red-600 font-extrabold">"I want to pay"</span>?</div>
             <div>
               <button type="button" id="hintBtn" class="w-full py-4 px-5 bg-red-50 hover:bg-red-100 text-red-600 font-bold rounded-2xl text-xs sm:text-sm transition border border-red-200 cursor-pointer flex items-center justify-center gap-2">
-                <span>Cần gợi ý</span> 🔍
+                <span>Need hint</span> 🔍
               </button>
             </div>
             <div id="hintOptions" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-              <button type="button" class="pay-option p-4 rounded-2xl bg-stone-50 hover:bg-red-50 border border-stone-200 text-xs sm:text-sm font-bold text-slate-700 text-center transition cursor-pointer" data-text="${userRole.callStaff} ơi, tính tiền cho ${userRole.name}!">
-                <span>${userRole.callStaff} ơi, tính tiền cho ${userRole.name}!</span>
+              <button type="button" class="pay-option p-4 rounded-2xl bg-stone-50 hover:bg-red-50 border border-stone-200 text-xs sm:text-sm font-bold text-slate-700 text-center transition cursor-pointer" data-text="Em ơi, tính tiền!">
+                <span>Em ơi, tính tiền!</span>
               </button>
-              <button type="button" class="pay-option p-4 rounded-2xl bg-stone-50 hover:bg-red-50 border border-stone-200 text-xs sm:text-sm font-bold text-slate-700 text-center transition cursor-pointer" data-text="Cho ${userRole.callStaff} xin cái hóa đơn!">
-                <span>Cho ${userRole.callStaff} xin cái hóa đơn!</span>
+              <button type="button" class="pay-option p-4 rounded-2xl bg-stone-50 hover:bg-red-50 border border-stone-200 text-xs sm:text-sm font-bold text-slate-700 text-center transition cursor-pointer" data-text="Cho ${userRole.selfCall} xin cái hóa đơn!">
+                <span>Cho ${userRole.selfCall} xin cái hóa đơn!</span>
               </button>
             </div>
           </div>
@@ -428,7 +426,7 @@ import '../styles/global.css';
       }
 
       choiceArea.innerHTML = `
-        <div class="text-xs font-extrabold text-stone-400 uppercase tracking-wider mb-3 font-brand">Chọn câu trả lời của bạn:</div>
+        <div class="text-xs font-extrabold text-stone-400 uppercase tracking-wider mb-3 font-brand">Choose your response:</div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5" id="choiceBtnsContainer"></div>
       `;
 
@@ -476,10 +474,10 @@ import '../styles/global.css';
 
       let responseText = "";
       if (paidAmount === 60) {
-        responseText = `Dạ em nhận của ${userRole.staffCallUser} ${paidAmount}k. Em cảm ơn ${userRole.staffCallUser} ạ!`;
+        responseText = `Dạ em nhận của ${userRole.name} ${paidAmount}k. Em cảm ơn ${userRole.name} ạ!`;
       } else {
         let excess = paidAmount - 60;
-        responseText = `Dạ em nhận của ${userRole.staffCallUser} ${paidAmount}k, em thối lại ${userRole.staffCallUser} ${excess}k. Em cảm ơn ${userRole.staffCallUser} ạ!`;
+        responseText = `Dạ em nhận của ${userRole.name} ${paidAmount}k, em thối lại ${excess}k. Em cảm ơn ${userRole.name} ạ!`;
       }
 
       setTimeout(() => {
@@ -496,9 +494,9 @@ import '../styles/global.css';
 
         choiceArea.innerHTML = `
           <div class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200 text-center space-y-3 mt-2 font-brand">
-            <div class="text-sm sm:text-base font-bold text-emerald-800">🎉 Xuất sắc! Bạn đã hoàn thành toàn bộ cuộc hội thoại.</div>
+            <div class="text-sm sm:text-base font-bold text-emerald-800">🎉 Excellent! You have completed the conversation.</div>
             <button type="button" id="resetBtn" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs sm:text-sm transition cursor-pointer inline-flex items-center gap-2">
-              <span>Chơi lại từ đầu</span> 🔄
+              <span>Start Over</span> 🔄
             </button>
           </div>
         `;
