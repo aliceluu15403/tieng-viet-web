@@ -116,7 +116,7 @@ const allListeningLessons = {
       },
       {
         id: 5,
-        part1: "<b>B:</b> Có, khoảng vài tháng em về mấy",
+        part1: "<b>B:</b> Có, khoảng vài tháng em về một",
         part2: ".",
         typeAnswer: "lan",
         correctMcq: "lần",
@@ -295,7 +295,7 @@ const allListeningLessons = {
       {
         id: 4,
         part1: "<b>A:</b> Đây là lần",
-        part2: "thứ mấy con đến Việt Nam? &nbsp;&nbsp;|&nbsp;&nbsp; <span class='text-slate-700 font-normal'><b>B:</b> Lần thứ hai rồi ạ.</span>",
+        part2: "con đến Việt Nam? &nbsp;&nbsp;|&nbsp;&nbsp; <span class='text-slate-700 font-normal'><b>B:</b> Lần thứ hai rồi ạ.</span>",
         typeAnswer: "thu may",
         correctMcq: "thứ mấy",
         mcqOptions: ["thứ mấy", "thư mấy", "thứ mầy"]
@@ -303,7 +303,7 @@ const allListeningLessons = {
       {
         id: 5,
         part1: "<b>A:</b> Con đi Hạ Long",
-        part2: "bao giờ chưa? &nbsp;&nbsp;|&nbsp;&nbsp; <span class='text-slate-700 font-normal'><b>B:</b> Chưa ạ.</span>",
+        part2: "chưa? &nbsp;&nbsp;|&nbsp;&nbsp; <span class='text-slate-700 font-normal'><b>B:</b> Chưa ạ.</span>",
         typeAnswer: "bao gio",
         correctMcq: "bao giờ",
         mcqOptions: ["bao giờ", "báo giờ", "bảo giở"]
@@ -311,7 +311,7 @@ const allListeningLessons = {
       {
         id: 6,
         part1: "<b>B:</b> Cô chú đi Hạ Long",
-        part2: "mấy lần rồi ạ?",
+        part2: "rồi ạ?",
         typeAnswer: "may lan",
         correctMcq: "mấy lần",
         mcqOptions: ["mấy lần", "máy lần", "mấy lân"]
@@ -319,7 +319,7 @@ const allListeningLessons = {
       {
         id: 7,
         part1: "<b>A:</b> Khoảng",
-        part2: "ba lần rồi.",
+        part2: "lần rồi.",
         typeAnswer: "ba",
         correctMcq: "ba",
         mcqOptions: ["ba", "bà", "bả"]
@@ -333,7 +333,7 @@ const allListeningLessons = {
       {
         id: 1,
         part1: "<b>A:</b> Đây là lần",
-        part2: "thứ mấy anh tới Việt Nam? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Lần thứ ba rồi.",
+        part2: "anh tới Việt Nam? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Lần thứ ba rồi.",
         typeAnswer: "thu may",
         correctMcq: "thứ mấy",
         mcqOptions: ["thứ mấy", "thư mấy", "thú mấy"]
@@ -341,7 +341,7 @@ const allListeningLessons = {
       {
         id: 2,
         part1: "<b>A:</b> Anh tới Cần Thơ",
-        part2: "bao giờ chưa? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Anh chưa đi Cần Thơ.",
+        part2: "chưa? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Anh chưa đi Cần Thơ.",
         typeAnswer: "bao gio",
         correctMcq: "bao giờ",
         mcqOptions: ["bao giờ", "báo giờ", "bảo giở"]
@@ -349,7 +349,7 @@ const allListeningLessons = {
       {
         id: 3,
         part1: "<b>A:</b> Vậy còn Đà Nẵng? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Đà Nẵng thì anh đi",
-        part2: "rồi.",
+        part2: ".",
         typeAnswer: "roi",
         correctMcq: "rồi",
         mcqOptions: ["rồi", "rối", "roi"]
@@ -357,7 +357,7 @@ const allListeningLessons = {
       {
         id: 4,
         part1: "<b>A:</b> Anh đi mấy lần rồi? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b>",
-        part2: "hai lần.",
+        part2: "lần.",
         typeAnswer: "hai",
         correctMcq: "hai",
         mcqOptions: ["hai", "hài", "hải"]
