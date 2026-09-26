@@ -22,7 +22,7 @@ const allListeningLessons = {
       },
       {
         id: 3,
-        part1: "<b>A:</b> Anh trai em sống ở",
+        part1: "<b>A:</b> Anh trai em sống",
         part2: "đâu? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Anh ấy sống ở Hà Nội.",
         typeAnswer: "dau",
         correctMcq: "đâu",
@@ -100,7 +100,7 @@ const allListeningLessons = {
       },
       {
         id: 3,
-        part1: "<b>A:</b> Anh trai em sống ở",
+        part1: "<b>A:</b> Anh trai em sống",
         part2: "đâu? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Anh ấy sống ở Hà Nội.",
         typeAnswer: "dau",
         correctMcq: "đâu",
