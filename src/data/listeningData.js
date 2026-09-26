@@ -31,7 +31,7 @@ const allListeningLessons = {
       {
         id: 4,
         part1: "<b>A:</b> Em có thường xuyên về",
-        part2: "thăm gia đình không?",
+        part2: " gia đình không?",
         typeAnswer: "tham",
         correctMcq: "thăm",
         mcqOptions: ["thăm", "thám", "thắm"]
@@ -109,7 +109,7 @@ const allListeningLessons = {
       {
         id: 4,
         part1: "<b>A:</b> Em có thường xuyên về",
-        part2: "thăm gia đình không?",
+        part2: " gia đình không?",
         typeAnswer: "tham",
         correctMcq: "thăm",
         mcqOptions: ["thăm", "thám", "thắm"]
