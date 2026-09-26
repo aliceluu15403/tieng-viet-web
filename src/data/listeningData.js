@@ -93,7 +93,7 @@ const allListeningLessons = {
       {
         id: 2,
         part1: "<b>A:</b> Gồm những",
-        part2: "ai vậy? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Ba mẹ, anh trai và em.",
+        part2: "vậy? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Ba mẹ, anh trai và em.",
         typeAnswer: "ai",
         correctMcq: "ai",
         mcqOptions: ["ai", "ái", "ải"]
