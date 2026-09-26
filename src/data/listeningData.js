@@ -84,8 +84,8 @@ const allListeningLessons = {
     questions: [
       {
         id: 1,
-        part1: "<b>A:</b> Gia đình em có",
-        part2: "người? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Nhà em có bốn người.",
+        part1: "<b>A:</b> Gia đình em có mấy",
+        part2: " &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Nhà em có bốn người.",
         typeAnswer: "nguoi",
         correctMcq: "người",
         mcqOptions: ["người", "ngươi", "ngưoi"]
@@ -100,8 +100,8 @@ const allListeningLessons = {
       },
       {
         id: 3,
-        part1: "<b>A:</b> Anh trai em sống",
-        part2: "đâu? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Anh ấy sống ở Hà Nội.",
+        part1: "<b>A:</b> Anh trai em sống ở",
+        part2: " &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Anh ấy sống ở Hà Nội.",
         typeAnswer: "dau",
         correctMcq: "đâu",
         mcqOptions: ["đâu", "dâu", "đấu"]
@@ -116,8 +116,8 @@ const allListeningLessons = {
       },
       {
         id: 5,
-        part1: "<b>B:</b> Có, khoảng vài tháng em về",
-        part2: "lần.",
+        part1: "<b>B:</b> Có, khoảng vài tháng em về mấy",
+        part2: ".",
         typeAnswer: "lan",
         correctMcq: "lần",
         mcqOptions: ["lần", "lấn", "lản"]
