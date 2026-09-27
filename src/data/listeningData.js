@@ -347,12 +347,12 @@ const allListeningLessons = {
         mcqOptions: ["bao giờ", "báo giờ", "bảo giở"]
       },
       {
-        id: 3,
-        part1: "<b>A:</b> Vậy còn Đà Nẵng? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Đà Nẵng thì anh",
-        part2: "rồi.",
-        typeAnswer: "di",
-        correctMcq: "đi",
-        mcqOptions: ["đi", "đí", "đỉ"]
+       id: 3,
+        part1: "<b>A:</b> Vậy còn Đà Nẵng? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Đà Nẵng thì anh đi",
+        part2: ".",
+        typeAnswer: "roi",
+        correctMcq: "rồi",
+        mcqOptions: ["rồi", "rối", "roi"]
       },
       {
         id: 4,
