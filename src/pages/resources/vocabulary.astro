@@ -194,7 +194,6 @@ import allTopics from '../../data/vocabData.js';
           <span id="mcq-score-box" class="text-red-600 font-black">Score: 0</span>
         </div>
         <div class="bg-stone-50 border border-stone-200/80 rounded-3xl p-8 text-center max-w-lg mx-auto w-full space-y-3 shadow-2xs">
-          <span class="text-xs font-extrabold uppercase tracking-widest text-red-600">What does this word mean?</span>
           <h3 id="mcq-word" class="font-brand text-2xl sm:text-3xl font-black text-slate-900 leading-tight">Word</h3>
         </div>
         <div id="mcq-options" class="grid grid-cols-1 gap-3 max-w-lg mx-auto w-full"></div>
@@ -599,7 +598,6 @@ import allTopics from '../../data/vocabData.js';
             <span id="mcq-score-box" class="text-red-600 font-black">Score: 0</span>
           </div>
           <div class="bg-stone-50 border border-stone-200/80 rounded-3xl p-8 text-center max-w-lg mx-auto w-full space-y-3 shadow-2xs">
-            <span class="text-xs font-extrabold uppercase tracking-widest text-red-600">What does this word mean?</span>
             <h3 id="mcq-word" class="font-brand text-2xl sm:text-3xl font-black text-slate-900 leading-tight">Word</h3>
           </div>
           <div id="mcq-options" class="grid grid-cols-1 gap-3 max-w-lg mx-auto w-full"></div>
@@ -609,11 +607,17 @@ import allTopics from '../../data/vocabData.js';
         let cur = vocabData[mcqIndex];
         document.getElementById('mcq-progress').textContent = `${mcqIndex + 1} / ${vocabData.length}`;
         document.getElementById('mcq-score-box').textContent = `Score: ${mcqScore}`;
-        document.getElementById('mcq-word').textContent = cur.vn;
 
-        let opts = [cur.en];
+        let askInEnglish = Math.random() < 0.5;
+        let questionText = askInEnglish ? cur.en : cur.vn;
+        let correctAnswer = askInEnglish ? cur.vn : cur.en;
+
+        document.getElementById('mcq-word').textContent = questionText;
+
+        let opts = [correctAnswer];
         while(opts.length < 3 && opts.length < flashcardData.length) {
-          let r = flashcardData[Math.floor(Math.random() * flashcardData.length)].en;
+          let rItem = flashcardData[Math.floor(Math.random() * flashcardData.length)];
+          let r = askInEnglish ? rItem.vn : rItem.en;
           if(!opts.includes(r)) opts.push(r);
         }
         opts.sort(() => Math.random() - 0.5);
@@ -630,7 +634,7 @@ import allTopics from '../../data/vocabData.js';
           b.addEventListener('click', () => {
             box.querySelectorAll('button').forEach(btn => btn.style.pointerEvents = 'none');
 
-            if(o === cur.en) {
+            if(o === correctAnswer) {
               mcqScore++;
               playCorrectSound();
               b.className = "w-full p-4 bg-emerald-50 border border-emerald-300 rounded-xl font-bold text-sm text-emerald-700 text-center";
@@ -639,7 +643,7 @@ import allTopics from '../../data/vocabData.js';
               playIncorrectSound();
               b.className = "w-full p-4 bg-red-50 border border-red-300 rounded-xl font-bold text-sm text-red-600 text-center";
               box.querySelectorAll('button').forEach(btn => {
-                if (btn.textContent === cur.en) {
+                if (btn.textContent === correctAnswer) {
                   btn.className = "w-full p-4 bg-emerald-50 border border-emerald-300 rounded-xl font-bold text-sm text-emerald-700 text-center";
                 }
               });
