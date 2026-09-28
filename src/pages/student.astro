@@ -7,7 +7,7 @@ import '../styles/global.css';
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Student Portal | Havie </title>
+  <title>Student Portal | Havie</title>
   <meta name="description" content="Secure student portal for Hang's Vietnamese learners." />
 
   <!-- CANONICAL URL -->
@@ -360,7 +360,7 @@ import '../styles/global.css';
       }
     });
 
-    // DANH SÁCH MÃ BÀI HỌC HỢP LỆ (Đã bổ sung KVN01 và KVS01)
+    // DANH SÁCH MÃ BÀI HỌC HỢP LỆ
     const validCodes = ["FLN01", "FLS01", "WLN01", "WLS01", "SLN01", "SLS01", "FCS01", "AVB01", "KVN01", "KVS01"];
 
     const inputs = document.querySelectorAll('.otp-input');
@@ -399,11 +399,11 @@ import '../styles/global.css';
       if (validCodes.includes(code)) {
         errorMessage.classList.add('hidden');
         
-        // ĐIỀU HƯỚNG ĐẾN TRANG TƯƠNG ỨNG
+        // ĐIỀU HƯỚNG CHUẨN XÁC ĐẾN CÁC THƯ MỤC TRONG /resources/
         if (code.startsWith("FL") || code.startsWith("WL") || code.startsWith("SL")) {
           window.location.href = `/listening?code=${code}`;
         } else if (code.startsWith("AVB") || code.startsWith("KV")) {
-          window.location.href = `/vocabulary?code=${code}`;
+          window.location.href = `/resources/vocabulary?code=${code}`;
         } else {
           window.location.href = `/conversation?code=${code}`;
         }

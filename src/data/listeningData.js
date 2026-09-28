@@ -271,7 +271,7 @@ const allListeningLessons = {
       {
         id: 1,
         part1: "<b>A:</b> Chào con. Con bay có",
-        part2: "? &nbsp;&nbsp;|&nbsp;&nbsp; <span class='text-slate-700 font-normal'><b>B:</b> Dạ, cũng hơi mệt.</span>",
+        part2: "không? &nbsp;&nbsp;|&nbsp;&nbsp; <span class='text-slate-700 font-normal'><b>B:</b> Dạ, cũng hơi mệt.</span>",
         typeAnswer: "met",
         correctMcq: "mệt",
         mcqOptions: ["mệt", "mết", "mét"]
