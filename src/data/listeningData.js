@@ -1,5 +1,113 @@
 // src/data/listeningData.js
 const allListeningLessons = {
+  "FLN02": {
+    title: "Travel & Relatives Dialogue (Northern Accent)",
+    audioFile: "FLN02.wav",
+    questions: [
+      {
+        id: 1,
+        part1: "<b>Lan:</b> Sáng nay mẹ",
+        part2: "cho em. &nbsp;&nbsp;|&nbsp;&nbsp; <b>Nam:</b> Mẹ gọi có chuyện gì vậy?",
+        typeAnswer: "goi",
+        correctMcq: "gọi",
+        mcqOptions: ["gọi", "gói", "goi"]
+      },
+      {
+        id: 2,
+        part1: "<b>Lan:</b> Mẹ nói ngày mai dì Mai",
+        part2: "sang Mỹ.",
+        typeAnswer: "se",
+        correctMcq: "sẽ",
+        mcqOptions: ["sẽ", "se", "sẻ"]
+      },
+      {
+        id: 3,
+        part1: "<b>Nam:</b> Dì đến lúc",
+        part2: "giờ? &nbsp;&nbsp;|&nbsp;&nbsp; <b>Lan:</b> Khoảng 8 giờ tối.",
+        typeAnswer: "may",
+        correctMcq: "mấy",
+        mcqOptions: ["mấy", "may", "mẩy"]
+      },
+      {
+        id: 4,
+        part1: "<b>Lan:</b> Nhưng mẹ bảo có thể đến",
+        part2: "hơn một chút.",
+        typeAnswer: "muon",
+        correctMcq: "muộn",
+        mcqOptions: ["muộn", "muốn", "muôn"]
+      },
+      {
+        id: 5,
+        part1: "<b>Nam:</b> Dì đã đến Mỹ",
+        part2: "chưa? &nbsp;&nbsp;|&nbsp;&nbsp; <b>Lan:</b> Đây là lần đầu.",
+        typeAnswer: "bao gio",
+        correctMcq: "bao giờ",
+        mcqOptions: ["bao giờ", "báo giờ", "bảo giở"]
+      },
+      {
+        id: 6,
+        part1: "<b>Nam:</b> Vậy mình có cần đi",
+        part2: "dì không?",
+        typeAnswer: "don",
+        correctMcq: "đón",
+        mcqOptions: ["đón", "don", "đôn"]
+      },
+      {
+        id: 7,
+        part1: "<b>Lan:</b> Mẹ",
+        part2: "mình ra sân bay đón dì.",
+        typeAnswer: "nho",
+        correctMcq: "nhờ",
+        mcqOptions: ["nhờ", "nho", "nhở"]
+      },
+      {
+        id: 8,
+        part1: "<b>Nam:</b> Làm việc xong anh và em",
+        part2: "đón dì.",
+        typeAnswer: "di",
+        correctMcq: "đi",
+        mcqOptions: ["đi", "dị", "đí"]
+      }
+    ],
+    listeningMcqQuestions: [
+      {
+        id: 1,
+        question: "Sáng nay ai gọi cho Lan?",
+        options: ["Dì Mai", "Mẹ Lan", "Nam", "Mẹ Nam"],
+        correct: 1
+      },
+      {
+        id: 2,
+        question: "Khi nào dì Mai sang Mỹ?",
+        options: ["Hôm nay", "Ngày mai", "Tuần sau", "Tháng sau"],
+        correct: 1
+      },
+      {
+        id: 3,
+        question: "Dì Mai dự định đến lúc mấy giờ?",
+        options: ["7 giờ", "9 giờ", "trước 7 giờ", "8 giờ hoặc sau 8 giờ"],
+        correct: 3
+      },
+      {
+        id: 4,
+        question: "Dì Mai đã đến Mỹ bao giờ chưa?",
+        options: ["Rồi, một lần", "Rồi, hai lần", "Chưa bao giờ", "Không biết"],
+        correct: 2
+      },
+      {
+        id: 5,
+        question: "Mẹ nhờ Lan và Nam làm gì?",
+        options: ["Đưa dì Mai đi ăn", "Đưa dì Mai về nhà", "Ra sân bay đón dì Mai", "Mua vé máy bay cho dì Mai"],
+        correct: 2
+      },
+      {
+        id: 6,
+        question: "Khi nào 2 người sẽ đi đón dì?",
+        options: ["Trước khi làm việc", "Sau khi làm việc", "Vào buổi sáng", "Vào buổi trưa"],
+        correct: 1
+      }
+    ]
+  },
   "FLN01": {
     title: "Family & Relatives Dialogue (Northern Accent)",
     audioFile: "FLN01.wav",

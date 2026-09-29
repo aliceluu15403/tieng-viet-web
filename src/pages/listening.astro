@@ -147,7 +147,10 @@ import allListeningLessons from '../data/listeningData.js';
   <!-- SCRIPT LOGIC TRUYỀN DỮ LIỆU TỪ listeningData.js -->
   <script define:vars={{ lessonData: allListeningLessons }}>
     const urlParams = new URLSearchParams(window.location.search);
-    const lessonCode = (urlParams.get('code') || 'FLN01').trim().toUpperCase();
+    const rawCode = urlParams.get('code') || 'FLN01';
+    const lessonCode = rawCode.replace(/[\u200B-\u200D\uFEFF]/g, '').trim().toUpperCase();
+
+    console.log("Requested Lesson Code:", lessonCode); // Kiểm tra trên Console của trình duyệt nếu cần
 
     const audioSource = document.getElementById('audioSource');
     const audioPlayer = document.getElementById('audioPlayer');
