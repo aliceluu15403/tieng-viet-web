@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import Header from '../components/header.astro';
+import Footer from '../components/footer.astro';
 
 interface Props {
   title?: string;
@@ -62,13 +64,12 @@ const {
     .curved-underline {
       position: relative;
       display: inline-block;
-      padding-bottom: 2px;
     }
     .curved-underline::after {
       content: "";
       position: absolute;
       left: 0;
-      bottom: -2px;
+      bottom: -4px;
       width: 100%;
       height: 6px;
       border-bottom: 3.5px solid var(--orange);
@@ -82,6 +83,64 @@ const {
   <slot name="head" />
 </head>
 <body class="selection:bg-red-600 selection:text-white min-h-screen flex flex-col antialiased relative overflow-x-hidden">
-  <slot />
+  
+  <!-- Header dùng chung xuất hiện ở đầu trang -->
+  <Header />
+
+  <!-- Phần nội dung chính thay đổi của từng trang -->
+  <main class="flex-grow">
+    <slot />
+  </main>
+
+  <!-- Footer dùng chung xuất hiện ở cuối trang -->
+  <Footer />
+
+  <!-- GLOBAL SCRIPT CHO MODAL -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const modal = document.getElementById('consultModal');
+      const openTriggers = document.querySelectorAll('.open-modal-trigger');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      if (!modal) return;
+
+      // Mở modal
+      openTriggers.forEach(btn => {
+        btn.addEventListener('click', () => {
+          modal.classList.remove('hidden');
+          const consultForm = document.getElementById('consultForm');
+          const successMessage = document.getElementById('successMessage');
+          if (consultForm) consultForm.classList.remove('hidden');
+          if (successMessage) successMessage.classList.add('hidden');
+          if (mobileMenu) mobileMenu.classList.add('hidden');
+        });
+      });
+
+      // Hàm ẩn modal chung
+      const hideModal = () => {
+        modal.classList.add('hidden');
+        const consultForm = document.getElementById('consultForm');
+        const successMessage = document.getElementById('successMessage');
+        if (consultForm && successMessage) {
+          consultForm.classList.remove('hidden');
+          successMessage.classList.add('hidden');
+          consultForm.reset();
+        }
+      };
+
+      // Bắt sự kiện click đóng modal cho nút ✕ và Close Window
+      document.addEventListener('click', (e) => {
+        if (e.target.id === 'closeModalBtn' || e.target.id === 'btnCloseSuccess') {
+          hideModal();
+        }
+      });
+
+      // Click ra ngoài vùng modal thì đóng
+      modal.addEventListener('click', (e) => { 
+        if (e.target === modal) hideModal(); 
+      });
+    });
+  </script>
+
 </body>
 </html>

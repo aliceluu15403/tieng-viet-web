@@ -23,603 +23,511 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </style>
   </Fragment>
 
-  <!-- NAVBAR -->
-  <header class="sticky top-0 z-40 bg-[#fffaf5]/90 backdrop-blur-md border-b border-stone-200/80 h-20">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 h-full flex items-center justify-between">
-      
-      <!-- LOGO BÊN TRÁI -->
-      <a href="/" class="group flex flex-col select-none text-left shrink-0">
-        <div class="h-7 sm:h-8 flex items-center">
-          <svg class="h-7 sm:h-8 w-auto overflow-visible" viewBox="0 0 175 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 2H6V12H18V2H24V28H18V17H6V28H0V2Z" fill="#dc2626"/>
-            <path d="M41 2L52 28H45.5L43.2 22H33.8L31.5 28H25L36 2H41ZM38.5 8.5L35.2 17.5H41.8L38.5 8.5Z" fill="#dc2626"/>
-            <path d="M53 2H59.5L67 21L74.5 2H81L70.5 28H63.5L53 2Z" fill="#dc2626"/>
-            <path d="M86 2H92V28H86V2Z" fill="#dc2626"/>
-            <path d="M98 2H117V7.5H104V12H115V17H104V22.5H117V28H98V2Z" fill="#dc2626"/>
-          </svg>
-        </div>
-        <span class="text-[9.5px] sm:text-[10px] font-bold tracking-[0.22em] sm:tracking-[0.26em] text-stone-400 uppercase mt-1 pl-0.5 leading-none">
-          Learn Vietnamese Online
-        </span>
-      </a>
-
-      <!-- CỤM MENU CHỮ Ở GIỮA -->
-      <nav class="hidden md:flex items-center space-x-7 lg:space-x-8 text-base font-bold text-slate-800">
-        <a href="#about" class="hover:text-red-600 transition">About Me</a>
-        <a href="#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
-        <a href="/resources" class="hover:text-red-600 transition">Resources</a>
-        <a href="/student" class="hover:text-red-600 transition">Student Portal</a>
-        <a href="/test" class="hover:text-red-600 transition">Level Test</a>
-      </nav>
-
-      <!-- NÚT BOOK -->
-      <div class="hidden md:flex items-center pl-6 shrink-0">
-        <button
-          type="button"
-          class="open-modal-trigger inline-flex items-center justify-center px-5 py-3 text-sm font-extrabold text-white bg-red-600 hover:bg-red-700 rounded-xl shadow-lg shadow-red-600/25 transition hover:-translate-y-0.5 cursor-pointer"
-        >
-          Book 25-Min Trial Lesson →
-        </button>
-      </div>
-
-      <!-- MOBILE TOGGLE BUTTON -->
-      <div class="flex items-center md:hidden">
-        <button 
-          id="mobileMenuBtn" 
-          type="button" 
-          aria-label="Toggle Menu"
-          class="w-10 h-10 rounded-xl bg-stone-100 hover:bg-stone-200 text-slate-800 flex items-center justify-center font-bold transition cursor-pointer"
-        >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-      </div>
-
+  <!-- HERO SECTION -->
+  <section class="relative flex items-center overflow-hidden py-10 sm:py-14 lg:py-16 min-h-[calc(100vh-80px)]">
+    <div class="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
+      <div class="absolute top-5 right-[10%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] hero-glow rounded-full blur-3xl"></div>
     </div>
 
-    <!-- Mobile Dropdown Menu -->
-    <div id="mobileMenu" class="hidden md:hidden absolute top-20 left-0 w-full bg-[#fffaf5] border-b border-stone-200 shadow-xl px-6 py-5 space-y-4 font-semibold text-slate-800 text-base">
-      <a href="#about" class="mobile-link block hover:text-red-600 transition">About Me</a>
-      <a href="#curriculum" class="mobile-link block hover:text-red-600 transition">Learning Tracks</a>
-      <a href="/resources" class="mobile-link block hover:text-red-600 transition">Resources</a>
-      <a href="/student" class="mobile-link block hover:text-red-600 transition">Student Portal</a>
-      <a href="/test" class="mobile-link block hover:text-red-600 transition">Level Test</a>
-      <div class="pt-3 border-t border-stone-200">
-        <button
-          type="button"
-          class="open-modal-trigger w-full py-3.5 text-sm font-bold text-white bg-red-600 rounded-xl text-center shadow-md cursor-pointer"
-        >
-          Book 25-Min Trial Lesson →
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <main class="flex-grow">
-    <!-- HERO SECTION -->
-    <section class="relative flex items-center overflow-hidden py-10 sm:py-14 lg:py-16 min-h-[calc(100vh-80px)]">
-      <div class="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
-        <div class="absolute top-5 right-[10%] w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] hero-glow rounded-full blur-3xl"></div>
-      </div>
-
-      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 w-full">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        
+        <!-- CỘT BÊN TRÁI -->
+        <div class="lg:col-span-7 text-center lg:text-left space-y-5 sm:space-y-6">
           
-          <!-- CỘT BÊN TRÁI -->
-          <div class="lg:col-span-7 text-center lg:text-left space-y-5 sm:space-y-6">
-            
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-stone-200/90 text-xs sm:text-sm font-bold text-slate-800 shadow-2xs">
-              <span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
-              <span>Online Vietnamese Tutor & 1-on-1 Lessons</span>
-              <span class="text-stone-300">•</span>
-              <span class="text-stone-500 font-medium">Northern & Southern Accents</span>
-            </div>
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-stone-200/90 text-xs sm:text-sm font-bold text-slate-800 shadow-2xs">
+            <span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+            <span>Online Vietnamese Tutor & 1-on-1 Lessons</span>
+            <span class="text-stone-300">•</span>
+            <span class="text-stone-500 font-medium">Northern & Southern Accents</span>
+          </div>
 
-            <!-- TIÊU ĐỀ 2 DÒNG CÂN ĐỐI, GẠCH CHÂN ÔM KHÍT CHỮ APPROACH -->
-            <h1 class="font-extrabold text-slate-900 tracking-tight font-brand text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-[1.18] max-w-2xl mx-auto lg:mx-0">
-              <span>You just need the right</span>
+<!-- BỐ CỤC CHUẨN XÁC, THẲNG HÀNG TINH TẾ -->
+          <h1 class="font-extrabold text-slate-900 tracking-tight font-brand text-2xl sm:text-3xl lg:text-4xl xl:text-5xl leading-[1.25] max-w-2xl mx-auto lg:mx-0">
+            <span>Vietnamese isn't difficult.</span>
+            <span class="block mt-1 sm:mt-1.5">
+              You just need the right
               <span class="block mt-1 sm:mt-1.5 text-red-600">
-                <span class="curved-underline">approach.</span>
+                <span class="curved-underline">approach!</span>
               </span>
-            </h1>
+            </span>
+          </h1>
+                      <p class="text-stone-600 text-sm sm:text-base lg:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
+            Personalized, 1-on-1 online coaching tailored for beginners, expats, and heritage learners. No robotic textbook phrases — just real everyday conversations and precise pronunciation.
+          </p>
 
-            <p class="text-stone-600 text-sm sm:text-base lg:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              Personalized, 1-on-1 online coaching tailored for beginners, expats, and heritage learners. No robotic textbook phrases — just real everyday conversations and precise pronunciation.
-            </p>
-
-            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-1">
-              <button
-                type="button"
-                class="open-modal-trigger w-full sm:w-auto px-8 py-4 sm:py-4.5 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-2xl text-sm sm:text-base shadow-xl shadow-red-600/30 transition hover:-translate-y-0.5 text-center flex items-center justify-center gap-2.5 cursor-pointer"
-              >
-                <span class="text-lg">📅</span>
-                <span>Book 25-Min Trial Lesson →</span>
-              </button>
-              <a
-                href="/test"
-                class="w-full sm:w-auto px-7 py-4 sm:py-4.5 bg-white hover:bg-stone-50 text-slate-900 font-bold rounded-2xl text-sm sm:text-base border-2 border-stone-200 hover:border-stone-300 transition text-center shadow-xs flex items-center justify-center gap-2.5"
-              >
-                <span>Take Level Test</span>
-                <span class="text-lg">📝</span>
-              </a>
-            </div>
-
-            <div class="pt-4 border-t border-stone-200/80 flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 text-sm sm:text-base text-stone-700 font-semibold">
-              <div class="flex items-center gap-2"><span class="text-emerald-600 font-bold text-base sm:text-lg">✓</span> 1,200+ Hours Taught</div>
-              <div class="flex items-center gap-2"><span class="text-emerald-600 font-bold text-base sm:text-lg">✓</span> Beginners, Expats & Heritage learners</div>
-              <div class="flex items-center gap-2"><span class="text-emerald-600 font-bold text-base sm:text-lg">✓</span> Slides & Audio Included</div>
-            </div>
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-1">
+            <button
+              type="button"
+              class="open-modal-trigger w-full sm:w-auto px-8 py-4 sm:py-4.5 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-2xl text-sm sm:text-base shadow-xl shadow-red-600/30 transition hover:-translate-y-0.5 text-center flex items-center justify-center gap-2.5 cursor-pointer"
+            >
+              <span class="text-lg">📅</span>
+              <span>Book 25-Min Trial Lesson →</span>
+            </button>
+            <a
+              href="/test"
+              class="w-full sm:w-auto px-7 py-4 sm:py-4.5 bg-white hover:bg-stone-50 text-slate-900 font-bold rounded-2xl text-sm sm:text-base border-2 border-stone-200 hover:border-stone-300 transition text-center shadow-xs flex items-center justify-center gap-2.5"
+            >
+              <span>Take Level Test</span>
+              <span class="text-lg">📝</span>
+            </a>
           </div>
 
-          <!-- CỘT BÊN PHẢI -->
-          <div class="lg:col-span-5 flex justify-center">
-            <div class="w-full max-w-[420px] sm:max-w-[460px] bg-white rounded-[32px] p-7 sm:p-9 shadow-2xl shadow-stone-300/60 border border-stone-200/90 space-y-6 relative">
-              
-              <!-- Profile Header -->
-              <div class="flex items-center gap-5 pb-5 border-b border-stone-100">
-                <div class="w-18 sm:w-20 h-18 sm:h-20 rounded-2xl overflow-hidden shadow-md ring-2 ring-red-500/20 shrink-0 bg-stone-100">
-                  <img 
-                    src="/hang.jpg" 
-                    alt="Hang Luu" 
-                    class="w-full h-full object-cover"
-                    onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-3xl\'>👩🏻‍🏫</div>';"
-                  />
-                </div>
-                <div>
-                  <h3 class="text-lg sm:text-xl font-extrabold text-slate-900 leading-tight">Hang Luu</h3>
-                  <p class="text-xs sm:text-sm text-stone-500 font-medium mt-0.5">Professional Vietnamese Tutor</p>
-                  <div class="flex items-center gap-1 text-amber-500 text-xs sm:text-sm mt-1">
-                    <span>★★★★★</span>
-                    <span class="text-slate-900 font-bold font-mono ml-1">5.0</span>
-                    <span class="text-stone-400 font-medium">(50 Reviews)</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- WHY TONES MATTER -->
-              <div class="bg-stone-50/90 rounded-2xl p-4 sm:p-5 border border-stone-200/80 space-y-3.5">
-                <div class="text-[11px] sm:text-xs font-extrabold uppercase tracking-wider text-stone-400">Why Vietnamese Tones Matter:</div>
-                <div class="grid grid-cols-3 gap-2.5 text-center">
-                  <button onclick="playHeroAudio('ngang')" type="button" class="bg-white px-2 py-3.5 sm:py-4 rounded-2xl border border-stone-200/90 hover:border-red-500 hover:shadow-md transition cursor-pointer group">
-                    <div class="text-base sm:text-lg font-extrabold text-red-600 font-brand group-hover:scale-105 transition-transform flex items-center justify-center gap-1">
-                      <span>ma</span>
-                      <span class="text-xs">🔊</span>
-                    </div>
-                    <div class="text-xs sm:text-sm text-stone-600 mt-1.5 font-semibold whitespace-nowrap">Ghost 👻</div>
-                  </button>
-                  <button onclick="playHeroAudio('sac')" type="button" class="bg-white px-2 py-3.5 sm:py-4 rounded-2xl border border-stone-200/90 hover:border-red-500 hover:shadow-md transition cursor-pointer group">
-                    <div class="text-base sm:text-lg font-extrabold text-red-600 font-brand group-hover:scale-105 transition-transform flex items-center justify-center gap-1">
-                      <span>má</span>
-                      <span class="text-xs">🔊</span>
-                    </div>
-                    <div class="text-xs sm:text-sm text-stone-600 mt-1.5 font-semibold whitespace-nowrap">Mother 👩🏻</div>
-                  </button>
-                  <button onclick="playHeroAudio('nga')" type="button" class="bg-white px-2 py-3.5 sm:py-4 rounded-2xl border border-stone-200/90 hover:border-red-500 hover:shadow-md transition cursor-pointer group">
-                    <div class="text-base sm:text-lg font-extrabold text-red-600 font-brand group-hover:scale-105 transition-transform flex items-center justify-center gap-1">
-                      <span>mã</span>
-                      <span class="text-xs">🔊</span>
-                    </div>
-                    <div class="text-xs sm:text-sm text-stone-600 mt-1.5 font-semibold whitespace-nowrap">Horse 🐎</div>
-                  </button>
-                </div>
-              </div>
-
-              <!-- EXPLORE FREE RESOURCES HUB -->
-              <a
-                href="/resources"
-                class="flex items-center justify-between p-4 sm:p-4.5 rounded-2xl bg-[#fffaf5] hover:bg-stone-100 transition border border-stone-200/90 group cursor-pointer shadow-xs"
-              >
-                <div class="flex items-center gap-3.5">
-                  <span class="text-2xl">🎁</span>
-                  <div class="text-left pt-0.5">
-                    <div class="text-xs sm:text-sm font-extrabold text-slate-900 leading-tight">Explore Free Resources Hub</div>
-                    <div class="text-[11px] sm:text-xs text-stone-500 font-medium mt-0.5">Tones, Pronouns & Conversation Labs</div>
-                  </div>
-                </div>
-                <span class="text-base font-bold text-red-600 group-hover:translate-x-1 transition">→</span>
-              </a>
-
-            </div>
+          <div class="pt-4 border-t border-stone-200/80 flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 text-sm sm:text-base text-stone-700 font-semibold">
+            <div class="flex items-center gap-2"><span class="text-emerald-600 font-bold text-base sm:text-lg">✓</span> 1,200+ Hours Taught</div>
+            <div class="flex items-center gap-2"><span class="text-emerald-600 font-bold text-base sm:text-lg">✓</span> Beginners, Expats & Heritage learners</div>
+            <div class="flex items-center gap-2"><span class="text-emerald-600 font-bold text-base sm:text-lg">✓</span> Slides & Audio Included</div>
           </div>
-
         </div>
-      </div>
-    </section>
 
-    <!-- ABOUT ME SECTION -->
-    <section id="about" class="pt-10 sm:pt-14 pb-14 sm:py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-          
-          <div class="lg:col-span-5 space-y-5">
-            <div>
-              <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest bg-red-50 px-3 py-1 rounded-md border border-red-200 inline-block">About Me</span>
-              <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-brand mt-2.5">
-                Hi, I'm Hang!
-              </h2>
-            </div>
-
-            <div class="relative w-full aspect-video rounded-3xl overflow-hidden shadow-xl border border-stone-200/90 bg-stone-900 ring-2 ring-stone-100">
-              <iframe 
-                src="https://player.vimeo.com/video/1156028562?badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0" 
-                class="absolute inset-0 w-full h-full border-0" 
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" 
-                title="Hang Luu - Preply Intro Video">
-              </iframe>
-            </div>
-          </div>
-
-          <div class="lg:col-span-7 space-y-5 sm:space-y-6 text-stone-700 text-base sm:text-lg leading-relaxed">
+        <!-- CỘT BÊN PHẢI -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="w-full max-w-[420px] sm:max-w-[460px] bg-white rounded-[32px] p-7 sm:p-9 shadow-2xl shadow-stone-300/60 border border-stone-200/90 space-y-6 relative">
             
-            <h3 class="text-lg sm:text-2xl font-extrabold text-slate-900 tracking-tight font-brand italic leading-snug bg-[#fffaf5] p-5 sm:p-6 rounded-2xl border border-stone-200/80 shadow-2xs">
-              "This video helped me reach 100 students worldwide in just 7 months!"
-            </h3>
-            
-            <p class="text-stone-600 text-base sm:text-lg">
-              Over 3 years of teaching Vietnamese, every lesson has been refined through hands-on experience, blending practical insights with 100% tailor-made materials.
-            </p>
-
-            <div class="pt-1">
-              <p class="font-extrabold text-slate-900 mb-3 text-xs sm:text-sm uppercase tracking-wider text-red-600">Perfect for:</p>
-              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm sm:text-base text-stone-800 font-medium">
-                <li class="flex items-start gap-3 p-4 rounded-xl bg-stone-50 border border-stone-100 shadow-2xs">
-                  <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
-                  <span><strong class="text-slate-900 font-extrabold block text-base sm:text-lg">Absolute beginners</strong> starting from zero</span>
-                </li>
-                <li class="flex items-start gap-3 p-4 rounded-xl bg-stone-50 border border-stone-100 shadow-2xs">
-                  <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
-                  <span><strong class="text-slate-900 font-extrabold block text-base sm:text-lg">Heritage speakers</strong> reconnecting with roots</span>
-                </li>
-                <li class="flex items-start gap-3 p-4 rounded-xl bg-stone-50 border border-stone-100 shadow-2xs">
-                  <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
-                  <span><strong class="text-slate-900 font-extrabold block text-base sm:text-lg">Expats in Vietnam</strong> navigating daily work & life</span>
-                </li>
-                <li class="flex items-start gap-3 p-4 rounded-xl bg-stone-50 border border-stone-100 shadow-2xs">
-                  <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
-                  <span><strong class="text-slate-900 font-extrabold block text-base sm:text-lg">Partners & in-laws</strong> connecting deeply with Vietnamese spouses and family</span>
-                </li>
-              </ul>
+            <!-- Profile Header -->
+            <div class="flex items-center gap-5 pb-5 border-b border-stone-100">
+              <div class="w-18 sm:w-20 h-18 sm:h-20 rounded-2xl overflow-hidden shadow-md ring-2 ring-red-500/20 shrink-0 bg-stone-100">
+                <img 
+                  src="/hang.jpg" 
+                  alt="Hang Luu" 
+                  class="w-full h-full object-cover"
+                  onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-3xl\'>👩🏻‍🏫</div>';"
+                />
+              </div>
+              <div>
+                <h3 class="text-lg sm:text-xl font-extrabold text-slate-900 leading-tight">Hang Luu</h3>
+                <p class="text-xs sm:text-sm text-stone-500 font-medium mt-0.5">Professional Vietnamese Tutor</p>
+                <div class="flex items-center gap-1 text-amber-500 text-xs sm:text-sm mt-1">
+                  <span>★★★★★</span>
+                  <span class="text-slate-900 font-bold font-mono ml-1">5.0</span>
+                  <span class="text-stone-400 font-medium">(50 Reviews)</span>
+                </div>
+              </div>
             </div>
 
-            <div class="relative overflow-hidden bg-gradient-to-r from-red-50/90 to-[#fffaf5] p-5 sm:p-6 rounded-2xl border-l-4 border-red-600 border-y border-r border-stone-200/80 shadow-xs mt-4">
-              <p class="text-base sm:text-xl font-extrabold text-slate-900 tracking-tight font-brand italic text-red-600">
-                Let's speak real Vietnamese from Day 1!
-              </p>
+            <!-- WHY TONES MATTER -->
+            <div class="bg-stone-50/90 rounded-2xl p-4 sm:p-5 border border-stone-200/80 space-y-3.5">
+              <div class="text-[11px] sm:text-xs font-extrabold uppercase tracking-wider text-stone-400">Why Vietnamese Tones Matter:</div>
+              <div class="grid grid-cols-3 gap-2.5 text-center">
+                <button onclick="playHeroAudio('ngang')" type="button" class="bg-white px-2 py-3.5 sm:py-4 rounded-2xl border border-stone-200/90 hover:border-red-500 hover:shadow-md transition cursor-pointer group">
+                  <div class="text-base sm:text-lg font-extrabold text-red-600 font-brand group-hover:scale-105 transition-transform flex items-center justify-center gap-1">
+                    <span>ma</span>
+                    <span class="text-xs">🔊</span>
+                  </div>
+                  <div class="text-xs sm:text-sm text-stone-600 mt-1.5 font-semibold whitespace-nowrap">Ghost 👻</div>
+                </button>
+                <button onclick="playHeroAudio('sac')" type="button" class="bg-white px-2 py-3.5 sm:py-4 rounded-2xl border border-stone-200/90 hover:border-red-500 hover:shadow-md transition cursor-pointer group">
+                  <div class="text-base sm:text-lg font-extrabold text-red-600 font-brand group-hover:scale-105 transition-transform flex items-center justify-center gap-1">
+                    <span>má</span>
+                    <span class="text-xs">🔊</span>
+                  </div>
+                  <div class="text-xs sm:text-sm text-stone-600 mt-1.5 font-semibold whitespace-nowrap">Mother 👩🏻</div>
+                </button>
+                <button onclick="playHeroAudio('nga')" type="button" class="bg-white px-2 py-3.5 sm:py-4 rounded-2xl border border-stone-200/90 hover:border-red-500 hover:shadow-md transition cursor-pointer group">
+                  <div class="text-base sm:text-lg font-extrabold text-red-600 font-brand group-hover:scale-105 transition-transform flex items-center justify-center gap-1">
+                    <span>mã</span>
+                    <span class="text-xs">🔊</span>
+                  </div>
+                  <div class="text-xs sm:text-sm text-stone-600 mt-1.5 font-semibold whitespace-nowrap">Horse 🐎</div>
+                </button>
+              </div>
             </div>
+
+            <!-- EXPLORE FREE RESOURCES HUB -->
+            <a
+              href="/resources"
+              class="flex items-center justify-between p-4 sm:p-4.5 rounded-2xl bg-[#fffaf5] hover:bg-stone-100 transition border border-stone-200/90 group cursor-pointer shadow-xs"
+            >
+              <div class="flex items-center gap-3.5">
+                <span class="text-2xl">🎁</span>
+                <div class="text-left pt-0.5">
+                  <div class="text-xs sm:text-sm font-extrabold text-slate-900 leading-tight">Explore Free Resources Hub</div>
+                  <div class="text-[11px] sm:text-xs text-stone-500 font-medium mt-0.5">Tones, Pronouns & Conversation Labs</div>
+                </div>
+              </div>
+              <span class="text-base font-bold text-red-600 group-hover:translate-x-1 transition">→</span>
+            </a>
 
           </div>
-
         </div>
+
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- LEARNING TRACKS -->
-    <section id="curriculum" class="py-12 sm:py-16 bg-white border-t border-stone-200/60">
-      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-        <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
-          <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest bg-red-50 px-3 py-1 rounded-md border border-red-200">Tailored Programs</span>
-          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-2.5 tracking-tight font-brand">
-            Find the Path That Fits Your Goals
-          </h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
-          
-          <!-- Track 01 -->
-          <div class="bg-[#fffaf5] rounded-3xl p-6 sm:p-8 border border-stone-200/90 shadow-2xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-            <div>
-              <div class="inline-block text-[11px] font-bold text-slate-700 bg-stone-100 px-3 py-1 rounded-lg uppercase tracking-wider">
-                Track 01 • 5–10 Sessions
-              </div>
-              <h3 class="text-xl sm:text-2xl font-black text-slate-900 mt-3.5 mb-3 font-brand">
-                Pronunciation
-              </h3>
-              <p class="text-sm sm:text-base text-stone-600 leading-relaxed mb-6 font-medium">
-                Master exact mouth/tongue mechanics for vowels, consonants, and the 6 tones from day one.
-              </p>
-              <ul class="space-y-3.5 text-sm sm:text-base text-slate-800 font-semibold">
-                <li class="flex items-start gap-2.5">
-                  <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
-                  <span>Mouth, jaw & lip positioning</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
-                  <span>Interactive tone Drills</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
-                  <span>Custom practice audio files</span>
-                </li>
-              </ul>
-            </div>
-            <div class="mt-8 pt-6 border-t border-stone-100">
-              <button
-                type="button"
-                class="open-modal-trigger block w-full text-center py-3.5 bg-stone-100 hover:bg-stone-200 text-slate-900 font-extrabold rounded-xl text-xs sm:text-sm transition cursor-pointer"
-              >
-                Book 25-Min Trial Lesson →
-              </button>
-            </div>
-          </div>
-
-          <!-- Track 02 (Featured) -->
-          <div class="bg-[#fffaf5] rounded-3xl p-6 sm:p-8 border-2 border-red-600 shadow-xl relative md:-translate-y-3 flex flex-col justify-between">
-            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-red-600 text-white text-[11px] font-extrabold px-4 py-1 rounded-full uppercase tracking-wider shadow-md whitespace-nowrap">
-              🔥 Most Popular for Expats
-            </div>
-            <div>
-              <div class="inline-block text-[11px] font-bold text-red-600 bg-red-50 px-3 py-1 rounded-lg border border-red-200 uppercase tracking-wider">
-                Track 02 • 10–20 Sessions
-              </div>
-              <h3 class="text-xl sm:text-2xl font-black text-slate-900 mt-3.5 mb-3 font-brand">
-                Real-World Street Vietnamese
-              </h3>
-              <p class="text-sm sm:text-base text-stone-600 leading-relaxed mb-6 font-medium">
-                Cut through textbook stiffness. Speak natural, conversational Vietnamese for daily life and travel.
-              </p>
-              <ul class="space-y-3.5 text-sm sm:text-base text-slate-800 font-semibold">
-                <li class="flex items-start gap-2.5">
-                  <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
-                  <span>Ordering food & drinks locally</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
-                  <span>Rides, deliveries & daily errands</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
-                  <span>Marketplace bargaining & shopping</span>
-                </li>
-              </ul>
-            </div>
-            <div class="mt-8 pt-6 border-t border-stone-100">
-              <button
-                type="button"
-                class="open-modal-trigger block w-full text-center py-3.5 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl text-xs sm:text-sm transition shadow-lg shadow-red-600/20 hover:-translate-y-0.5 cursor-pointer font-brand"
-              >
-                Book 25-Min Trial Lesson →
-              </button>
-            </div>
-          </div>
-
-          <!-- Track 03 -->
-          <div class="bg-[#fffaf5] rounded-3xl p-6 sm:p-8 border border-stone-200/90 shadow-2xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
-            <div>
-              <div class="inline-block text-[11px] font-bold text-slate-700 bg-stone-100 px-3 py-1 rounded-lg uppercase tracking-wider">
-                Track 03 • Flexible / Ongoing
-              </div>
-              <h3 class="text-xl sm:text-2xl font-black text-slate-900 mt-3.5 mb-3 font-brand">
-                Family & Heritage Roots
-              </h3>
-              <p class="text-sm sm:text-base text-stone-600 leading-relaxed mb-6 font-medium">
-                Bridge the gap with your family, partner, and relatives through warm, culturally grounded speech.
-              </p>
-              <ul class="space-y-3.5 text-sm sm:text-base text-slate-800 font-semibold">
-                <li class="flex items-start gap-2.5">
-                  <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
-                  <span>Dining table chats & bonding</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
-                  <span>Cultural etiquette for Tết & weddings</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
-                  <span>Regional accents & family terms</span>
-                </li>
-              </ul>
-            </div>
-            <div class="mt-8 pt-6 border-t border-stone-100">
-              <button
-                type="button"
-                class="open-modal-trigger block w-full text-center py-3.5 bg-stone-100 hover:bg-stone-200 text-slate-900 font-bold rounded-xl text-xs sm:text-sm transition cursor-pointer"
-              >
-                Book 25-Min Trial Lesson →
-              </button>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- STUDENT TESTIMONIALS CAROUSEL -->
-    <section id="reviews" class="py-14 sm:py-20 bg-white overflow-hidden">
-      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-12">
-          <div class="space-y-2">
-            <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest bg-red-50 px-3 py-1 rounded-md border border-red-200 inline-block">Student Stories</span>
-            <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-brand mt-1">
-              Real Progress in Everyday Situations
+  <!-- ABOUT ME SECTION -->
+  <section id="about" class="pt-10 sm:pt-14 pb-14 sm:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+        
+        <div class="lg:col-span-5 space-y-5">
+          <div>
+            <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest bg-red-50 px-3 py-1 rounded-md border border-red-200 inline-block">About Me</span>
+            <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-brand mt-2.5">
+              Hi, I'm Hang!
             </h2>
           </div>
 
-          <div class="flex items-center gap-3 shrink-0">
-            <button
-              id="prevBtn"
-              type="button"
-              aria-label="Previous review"
-              class="w-11 h-11 rounded-full border border-stone-200 bg-white hover:bg-stone-50 text-slate-800 flex items-center justify-center font-bold text-lg shadow-2xs transition-all active:scale-95 cursor-pointer"
-            >
-              ←
-            </button>
-            <button
-              id="nextBtn"
-              type="button"
-              aria-label="Next review"
-              class="w-11 h-11 rounded-full border border-stone-200 bg-white hover:bg-stone-50 text-slate-800 flex items-center justify-center font-bold text-lg shadow-2xs transition-all active:scale-95 cursor-pointer"
-            >
-              →
-            </button>
+          <div class="relative w-full aspect-video rounded-3xl overflow-hidden shadow-xl border border-stone-200/90 bg-stone-900 ring-2 ring-stone-100">
+            <iframe 
+              src="https://player.vimeo.com/video/1156028562?badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0" 
+              class="absolute inset-0 w-full h-full border-0" 
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" 
+              title="Hang Luu - Preply Intro Video">
+            </iframe>
           </div>
         </div>
 
-        <div
-          id="reviewTrack"
-          class="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 pt-1"
-          style="scrollbar-width: none; -ms-overflow-style: none;"
-        >
-          <!-- Melina -->
-          <div class="snap-start shrink-0 w-[320px] sm:w-[400px] bg-[#f0fdf4] p-7 sm:p-8 rounded-3xl border border-emerald-100 shadow-sm flex flex-col justify-between select-none">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-3 py-1 rounded-lg border border-emerald-200">Tones & Pronunciation</span>
-                <div class="text-amber-500 text-sm tracking-widest">★★★★★</div>
-              </div>
-              <p class="text-slate-800 text-sm sm:text-base leading-relaxed font-normal mb-6">
-                “Hang is amazing at explaining Vietnamese tones and pronunciation in a way that actually makes sense. As a complete beginner, she always made me feel comfortable trying to speak Vietnamese confidently even when I thought I completely butchered it.”
-              </p>
-            </div>
-            <div class="pt-5 border-t border-emerald-200/60 flex items-center">
-              <div class="flex items-center gap-3.5">
-                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-sm shadow-xs">M</div>
-                <div class="text-sm font-bold text-slate-900">Melina</div>
-              </div>
-            </div>
+        <div class="lg:col-span-7 space-y-5 sm:space-y-6 text-stone-700 text-base sm:text-lg leading-relaxed">
+          
+          <h3 class="text-lg sm:text-2xl font-extrabold text-slate-900 tracking-tight font-brand italic leading-snug bg-[#fffaf5] p-5 sm:p-6 rounded-2xl border border-stone-200/80 shadow-2xs">
+            "This video helped me reach 100 students worldwide in just 7 months!"
+          </h3>
+          
+          <p class="text-stone-600 text-base sm:text-lg">
+            Over 3 years of teaching Vietnamese, every lesson has been refined through hands-on experience, blending practical insights with 100% tailor-made materials.
+          </p>
+
+          <div class="pt-1">
+            <p class="font-extrabold text-slate-900 mb-3 text-xs sm:text-sm uppercase tracking-wider text-red-600">Perfect for:</p>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm sm:text-base text-stone-800 font-medium">
+              <li class="flex items-start gap-3 p-4 rounded-xl bg-stone-50 border border-stone-100 shadow-2xs">
+                <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
+                <span><strong class="text-slate-900 font-extrabold block text-base sm:text-lg">Absolute beginners</strong> starting from zero</span>
+              </li>
+              <li class="flex items-start gap-3 p-4 rounded-xl bg-stone-50 border border-stone-100 shadow-2xs">
+                <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
+                <span><strong class="text-slate-900 font-extrabold block text-base sm:text-lg">Heritage speakers</strong> reconnecting with roots</span>
+              </li>
+              <li class="flex items-start gap-3 p-4 rounded-xl bg-stone-50 border border-stone-100 shadow-2xs">
+                <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
+                <span><strong class="text-slate-900 font-extrabold block text-base sm:text-lg">Expats in Vietnam</strong> navigating daily work & life</span>
+              </li>
+              <li class="flex items-start gap-3 p-4 rounded-xl bg-stone-50 border border-stone-100 shadow-2xs">
+                <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
+                <span><strong class="text-slate-900 font-extrabold block text-base sm:text-lg">Partners & in-laws</strong> connecting deeply with Vietnamese spouses and family</span>
+              </li>
+            </ul>
           </div>
 
-          <!-- Thomas -->
-          <div class="snap-start shrink-0 w-[320px] sm:w-[400px] bg-[#fefce8] p-7 sm:p-8 rounded-3xl border border-amber-100 shadow-sm flex flex-col justify-between select-none">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-bold text-amber-800 bg-amber-100 px-3 py-1 rounded-lg border border-amber-200">Wedding Speech Prep</span>
-                <div class="text-amber-500 text-sm tracking-widest">★★★★★</div>
-              </div>
-              <p class="text-slate-800 text-sm sm:text-base leading-relaxed font-normal mb-6">
-                “Hang is a great tutor. She helped me write a part of my wedding speech in Vietnamese and was extremely patient in teaching. She took me from a complete beginner to being able to say my speech confidently and has a really friendly style.”
-              </p>
-            </div>
-            <div class="pt-5 border-t border-amber-200/60 flex items-center">
-              <div class="flex items-center gap-3.5">
-                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold text-sm shadow-xs">T</div>
-                <div class="text-sm font-bold text-slate-900">Thomas</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Kathy -->
-          <div class="snap-start shrink-0 w-[320px] sm:w-[400px] bg-[#fff1f2] p-7 sm:p-8 rounded-3xl border border-rose-100 shadow-sm flex flex-col justify-between select-none">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-bold text-rose-700 bg-rose-100 px-3 py-1 rounded-lg border border-rose-200">Practical & Engaging</span>
-                <div class="text-amber-500 text-sm tracking-widest">★★★★★</div>
-              </div>
-              <p class="text-slate-800 text-sm sm:text-base leading-relaxed font-normal mb-6">
-                “I highly recommend Hang as a Vietnamese tutor. Her lessons are engaging, well-structured, and tailored to my learning pace. What I appreciate most is her ability to make learning practical by incorporating real-life conversations and cultural insights.”
-              </p>
-            </div>
-            <div class="pt-5 border-t border-rose-200/60 flex items-center">
-              <div class="flex items-center gap-3.5">
-                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-rose-600 text-white flex items-center justify-center font-bold text-sm shadow-xs">K</div>
-                <div class="text-sm font-bold text-slate-900">Kathy</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Amber -->
-          <div class="snap-start shrink-0 w-[320px] sm:w-[400px] bg-[#eff6ff] p-7 sm:p-8 rounded-3xl border border-blue-100 shadow-sm flex flex-col justify-between select-none">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-bold text-blue-700 bg-blue-100 px-3 py-1 rounded-lg border border-blue-200">Growth & Support</span>
-                <div class="text-amber-500 text-sm tracking-widest">★★★★★</div>
-              </div>
-              <p class="text-slate-800 text-sm sm:text-base leading-relaxed font-normal mb-6">
-                “Very kind and patient. She builds on skills naturally and at an encouraging pace. She goes above and beyond with extra resources and messages. When I needed the extra push she was firm, but when I needed kindness she supplied that in bag-fuls.”
-              </p>
-            </div>
-            <div class="pt-5 border-t border-blue-200/60 flex items-center">
-              <div class="flex items-center gap-3.5">
-                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-xs">A</div>
-                <div class="text-sm font-bold text-slate-900">Amber</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Joe -->
-          <div class="snap-start shrink-0 w-[320px] sm:w-[400px] bg-[#f5f3ff] p-7 sm:p-8 rounded-3xl border border-purple-100 shadow-sm flex flex-col justify-between select-none">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-xs font-bold text-purple-700 bg-purple-100 px-3 py-1 rounded-lg border border-purple-200">Engaging & Structured</span>
-                <div class="text-amber-500 text-sm tracking-widest">★★★★★</div>
-              </div>
-              <p class="text-slate-800 text-sm sm:text-base leading-relaxed font-normal mb-6">
-                “She is the best teacher by far! Her style of breaking down & explaining concepts keeps me engaged & motivated. She sends over everything we went over during sessions. I still can't believe how much I've learned in only a handful of sessions.”
-              </p>
-            </div>
-            <div class="pt-5 border-t border-purple-200/60 flex items-center">
-              <div class="flex items-center gap-3.5">
-                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-sm shadow-xs">J</div>
-                <div class="text-sm font-bold text-slate-900">Joe</div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ SECTION -->
-    <section id="faq" class="py-14 sm:py-20 bg-white">
-      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-        <div class="text-center max-w-2xl mx-auto mb-12">
-          <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest bg-red-50 px-3 py-1 rounded-md border border-red-200">Got Questions</span>
-          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-brand mt-2.5">Frequently Asked Questions</h2>
-        </div>
-
-        <div class="max-w-3xl mx-auto space-y-4 text-xs sm:text-sm">
-          <details class="group bg-[#fffaf5] p-5 sm:p-6 rounded-3xl border border-stone-200/90 shadow-2xs hover:border-red-300 transition-colors">
-            <summary class="flex justify-between items-center font-bold text-slate-900 cursor-pointer list-none">
-              <span class="text-sm sm:text-base">How do the online lessons work?</span>
-              <span class="transition group-open:rotate-180 text-stone-400">▼</span>
-            </summary>
-            <p class="text-stone-600 mt-3 leading-relaxed">
-              All classes are held 1-on-1 via Google Meet (or Zoom). Slides and audios are provided for each session.
+          <div class="relative overflow-hidden bg-gradient-to-r from-red-50/90 to-[#fffaf5] p-5 sm:p-6 rounded-2xl border-l-4 border-red-600 border-y border-r border-stone-200/80 shadow-xs mt-4">
+            <p class="text-base sm:text-xl font-extrabold text-slate-900 tracking-tight font-brand italic text-red-600">
+              Let's speak real Vietnamese from Day 1!
             </p>
-          </details>
+          </div>
 
-          <details class="group bg-[#fffaf5] p-5 sm:p-6 rounded-3xl border border-stone-200/90 shadow-2xs hover:border-red-300 transition-colors">
-            <summary class="flex justify-between items-center font-bold text-slate-900 cursor-pointer list-none">
-              <span class="text-sm sm:text-base">Should I learn Northern (Hanoi) or Southern (Saigon) accent?</span>
-              <span class="transition group-open:rotate-180 text-stone-400">▼</span>
-            </summary>
-            <p class="text-stone-600 mt-3 leading-relaxed">
-              It depends on where you live, plan to stay, or who you want to talk to, as the two accents have distinct differences and you should choose one before starting.
-            </p>
-          </details>
-
-          <details class="group bg-[#fffaf5] p-5 sm:p-6 rounded-3xl border border-stone-200/90 shadow-2xs hover:border-red-300 transition-colors">
-            <summary class="flex justify-between items-center font-bold text-slate-900 cursor-pointer list-none">
-              <span class="text-sm sm:text-base">How do I make payment?</span>
-              <span class="transition group-open:rotate-180 text-stone-400">▼</span>
-            </summary>
-            <p class="text-stone-600 mt-3 leading-relaxed">
-              We support direct payments via <strong>Wise</strong>, <strong>PayPal</strong>, or direct bank transfer if you have a local Vietnamese bank account.
-            </p>
-          </details>
         </div>
-      </div>
-    </section>
-  </main>
 
-  <!-- FOOTER -->
-  <footer class="bg-[#fffaf5] text-stone-600 py-10 border-t border-stone-200/80">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-      <div class="flex items-center justify-center gap-2.5">
-        <span class="font-brand font-black text-slate-900 tracking-wider text-base sm:text-lg">HAVIE</span>
-        <span class="text-stone-300">•</span>
-        <span class="text-xs sm:text-sm font-medium text-stone-500">Learn Vietnamese with Hang</span>
-      </div>
-      <div class="flex items-center gap-5 sm:gap-7 font-semibold text-xs sm:text-sm text-stone-700 flex-wrap justify-center">
-        <a href="#about" class="hover:text-red-600 transition">About Me</a>
-        <a href="#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
-        <a href="/resources" class="hover:text-red-600 transition">Resources</a>
-        <a href="/student" class="hover:text-red-600 transition">Student Portal</a>
-        <a href="/test" class="hover:text-red-600 transition">Level Test</a>
-        <button type="button" class="open-modal-trigger text-red-600 font-bold hover:underline cursor-pointer">Book Trial</button>
       </div>
     </div>
-  </footer>
+  </section>
+
+  <!-- LEARNING TRACKS -->
+  <section id="curriculum" class="py-12 sm:py-16 bg-white border-t border-stone-200/60">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+        <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest bg-red-50 px-3 py-1 rounded-md border border-red-200">Tailored Programs</span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-2.5 tracking-tight font-brand">
+          Find the Path That Fits Your Goals
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+        
+        <!-- Track 01 -->
+        <div class="bg-[#fffaf5] rounded-3xl p-6 sm:p-8 border border-stone-200/90 shadow-2xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="inline-block text-[11px] font-bold text-slate-700 bg-stone-100 px-3 py-1 rounded-lg uppercase tracking-wider">
+              Track 01 • 5–10 Sessions
+            </div>
+            <h3 class="text-xl sm:text-2xl font-black text-slate-900 mt-3.5 mb-3 font-brand">
+              Pronunciation
+            </h3>
+            <p class="text-sm sm:text-base text-stone-600 leading-relaxed mb-6 font-medium">
+              Master exact mouth/tongue mechanics for vowels, consonants, and the 6 tones from day one.
+            </p>
+            <ul class="space-y-3.5 text-sm sm:text-base text-slate-800 font-semibold">
+              <li class="flex items-start gap-2.5">
+                <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
+                <span>Mouth, jaw & lip positioning</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
+                <span>Interactive tone Drills</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
+                <span>Custom practice audio files</span>
+              </li>
+            </ul>
+          </div>
+          <div class="mt-8 pt-6 border-t border-stone-100">
+            <button
+              type="button"
+              class="open-modal-trigger block w-full text-center py-3.5 bg-stone-100 hover:bg-stone-200 text-slate-900 font-extrabold rounded-xl text-xs sm:text-sm transition cursor-pointer"
+            >
+              Book 25-Min Trial Lesson →
+            </button>
+          </div>
+        </div>
+
+        <!-- Track 02 (Featured) -->
+        <div class="bg-[#fffaf5] rounded-3xl p-6 sm:p-8 border-2 border-red-600 shadow-xl relative md:-translate-y-3 flex flex-col justify-between">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-red-600 text-white text-[11px] font-extrabold px-4 py-1 rounded-full uppercase tracking-wider shadow-md whitespace-nowrap">
+            🔥 Most Popular for Expats
+          </div>
+          <div>
+            <div class="inline-block text-[11px] font-bold text-red-600 bg-red-50 px-3 py-1 rounded-lg border border-red-200 uppercase tracking-wider">
+              Track 02 • 10–20 Sessions
+            </div>
+            <h3 class="text-xl sm:text-2xl font-black text-slate-900 mt-3.5 mb-3 font-brand">
+              Real-World Street Vietnamese
+            </h3>
+            <p class="text-sm sm:text-base text-stone-600 leading-relaxed mb-6 font-medium">
+              Cut through textbook stiffness. Speak natural, conversational Vietnamese for daily life and travel.
+            </p>
+            <ul class="space-y-3.5 text-sm sm:text-base text-slate-800 font-semibold">
+              <li class="flex items-start gap-2.5">
+                <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
+                <span>Ordering food & drinks locally</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
+                <span>Rides, deliveries & daily errands</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
+                <span>Marketplace bargaining & shopping</span>
+              </li>
+            </ul>
+          </div>
+          <div class="mt-8 pt-6 border-t border-stone-100">
+            <button
+              type="button"
+              class="open-modal-trigger block w-full text-center py-3.5 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl text-xs sm:text-sm transition shadow-lg shadow-red-600/20 hover:-translate-y-0.5 cursor-pointer font-brand"
+            >
+              Book 25-Min Trial Lesson →
+            </button>
+          </div>
+        </div>
+
+        <!-- Track 03 -->
+        <div class="bg-[#fffaf5] rounded-3xl p-6 sm:p-8 border border-stone-200/90 shadow-2xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="inline-block text-[11px] font-bold text-slate-700 bg-stone-100 px-3 py-1 rounded-lg uppercase tracking-wider">
+              Track 03 • Flexible / Ongoing
+            </div>
+            <h3 class="text-xl sm:text-2xl font-black text-slate-900 mt-3.5 mb-3 font-brand">
+              Family & Heritage Roots
+            </h3>
+            <p class="text-sm sm:text-base text-stone-600 leading-relaxed mb-6 font-medium">
+              Bridge the gap with your family, partner, and relatives through warm, culturally grounded speech.
+            </p>
+            <ul class="space-y-3.5 text-sm sm:text-base text-slate-800 font-semibold">
+              <li class="flex items-start gap-2.5">
+                <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
+                <span>Dining table chats & bonding</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
+                <span>Cultural etiquette for Tết & weddings</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-red-600 font-bold shrink-0 mt-0.5">✓</span>
+                <span>Regional accents & family terms</span>
+              </li>
+            </ul>
+          </div>
+          <div class="mt-8 pt-6 border-t border-stone-100">
+            <button
+              type="button"
+              class="open-modal-trigger block w-full text-center py-3.5 bg-stone-100 hover:bg-stone-200 text-slate-900 font-bold rounded-xl text-xs sm:text-sm transition cursor-pointer"
+            >
+              Book 25-Min Trial Lesson →
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- STUDENT TESTIMONIALS CAROUSEL -->
+  <section id="reviews" class="py-14 sm:py-20 bg-white overflow-hidden">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-12">
+        <div class="space-y-2">
+          <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest bg-red-50 px-3 py-1 rounded-md border border-red-200 inline-block">Student Stories</span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-brand mt-1">
+            Real Progress in Everyday Situations
+          </h2>
+        </div>
+
+        <div class="flex items-center gap-3 shrink-0">
+          <button
+            id="prevBtn"
+            type="button"
+            aria-label="Previous review"
+            class="w-11 h-11 rounded-full border border-stone-200 bg-white hover:bg-stone-50 text-slate-800 flex items-center justify-center font-bold text-lg shadow-2xs transition-all active:scale-95 cursor-pointer"
+          >
+            ←
+          </button>
+          <button
+            id="nextBtn"
+            type="button"
+            aria-label="Next review"
+            class="w-11 h-11 rounded-full border border-stone-200 bg-white hover:bg-stone-50 text-slate-800 flex items-center justify-center font-bold text-lg shadow-2xs transition-all active:scale-95 cursor-pointer"
+          >
+            →
+          </button>
+        </div>
+      </div>
+
+      <div
+        id="reviewTrack"
+        class="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 pt-1"
+        style="scrollbar-width: none; -ms-overflow-style: none;"
+      >
+        <!-- Melina -->
+        <div class="snap-start shrink-0 w-[320px] sm:w-[400px] bg-[#f0fdf4] p-7 sm:p-8 rounded-3xl border border-emerald-100 shadow-sm flex flex-col justify-between select-none">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-3 py-1 rounded-lg border border-emerald-200">Tones & Pronunciation</span>
+              <div class="text-amber-500 text-sm tracking-widest">★★★★★</div>
+            </div>
+            <p class="text-slate-800 text-sm sm:text-base leading-relaxed font-normal mb-6">
+              “Hang is amazing at explaining Vietnamese tones and pronunciation in a way that actually makes sense. As a complete beginner, she always made me feel comfortable trying to speak Vietnamese confidently even when I thought I completely butchered it.”
+            </p>
+          </div>
+          <div class="pt-5 border-t border-emerald-200/60 flex items-center">
+            <div class="flex items-center gap-3.5">
+              <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-sm shadow-xs">M</div>
+              <div class="text-sm font-bold text-slate-900">Melina</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Thomas -->
+        <div class="snap-start shrink-0 w-[320px] sm:w-[400px] bg-[#fefce8] p-7 sm:p-8 rounded-3xl border border-amber-100 shadow-sm flex flex-col justify-between select-none">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-bold text-amber-800 bg-amber-100 px-3 py-1 rounded-lg border border-amber-200">Wedding Speech Prep</span>
+              <div class="text-amber-500 text-sm tracking-widest">★★★★★</div>
+            </div>
+            <p class="text-slate-800 text-sm sm:text-base leading-relaxed font-normal mb-6">
+              “Hang is a great tutor. She helped me write a part of my wedding speech in Vietnamese and was extremely patient in teaching. She took me from a complete beginner to being able to say my speech confidently and has a really friendly style.”
+            </p>
+          </div>
+          <div class="pt-5 border-t border-amber-200/60 flex items-center">
+            <div class="flex items-center gap-3.5">
+              <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-amber-600 text-white flex items-center justify-center font-bold text-sm shadow-xs">T</div>
+              <div class="text-sm font-bold text-slate-900">Thomas</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kathy -->
+        <div class="snap-start shrink-0 w-[320px] sm:w-[400px] bg-[#fff1f2] p-7 sm:p-8 rounded-3xl border border-rose-100 shadow-sm flex flex-col justify-between select-none">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-bold text-rose-700 bg-rose-100 px-3 py-1 rounded-lg border border-rose-200">Practical & Engaging</span>
+              <div class="text-amber-500 text-sm tracking-widest">★★★★★</div>
+            </div>
+            <p class="text-slate-800 text-sm sm:text-base leading-relaxed font-normal mb-6">
+              “I highly recommend Hang as a Vietnamese tutor. Her lessons are engaging, well-structured, and tailored to my learning pace. What I appreciate most is her ability to make learning practical by incorporating real-life conversations and cultural insights.”
+            </p>
+          </div>
+          <div class="pt-5 border-t border-rose-200/60 flex items-center">
+            <div class="flex items-center gap-3.5">
+              <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-rose-600 text-white flex items-center justify-center font-bold text-sm shadow-xs">K</div>
+              <div class="text-sm font-bold text-slate-900">Kathy</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Amber -->
+        <div class="snap-start shrink-0 w-[320px] sm:w-[400px] bg-[#eff6ff] p-7 sm:p-8 rounded-3xl border border-blue-100 shadow-sm flex flex-col justify-between select-none">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-bold text-blue-700 bg-blue-100 px-3 py-1 rounded-lg border border-blue-200">Growth & Support</span>
+              <div class="text-amber-500 text-sm tracking-widest">★★★★★</div>
+            </div>
+            <p class="text-slate-800 text-sm sm:text-base leading-relaxed font-normal mb-6">
+              “Very kind and patient. She builds on skills naturally and at an encouraging pace. She goes above and beyond with extra resources and messages. When I needed the extra push she was firm, but when I needed kindness she supplied that in bag-fuls.”
+            </p>
+          </div>
+          <div class="pt-5 border-t border-blue-200/60 flex items-center">
+            <div class="flex items-center gap-3.5">
+              <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-xs">A</div>
+              <div class="text-sm font-bold text-slate-900">Amber</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Joe -->
+        <div class="snap-start shrink-0 w-[320px] sm:w-[400px] bg-[#f5f3ff] p-7 sm:p-8 rounded-3xl border border-purple-100 shadow-sm flex flex-col justify-between select-none">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-bold text-purple-700 bg-purple-100 px-3 py-1 rounded-lg border border-purple-200">Engaging & Structured</span>
+              <div class="text-amber-500 text-sm tracking-widest">★★★★★</div>
+            </div>
+            <p class="text-slate-800 text-sm sm:text-base leading-relaxed font-normal mb-6">
+              “She is the best teacher by far! Her style of breaking down & explaining concepts keeps me engaged & motivated. She sends over everything we went over during sessions. I still can't believe how much I've learned in only a handful of sessions.”
+            </p>
+          </div>
+          <div class="pt-5 border-t border-purple-200/60 flex items-center">
+            <div class="flex items-center gap-3.5">
+              <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-sm shadow-xs">J</div>
+              <div class="text-sm font-bold text-slate-900">Joe</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section id="faq" class="py-14 sm:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest bg-red-50 px-3 py-1 rounded-md border border-red-200">Got Questions</span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-brand mt-2.5">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="max-w-3xl mx-auto space-y-4 text-xs sm:text-sm">
+        <details class="group bg-[#fffaf5] p-5 sm:p-6 rounded-3xl border border-stone-200/90 shadow-2xs hover:border-red-300 transition-colors">
+          <summary class="flex justify-between items-center font-bold text-slate-900 cursor-pointer list-none">
+            <span class="text-sm sm:text-base">How do the online lessons work?</span>
+            <span class="transition group-open:rotate-180 text-stone-400">▼</span>
+          </summary>
+          <p class="text-stone-600 mt-3 leading-relaxed">
+            All classes are held 1-on-1 via Google Meet (or Zoom). Slides and audios are provided for each session.
+          </p>
+        </details>
+
+        <details class="group bg-[#fffaf5] p-5 sm:p-6 rounded-3xl border border-stone-200/90 shadow-2xs hover:border-red-300 transition-colors">
+          <summary class="flex justify-between items-center font-bold text-slate-900 cursor-pointer list-none">
+            <span class="text-sm sm:text-base">Should I learn Northern (Hanoi) or Southern (Saigon) accent?</span>
+            <span class="transition group-open:rotate-180 text-stone-400">▼</span>
+          </summary>
+          <p class="text-stone-600 mt-3 leading-relaxed">
+            It depends on where you live, plan to stay, or who you want to talk to, as the two accents have distinct differences and you should choose one before starting.
+          </p>
+        </details>
+
+        <details class="group bg-[#fffaf5] p-5 sm:p-6 rounded-3xl border border-stone-200/90 shadow-2xs hover:border-red-300 transition-colors">
+          <summary class="flex justify-between items-center font-bold text-slate-900 cursor-pointer list-none">
+            <span class="text-sm sm:text-base">How do I make payment?</span>
+            <span class="transition group-open:rotate-180 text-stone-400">▼</span>
+          </summary>
+          <p class="text-stone-600 mt-3 leading-relaxed">
+            We support direct payments via <strong>Wise</strong>, <strong>PayPal</strong>, or direct bank transfer if you have a local Vietnamese bank account.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
 
   <!-- CONSULTATION / BOOKING MODAL -->
   <div id="consultModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">

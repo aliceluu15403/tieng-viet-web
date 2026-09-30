@@ -406,7 +406,7 @@ const allListeningLessons = {
         part2: "mấy con đến Việt Nam? &nbsp;&nbsp;|&nbsp;&nbsp; <span class='text-slate-700 font-normal'><b>B:</b> Lần thứ hai rồi ạ.</span>",
         typeAnswer: "lan thu",
         correctMcq: "lần thứ",
-        mcqOptions: ["lần thứ", "lan thư", "lần tưu"]
+        mcqOptions: ["lần thứ", "lan thư", "lần thu"]
       },
       {
         id: 5,
@@ -444,7 +444,7 @@ const allListeningLessons = {
         part2: "mấy anh tới Việt Nam? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Lần thứ ba rồi.",
         typeAnswer: "lan thu",
         correctMcq: "lần thứ",
-        mcqOptions: ["lần thứ", "lan thư", "lần tưu"]
+        mcqOptions: ["lần thứ", "lan thư", "lần thu"]
       },
       {
         id: 2,
@@ -469,6 +469,32 @@ const allListeningLessons = {
         typeAnswer: "lan",
         correctMcq: "lần",
         mcqOptions: ["lần", "lấn", "lản"]
+      }
+    ],
+    listeningMcqQuestions: [
+      {
+        id: 1,
+        question: "Đây là lần thứ mấy anh tới Việt Nam?",
+        options: ["Lần đầu tiên", "Lần thứ hai", "Lần thứ ba", "Lần thứ tư"],
+        correct: 2
+      },
+      {
+        id: 2,
+        question: "Anh đã tới Cần Thơ chưa?",
+        options: ["Rồi", "Chưa đi Cần Thơ", "Sẽ đi ngày mai", "Không đi"],
+        correct: 1
+      },
+      {
+        id: 3,
+        question: "Anh ấy đã đến đâu rồi?",
+        options: ["Cần Thơ", "Đà Nẵng", "Hà Nội", "Hồ Chí Minh"],
+        correct: 1
+      },
+      {
+        id: 4,
+        question: "Anh ấy đến đó mấy lần?",
+        options: ["Một lần", "Hai lần", "Ba lần", "Bốn lần"],
+        correct: 1
       }
     ]
   }

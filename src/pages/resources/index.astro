@@ -32,79 +32,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[550px] h-[550px] hero-glow rounded-full blur-3xl"></div>
   </div>
 
-  <!-- NAVBAR -->
-  <header class="sticky top-0 z-40 bg-[#fffaf5]/90 backdrop-blur-md border-b border-stone-200/80 h-20">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 h-full flex items-center justify-between">
-      
-      <!-- LOGO BÊN TRÁI -->
-      <a href="/" class="group flex flex-col select-none text-left shrink-0">
-        <div class="h-7 sm:h-8 flex items-center">
-          <svg class="h-7 sm:h-8 w-auto overflow-visible" viewBox="0 0 175 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 2H6V12H18V2H24V28H18V17H6V28H0V2Z" fill="#dc2626"/>
-            <path d="M41 2L52 28H45.5L43.2 22H33.8L31.5 28H25L36 2H41ZM38.5 8.5L35.2 17.5H41.8L38.5 8.5Z" fill="#dc2626"/>
-            <path d="M53 2H59.5L67 21L74.5 2H81L70.5 28H63.5L53 2Z" fill="#dc2626"/>
-            <path d="M86 2H92V28H86V2Z" fill="#dc2626"/>
-            <path d="M98 2H117V7.5H104V12H115V17H104V22.5H117V28H98V2Z" fill="#dc2626"/>
-          </svg>
-        </div>
-        <span class="text-[9.5px] sm:text-[10px] font-bold tracking-[0.22em] sm:tracking-[0.26em] text-stone-400 uppercase mt-1 pl-0.5 leading-none">
-          Learn Vietnamese Online
-        </span>
-      </a>
-
-      <!-- CỤM MENU CHỮ Ở GIỮA -->
-      <nav class="hidden md:flex items-center space-x-7 lg:space-x-8 text-base font-bold text-slate-800">
-        <a href="/#about" class="hover:text-red-600 transition">About Me</a>
-        <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
-        <a href="/resources" class="text-red-600 transition font-bold">Resources</a>
-        <a href="/student" class="hover:text-red-600 transition">Student Portal</a>
-        <a href="/test" class="hover:text-red-600 transition">Level Test</a>
-      </nav>
-
-      <!-- NÚT BOOK -->
-      <div class="hidden md:flex items-center pl-6 shrink-0">
-        <button
-          type="button"
-          class="open-modal-trigger inline-flex items-center justify-center px-5 py-3 text-sm font-extrabold text-white bg-red-600 hover:bg-red-700 rounded-xl shadow-lg shadow-red-600/25 transition hover:-translate-y-0.5 cursor-pointer"
-        >
-          Book 25-Min Trial Lesson →
-        </button>
-      </div>
-
-      <!-- MOBILE TOGGLE BUTTON -->
-      <div class="flex items-center md:hidden">
-        <button 
-          id="mobileMenuBtn" 
-          type="button" 
-          aria-label="Toggle Menu"
-          class="w-10 h-10 rounded-xl bg-stone-100 hover:bg-stone-200 text-slate-800 flex items-center justify-center font-bold transition cursor-pointer"
-        >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-      </div>
-
-    </div>
-
-    <!-- Mobile Dropdown Menu -->
-    <div id="mobileMenu" class="hidden md:hidden absolute top-20 left-0 w-full bg-[#fffaf5] border-b border-stone-200 shadow-xl px-6 py-5 space-y-4 font-semibold text-slate-800 text-base">
-      <a href="/#about" class="mobile-link block hover:text-red-600 transition">About Me</a>
-      <a href="/#curriculum" class="mobile-link block hover:text-red-600 transition">Learning Tracks</a>
-      <a href="/resources" class="mobile-link block text-red-600 font-bold transition">Resources</a>
-      <a href="/student" class="mobile-link block hover:text-red-600 transition">Student Portal</a>
-      <a href="/test" class="mobile-link block hover:text-red-600 transition">Level Test</a>
-      <div class="pt-3 border-t border-stone-200">
-        <button
-          type="button"
-          class="open-modal-trigger w-full py-3.5 text-sm font-bold text-white bg-red-600 rounded-xl text-center shadow-md cursor-pointer"
-        >
-          Book 25-Min Trial Lesson →
-        </button>
-      </div>
-    </div>
-  </header>
-
   <main class="flex-grow pt-10 sm:pt-14 pb-20 sm:pb-24">
     
     <!-- HEADER INTRO -->
@@ -123,7 +50,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       </p>
     </section>
 
-    <!-- RESOURCES CARDS (ĐÃ TĂNG CỠ CHỮ VỪA PHẢI) -->
+    <!-- RESOURCES CARDS -->
     <section class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 pb-10">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
         
@@ -224,25 +151,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
   </main>
 
-  <!-- FOOTER -->
-  <footer class="bg-[#fffaf5] text-stone-600 py-10 border-t border-stone-200/80">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-      <div class="flex items-center justify-center gap-2.5">
-        <span class="font-brand font-black text-slate-900 tracking-wider text-base sm:text-lg">HAVIE</span>
-        <span class="text-stone-300">•</span>
-        <span class="text-xs sm:text-sm font-medium text-stone-500">Learn Vietnamese with Hang</span>
-      </div>
-      <div class="flex items-center gap-5 sm:gap-7 font-semibold text-xs sm:text-sm text-stone-700 flex-wrap justify-center">
-        <a href="/#about" class="hover:text-red-600 transition">About Me</a>
-        <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
-        <a href="/resources" class="hover:text-red-600 transition font-bold">Resources</a>
-        <a href="/student" class="hover:text-red-600 transition">Student Portal</a>
-        <a href="/test" class="hover:text-red-600 transition">Level Test</a>
-        <button type="button" class="open-modal-trigger text-red-600 font-bold hover:underline cursor-pointer">Book Trial</button>
-      </div>
-    </div>
-  </footer>
-
   <!-- CONSULTATION / BOOKING MODAL -->
   <div id="consultModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-stone-200 space-y-6 text-left">
@@ -306,19 +214,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
   <!-- SCRIPTS -->
   <script is:inline>
-    // Mobile Menu Toggle
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
-    if (mobileMenuBtn && mobileMenu) {
-      mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
-      mobileLinks.forEach(link => {
-        link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
-      });
-    }
-
     // Modal Control Script
     const modal = document.getElementById('consultModal');
     const openTriggers = document.querySelectorAll('.open-modal-trigger');
@@ -333,7 +228,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           modal.classList.remove('hidden');
           consultForm.classList.remove('hidden');
           successMessage.classList.add('hidden');
-          if (mobileMenu) mobileMenu.classList.add('hidden');
         });
       }
     });
