@@ -1,74 +1,15 @@
 ---
 // src/pages/listening.astro - Dedicated Listening & Exercise Room
 import allListeningLessons from '../data/listeningData.js';
+import Layout from '../layout.astro';
 ---
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Listening Practice | Havie</title>
-  <meta name="description" content="Dedicated listening and fill-in-the-blank exercise." />
 
-  <!-- FAVICON & MOBILE TOUCH ICONS -->
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="manifest" href="/site.webmanifest" />
-
-  <!-- Tailwind CSS CDN -->
-  <script is:inline src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --cream: #fffaf5;
-      --navy: #0f172a;
-      --brand-red: #dc2626;
-    }
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background-color: var(--cream);
-      color: var(--navy);
-    }
-    .font-brand {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
-    .hero-glow {
-      background: radial-gradient(circle, rgba(220, 38, 38, 0.12) 0%, rgba(245, 158, 11, 0.06) 50%, transparent 80%);
-    }
-  </style>
-</head>
-<body class="selection:bg-red-600 selection:text-white min-h-screen flex flex-col antialiased relative overflow-x-hidden">
-
-  <!-- NAVBAR -->
-  <header class="sticky top-0 z-40 bg-[#fffaf5]/90 backdrop-blur-md border-b border-stone-200/80 h-20">
-    <div class="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 h-full flex items-center justify-between">
-      <a href="/" class="group flex flex-col select-none text-left shrink-0">
-        <div class="h-6 sm:h-7 flex items-center">
-          <svg class="h-6 sm:h-7 w-auto overflow-visible" viewBox="0 0 175 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 2H6V12H18V2H24V28H18V17H6V28H0V2Z" fill="#dc2626"/>
-            <path d="M41 2L52 28H45.5L43.2 22H33.8L31.5 28H25L36 2H41ZM38.5 8.5L35.2 17.5H41.8L38.5 8.5Z" fill="#dc2626"/>
-            <path d="M53 2H59.5L67 21L74.5 2H81L70.5 28H63.5L53 2Z" fill="#dc2626"/>
-            <path d="M86 2H92V28H86V2Z" fill="#dc2626"/>
-            <path d="M98 2H117V7.5H104V12H115V17H104V22.5H117V28H98V2Z" fill="#dc2626"/>
-          </svg>
-        </div>
-        <span class="text-[9px] sm:text-[9.5px] font-bold tracking-[0.2em] text-stone-400 uppercase mt-1 leading-none">
-          Learn Vietnamese Online
-        </span>
-      </a>
-
-      <div class="hidden lg:flex items-center space-x-7 text-sm font-semibold text-slate-700">
-        <a href="/student" class="text-red-600 font-bold transition flex items-center gap-1">← Back to Portal</a>
-      </div>
-    </div>
-  </header>
+<Layout 
+  title="Listening Practice | Havie"
+description="Listening audios in both accents featuring MCQs, fill-in-the-blank typing exercises, and tone distinction practice."  
+canonical="https://havielearn.com/listening"
+>
+  <!-- KHÔNG DÙNG NOINDEX ĐỂ GOOGLE LẬP CHỈ MỤC BÌNH THƯỜNG -->
 
   <!-- MAIN CONTENT -->
   <main class="flex-grow flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8 relative">
@@ -86,16 +27,16 @@ import allListeningLessons from '../data/listeningData.js';
             <span class="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-md bg-red-50 text-red-600 border border-red-100">LISTENING PRACTICE</span>
             <h2 id="pageTitle" class="text-xl sm:text-2xl font-extrabold text-slate-900 font-brand mt-1">Listening Dialogue</h2>
           </div>
-          <!-- Mode Switcher Buttons -->
+          <!-- Mode Switcher Buttons (Thứ tự: MCQs -> Type-in -> Tones) -->
           <div class="flex items-center gap-2 bg-stone-100 p-1 rounded-xl flex-wrap">
-            <button type="button" id="modeTypeBtn" class="px-3.5 py-2 rounded-lg text-xs font-bold transition cursor-pointer bg-red-600 text-white shadow-sm">
+            <button type="button" id="modeListeningMcqBtn" class="px-3.5 py-2 rounded-lg text-xs font-bold transition cursor-pointer bg-red-600 text-white shadow-sm">
+              🎧 MCQs
+            </button>
+            <button type="button" id="modeTypeBtn" class="px-3.5 py-2 rounded-lg text-xs font-bold transition cursor-pointer text-stone-600 hover:text-slate-900">
               ✍️ Type-in Mode
             </button>
             <button type="button" id="modeMcqBtn" class="px-3.5 py-2 rounded-lg text-xs font-bold transition cursor-pointer text-stone-600 hover:text-slate-900">
               🔠 Tones
-            </button>
-            <button type="button" id="modeListeningMcqBtn" class="hidden px-3.5 py-2 rounded-lg text-xs font-bold transition cursor-pointer text-stone-600 hover:text-slate-900">
-              🎧 MCQs
             </button>
           </div>
         </div>
@@ -107,7 +48,7 @@ import allListeningLessons from '../data/listeningData.js';
               <div class="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center font-bold text-lg shadow-md shrink-0">🎧</div>
               <div>
                 <div id="audioFileName" class="text-[10px] font-extrabold text-red-600 uppercase tracking-wider">Audio File: Loading...</div>
-                <div id="modeHintText" class="text-sm font-bold text-slate-800">Type missing words (No diacritics needed)</div>
+                <div id="modeHintText" class="text-sm font-bold text-slate-800">Answer the questions below:</div>
               </div>
             </div>
             <audio id="audioPlayer" controls preload="auto" class="w-full md:w-72 h-11 shrink-0">
@@ -139,18 +80,20 @@ import allListeningLessons from '../data/listeningData.js';
     </div>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="bg-[#fffaf5] text-stone-600 py-8 text-xs border-t border-stone-200/80 text-center">
-    <p>© 2026 Learn Vietnamese with Hang</p>
-  </footer>
-
   <!-- SCRIPT LOGIC TRUYỀN DỮ LIỆU TỪ listeningData.js -->
-  <script define:vars={{ lessonData: allListeningLessons }}>
+  <script is:inline define:vars={{ lessonData: allListeningLessons }}>
     const urlParams = new URLSearchParams(window.location.search);
-    const rawCode = urlParams.get('code') || 'FLN01';
-    const lessonCode = rawCode.replace(/[\u200B-\u200D\uFEFF]/g, '').trim().toUpperCase();
+    const rawCode = urlParams.get('code');
+    
+    // Danh sách mã bài nghe hợp lệ
+    const validListeningCodes = ["FLN01", "FLN02", "FLS01", "WLN01", "WLS01", "SLN01", "SLS01", "FCS01"];
+    const lessonCode = (rawCode || '').replace(/[\u200B-\u200D\uFEFF]/g, '').trim().toUpperCase();
 
-    console.log("Requested Lesson Code:", lessonCode); // Kiểm tra trên Console của trình duyệt nếu cần
+    // Nếu không có mã hoặc mã không hợp lệ -> Chặn và đá thẳng về trang Student Portal
+    if (!validListeningCodes.includes(lessonCode)) {
+      window.location.href = '/student';
+      throw new Error("Unauthorized access");
+    }
 
     const audioSource = document.getElementById('audioSource');
     const audioPlayer = document.getElementById('audioPlayer');
@@ -178,17 +121,18 @@ import allListeningLessons from '../data/listeningData.js';
       audioErrorBox.classList.add('hidden');
     });
 
-    let currentMode = 'type'; // 'type', 'mcq', 'listening_mcq'
+    // Mặc định ban đầu là 'listening_mcq' (MCQs lên đầu)
+    let currentMode = listeningMcqQuestions.length > 0 ? 'listening_mcq' : 'type'; 
     let mcqAnswers = {}; 
     let shuffledOptions = {};
     let listeningMcqAnswers = {};
 
-    // Kiểm tra và hiển thị nút Trắc nghiệm nghe hiểu nếu bài học có dữ liệu
     const modeListeningMcqBtn = document.getElementById('modeListeningMcqBtn');
     if (listeningMcqQuestions.length > 0) {
       modeListeningMcqBtn.classList.remove('hidden');
     } else {
       modeListeningMcqBtn.classList.add('hidden');
+      currentMode = 'type'; // Fallback nếu bài học không có listening MCQ
     }
 
     function shuffleArray(array) {
@@ -211,6 +155,23 @@ import allListeningLessons from '../data/listeningData.js';
     const submitContainer = document.getElementById('submitContainer');
     const resultBox = document.getElementById('resultBox');
 
+    // Thiết lập trạng thái active ban đầu cho nút MCQs
+    if (currentMode === 'listening_mcq') {
+      setActiveModeButton(modeListeningMcqBtn);
+      modeHintText.textContent = "Answer the questions below:";
+    } else {
+      setActiveModeButton(modeTypeBtn);
+      modeHintText.textContent = "Type missing words (No diacritics needed)";
+    }
+
+    modeListeningMcqBtn.addEventListener('click', () => {
+      currentMode = 'listening_mcq';
+      setActiveModeButton(modeListeningMcqBtn);
+      modeHintText.textContent = "Answer the questions below:";
+      resultBox.classList.add('hidden');
+      renderExercise();
+    });
+
     modeTypeBtn.addEventListener('click', () => {
       currentMode = 'type';
       setActiveModeButton(modeTypeBtn);
@@ -227,16 +188,8 @@ import allListeningLessons from '../data/listeningData.js';
       renderExercise();
     });
 
-    modeListeningMcqBtn.addEventListener('click', () => {
-      currentMode = 'listening_mcq';
-      setActiveModeButton(modeListeningMcqBtn);
-      modeHintText.textContent = "Answer the questions below:";
-      resultBox.classList.add('hidden');
-      renderExercise();
-    });
-
     function setActiveModeButton(activeBtn) {
-      [modeTypeBtn, modeMcqBtn, modeListeningMcqBtn].forEach(btn => {
+      [modeListeningMcqBtn, modeTypeBtn, modeMcqBtn].forEach(btn => {
         btn.className = "px-3.5 py-2 rounded-lg text-xs font-bold transition cursor-pointer text-stone-600 hover:text-slate-900";
       });
       activeBtn.className = "px-3.5 py-2 rounded-lg text-xs font-bold transition cursor-pointer bg-red-600 text-white shadow-sm";
@@ -246,7 +199,59 @@ import allListeningLessons from '../data/listeningData.js';
       exerciseArea.innerHTML = "";
       resultBox.classList.add('hidden');
 
-      if (currentMode === 'type') {
+      if (currentMode === 'listening_mcq') {
+        // --- CHẾ ĐỘ TRẮC NGHIỆM NGHE HIỂU (LISTENING MCQS) ---
+        let html = '<div class="space-y-4">';
+        listeningMcqQuestions.forEach((q, index) => {
+          html += `
+            <div class="p-5 rounded-2xl bg-stone-50 border border-stone-200 space-y-3">
+              <div class="text-xs font-bold text-stone-400 uppercase">Question ${index + 1}</div>
+              <div class="text-slate-900 font-bold text-base sm:text-lg">${q.question}</div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+          `;
+
+          q.options.forEach((opt, optIdx) => {
+            let isSelected = listeningMcqAnswers[q.id] === optIdx;
+            let btnClass = isSelected 
+              ? "bg-red-600 text-white border-red-600 shadow-sm" 
+              : "bg-white text-slate-700 hover:bg-red-50 border-stone-200";
+
+            html += `
+              <button type="button" class="listening-mcq-option px-4 py-3 rounded-xl border text-xs sm:text-sm font-bold transition cursor-pointer text-left ${btnClass}" data-qid="${q.id}" data-optidx="${optIdx}">
+                ${optIdx + 1}. ${opt}
+              </button>
+            `;
+          });
+
+          html += `</div>
+            <div id="listening-mcq-feedback-${q.id}" class="hidden text-xs font-bold mt-1"></div>
+          </div>`;
+        });
+        html += '</div>';
+        exerciseArea.innerHTML = html;
+
+        submitContainer.innerHTML = `
+          <button type="button" id="checkListeningMcqBtn" class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-black font-brand rounded-xl text-xs sm:text-sm shadow-md transition cursor-pointer">
+            Check Answers →
+          </button>
+        `;
+
+        document.querySelectorAll('.listening-mcq-option').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            let qId = e.currentTarget.getAttribute('data-qid');
+            let optIdx = parseInt(e.currentTarget.getAttribute('data-optidx'));
+            listeningMcqAnswers[qId] = optIdx;
+            
+            document.querySelectorAll(`.listening-mcq-option[data-qid="${qId}"]`).forEach(b => {
+              b.className = "listening-mcq-option px-4 py-3 rounded-xl border text-xs sm:text-sm font-bold transition cursor-pointer text-left bg-white text-slate-700 hover:bg-red-50 border-stone-200";
+            });
+            e.currentTarget.className = "listening-mcq-option px-4 py-3 rounded-xl border text-xs sm:text-sm font-bold transition cursor-pointer text-left bg-red-600 text-white border-red-600 shadow-sm";
+          });
+        });
+
+        document.getElementById('checkListeningMcqBtn').addEventListener('click', checkListeningMcqAnswers);
+
+      } else if (currentMode === 'type') {
         let html = '<div class="space-y-4">';
         questions.forEach((q, index) => {
           html += `
@@ -325,58 +330,6 @@ import allListeningLessons from '../data/listeningData.js';
         });
 
         document.getElementById('checkMcqBtn').addEventListener('click', checkMcqAnswers);
-
-      } else {
-        // --- CHẾ ĐỘ TRẮC NGHIỆM NGHE HIỂU (LISTENING MCQS) ---
-        let html = '<div class="space-y-4">';
-        listeningMcqQuestions.forEach((q, index) => {
-          html += `
-            <div class="p-5 rounded-2xl bg-stone-50 border border-stone-200 space-y-3">
-              <div class="text-xs font-bold text-stone-400 uppercase">Listening Question ${index + 1}</div>
-              <div class="text-slate-900 font-bold text-base sm:text-lg">${q.question}</div>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-          `;
-
-          q.options.forEach((opt, optIdx) => {
-            let isSelected = listeningMcqAnswers[q.id] === optIdx;
-            let btnClass = isSelected 
-              ? "bg-red-600 text-white border-red-600 shadow-sm" 
-              : "bg-white text-slate-700 hover:bg-red-50 border-stone-200";
-
-            html += `
-              <button type="button" class="listening-mcq-option px-4 py-3 rounded-xl border text-xs sm:text-sm font-bold transition cursor-pointer text-left ${btnClass}" data-qid="${q.id}" data-optidx="${optIdx}">
-                ${optIdx + 1}. ${opt}
-              </button>
-            `;
-          });
-
-          html += `</div>
-            <div id="listening-mcq-feedback-${q.id}" class="hidden text-xs font-bold mt-1"></div>
-          </div>`;
-        });
-        html += '</div>';
-        exerciseArea.innerHTML = html;
-
-        submitContainer.innerHTML = `
-          <button type="button" id="checkListeningMcqBtn" class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-black font-brand rounded-xl text-xs sm:text-sm shadow-md transition cursor-pointer">
-            Check Answers →
-          </button>
-        `;
-
-        document.querySelectorAll('.listening-mcq-option').forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            let qId = e.currentTarget.getAttribute('data-qid');
-            let optIdx = parseInt(e.currentTarget.getAttribute('data-optidx'));
-            listeningMcqAnswers[qId] = optIdx;
-            
-            document.querySelectorAll(`.listening-mcq-option[data-qid="${qId}"]`).forEach(b => {
-              b.className = "listening-mcq-option px-4 py-3 rounded-xl border text-xs sm:text-sm font-bold transition cursor-pointer text-left bg-white text-slate-700 hover:bg-red-50 border-stone-200";
-            });
-            e.currentTarget.className = "listening-mcq-option px-4 py-3 rounded-xl border text-xs sm:text-sm font-bold transition cursor-pointer text-left bg-red-600 text-white border-red-600 shadow-sm";
-          });
-        });
-
-        document.getElementById('checkListeningMcqBtn').addEventListener('click', checkListeningMcqAnswers);
       }
     }
 
@@ -528,5 +481,4 @@ import allListeningLessons from '../data/listeningData.js';
 
     renderExercise();
   </script>
-</body>
-</html>
+</Layout>

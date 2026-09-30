@@ -440,11 +440,11 @@ const allListeningLessons = {
     questions: [
       {
         id: 1,
-        part1: "<b>A:</b> Đây là",
-        part2: "mấy anh tới Việt Nam? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Lần thứ ba rồi.",
-        typeAnswer: "lan thu",
-        correctMcq: "lần thứ",
-        mcqOptions: ["lần thứ", "lan thư", "lần thu"]
+        part1: "<b>A:</b> Đây là lần thứ",
+        part2: "anh tới Việt Nam? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Lần thứ ba rồi.",
+        typeAnswer: "may",
+        correctMcq: "mấy",
+        mcqOptions: ["mấy", "may", "mẩy"]
       },
       {
         id: 2,
@@ -456,19 +456,45 @@ const allListeningLessons = {
       },
       {
        id: 3,
-        part1: "<b>A:</b> Vậy còn Đà Nẵng? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Đà Nẵng thì anh đi",
-        part2: ".",
-        typeAnswer: "roi",
-        correctMcq: "rồi",
-        mcqOptions: ["rồi", "rối", "roi"]
+        part1: "<b>A:</b> Vậy còn Đà Nẵng? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Đà Nẵng",
+        part2: "anh đi rồi.",
+        typeAnswer: "thi",
+        correctMcq: "thì",
+        mcqOptions: ["thì", "thi", "thỉ"]
       },
       {
         id: 4,
-        part1: "<b>A:</b> Anh đi mấy",
-        part2: "rồi? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Hai lần.",
-        typeAnswer: "lan",
-        correctMcq: "lần",
-        mcqOptions: ["lần", "lấn", "lản"]
+        part1: "<b>A:</b> Anh đi mấy lần rồi? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b>",
+        part2: "lần.",
+        typeAnswer: "hai",
+        correctMcq: "hai",
+        mcqOptions: ["hai", "hải", "hại"]
+      }
+    ],
+    listeningMcqQuestions: [
+      {
+        id: 1,
+        question: "Đây là lần thứ mấy anh tới Việt Nam?",
+        options: ["Lần đầu tiên", "Lần thứ hai", "Lần thứ ba", "Lần thứ tư"],
+        correct: 2
+      },
+      {
+        id: 2,
+        question: "Anh đã tới Cần Thơ chưa?",
+        options: ["Rồi", "Chưa đi Cần Thơ", "Sẽ đi ngày mai", "Không nhắc đến"],
+        correct: 1
+      },
+      {
+        id: 3,
+        question: "Anh ấy đã đến đâu rồi?",
+        options: ["Cần Thơ", "Đà Nẵng", "Hà Nội", "Hồ Chí Minh"],
+        correct: 1
+      },
+      {
+        id: 4,
+        question: "Anh ấy đến đó mấy lần?",
+        options: ["Một lần", "Hai lần", "Ba lần", "Bốn lần"],
+        correct: 1
       }
     ],
     listeningMcqQuestions: [

@@ -1,5 +1,5 @@
 ---
-// Không có logic phức tạp, chỉ chứa phần HTML của Navbar
+// src/components/header.astro
 ---
 <header class="sticky top-0 z-40 bg-[#fffaf5]/90 backdrop-blur-md border-b border-stone-200/80 h-20">
   <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 h-full flex items-center justify-between">
@@ -29,7 +29,7 @@
       <a href="/test" class="hover:text-red-600 transition">Level Test</a>
     </nav>
 
-    <!-- NÚT BOOK -->
+    <!-- NÚT BOOK Ở HEADER -->
     <div class="hidden md:flex items-center pl-6 shrink-0">
       <button
         type="button"
@@ -72,3 +72,23 @@
     </div>
   </div>
 </header>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+    }
+  });
+</script>

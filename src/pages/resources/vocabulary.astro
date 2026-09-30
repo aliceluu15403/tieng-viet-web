@@ -1,878 +1,674 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+// src/pages/resources/vocabulary.astro
+import Layout from '../../layout.astro';
 import allTopics from '../../data/vocabData.js';
 ---
 
-<BaseLayout 
-  title="Vocabulary Games | Havie" 
-  description="Practice Vietnamese vocabulary with interactive flashcards, matching games, multiple-choice quizzes, word unscramble, and true/false challenges."
-  canonical="https://havielearn.com/resources/vocabulary"
+<Layout 
+  title="Vocabulary Games & Flashcards | Havie"
+  description="Practice and memorize Vietnamese vocabulary with interactive flashcards, matching games, multiple-choice quizzes, and word scramble challenges for all levels."
 >
-  <!-- NAVBAR -->
-  <header class="sticky top-0 z-40 bg-[#fffaf5]/90 backdrop-blur-md border-b border-stone-200/80 h-20">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 h-full flex items-center justify-between">
-      
-      <!-- LOGO -->
-      <a href="/" class="group flex flex-col select-none text-left shrink-0">
-        <div class="h-7 sm:h-8 flex items-center">
-          <svg class="h-7 sm:h-8 w-auto overflow-visible" viewBox="0 0 175 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 2H6V12H18V2H24V28H18V17H6V28H0V2Z" fill="#dc2626"/>
-            <path d="M41 2L52 28H45.5L43.2 22H33.8L31.5 28H25L36 2H41ZM38.5 8.5L35.2 17.5H41.8L38.5 8.5Z" fill="#dc2626"/>
-            <path d="M53 2H59.5L67 21L74.5 2H81L70.5 28H63.5L53 2Z" fill="#dc2626"/>
-            <path d="M86 2H92V28H86V2Z" fill="#dc2626"/>
-            <path d="M98 2H117V7.5H104V12H115V17H104V22.5H117V28H98V2Z" fill="#dc2626"/>
-          </svg>
-        </div>
-        <span class="text-[9.5px] sm:text-[10px] font-bold tracking-[0.22em] sm:tracking-[0.26em] text-stone-400 uppercase mt-1 pl-0.5 leading-none">
-          Learn Vietnamese Online
-        </span>
-      </a>
-
-      <!-- MENU GIỮA -->
-      <nav class="hidden md:flex items-center space-x-7 lg:space-x-8 text-base font-bold text-slate-800">
-        <a href="/#about" class="hover:text-red-600 transition">About Me</a>
-        <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
-        <a href="/resources" class="hover:text-red-600 transition text-red-600 font-bold">Resources</a>
-        <a href="/student" class="hover:text-red-600 transition">Student Portal</a>
-        <a href="/test" class="hover:text-red-600 transition">Level Test</a>
-      </nav>
-
-      <!-- RIGHT SELECT: ĐẦY ĐỦ TẤT CẢ CÁC MỤC -->
-      <div id="topicSelectorWrapper" class="hidden md:flex items-center gap-4 shrink-0 font-brand">
-        <div class="relative inline-block w-full max-w-[280px]">
-          <select id="topicSelect" class="w-full appearance-none px-5 py-3.5 pr-12 rounded-2xl bg-white border border-stone-200/90 text-sm font-bold text-slate-900 cursor-pointer outline-none hover:border-stone-300 focus:border-red-600 focus:ring-4 focus:ring-red-600/10 transition shadow-xs">
-            <option value="numbers_expert">Numbers</option>
-            <option value="airport_expert">Airport</option>
-            <option value="food_expert">Food</option>
-            <option value="shopping_expert">Shopping</option>
-            <option value="work_expert">Work</option>
-            <option value="health_expert">Health</option>
-            <option value="family_expert">Family</option>
-            <option value="hobbies_expert">Hobbies</option>
-            <option value="emotions_expert">Emotions</option>
-            <option value="housing_expert">Housing</option>
-            <option value="bedroom_expert">Bedroom</option>
-            <option value="bathroom_expert">Bathroom</option>
-            <option value="time_expert">Time</option>
-            <option value="frequency_expert">Frequency</option>
-          </select>
-          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-stone-400">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </div>
-        </div>
-      </div>
-
-      <!-- MOBILE TOGGLE -->
-      <div class="flex items-center md:hidden">
-        <button id="mobileMenuBtn" type="button" aria-label="Toggle Menu" class="w-10 h-10 rounded-xl bg-stone-100 hover:bg-stone-200 text-slate-800 flex items-center justify-center font-bold transition cursor-pointer">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-      </div>
-
-    </div>
-
-    <!-- MOBILE MENU -->
-    <div id="mobileMenu" class="hidden md:hidden absolute top-20 left-0 w-full bg-[#fffaf5] border-b border-stone-200 shadow-xl px-6 py-5 space-y-4 font-semibold text-slate-800 text-base">
-      <div id="mobileTopicWrapper" class="pb-2">
-        <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">Select Topic:</label>
-        <div class="relative w-full">
-          <select id="topicSelectMobile" class="w-full appearance-none px-4 py-3.5 pr-10 rounded-xl bg-white border border-stone-200 text-sm font-bold text-slate-800 outline-none focus:border-red-600">
-            <option value="numbers_expert">Numbers</option>
-            <option value="airport_expert">Airport</option>
-            <option value="food_expert">Food</option>
-            <option value="shopping_expert">Shopping</option>
-            <option value="work_expert">Work</option>
-            <option value="health_expert">Health</option>
-            <option value="family_expert">Family</option>
-            <option value="hobbies_expert">Hobbies</option>
-            <option value="emotions_expert">Emotions</option>
-            <option value="housing_expert">Housing</option>
-            <option value="bedroom_expert">Bedroom</option>
-            <option value="bathroom_expert">Bathroom</option>
-            <option value="time_expert">Time</option>
-            <option value="frequency_expert">Frequency</option>
-          </select>
-          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-stone-400">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </div>
-        </div>
-      </div>
-      <a href="/#about" class="mobile-link block hover:text-red-600 transition">About Me</a>
-      <a href="/#curriculum" class="mobile-link block hover:text-red-600 transition">Learning Tracks</a>
-      <a href="/resources" class="mobile-link block text-red-600 font-bold transition">Resources Hub</a>
-      <a href="/student" class="mobile-link block hover:text-red-600 transition">Student Portal</a>
-    </div>
-  </header>
-
-  <!-- MAIN LAB CONTAINER -->
-  <main class="flex-grow max-w-4xl w-full mx-auto px-5 sm:px-8 py-10 sm:py-14 flex flex-col gap-8 justify-center">
-    
-    <!-- TOPIC INFO -->
-    <div class="text-center flex flex-col items-center gap-3">
-      <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest bg-red-50 px-3.5 py-1.5 rounded-full border border-red-200 font-brand">
+  <div class="max-w-4xl mx-auto px-5 sm:px-8 pt-8 pb-3 flex flex-row items-center justify-between gap-4 font-brand">
+    <div>
+      <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest bg-red-50 px-3.5 py-1.5 rounded-full border border-red-200 inline-block">
         Vocabulary Lab
       </span>
-      <h1 id="topicTitle" class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 font-brand tracking-tight">
-        Topic Title
-      </h1>
-      <p id="topicDesc" class="text-stone-600 text-sm sm:text-base max-w-xl mx-auto font-medium"></p>
     </div>
 
-    <!-- GAME TABS -->
-    <div id="gameTabsWrapper" class="flex items-center justify-start md:justify-center gap-1 bg-stone-200/70 p-1.5 rounded-2xl max-w-2xl mx-auto w-full overflow-x-auto border border-stone-200/90 shadow-inner font-brand">
-      <button data-game="flashcard" class="game-tab flex-1 min-w-[100px] py-3 px-4 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer text-center text-stone-600 hover:text-slate-900">
-        Flashcards
+    <div id="topicSelectorWrapper" class="relative w-44 sm:w-48 shrink-0">
+      <button type="button" id="dropdownToggleBtn" class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-stone-200 text-xs sm:text-sm font-bold text-slate-900 shadow-2xs flex items-center justify-between cursor-pointer hover:border-stone-300 transition">
+        <span id="currentTopicLabel" class="truncate">Select Topic</span>
+        <svg id="dropdownArrow" class="w-4 h-4 text-stone-400 shrink-0 ml-2 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
       </button>
-      <button data-game="matching" class="game-tab flex-1 min-w-[90px] py-3 px-4 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer text-center text-stone-600 hover:text-slate-900">
-        Matching
-      </button>
-      <button data-game="mcqs" class="game-tab flex-1 min-w-[80px] py-3 px-4 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer text-center text-stone-600 hover:text-slate-900">
-        MCQs
-      </button>
-      <button data-game="scramble" class="game-tab flex-1 min-w-[95px] py-3 px-4 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer text-center text-stone-600 hover:text-slate-900">
-        Scramble
-      </button>
-      <button data-game="truefalse" class="game-tab flex-1 min-w-[105px] py-3 px-4 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer text-center text-stone-600 hover:text-slate-900">
-        True/False
+
+      <div id="dropdownMenu" class="hidden absolute top-[calc(100%+6px)] right-0 w-full bg-white border border-stone-200 rounded-xl shadow-2xl py-1.5 z-50 max-h-[240px] overflow-y-auto">
+        {Object.keys(allTopics).map(key => (
+          <div data-value={key} class="topic-option px-4 py-2.5 text-sm font-bold text-slate-800 hover:bg-red-50 hover:text-red-600 cursor-pointer transition">
+            {allTopics[key].title}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL HƯỚNG DẪN HOW TO PLAY -->
+  <div id="guideModal" class="hidden fixed inset-0 bg-slate-900/40 backdrop-blur-xs z-50 flex items-center justify-center p-4 font-brand">
+    <div class="bg-white rounded-3xl max-w-md w-full p-7 shadow-2xl border border-stone-200 space-y-4 relative">
+      <div class="flex items-center justify-between">
+        <h3 class="text-xl font-black text-slate-900 flex items-center gap-2">📖 How to Play</h3>
+        <button type="button" id="closeGuideBtn" class="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-slate-500 font-bold flex items-center justify-center cursor-pointer transition">✕</button>
+      </div>
+      <p id="gameInstruction" class="text-stone-600 text-sm sm:text-base leading-relaxed font-medium">
+        Loading instructions...
+      </p>
+      <button type="button" id="gotItBtn" class="w-full py-3.5 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-xl text-sm shadow-md cursor-pointer transition">
+        Got it, let's play!
       </button>
     </div>
+  </div>
 
-    <!-- MAIN GAME BOX -->
-    <div id="mainGameBox" class="bg-white rounded-[32px] p-6 sm:p-10 shadow-2xl shadow-stone-300/50 border border-stone-200/90 min-h-[440px] flex flex-col justify-between relative">
+  <main class="flex-grow max-w-4xl w-full mx-auto px-5 sm:px-8 pb-16 pt-2 flex flex-col gap-5 justify-center">
+    <div class="text-center flex flex-col items-center gap-1.5">
+      <h1 id="topicTitle" class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 font-brand tracking-tight">Topic Title</h1>
+      <p id="topicDesc" class="text-stone-600 text-xs sm:text-sm max-w-lg mx-auto font-medium"></p>
+      <span class="text-xs sm:text-sm font-bold text-amber-800 bg-amber-50 border border-amber-200 px-4 py-2 rounded-full mt-2 inline-block">💡 Audio supports Northern accent (HN). Southern coming soon!</span>
+    </div>
+
+    <div id="gameTabsWrapper" class="flex items-center justify-start md:justify-center gap-1 bg-stone-200/70 p-1.5 rounded-2xl max-w-xl mx-auto w-full overflow-x-auto border border-stone-200/90 shadow-inner font-brand">
+      <button data-game="flashcard" class="game-tab flex-1 min-w-[90px] py-2.5 px-3 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer text-center text-stone-600 hover:text-slate-900">Flashcards</button>
+      <button data-game="matching" class="game-tab flex-1 min-w-[80px] py-2.5 px-3 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer text-center text-stone-600 hover:text-slate-900">Matching</button>
+      <button data-game="mcqs" class="game-tab flex-1 min-w-[70px] py-2.5 px-3 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer text-center text-stone-600 hover:text-slate-900">MCQs</button>
+      <button data-game="scramble" class="game-tab flex-1 min-w-[85px] py-2.5 px-3 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer text-center text-stone-600 hover:text-slate-900">Scramble</button>
+      <button data-game="truefalse" class="game-tab flex-1 min-w-[95px] py-2.5 px-3 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer text-center text-stone-600 hover:text-slate-900">True/False</button>
+    </div>
+
+    <!-- KHUNG GAME CÂN ĐỐI, GỌN GÀNG -->
+    <div id="mainGameBox" class="bg-white rounded-[28px] p-5 sm:p-8 shadow-xl shadow-stone-300/40 border border-stone-200/90 min-h-[360px] flex flex-col justify-between relative">
       
       <!-- 1. FLASHCARD -->
-      <div id="game-flashcard" class="game-panel flex flex-col gap-6 w-full">
-        <div class="flex justify-between items-center text-xs font-bold text-stone-400 uppercase tracking-wider font-brand">
-          <span id="fc-counter">1 / 5</span>
-          <span>Click card to flip 🔄</span>
-        </div>
-        
-        <div class="perspective w-full max-w-md mx-auto h-[260px] cursor-pointer" id="flashcard-container" style="perspective: 1000px;">
-          <div class="card-inner relative w-full h-full transition-transform duration-500 rounded-3xl shadow-lg" id="flashcard-inner" style="transform-style: preserve-3d;">
-            
-            <div class="card-face absolute inset-0 w-full h-full rounded-3xl bg-gradient-to-br from-red-50/50 via-white to-stone-50 border-2 border-red-100 flex flex-col items-center justify-center p-6 text-center" style="backface-visibility: hidden;">
-              <span class="text-xs font-black uppercase tracking-widest text-red-600 mb-2 font-brand">Vietnamese Word</span>
-              <div class="font-brand text-2xl sm:text-3xl font-black text-slate-900 leading-tight px-4" id="fc-front">Word</div>
-            </div>
-
-            <div class="card-face absolute inset-0 w-full h-full rounded-3xl bg-slate-900 text-white flex flex-col items-center justify-center p-6 text-center" style="backface-visibility: hidden; transform: rotateY(180deg);">
-              <span class="text-xs font-black uppercase tracking-widest text-amber-400 mb-2 font-brand">English Meaning</span>
-              <div class="font-brand text-xl sm:text-2xl font-black text-white leading-tight px-4" id="fc-back">Meaning</div>
-            </div>
-
+      <div id="game-flashcard" class="game-panel flex flex-col gap-5 w-full">
+        <div class="grid grid-cols-3 items-center font-brand">
+          <div class="flex justify-start">
+            <button type="button" class="openGuideBtn text-red-600 hover:text-red-700 font-extrabold bg-red-50 hover:bg-red-100 px-3.5 py-1.5 rounded-xl transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200/60 shadow-2xs text-xs sm:text-sm">
+              <span>ℹ️</span> How to play
+            </button>
+          </div>
+          <div class="flex justify-center">
+            <span id="fc-counter" class="text-slate-700 font-black text-sm sm:text-base">1 / 5</span>
+          </div>
+          <div class="flex justify-end">
+            <span class="text-stone-400 uppercase tracking-wider font-bold text-xs sm:text-sm">CLICK CARD TO FLIP 🔄</span>
           </div>
         </div>
-
-        <div class="flex justify-center gap-4 pt-2 font-brand">
-          <button id="prevCardBtn" class="px-6 py-3 bg-stone-100 hover:bg-stone-200 text-slate-800 font-bold rounded-xl text-sm transition cursor-pointer">← Prev</button>
-          <button id="nextCardBtn" class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-xl text-sm shadow-lg shadow-red-600/20 transition cursor-pointer">Next →</button>
+        <div class="perspective w-full max-w-md mx-auto h-[230px] cursor-pointer" id="flashcard-container" style="perspective: 1000px;">
+          <div class="card-inner relative w-full h-full transition-transform duration-500 rounded-3xl shadow-lg" id="flashcard-inner" style="transform-style: preserve-3d;">
+            <div class="card-face absolute inset-0 w-full h-full rounded-3xl bg-gradient-to-br from-red-50/50 via-white to-stone-50 border-2 border-red-100 flex flex-col items-center justify-center p-5 text-center" style="backface-visibility: hidden;">
+              <span class="text-xs font-black uppercase tracking-widest text-red-600 mb-1.5 font-brand">Vietnamese Word</span>
+              <div class="font-brand text-2xl sm:text-3xl font-black text-slate-900 leading-tight px-4 mb-3" id="fc-front">Word</div>
+              <div class="z-10" onclick="event.stopPropagation()">
+                <button type="button" id="speakAudioBtn" class="px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 font-extrabold text-xs rounded-full shadow-2xs transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200">
+                  🔊 Listen
+                </button>
+              </div>
+            </div>
+            <div class="card-face absolute inset-0 w-full h-full rounded-3xl bg-slate-900 text-white flex flex-col items-center justify-center p-5 text-center" style="backface-visibility: hidden; transform: rotateY(180deg);">
+              <span class="text-xs font-black uppercase tracking-widest text-amber-400 mb-1.5 font-brand">English Meaning</span>
+              <div class="font-brand text-xl sm:text-2xl font-black text-white leading-tight px-4" id="fc-back">Meaning</div>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-between items-center text-xs sm:text-sm font-bold text-stone-400 uppercase tracking-wider font-brand px-1">
+          <span></span>
+          <span></span>
+        </div>
+        <div class="flex justify-center gap-4 pt-1 font-brand">
+          <button id="prevCardBtn" class="px-8 py-3.5 bg-stone-100 hover:bg-stone-200 text-slate-800 font-extrabold rounded-2xl text-sm sm:text-base transition cursor-pointer shadow-xs">← Prev</button>
+          <button id="nextCardBtn" class="px-10 py-3.5 bg-red-600 hover:bg-red-700 text-white font-black rounded-2xl text-sm sm:text-base shadow-lg shadow-red-600/30 cursor-pointer transition">Next →</button>
         </div>
       </div>
 
       <!-- 2. MATCHING -->
-      <div id="game-matching" class="game-panel flex-col gap-6 w-full font-brand" style="display: none;">
-        <div class="flex justify-end items-center text-sm font-bold">
-          <span class="bg-red-50 text-red-600 px-3.5 py-1.5 rounded-xl border border-red-200 text-xs font-black" id="match-score">Matched: 0 / 5</span>
+      <div id="game-matching" class="game-panel flex-col gap-4 w-full font-brand" style="display: none;">
+        <div class="flex justify-between items-center font-brand">
+          <button type="button" class="openGuideBtn text-red-600 hover:text-red-700 font-extrabold bg-red-50 hover:bg-red-100 px-3.5 py-1.5 rounded-xl transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200/60 shadow-2xs text-xs sm:text-sm">
+            <span>ℹ️</span> How to play
+          </button>
+          <span></span>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div id="match-vn-col" class="flex flex-col gap-3"></div>
-          <div id="match-en-col" class="flex flex-col gap-3"></div>
+        <div id="match-setup" class="flex flex-col items-center justify-center text-center py-4 space-y-4 my-auto">
+          <div class="w-14 h-14 bg-red-50 text-red-600 rounded-2xl flex items-center justify-center text-2xl shadow-inner border border-red-100">🧩</div>
+          <div class="space-y-1">
+            <h3 class="font-brand text-xl sm:text-2xl font-black text-slate-900 tracking-tight">Enter number of pairs to play</h3>
+            <p class="text-stone-500 text-xs sm:text-sm">Total available words in this topic: <span id="match-total-words" class="font-bold text-slate-900">5</span></p>
+          </div>
+          <div class="flex items-center justify-center gap-2.5 max-w-xs mx-auto w-full pt-1">
+            <input type="number" id="match-custom-count" min="1" value="5" class="w-32 px-4 py-2.5 rounded-xl border border-stone-300 font-bold text-center text-sm outline-none focus:border-red-600 bg-stone-50 transition" />
+            <button type="button" id="startMatchCustomBtn" class="px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-xs shadow-md cursor-pointer transition shrink-0">Start →</button>
+          </div>
+          <p id="match-error-msg" class="text-xs font-bold text-red-600 min-h-[16px]"></p>
         </div>
-        <div id="match-msg" class="text-center font-bold text-emerald-600 text-base" style="display: none;"></div>
+
+        <div id="match-play-area" class="flex-col gap-4 w-full" style="display: none;">
+          <div class="flex justify-between items-center text-xs font-bold">
+            <button type="button" id="backToMatchSetup" class="px-3 py-1 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-xl transition cursor-pointer font-bold">← Change Count</button>
+            <span class="bg-red-50 text-red-600 px-3 py-1 rounded-xl border border-red-200 text-xs font-black shadow-2xs" id="match-score">Matched: 0 / 5</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><div id="match-vn-col" class="flex flex-col gap-2"></div><div id="match-en-col" class="flex flex-col gap-2"></div></div>
+          <div id="match-msg" class="text-center font-bold text-emerald-600 text-xs bg-emerald-50 border border-emerald-200 py-3 rounded-xl" style="display: none;"></div>
+        </div>
       </div>
 
       <!-- 3. MCQS -->
-      <div id="game-mcqs" class="game-panel flex-col gap-6 w-full font-brand" style="display: none;">
-        <div class="flex justify-between items-center text-xs font-bold text-stone-400 uppercase tracking-wider">
-          <span id="mcq-progress">1 / 5</span>
-          <span id="mcq-score-box" class="text-red-600 font-black">Score: 0</span>
+      <div id="game-mcqs" class="game-panel flex-col gap-5 w-full font-brand" style="display: none;">
+        <div class="grid grid-cols-3 items-center font-brand">
+          <div class="flex justify-start">
+            <button type="button" class="openGuideBtn text-red-600 hover:text-red-700 font-extrabold bg-red-50 hover:bg-red-100 px-3.5 py-1.5 rounded-xl transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200/60 shadow-2xs text-xs sm:text-sm">
+              <span>ℹ️</span> How to play
+            </button>
+          </div>
+          <div class="flex justify-center">
+            <span id="mcq-progress" class="text-slate-700 font-black text-sm sm:text-base">1 / 5</span>
+          </div>
+          <div class="flex justify-end">
+            <span id="mcq-score-box" class="text-red-600 font-black text-sm sm:text-base">Score: 0</span>
+          </div>
         </div>
-        <div class="bg-stone-50 border border-stone-200/80 rounded-3xl p-8 text-center max-w-lg mx-auto w-full space-y-3 shadow-2xs">
-          <h3 id="mcq-word" class="font-brand text-2xl sm:text-3xl font-black text-slate-900 leading-tight">Word</h3>
+        <div class="bg-gradient-to-br from-red-50/50 via-white to-stone-50 border-2 border-red-100 rounded-3xl p-6 text-center max-w-md mx-auto w-full space-y-2.5 shadow-sm">
+          <span class="text-xs font-black uppercase tracking-widest text-red-600 font-brand">What is the correct word?</span>
+          <h3 class="font-brand text-2xl sm:text-3xl font-black text-slate-900 leading-tight mb-2" id="mcq-word">Word</h3>
+          <button type="button" id="speakMcqBtn" class="px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 font-extrabold text-xs rounded-full shadow-2xs transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200 mx-auto">🔊 Listen</button>
         </div>
-        <div id="mcq-options" class="grid grid-cols-1 gap-3 max-w-lg mx-auto w-full"></div>
-        <div id="mcq-feedback-area" class="text-center pt-2"></div>
+        <div id="mcq-options" class="grid grid-cols-1 gap-2.5 max-w-md mx-auto w-full"></div>
+        <div id="mcq-feedback-area" class="text-center pt-1"></div>
       </div>
 
       <!-- 4. SCRAMBLE -->
-      <div id="game-scramble" class="game-panel flex-col gap-6 w-full text-center font-brand" style="display: none;">
-        <div class="flex justify-between items-center text-xs font-bold text-stone-400 uppercase tracking-wider">
-          <span id="scramble-progress">1 / 5</span>
-          <span id="scramble-score-box" class="text-red-600 font-black">Score: 0</span>
+      <div id="game-scramble" class="game-panel flex-col gap-5 w-full text-center font-brand" style="display: none;">
+        <div class="grid grid-cols-3 items-center font-brand">
+          <div class="flex justify-start">
+            <button type="button" class="openGuideBtn text-red-600 hover:text-red-700 font-extrabold bg-red-50 hover:bg-red-100 px-3.5 py-1.5 rounded-xl transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200/60 shadow-2xs text-xs sm:text-sm">
+              <span>ℹ️</span> How to play
+            </button>
+          </div>
+          <div class="flex justify-center">
+            <span id="scramble-progress" class="text-slate-700 font-black text-sm sm:text-base">1 / 5</span>
+          </div>
+          <div class="flex justify-end">
+            <span id="scramble-score-box" class="text-red-600 font-black text-sm sm:text-base">Score: 0</span>
+          </div>
         </div>
-        <div class="bg-gradient-to-b from-stone-50/80 to-white border border-stone-200/90 rounded-[28px] p-8 sm:p-10 max-w-xl mx-auto w-full space-y-4 shadow-sm">
+        <div class="bg-gradient-to-b from-stone-50/80 to-white border border-stone-200/90 rounded-2xl p-6 max-w-md mx-auto w-full space-y-3 shadow-sm">
           <div class="text-stone-400 font-bold text-xs uppercase tracking-widest">💡 Hint</div>
-          <div id="scramble-hint" class="text-slate-900 font-black text-xl sm:text-2xl font-brand">Meaning</div>
-          <div class="w-12 h-0.5 bg-stone-200 mx-auto"></div>
-          <div id="scramble-letters" class="font-brand text-xl sm:text-2xl font-black text-red-600 tracking-[0.15em] py-2">word</div>
+          <div id="scramble-hint" class="text-slate-900 font-black text-lg sm:text-xl font-brand">Meaning</div>
+          <button type="button" id="speakScrBtn" class="px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 font-extrabold text-xs rounded-full shadow-2xs transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200 mx-auto">🔊 Listen</button>
+          <div class="w-10 h-0.5 bg-stone-200 mx-auto"></div>
+          <div id="scramble-letters" class="font-brand text-xl sm:text-2xl font-black text-red-600 tracking-[0.15em] py-1">word</div>
         </div>
-        <div class="flex gap-3 max-w-xl mx-auto w-full" id="scramble-action-area">
-          <input type="text" id="scramble-input" placeholder="Type here (no diacritics needed)" class="w-full px-5 py-4 rounded-2xl border border-stone-300 font-bold text-center text-base outline-none focus:border-red-600 focus:ring-4 focus:ring-red-600/10 bg-stone-50/50 transition" />
-          <button id="checkScrambleBtn" class="px-7 py-4 bg-red-600 hover:bg-red-700 text-white font-black rounded-2xl text-sm shadow-md cursor-pointer transition shrink-0">Check</button>
+        <div class="flex gap-2.5 max-w-md mx-auto w-full" id="scramble-action-area">
+          <input type="text" id="scramble-input" placeholder="Type here..." class="w-full px-4 py-2.5 rounded-xl border border-stone-300 font-bold text-center text-sm outline-none focus:border-red-600 bg-stone-50/50 transition" />
+          <button id="checkScrambleBtn" class="px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl text-xs sm:text-sm shadow-md cursor-pointer transition shrink-0">Check</button>
         </div>
-        <div id="scramble-feedback" class="text-sm font-bold min-h-[30px]"></div>
+        <div id="scramble-feedback" class="text-xs sm:text-sm font-bold min-h-[20px]"></div>
       </div>
 
       <!-- 5. TRUE / FALSE -->
-      <div id="game-truefalse" class="game-panel flex-col gap-8 w-full text-center font-brand" style="display: none;">
-        <div class="flex justify-between items-center text-xs font-bold text-stone-400 uppercase tracking-wider">
-          <span id="tf-progress">1 / 5</span>
-          <span id="tf-score-box" class="text-red-600 font-black">Score: 0</span>
+      <div id="game-truefalse" class="game-panel flex-col gap-5 w-full text-center font-brand" style="display: none;">
+        <div class="grid grid-cols-3 items-center font-brand">
+          <div class="flex justify-start">
+            <button type="button" class="openGuideBtn text-red-600 hover:text-red-700 font-extrabold bg-red-50 hover:bg-red-100 px-3.5 py-1.5 rounded-xl transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200/60 shadow-2xs text-xs sm:text-sm">
+              <span>ℹ️</span> How to play
+            </button>
+          </div>
+          <div class="flex justify-center">
+            <span id="tf-progress" class="text-slate-700 font-black text-sm sm:text-base">1 / 5</span>
+          </div>
+          <div class="flex justify-end">
+            <span id="tf-score-box" class="text-red-600 font-black text-sm sm:text-base">Score: 0</span>
+          </div>
         </div>
-        <div class="bg-gradient-to-b from-stone-50/80 to-white border border-stone-200/90 rounded-[28px] p-8 sm:p-10 max-w-xl mx-auto w-full space-y-4 shadow-sm">
-          <span class="text-[11px] font-extrabold uppercase tracking-widest text-stone-400">Translate Check</span>
-          <div id="tf-word" class="font-brand text-2xl sm:text-3xl font-black text-slate-900 leading-tight px-2">Word</div>
-          <div class="w-12 h-0.5 bg-stone-200 mx-auto"></div>
-          <div id="tf-meaning" class="font-brand text-lg sm:text-xl font-extrabold text-red-600 px-2">Meaning</div>
+        <div class="bg-gradient-to-b from-stone-50/80 to-white border border-stone-200/90 rounded-2xl p-6 max-w-md mx-auto w-full space-y-3 shadow-sm">
+          <span class="text-[10px] font-extrabold uppercase tracking-widest text-stone-400">Translate Check</span>
+          <div id="tf-word" class="font-brand text-xl sm:text-2xl font-black text-slate-900 leading-tight px-2">Word</div>
+          <button type="button" id="speakTfBtn" class="px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 font-extrabold text-xs rounded-full shadow-2xs transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200 mx-auto">🔊 Listen</button>
+          <div class="w-10 h-0.5 bg-stone-200 mx-auto"></div>
+          <div id="tf-meaning" class="font-brand text-base sm:text-lg font-extrabold text-red-600 px-2">Meaning</div>
         </div>
-        <div class="flex justify-center gap-4" id="tf-buttons-wrapper">
-          <button id="tfTrueBtn" class="px-9 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold rounded-2xl text-base shadow-md transition hover:-translate-y-0.5 cursor-pointer">True</button>
-          <button id="tfFalseBtn" class="px-9 py-4 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-2xl text-base shadow-md transition hover:-translate-y-0.5 cursor-pointer">False</button>
+        <div class="flex justify-center gap-3" id="tf-buttons-wrapper">
+          <button id="tfTrueBtn" class="px-8 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold rounded-xl text-xs sm:text-sm shadow-md cursor-pointer transition">True</button>
+          <button id="tfFalseBtn" class="px-8 py-2.5 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-xl text-xs sm:text-sm shadow-md cursor-pointer transition">False</button>
         </div>
-        <div id="tf-feedback" class="text-sm font-bold min-h-[30px]"></div>
+        <div id="tf-feedback" class="text-xs sm:text-sm font-bold min-h-[20px]"></div>
       </div>
 
     </div>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="bg-[#fffaf5] text-stone-600 py-10 border-t border-stone-200/80 mt-auto">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left font-brand">
-      <div class="flex items-center justify-center gap-2.5">
-        <span class="font-brand font-black text-slate-900 tracking-wider text-base sm:text-lg">HAVIE</span>
-        <span class="text-stone-300">•</span>
-        <span class="text-xs sm:text-sm font-medium text-stone-500">Learn Vietnamese with Hang</span>
-      </div>
-      <div class="flex items-center gap-5 sm:gap-7 font-semibold text-xs sm:text-sm text-stone-700 flex-wrap justify-center">
-        <a href="/#about" class="hover:text-red-600 transition">About Me</a>
-        <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
-        <a href="/resources" class="hover:text-red-600 transition text-red-600 font-bold">Resources</a>
-        <a href="/student" class="hover:text-red-600 transition">Student Portal</a>
-        <a href="/test" class="hover:text-red-600 transition">Level Test</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- SCRIPT LOGIC -->
   <script is:inline define:vars={{ allTopics }}>
     const urlParams = new URLSearchParams(window.location.search);
-    let userCode = urlParams.get('code') ? urlParams.get('code').trim().toUpperCase() : '';
+    let userCode = (urlParams.get('code') || '').trim().toUpperCase();
     let currentTopicKey = urlParams.get('topic');
 
-    // Ánh xạ mã code từ Student Portal (AVB01, KVN01, KVS01)
-    if (userCode === 'AVB01') {
-      currentTopicKey = 'daily_activities';
-    } else if (userCode === 'KVN01') {
-      currentTopicKey = 'kitchen_north';
-    } else if (userCode === 'KVS01') {
-      currentTopicKey = 'kitchen_south';
+    if (userCode === 'AVB01') currentTopicKey = 'daily_activities';
+    else if (userCode === 'KVN01') currentTopicKey = 'kitchen_north';
+    else if (userCode === 'KVS01') currentTopicKey = 'kitchen_south';
+
+    const topicKeys = allTopics ? Object.keys(allTopics) : [];
+    if (!currentTopicKey || !allTopics || !allTopics[currentTopicKey]) {
+      currentTopicKey = topicKeys.length > 0 ? topicKeys[0] : 'numbers_expert';
     }
+    const currentTopic = (allTopics && allTopics[currentTopicKey]) ? allTopics[currentTopicKey] : { title: "Vocabulary Lab", description: "Practice your vocabulary.", words: [] };
 
-    if (!currentTopicKey || !allTopics[currentTopicKey]) {
-      currentTopicKey = 'numbers_expert';
-    }
+    if (userCode) document.getElementById('topicSelectorWrapper').style.display = 'none';
 
-    const currentTopic = allTopics[currentTopicKey];
+    const toggleBtn = document.getElementById('dropdownToggleBtn');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    const dropdownArrow = document.getElementById('dropdownArrow');
+    document.getElementById('currentTopicLabel').textContent = currentTopic.title;
 
-    // NẾU VÀO BẰNG MÃ CODE (ĐỘC QUYỀN), TỰ ĐỘNG ẨN THANH DROPDOWN ĐI
-    if (userCode) {
-      const selectorWrapper = document.getElementById('topicSelectorWrapper');
-      const mobileTopicWrapper = document.getElementById('mobileTopicWrapper');
-      if (selectorWrapper) selectorWrapper.style.display = 'none';
-      if (mobileTopicWrapper) mobileTopicWrapper.style.display = 'none';
-    }
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdownMenu.classList.toggle('hidden');
+      dropdownArrow.classList.toggle('rotate-180');
+    });
+    document.addEventListener('click', () => {
+      dropdownMenu.classList.add('hidden');
+      dropdownArrow.classList.remove('rotate-180');
+    });
 
-    const topicSelect = document.getElementById('topicSelect');
-    const topicSelectMobile = document.getElementById('topicSelectMobile');
-    
-    if (currentTopicKey !== 'daily_activities' && currentTopicKey !== 'kitchen_north' && currentTopicKey !== 'kitchen_south') {
-      if (topicSelect) topicSelect.value = currentTopicKey;
-      if (topicSelectMobile) topicSelectMobile.value = currentTopicKey;
-    }
+    document.querySelectorAll('.topic-option').forEach(opt => {
+      const val = opt.getAttribute('data-value');
+      if (val === currentTopicKey) opt.classList.add('bg-red-50', 'text-red-600', 'font-extrabold');
+      opt.addEventListener('click', () => window.location.href = `/resources/vocabulary?topic=${val}`);
+    });
 
-    const handleTopicChange = (e) => {
-      const selectedKey = e.target.value;
-      window.location.href = `/resources/vocabulary?topic=${selectedKey}`;
-    };
-    if (topicSelect) topicSelect.addEventListener('change', handleTopicChange);
-    if (topicSelectMobile) topicSelectMobile.addEventListener('change', handleTopicChange);
+    const guideModal = document.getElementById('guideModal');
+    document.querySelectorAll('.openGuideBtn').forEach(btn => {
+      btn.addEventListener('click', () => guideModal.classList.remove('hidden'));
+    });
+    document.getElementById('closeGuideBtn').addEventListener('click', () => guideModal.classList.add('hidden'));
+    document.getElementById('gotItBtn').addEventListener('click', () => guideModal.classList.add('hidden'));
+    guideModal.addEventListener('click', (e) => { if (e.target === guideModal) guideModal.classList.add('hidden'); });
 
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    if (mobileMenuBtn && mobileMenu) {
-      mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
-    }
-
-    // KHAI BÁO DANH SÁCH MÃ KHÓA BẢO MẬT TƯƠNG ỨNG
-    const lockedCodes = {
-      'daily_activities': 'AVB01',
-      'kitchen_north': 'KVN01',
-      'kitchen_south': 'KVS01'
+    const speakWord = (text) => {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'vi-VN';
+      utterance.rate = 0.9;
+      window.speechSynthesis.speak(utterance);
     };
 
-    // KIỂM TRA BẢO MẬT: NẾU VÀO BÀI KHÓA MÀ KHÔNG CÓ MÃ HOẶC SAI MÃ
+    const instructions = {
+      flashcard: "👉 Click the card to flip and reveal the English meaning. Use Prev/Next to navigate, and click 'Listen' to hear audio.",
+      matching: "👉 Enter how many pairs you want to practice, then select a Vietnamese word and match it with its correct English meaning on the right.",
+      mcqs: "👉 Read the vocabulary word, listen to the audio if needed, and choose the correct answer from 4 options.",
+      scramble: "👉 Look at the English hint, un-scramble the letters, type the correct Vietnamese word into the input box, and hit Check.",
+      truefalse: "👉 Check if the displayed Vietnamese word matches the English meaning. Click True if correct and False if incorrect."
+    };
+
+    const updateInstruction = (gameId) => {
+      const insEl = document.getElementById('gameInstruction');
+      if (insEl && instructions[gameId]) {
+        insEl.textContent = instructions[gameId];
+      }
+    };
+
+    const lockedCodes = { 'daily_activities': 'AVB01', 'kitchen_north': 'KVN01', 'kitchen_south': 'KVS01' };
+
     if (lockedCodes[currentTopicKey] && userCode !== lockedCodes[currentTopicKey]) {
       document.getElementById('gameTabsWrapper').style.display = 'none';
       document.getElementById('topicTitle').textContent = `🔒 ${currentTopic.title} (Locked)`;
       document.getElementById('topicDesc').textContent = "This content is exclusive to active students.";
-      
       document.getElementById('mainGameBox').innerHTML = `
-        <div class="max-w-md mx-auto my-auto text-center space-y-6 py-6">
-          <div class="w-16 h-16 bg-red-50 text-red-600 rounded-2xl mx-auto flex items-center justify-center text-2xl shadow-inner border border-red-100">
-            🔐
+        <div class="max-w-md mx-auto my-auto text-center space-y-5 py-6 font-brand">
+          <div class="w-14 h-14 bg-red-50 text-red-600 rounded-2xl mx-auto flex items-center justify-center text-xl shadow-inner border border-red-100">🔐</div>
+          <div class="space-y-1.5">
+            <span class="text-[10px] font-extrabold uppercase tracking-widest text-red-600 bg-red-50 px-3 py-1 rounded-full border border-red-100 inline-block">Student Portal Exclusive</span>
+            <h2 class="text-xl font-black text-slate-900 tracking-tight">Yêu cầu mã khóa học</h2>
+            <p class="text-stone-500 text-xs">Chủ đề này yêu cầu mã bài học hợp lệ. Vui lòng vào Student Portal để xác thực.</p>
           </div>
-          <div class="space-y-2 font-brand">
-            <span class="text-[11px] font-extrabold uppercase tracking-widest text-red-600 bg-red-50 px-3.5 py-1.5 rounded-full border border-red-100 inline-block">Student Portal Exclusive</span>
-            <h2 class="text-2xl font-black text-slate-900 tracking-tight">Yêu cầu mã khóa học</h2>
-            <p class="text-stone-500 text-sm">Chủ đề này yêu cầu mã bài học hợp lệ. Vui lòng vào Student Portal để xác thực.</p>
+          <div class="space-y-2.5">
+            <a href="/student" class="block w-full py-3.5 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-xl text-xs sm:text-sm shadow-md transition">Đến Student Portal nhập mã →</a>
+            <a href="/resources/vocabulary?topic=numbers_expert" class="block w-full py-3 bg-stone-100 hover:bg-stone-200 text-slate-700 font-bold rounded-xl text-xs sm:text-sm transition">Quay lại học các phần Free khác</a>
           </div>
-          <div class="space-y-3 font-brand">
-            <a href="/student" class="block w-full py-4 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-2xl text-sm shadow-md transition">
-              Đến Student Portal nhập mã →
-            </a>
-            <a href="/resources/vocabulary?topic=numbers_expert" class="block w-full py-3 bg-stone-100 hover:bg-stone-200 text-slate-700 font-bold rounded-2xl text-sm transition">
-              Quay lại học các phần Free khác
-            </a>
-          </div>
-        </div>
-      `;
+        </div>`;
     } else if (currentTopic) {
-      // NẾU LÀ BÀI FREE HOẶC ĐÃ NHẬP ĐÚNG MÃ -> CHẠY TOÀN BỘ GAME BÌNH THƯỜNG
       document.getElementById('topicTitle').textContent = currentTopic.title;
       document.getElementById('topicDesc').textContent = currentTopic.description || "";
 
       let flashcardData = currentTopic.words || [];
       let vocabData = [...flashcardData].sort(() => Math.random() - 0.5);
 
-      function removeDiacritics(str) {
-        return str.normalize('NFD')
-                  .replace(/[\u0300-\u036f]/g, '')
-                  .replace(/đ/g, 'd')
-                  .replace(/Đ/g, 'D');
-      }
+      const removeDiacritics = (str) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');
 
       let audioCtx = null;
-      function getAudioContext() {
-        if (!audioCtx) {
-          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        if (audioCtx.state === 'suspended') {
-          audioCtx.resume();
-        }
-        return audioCtx;
-      }
-
-      function playCorrectSound() {
+      const playSound = (freq1, freq2) => {
         try {
-          const ctx = getAudioContext();
-          const now = ctx.currentTime;
-          const osc1 = ctx.createOscillator();
-          const gain1 = ctx.createGain();
-          osc1.type = 'triangle';
-          osc1.frequency.setValueAtTime(523.25, now);
-          gain1.gain.setValueAtTime(0.2, now);
-          gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
-          osc1.connect(gain1);
-          gain1.connect(ctx.destination);
-          osc1.start(now);
-          osc1.stop(now + 0.2);
-
-          const osc2 = ctx.createOscillator();
-          const gain2 = ctx.createGain();
-          osc2.type = 'triangle';
-          osc2.frequency.setValueAtTime(659.25, now + 0.1);
-          gain2.gain.setValueAtTime(0.2, now + 0.1);
-          gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
-          osc2.connect(gain2);
-          gain2.connect(ctx.destination);
-          osc2.start(now + 0.1);
-          osc2.stop(now + 0.35);
+          if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          if (audioCtx.state === 'suspended') audioCtx.resume();
+          const now = audioCtx.currentTime;
+          [[freq1, now, 0.2], [freq2, now + 0.1, 0.25]].forEach(([f, t, d]) => {
+            const osc = audioCtx.createOscillator(), g = audioCtx.createGain();
+            osc.frequency.setValueAtTime(f, t);
+            g.gain.setValueAtTime(0.2, t);
+            g.gain.exponentialRampToValueAtTime(0.001, t + d);
+            osc.connect(g); g.connect(audioCtx.destination);
+            osc.start(t); osc.stop(t + d);
+          });
         } catch(e) {}
-      }
+      };
 
-      function playIncorrectSound() {
-        try {
-          const ctx = getAudioContext();
-          const now = ctx.currentTime;
-          const osc = ctx.createOscillator();
-          const gain = ctx.createGain();
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(180, now);
-          osc.frequency.setValueAtTime(130, now + 0.1);
-          gain.gain.setValueAtTime(0.12, now);
-          gain.gain.linearRampToValueAtTime(0.001, now + 0.25);
-          osc.connect(gain);
-          gain.connect(ctx.destination);
-          osc.start(now);
-          osc.stop(now + 0.25);
-        } catch(e) {}
-      }
-
-      function renderCompletionScreen(panelId, onRestartCallback, scoreText = '') {
+      const renderCompletionScreen = (panelId, cb, scoreText) => {
         const panel = document.getElementById(panelId);
         panel.innerHTML = `
-          <div class="flex flex-col items-center justify-center text-center py-10 sm:py-14 my-auto space-y-5 w-full">
-            <div class="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center text-4xl shadow-sm border border-red-100 animate-bounce">
-              🎯
+          <div class="flex flex-col items-center justify-center text-center py-6 my-auto space-y-3 w-full font-brand">
+            <div class="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center text-2xl shadow-sm border border-red-100 animate-bounce">🎯</div>
+            <div class="space-y-1">
+              <h3 class="font-brand text-xl sm:text-2xl font-black text-slate-900 tracking-tight">Challenge Finished!</h3>
+              ${scoreText ? `<div class="text-xs sm:text-sm font-extrabold text-red-600 bg-red-50 px-3.5 py-1 rounded-xl border border-red-100 inline-block mt-1">${scoreText}</div>` : ''}
+              <p class="text-stone-500 font-medium text-xs">Great job completing this vocabulary session.</p>
             </div>
-            <div class="space-y-2">
-              <h3 class="font-brand text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">Challenge Finished!</h3>
-              ${scoreText ? `<div class="text-lg sm:text-xl font-extrabold text-red-600 bg-red-50 px-5 py-2 rounded-2xl border border-red-100 inline-block mt-1">${scoreText}</div>` : ''}
-              <p class="text-stone-500 font-medium text-sm sm:text-base">Great job completing this vocabulary session.</p>
-            </div>
-            <button type="button" class="restart-btn px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-2xl text-base shadow-lg shadow-red-600/25 transition transform hover:-translate-y-0.5 cursor-pointer mt-3 pointer-events-auto">
-              Play Again
-            </button>
-          </div>
-        `;
-        const restartBtn = panel.querySelector('.restart-btn');
-        if (restartBtn) {
-          restartBtn.addEventListener('click', () => {
-            onRestartCallback();
-          });
-        }
-      }
+            <button type="button" class="restart-btn px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-xl text-xs sm:text-sm shadow-md cursor-pointer transition mt-1">Play Again</button>
+          </div>`;
+        panel.querySelector('.restart-btn').addEventListener('click', cb);
+      };
 
-      function switchGame(gameId) {
+      const switchGame = (gameId) => {
         document.querySelectorAll('.game-panel').forEach(p => p.style.display = 'none');
         document.querySelectorAll('.game-tab').forEach(t => {
           t.classList.remove('bg-white', 'text-slate-900', 'shadow-md', 'active');
           t.classList.add('text-stone-600');
         });
-        
-        const panel = document.getElementById(`game-${gameId}`);
-        if(panel) panel.style.display = 'flex';
-        
+        document.getElementById(`game-${gameId}`).style.display = 'flex';
         const activeTab = document.querySelector(`[data-game="${gameId}"]`);
-        if(activeTab) {
-          activeTab.classList.add('bg-white', 'text-slate-900', 'shadow-md', 'active');
-          activeTab.classList.remove('text-stone-600');
-        }
+        activeTab.classList.add('bg-white', 'text-slate-900', 'shadow-md', 'active');
+        activeTab.classList.remove('text-stone-600');
 
-        if (gameId === 'matching') initMatching();
+        updateInstruction(gameId);
+
+        if (gameId === 'matching') initMatchingSetup();
         if (gameId === 'mcqs') initMcq();
         if (gameId === 'scramble') initScramble();
         if (gameId === 'truefalse') initTrueFalse();
-      }
+      };
 
-      document.querySelectorAll('.game-tab').forEach(tab => {
-        tab.addEventListener('click', () => {
-          switchGame(tab.getAttribute('data-game'));
-        });
-      });
+      document.querySelectorAll('.game-tab').forEach(tab => tab.addEventListener('click', () => switchGame(tab.getAttribute('data-game'))));
+      document.querySelector('[data-game="flashcard"]').classList.add('bg-white', 'text-slate-900', 'shadow-md', 'active');
+      document.querySelector('[data-game="flashcard"]').classList.remove('text-stone-600');
+      updateInstruction('flashcard');
 
-      const defaultTab = document.querySelector('[data-game="flashcard"]');
-      if(defaultTab) {
-        defaultTab.classList.add('bg-white', 'text-slate-900', 'shadow-md', 'active');
-        defaultTab.classList.remove('text-stone-600');
-      }
-
-      let fcIndex = 0;
-      let isFlipped = false;
-      function updateFlashcard() {
-        document.getElementById('fc-front').textContent = flashcardData[fcIndex].vn;
+      // 1. Flashcard logic
+      let fcIndex = 0, isFlipped = false;
+      const updateFc = () => {
+        if (!flashcardData || flashcardData.length === 0) return;
+        const currentWord = flashcardData[fcIndex].vn;
+        document.getElementById('fc-front').textContent = currentWord;
         document.getElementById('fc-back').textContent = flashcardData[fcIndex].en;
         document.getElementById('fc-counter').textContent = `${fcIndex + 1} / ${flashcardData.length}`;
-        if(isFlipped) {
-          isFlipped = false;
-          document.getElementById('flashcard-inner').style.transform = 'rotateY(0deg)';
-        }
-      }
+        isFlipped = false;
+        document.getElementById('flashcard-inner').style.transform = 'rotateY(0deg)';
+
+        document.getElementById('speakAudioBtn').onclick = (e) => { e.stopPropagation(); speakWord(currentWord); };
+      };
       document.getElementById('flashcard-container').addEventListener('click', () => {
         isFlipped = !isFlipped;
         document.getElementById('flashcard-inner').style.transform = isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
       });
-      document.getElementById('nextCardBtn').addEventListener('click', () => {
-        fcIndex = (fcIndex + 1) % flashcardData.length;
-        updateFlashcard();
-      });
-      document.getElementById('prevCardBtn').addEventListener('click', () => {
-        fcIndex = (fcIndex - 1 + flashcardData.length) % flashcardData.length;
-        updateFlashcard();
-      });
-      updateFlashcard();
+      document.getElementById('nextCardBtn').addEventListener('click', () => { if(flashcardData.length){ fcIndex = (fcIndex + 1) % flashcardData.length; updateFc(); } });
+      document.getElementById('prevCardBtn').addEventListener('click', () => { if(flashcardData.length){ fcIndex = (fcIndex - 1 + flashcardData.length) % flashcardData.length; updateFc(); } });
+      updateFc();
 
-      let selectedVn = null, selectedEn = null, matchCount = 0;
-      function initMatching() {
-        matchCount = 0; selectedVn = null; selectedEn = null;
-        document.getElementById('match-score').textContent = `Matched: 0 / ${vocabData.length}`;
-        let msg = document.getElementById('match-msg');
-        msg.style.display = 'none';
+      // 2. Matching logic with custom input count
+      let currentMatchingData = [];
+      let sVn = null, sEn = null, matchCnt = 0;
+
+      const initMatchingSetup = () => {
+        document.getElementById('match-setup').style.display = 'flex';
+        document.getElementById('match-play-area').style.display = 'none';
+        document.getElementById('match-total-words').textContent = flashcardData.length;
+        document.getElementById('match-custom-count').value = Math.min(5, flashcardData.length);
+        document.getElementById('match-custom-count').max = flashcardData.length;
+        document.getElementById('match-error-msg').textContent = '';
+      };
+
+      const handleStartCustomMatch = () => {
+        const inputVal = parseInt(document.getElementById('match-custom-count').value);
+        const errEl = document.getElementById('match-error-msg');
+        if (isNaN(inputVal) || inputVal < 1) {
+          errEl.textContent = "Please enter a valid number greater than 0.";
+          return;
+        }
+        if (inputVal > flashcardData.length) {
+          errEl.textContent = `Cannot exceed total available words (${flashcardData.length}).`;
+          return;
+        }
+        errEl.textContent = '';
+        startMatchingGame(inputVal);
+      };
+
+      document.getElementById('startMatchCustomBtn').addEventListener('click', handleStartCustomMatch);
+      document.getElementById('match-custom-count').addEventListener('keydown', (e) => { if (e.key === 'Enter') handleStartCustomMatch(); });
+
+      const startMatchingGame = (count) => {
+        currentMatchingData = [...flashcardData].sort(() => Math.random() - 0.5).slice(0, count);
+        matchCnt = 0; sVn = null; sEn = null;
+        document.getElementById('match-setup').style.display = 'none';
+        document.getElementById('match-play-area').style.display = 'flex';
+        document.getElementById('match-score').textContent = `Matched: 0 / ${currentMatchingData.length}`;
+        document.getElementById('match-msg').style.display = 'none';
 
         const vnCol = document.getElementById('match-vn-col'), enCol = document.getElementById('match-en-col');
         vnCol.innerHTML = ''; enCol.innerHTML = '';
 
-        let shuffledVn = [...vocabData].sort(() => Math.random() - 0.5);
-        let shuffledEn = [...vocabData].sort(() => Math.random() - 0.5);
-
-        shuffledVn.forEach(item => {
-          let btn = document.createElement('button');
-          btn.className = "w-full p-4 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-sm text-slate-800 text-left transition cursor-pointer";
-          btn.textContent = item.vn;
-          btn.addEventListener('click', () => selectMatch(btn, item.vn, 'vn'));
-          vnCol.appendChild(btn);
+        [...currentMatchingData].sort(() => Math.random() - 0.5).forEach(i => {
+          let b = document.createElement('button');
+          b.className = "w-full p-3 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-xs sm:text-sm text-slate-800 text-left transition cursor-pointer";
+          b.textContent = i.vn; b.addEventListener('click', () => selectMatch(b, i.vn, 'vn'));
+          vnCol.appendChild(b);
         });
-        shuffledEn.forEach(item => {
-          let btn = document.createElement('button');
-          btn.className = "w-full p-4 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-sm text-slate-800 text-left transition cursor-pointer";
-          btn.textContent = item.en;
-          btn.addEventListener('click', () => selectMatch(btn, item.en, 'en'));
-          enCol.appendChild(btn);
+        [...currentMatchingData].sort(() => Math.random() - 0.5).forEach(i => {
+          let b = document.createElement('button');
+          b.className = "w-full p-3 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-xs sm:text-sm text-slate-800 text-left transition cursor-pointer";
+          b.textContent = i.en; b.addEventListener('click', () => selectMatch(b, i.en, 'en'));
+          enCol.appendChild(b);
         });
-      }
+      };
 
-      function selectMatch(btn, val, type) {
-        if(btn.classList.contains('bg-emerald-50')) return;
-        if(type === 'vn') {
-          document.querySelectorAll('#match-vn-col button').forEach(b => { if(!b.classList.contains('bg-emerald-50')) { b.classList.remove('bg-red-50', 'border-red-500', 'text-red-600'); b.classList.add('bg-stone-50', 'border-stone-200', 'text-slate-800'); } });
-          btn.classList.remove('bg-stone-50', 'border-stone-200', 'text-slate-800');
-          btn.classList.add('bg-red-50', 'border-red-500', 'text-red-600');
-          selectedVn = val;
-        } else {
-          document.querySelectorAll('#match-en-col button').forEach(b => { if(!b.classList.contains('bg-emerald-50')) { b.classList.remove('bg-red-50', 'border-red-500', 'text-red-600'); b.classList.add('bg-stone-50', 'border-stone-200', 'text-slate-800'); } });
-          btn.classList.remove('bg-stone-50', 'border-stone-200', 'text-slate-800');
-          btn.classList.add('bg-red-50', 'border-red-500', 'text-red-600');
-          selectedEn = val;
-        }
-        if(selectedVn && selectedEn) {
-          let match = vocabData.find(i => i.vn === selectedVn && i.en === selectedEn);
-          if(match) {
-            matchCount++;
-            playCorrectSound();
-            document.getElementById('match-score').textContent = `Matched: ${matchCount} / ${vocabData.length}`;
+      document.getElementById('backToMatchSetup').addEventListener('click', initMatchingSetup);
+
+      const selectMatch = (btn, val, type) => {
+        if (btn.classList.contains('bg-emerald-50')) return;
+        const col = type === 'vn' ? '#match-vn-col' : '#match-en-col';
+        document.querySelectorAll(`${col} button`).forEach(b => { if(!b.classList.contains('bg-emerald-50')) b.className = "w-full p-3 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-xs sm:text-sm text-slate-800 text-left transition cursor-pointer"; });
+        btn.className = "w-full p-3 bg-red-50 border border-red-500 rounded-xl font-bold text-xs sm:text-sm text-red-600 text-left transition cursor-pointer";
+        if (type === 'vn') { sVn = val; } else sEn = val;
+        if (sVn && sEn) {
+          const match = currentMatchingData.find(i => i.vn === sVn && i.en === sEn);
+          if (match) {
+            matchCnt++; playSound(523, 659);
+            document.getElementById('match-score').textContent = `Matched: ${matchCnt} / ${currentMatchingData.length}`;
             document.querySelectorAll('#match-vn-col button, #match-en-col button').forEach(b => {
-              if(b.textContent === selectedVn || b.textContent === selectedEn) {
-                b.className = "w-full p-4 bg-emerald-50 border border-emerald-300 rounded-xl font-bold text-sm text-emerald-700 text-left cursor-default opacity-80 pointer-events-none";
-              }
+              if (b.textContent === sVn || b.textContent === sEn) b.className = "w-full p-3 bg-emerald-50 border border-emerald-300 rounded-xl font-bold text-xs sm:text-sm text-emerald-700 text-left pointer-events-none opacity-80";
             });
-            selectedVn = null; selectedEn = null;
-            if(matchCount === vocabData.length) {
-              let msg = document.getElementById('match-msg');
-              msg.textContent = "🎉 Awesome! All matched correctly!";
-              msg.style.display = 'block';
+            sVn = null; sEn = null;
+            if (matchCnt === currentMatchingData.length) { 
+              const m = document.getElementById('match-msg'); 
+              m.textContent = "🎉 Awesome! All matched correctly!"; 
+              m.style.display = 'block'; 
             }
           } else {
-            playIncorrectSound();
-            setTimeout(() => {
-              selectedVn = null; selectedEn = null;
-              document.querySelectorAll('#match-vn-col button, #match-en-col button').forEach(b => {
-                if(!b.classList.contains('bg-emerald-50')) {
-                  b.className = "w-full p-4 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-sm text-slate-800 text-left transition cursor-pointer";
-                }
-              });
-            }, 400);
+            playSound(180, 130);
+            setTimeout(() => { sVn = null; sEn = null; document.querySelectorAll('#match-vn-col button, #match-en-col button').forEach(b => { if(!b.classList.contains('bg-emerald-50')) b.className = "w-full p-3 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-xs sm:text-sm text-slate-800 text-left transition cursor-pointer"; }); }, 400);
           }
         }
-      }
+      };
 
-      let mcqIndex = 0, mcqScore = 0;
-      function initMcq() {
-        mcqIndex = 0;
-        mcqScore = 0;
-        vocabData = [...flashcardData].sort(() => Math.random() - 0.5);
-        const panel = document.getElementById('game-mcqs');
-        if (panel) panel.style.display = 'flex';
-        loadMcq();
-      }
-
-      function loadMcq() {
-        const panel = document.getElementById('game-mcqs');
-        if (!panel) return;
-
-        if(mcqIndex >= vocabData.length) {
-          renderCompletionScreen('game-mcqs', initMcq, `Final Score: ${mcqScore} / ${vocabData.length}`);
-          return;
-        }
-
-        panel.innerHTML = `
-          <div class="flex justify-between items-center text-xs font-bold text-stone-400 uppercase tracking-wider">
-            <span id="mcq-progress">1 / 5</span>
-            <span id="mcq-score-box" class="text-red-600 font-black">Score: 0</span>
-          </div>
-          <div class="bg-stone-50 border border-stone-200/80 rounded-3xl p-8 text-center max-w-lg mx-auto w-full space-y-3 shadow-2xs">
-            <h3 id="mcq-word" class="font-brand text-2xl sm:text-3xl font-black text-slate-900 leading-tight">Word</h3>
-          </div>
-          <div id="mcq-options" class="grid grid-cols-1 gap-3 max-w-lg mx-auto w-full"></div>
-          <div id="mcq-feedback-area" class="text-center pt-2"></div>
-        `;
-
-        let cur = vocabData[mcqIndex];
-        document.getElementById('mcq-progress').textContent = `${mcqIndex + 1} / ${vocabData.length}`;
-        document.getElementById('mcq-score-box').textContent = `Score: ${mcqScore}`;
-
-        let askInEnglish = Math.random() < 0.5;
-        let questionText = askInEnglish ? cur.en : cur.vn;
-        let correctAnswer = askInEnglish ? cur.vn : cur.en;
-
-        document.getElementById('mcq-word').textContent = questionText;
-
-        let opts = [correctAnswer];
-        while(opts.length < 3 && opts.length < flashcardData.length) {
-          let rItem = flashcardData[Math.floor(Math.random() * flashcardData.length)];
-          let r = askInEnglish ? rItem.vn : rItem.en;
-          if(!opts.includes(r)) opts.push(r);
+      // 3. MCQ logic (4 options)
+      let mcqIdx = 0, mcqScore = 0;
+      const initMcq = () => { mcqIdx = 0; mcqScore = 0; vocabData = [...flashcardData].sort(() => Math.random() - 0.5); loadMcq(); };
+      const loadMcq = () => {
+        if (mcqIdx >= vocabData.length) return renderCompletionScreen('game-mcqs', initMcq, `Final Score: ${mcqScore} / ${vocabData.length}`);
+        const cur = vocabData[mcqIdx];
+        const askEn = Math.random() < 0.5, qTxt = askEn ? cur.en : cur.vn, cAns = askEn ? cur.vn : cur.en;
+        let opts = [cAns];
+        while (opts.length < 4 && opts.length < flashcardData.length) {
+          const r = askEn ? flashcardData[Math.floor(Math.random() * flashcardData.length)].vn : flashcardData[Math.floor(Math.random() * flashcardData.length)].en;
+          if (!opts.includes(r)) opts.push(r);
         }
         opts.sort(() => Math.random() - 0.5);
+        const panel = document.getElementById('game-mcqs');
+        panel.innerHTML = `
+          <div class="grid grid-cols-3 items-center font-brand">
+            <div class="flex justify-start">
+              <button type="button" class="openGuideBtn text-red-600 hover:text-red-700 font-extrabold bg-red-50 hover:bg-red-100 px-3.5 py-1.5 rounded-xl transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200/60 shadow-2xs text-xs sm:text-sm">
+                <span>ℹ️</span> How to play
+              </button>
+            </div>
+            <div class="flex justify-center">
+              <span id="mcq-progress" class="text-slate-700 font-black text-sm sm:text-base">${mcqIdx + 1} / ${vocabData.length}</span>
+            </div>
+            <div class="flex justify-end">
+              <span id="mcq-score-box" class="text-red-600 font-black text-sm sm:text-base">Score: ${mcqScore}</span>
+            </div>
+          </div>
+          <div class="bg-gradient-to-br from-red-50/50 via-white to-stone-50 border-2 border-red-100 rounded-3xl p-6 text-center max-w-md mx-auto w-full space-y-2.5 shadow-sm">
+            <span class="text-xs font-black uppercase tracking-widest text-red-600 font-brand">What is the correct word?</span>
+            <h3 class="font-brand text-2xl sm:text-3xl font-black text-slate-900 leading-tight mb-2" id="mcq-word">${qTxt}</h3>
+            <button type="button" id="speakMcqBtn" class="px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 font-extrabold text-xs rounded-full shadow-2xs transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200 mx-auto">🔊 Listen</button>
+          </div>
+          <div id="mcq-options" class="grid grid-cols-1 gap-2.5 max-w-md mx-auto w-full"></div>
+          <div id="mcq-feedback-area" class="text-center pt-1"></div>`;
+        
+        document.querySelectorAll('.openGuideBtn').forEach(b => b.addEventListener('click', () => guideModal.classList.remove('hidden')));
+        document.getElementById('speakMcqBtn').addEventListener('click', () => speakWord(askEn ? cur.vn : qTxt));
 
-        let box = document.getElementById('mcq-options');
-        let feedbackArea = document.getElementById('mcq-feedback-area');
-        box.innerHTML = '';
-        feedbackArea.innerHTML = '';
-
+        const box = document.getElementById('mcq-options');
         opts.forEach(o => {
           let b = document.createElement('button');
-          b.className = "w-full p-4 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-sm text-slate-800 transition cursor-pointer text-center";
+          b.className = "w-full p-3 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-xs sm:text-sm text-slate-800 transition cursor-pointer text-center";
           b.textContent = o;
           b.addEventListener('click', () => {
             box.querySelectorAll('button').forEach(btn => btn.style.pointerEvents = 'none');
-
-            if(o === correctAnswer) {
-              mcqScore++;
-              playCorrectSound();
-              b.className = "w-full p-4 bg-emerald-50 border border-emerald-300 rounded-xl font-bold text-sm text-emerald-700 text-center";
-              setTimeout(() => { mcqIndex++; loadMcq(); }, 700);
+            if (o === cAns) {
+              mcqScore++; playSound(523, 659);
+              b.className = "w-full p-3 bg-emerald-50 border border-emerald-300 rounded-xl font-bold text-xs sm:text-sm text-emerald-700 text-center";
+              setTimeout(() => { mcqIdx++; loadMcq(); }, 700);
             } else {
-              playIncorrectSound();
-              b.className = "w-full p-4 bg-red-50 border border-red-300 rounded-xl font-bold text-sm text-red-600 text-center";
-              box.querySelectorAll('button').forEach(btn => {
-                if (btn.textContent === correctAnswer) {
-                  btn.className = "w-full p-4 bg-emerald-50 border border-emerald-300 rounded-xl font-bold text-sm text-emerald-700 text-center";
-                }
-              });
-              feedbackArea.innerHTML = `
-                <button type="button" id="mcqNextBtn" class="px-8 py-3 bg-slate-900 hover:bg-slate-800 text-white font-extrabold rounded-xl text-sm shadow-md cursor-pointer transition">
-                  Tiếp tục →
-                </button>
-              `;
-              document.getElementById('mcqNextBtn').addEventListener('click', () => {
-                mcqIndex++;
-                loadMcq();
-              });
+              playSound(180, 130);
+              b.className = "w-full p-3 bg-red-50 border border-red-300 rounded-xl font-bold text-xs sm:text-sm text-red-600 text-center";
+              box.querySelectorAll('button').forEach(btn => { if (btn.textContent === cAns) btn.className = "w-full p-3 bg-emerald-50 border border-emerald-300 rounded-xl font-bold text-xs sm:text-sm text-emerald-700 text-center"; });
+              document.getElementById('mcq-feedback-area').innerHTML = `<button type="button" id="mcqNextBtn" class="w-full sm:w-auto px-10 py-4 bg-slate-900 hover:bg-slate-800 text-white font-extrabold rounded-2xl text-base shadow-lg shadow-slate-900/20 cursor-pointer transition">Continue →</button>`;
+              document.getElementById('mcqNextBtn').addEventListener('click', () => { mcqIdx++; loadMcq(); });
             }
           });
           box.appendChild(b);
         });
-      }
+      };
 
+      // 4. Scramble logic
       let scrIdx = 0, scrScore = 0;
-      function initScramble() {
-        scrIdx = 0;
-        scrScore = 0;
+      const initScramble = () => { scrIdx = 0; scrScore = 0; loadScramble(); };
+      const shuffleStr = (str) => str.normalize('NFC').split(' ').map(w => {
+        let arr = Array.from(w), sh;
+        do { for (let i = arr.length - 1; i > 0; i--) { let j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } sh = arr.join(''); } while (sh === w && arr.length > 1);
+        return sh.toLowerCase();
+      }).join(' ');
+      const loadScramble = () => {
+        if (scrIdx >= vocabData.length) return renderCompletionScreen('game-scramble', initScramble, `Final Score: ${scrScore} / ${vocabData.length}`);
+        const cur = vocabData[scrIdx];
         const panel = document.getElementById('game-scramble');
-        if (panel) panel.style.display = 'flex';
-        loadScramble();
-      }
-      
-      function shuffleWord(word) {
-        const normalized = word.normalize('NFC');
-        let arr = Array.from(normalized);
-        let shuffled;
-        do {
-          for (let i = arr.length - 1; i > 0; i--) {
-            let j = Math.floor(Math.random() * (i + 1));
-            [arr[i], arr[j]] = [arr[j], arr[i]];
-          }
-          shuffled = arr.join('');
-        } while (shuffled === normalized && arr.length > 1);
-        return shuffled.toLowerCase();
-      }
-
-      function shuffleString(str) {
-        return str.split(' ').map(shuffleWord).join(' ');
-      }
-
-      function loadScramble() {
-        const scramblePanel = document.getElementById('game-scramble');
-        if (!scramblePanel) return;
-
-        if(scrIdx >= vocabData.length) {
-          renderCompletionScreen('game-scramble', initScramble, `Final Score: ${scrScore} / ${vocabData.length}`);
-          return;
-        }
-
-        scramblePanel.innerHTML = `
-          <div class="flex justify-between items-center text-xs font-bold text-stone-400 uppercase tracking-wider">
-            <span id="scramble-progress">1 / 5</span>
-            <span id="scramble-score-box" class="text-red-600 font-black">Score: 0</span>
+        panel.innerHTML = `
+          <div class="grid grid-cols-3 items-center font-brand">
+            <div class="flex justify-start">
+              <button type="button" class="openGuideBtn text-red-600 hover:text-red-700 font-extrabold bg-red-50 hover:bg-red-100 px-3.5 py-1.5 rounded-xl transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200/60 shadow-2xs text-xs sm:text-sm">
+                <span>ℹ️</span> How to play
+              </button>
+            </div>
+            <div class="flex justify-center">
+              <span id="scramble-progress" class="text-slate-700 font-black text-sm sm:text-base">${scrIdx + 1} / ${vocabData.length}</span>
+            </div>
+            <div class="flex justify-end">
+              <span id="scramble-score-box" class="text-red-600 font-black text-sm sm:text-base">Score: ${scrScore}</span>
+            </div>
           </div>
-          <div class="bg-gradient-to-b from-stone-50/80 to-white border border-stone-200/90 rounded-[28px] p-8 sm:p-10 max-w-xl mx-auto w-full space-y-4 shadow-sm">
+          <div class="bg-gradient-to-b from-stone-50/80 to-white border border-stone-200/90 rounded-2xl p-6 max-w-md mx-auto w-full space-y-3 shadow-sm">
             <div class="text-stone-400 font-bold text-xs uppercase tracking-widest">💡 Hint</div>
-            <div id="scramble-hint" class="text-slate-900 font-black text-xl sm:text-2xl font-brand">Meaning</div>
-            <div class="w-12 h-0.5 bg-stone-200 mx-auto"></div>
-            <div id="scramble-letters" class="font-brand text-xl sm:text-2xl font-black text-red-600 tracking-[0.15em] py-2">word</div>
+            <div id="scramble-hint" class="text-slate-900 font-black text-lg sm:text-xl font-brand">${cur.en}</div>
+            <button type="button" id="speakScrBtn" class="px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 font-extrabold text-xs rounded-full shadow-2xs transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200 mx-auto">🔊 Listen</button>
+            <div class="w-10 h-0.5 bg-stone-200 mx-auto"></div>
+            <div id="scramble-letters" class="font-brand text-xl sm:text-2xl font-black text-red-600 tracking-[0.15em] py-1">${shuffleStr(cur.vn)}</div>
           </div>
-          <div class="flex gap-3 max-w-xl mx-auto w-full" id="scramble-action-area">
-            <input type="text" id="scramble-input" placeholder="Type here (no diacritics needed)" class="w-full px-5 py-4 rounded-2xl border border-stone-300 font-bold text-center text-base outline-none focus:border-red-600 focus:ring-4 focus:ring-red-600/10 bg-stone-50/50 transition" />
-            <button id="checkScrambleBtn" class="px-7 py-4 bg-red-600 hover:bg-red-700 text-white font-black rounded-2xl text-sm shadow-md cursor-pointer transition shrink-0">Check</button>
+          <div class="flex gap-2.5 max-w-md mx-auto w-full" id="scramble-action-area">
+            <input type="text" id="scramble-input" placeholder="Type here..." class="w-full px-4 py-2.5 rounded-xl border border-stone-300 font-bold text-center text-sm outline-none focus:border-red-600 bg-stone-50/50 transition" />
+            <button id="checkScrambleBtn" class="px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl text-xs sm:text-sm shadow-md cursor-pointer transition shrink-0">Check</button>
           </div>
-          <div id="scramble-feedback" class="text-sm font-bold min-h-[30px]"></div>
-        `;
+          <div id="scramble-feedback" class="text-xs sm:text-sm font-bold min-h-[20px]"></div>`;
         
-        document.getElementById('scramble-progress').textContent = `${scrIdx + 1} / ${vocabData.length}`;
-        document.getElementById('scramble-score-box').textContent = `Score: ${scrScore}`;
+        document.querySelectorAll('.openGuideBtn').forEach(b => b.addEventListener('click', () => guideModal.classList.remove('hidden')));
+        document.getElementById('speakScrBtn').addEventListener('click', () => speakWord(cur.vn));
 
-        document.getElementById('checkScrambleBtn').addEventListener('click', checkScramble);
-        const inputEl = document.getElementById('scramble-input');
-        inputEl.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter') {
-            checkScramble();
+        const check = () => {
+          const input = document.getElementById('scramble-input'), btn = document.getElementById('checkScrambleBtn');
+          if (input.disabled) return;
+          input.disabled = true; btn.style.pointerEvents = 'none';
+          const val = removeDiacritics(input.value.trim().toLowerCase()).replace(/\s+/g, '');
+          const valid = [removeDiacritics(cur.vn.toLowerCase()).replace(/\s+/g, ''), ...cur.vn.split(/[\/,]/).map(a => removeDiacritics(a.replace(/[^\p{L}\s]/gu, '').trim().toLowerCase()).replace(/\s+/g, ''))];
+          const fb = document.getElementById('scramble-feedback');
+          if (valid.includes(val)) {
+            scrScore++; playSound(523, 659);
+            fb.textContent = "✓ Correct!"; fb.style.color = "#059669";
+            setTimeout(() => { scrIdx++; loadScramble(); }, 800);
+          } else {
+            playSound(180, 130);
+            fb.innerHTML = `❌ Incorrect! Answer: <strong class="text-slate-900 underline">${cur.vn}</strong>`; fb.style.color = "#dc2626";
+            document.getElementById('scramble-action-area').innerHTML = `<button type="button" id="scrNextBtn" class="w-full py-4 bg-slate-900 hover:bg-slate-800 text-white font-extrabold rounded-2xl text-base shadow-lg shadow-slate-900/20 cursor-pointer transition text-center">Continue →</button>`;
+            document.getElementById('scrNextBtn').addEventListener('click', () => { scrIdx++; loadScramble(); });
           }
-        });
+        };
+        document.getElementById('checkScrambleBtn').addEventListener('click', check);
+        document.getElementById('scramble-input').addEventListener('keydown', (e) => { if (e.key === 'Enter') check(); });
+      };
 
-        let w = vocabData[scrIdx].vn;
-        document.getElementById('scramble-hint').textContent = vocabData[scrIdx].en;
-        document.getElementById('scramble-letters').textContent = shuffleString(w);
-      }
-      
-      function checkScramble() {
-        let inputEl = document.getElementById('scramble-input');
-        let checkBtn = document.getElementById('checkScrambleBtn');
-        if (!inputEl || !checkBtn || inputEl.disabled) return;
-
-        let userRaw = inputEl.value.trim().toLowerCase();
-        let valClean = removeDiacritics(userRaw).replace(/\s+/g, '');
-        let rawVnStr = vocabData[scrIdx].vn;
-
-        let fullAnswerClean = removeDiacritics(rawVnStr.toLowerCase()).replace(/\s+/g, '');
-        let splitAnswers = rawVnStr.split(/[\/,]/).map(ans => {
-          let cleaned = ans.replace(/[^\p{L}\s]/gu, '').trim();
-          return removeDiacritics(cleaned.toLowerCase()).replace(/\s+/g, '');
-        });
-
-        let validAnswers = [fullAnswerClean, ...splitAnswers];
-
-        let fb = document.getElementById('scramble-feedback');
-        let actionArea = document.getElementById('scramble-action-area');
-        
-        inputEl.disabled = true;
-        checkBtn.style.pointerEvents = 'none';
-
-        if(validAnswers.includes(valClean)) {
-          scrScore++;
-          playCorrectSound();
-          document.getElementById('scramble-score-box').textContent = `Score: ${scrScore}`;
-          fb.textContent = "✓ Correct!"; fb.style.color = "#059669";
-          setTimeout(() => { scrIdx++; loadScramble(); }, 800);
-        } else {
-          playIncorrectSound();
-          fb.innerHTML = `❌ Sai rồi! Đáp án đúng là: <strong class="text-slate-900 underline">${vocabData[scrIdx].vn}</strong>`; 
-          fb.style.color = "#dc2626";
-
-          actionArea.innerHTML = `
-            <button type="button" id="scrNextBtn" class="w-full py-4 bg-slate-900 hover:bg-slate-800 text-white font-extrabold rounded-2xl text-sm shadow-md cursor-pointer transition text-center">
-              Tiếp tục →
-            </button>
-          `;
-          document.getElementById('scrNextBtn').addEventListener('click', () => {
-            scrIdx++;
-            loadScramble();
-          });
+      // 5. True/False logic
+      let tfIdx = 0, tfScore = 0, tfPair = null;
+      const initTrueFalse = () => { tfIdx = 0; tfScore = 0; loadTf(); };
+      const loadTf = () => {
+        if (tfIdx >= vocabData.length) return renderCompletionScreen('game-truefalse', initTrueFalse, `Final Score: ${tfScore} / ${vocabData.length}`);
+        const item = vocabData[tfIdx], isTrue = Math.random() < 0.5;
+        let dMeaning = item.en;
+        if (!isTrue) {
+          const others = vocabData.filter(i => i.en !== item.en);
+          if (others.length) dMeaning = others[Math.floor(Math.random() * others.length)].en;
         }
-      }
-          
-      let tfIdx = 0, tfScore = 0;
-      let tfCurrentPair = null;
-      let tfIsCorrect = true;
-
-      function initTrueFalse() {
-        tfIdx = 0;
-        tfScore = 0;
+        tfPair = { vn: item.vn, correctEn: item.en, shownEn: dMeaning, isTrue };
         const panel = document.getElementById('game-truefalse');
-        if (panel) panel.style.display = 'flex';
-        loadTf();
-      }
-
-      function loadTf() {
-        const tfPanel = document.getElementById('game-truefalse');
-        if (!tfPanel) return;
-
-        if(tfIdx >= vocabData.length) {
-          renderCompletionScreen('game-truefalse', initTrueFalse, `Final Score: ${tfScore} / ${vocabData.length}`);
-          return;
-        }
-
-        tfPanel.innerHTML = `
-          <div class="flex justify-between items-center text-xs font-bold text-stone-400 uppercase tracking-wider">
-            <span id="tf-progress">1 / 5</span>
-            <span id="tf-score-box" class="text-red-600 font-black">Score: 0</span>
+        panel.innerHTML = `
+          <div class="grid grid-cols-3 items-center font-brand">
+            <div class="flex justify-start">
+              <button type="button" class="openGuideBtn text-red-600 hover:text-red-700 font-extrabold bg-red-50 hover:bg-red-100 px-3.5 py-1.5 rounded-xl transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200/60 shadow-2xs text-xs sm:text-sm">
+                <span>ℹ️</span> How to play
+              </button>
+            </div>
+            <div class="flex justify-center">
+              <span id="tf-progress" class="text-slate-700 font-black text-sm sm:text-base">${tfIdx + 1} / ${vocabData.length}</span>
+            </div>
+            <div class="flex justify-end">
+              <span id="tf-score-box" class="text-red-600 font-black text-sm sm:text-base">Score: ${tfScore}</span>
+            </div>
           </div>
-          <div class="bg-gradient-to-b from-stone-50/80 to-white border border-stone-200/90 rounded-[28px] p-8 sm:p-10 max-w-xl mx-auto w-full space-y-4 shadow-sm">
-            <span class="text-[11px] font-extrabold uppercase tracking-widest text-stone-400">Translate Check</span>
-            <div id="tf-word" class="font-brand text-2xl sm:text-3xl font-black text-slate-900 leading-tight px-2">Word</div>
-            <div class="w-12 h-0.5 bg-stone-200 mx-auto"></div>
-            <div id="tf-meaning" class="font-brand text-lg sm:text-xl font-extrabold text-red-600 px-2">Meaning</div>
+          <div class="bg-gradient-to-b from-stone-50/80 to-white border border-stone-200/90 rounded-2xl p-6 max-w-md mx-auto w-full space-y-3 shadow-sm">
+            <span class="text-[10px] font-extrabold uppercase tracking-widest text-stone-400">Translate Check</span>
+            <div id="tf-word" class="font-brand text-xl sm:text-2xl font-black text-slate-900 leading-tight px-2">${tfPair.vn}</div>
+            <button type="button" id="speakTfBtn" class="px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 font-extrabold text-xs rounded-full shadow-2xs transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200 mx-auto">🔊 Listen</button>
+            <div class="w-10 h-0.5 bg-stone-200 mx-auto"></div>
+            <div id="tf-meaning" class="font-brand text-base sm:text-lg font-extrabold text-red-600 px-2">${tfPair.shownEn}</div>
           </div>
-          <div class="flex justify-center gap-4" id="tf-buttons-wrapper">
-            <button id="tfTrueBtn" class="px-9 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold rounded-2xl text-base shadow-md transition hover:-translate-y-0.5 cursor-pointer">True</button>
-            <button id="tfFalseBtn" class="px-9 py-4 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-2xl text-base shadow-md transition hover:-translate-y-0.5 cursor-pointer">False</button>
+          <div class="flex justify-center gap-3" id="tf-buttons-wrapper">
+            <button id="tfTrueBtn" class="px-8 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold rounded-xl text-xs sm:text-sm shadow-md cursor-pointer transition">True</button>
+            <button id="tfFalseBtn" class="px-8 py-2.5 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-xl text-xs sm:text-sm shadow-md cursor-pointer transition">False</button>
           </div>
-          <div id="tf-feedback" class="text-sm font-bold min-h-[30px]"></div>
-        `;
-
-        document.getElementById('tf-progress').textContent = `${tfIdx + 1} / ${vocabData.length}`;
-        document.getElementById('tf-score-box').textContent = `Score: ${tfScore}`;
-
+          <div id="tf-feedback" class="text-xs sm:text-sm font-bold min-h-[20px]"></div>`;
+        
+        document.querySelectorAll('.openGuideBtn').forEach(b => b.addEventListener('click', () => guideModal.classList.remove('hidden')));
+        document.getElementById('speakTfBtn').addEventListener('click', () => speakWord(tfPair.vn));
         document.getElementById('tfTrueBtn').addEventListener('click', () => checkTf(true));
         document.getElementById('tfFalseBtn').addEventListener('click', () => checkTf(false));
-
-        let item = vocabData[tfIdx];
-        tfIsCorrect = Math.random() < 0.5;
-        let displayMeaning = item.en;
-
-        if (!tfIsCorrect) {
-          let otherItems = vocabData.filter(i => i.en !== item.en);
-          if (otherItems.length > 0) {
-            let randomOther = otherItems[Math.floor(Math.random() * otherItems.length)];
-            displayMeaning = randomOther.en;
-          }
-        }
-
-        tfCurrentPair = { vn: item.vn, correctEn: item.en, shownEn: displayMeaning, isTrulyCorrect: tfIsCorrect };
-
-        document.getElementById('tf-word').textContent = tfCurrentPair.vn;
-        document.getElementById('tf-meaning').textContent = tfCurrentPair.shownEn;
-      }
-
-      function checkTf(userGuessedTrue) {
-        let fb = document.getElementById('tf-feedback');
-        let btnWrapper = document.getElementById('tf-buttons-wrapper');
-        if (!fb || !btnWrapper) return;
-
+      };
+      const checkTf = (guessTrue) => {
         document.getElementById('tfTrueBtn').style.pointerEvents = 'none';
         document.getElementById('tfFalseBtn').style.pointerEvents = 'none';
-
-        let isRight = (userGuessedTrue === tfCurrentPair.isTrulyCorrect);
-
-        if(isRight) {
-          tfScore++;
-          playCorrectSound();
-          document.getElementById('tf-score-box').textContent = `Score: ${tfScore}`;
+        const fb = document.getElementById('tf-feedback');
+        if (guessTrue === tfPair.isTrue) {
+          tfScore++; playSound(523, 659); speakWord(tfPair.vn);
           fb.textContent = "✓ Correct!"; fb.style.color = "#059669";
           setTimeout(() => { tfIdx++; loadTf(); }, 800);
         } else {
-          playIncorrectSound();
-          fb.innerHTML = `❌ Sai rồi! Đáp án chính xác: Từ <strong class="text-slate-900">${tfCurrentPair.vn}</strong> nghĩa là <em class="text-red-600">${tfCurrentPair.correctEn}</em>`; 
-          fb.style.color = "#dc2626";
-
-          btnWrapper.innerHTML = `
-            <button type="button" id="tfNextBtn" class="px-10 py-4 bg-slate-900 hover:bg-slate-800 text-white font-extrabold rounded-2xl text-base shadow-md cursor-pointer transition">
-              Tiếp tục →
-            </button>
-          `;
-          document.getElementById('tfNextBtn').addEventListener('click', () => {
-            tfIdx++;
-            loadTf();
-          });
+          playSound(180, 130);
+          fb.innerHTML = `❌ Incorrect! <strong class="text-slate-900">${tfPair.vn}</strong> means <em class="text-red-600">${tfPair.correctEn}</em>`; fb.style.color = "#dc2626";
+          document.getElementById('tf-buttons-wrapper').innerHTML = `<button type="button" id="tfNextBtn" class="px-10 py-4 bg-slate-900 hover:bg-slate-800 text-white font-extrabold rounded-2xl text-base shadow-lg shadow-slate-900/20 cursor-pointer transition">Continue →</button>`;
+          document.getElementById('tfNextBtn').addEventListener('click', () => { tfIdx++; loadTf(); });
         }
-      }
+      };
     }
   </script>
-</BaseLayout>
+</Layout>

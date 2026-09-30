@@ -1,85 +1,32 @@
 ---
 // src/pages/student.astro - Secure Access Portal
-import '../styles/global.css';
-import Header from '../components/header.astro';
-import Footer from '../components/footer.astro';
+import Layout from '../layout.astro';
 ---
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Student Portal | Havie</title>
-  <meta name="description" content="Secure student portal for Hang's Vietnamese learners." />
 
-  <!-- CANONICAL URL -->
-  <link rel="canonical" href="https://havielearn.com/student" />
-
-  <!-- GOOGLE ANALYTICS (GA4) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WGQRLL7424"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-WGQRLL7424');
-  </script>
-
-  <!-- FAVICON -->
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="manifest" href="/site.webmanifest" />
-
-  <!-- Google Fonts: DM Sans & Plus Jakarta Sans -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --cream: #fffaf5;
-      --navy: #0f172a;
-      --brand-red: #dc2626;
-      --orange: #ef7218;
-    }
-
-    html {
-      scroll-padding-top: 100px;
-    }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background-color: var(--cream);
-      color: var(--navy);
-    }
-
-    .font-brand {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
-
-    .curved-underline {
-      position: relative;
-    }
-    .curved-underline::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -4px;
-      width: 100%;
-      height: 6px;
-      border-bottom: 3px solid var(--orange);
-      border-radius: 50%;
-      transform: rotate(-1.5deg);
-    }
-
-    .hero-glow {
-      background: radial-gradient(circle at 30% 50%, rgba(220, 38, 38, 0.05) 0%, rgba(245, 158, 11, 0.02) 50%, transparent 75%);
-    }
-  </style>
-</head>
-<body class="selection:bg-red-600 selection:text-white min-h-screen flex flex-col antialiased relative overflow-x-hidden">
-
-  <!-- DÙNG COMPONENT HEADER CHUNG -->
-  <Header />
+<Layout 
+  title="Student Portal | Havie"
+description="Access exclusive listening materials, vocabulary labs, and real-life conversation practice resources."  
+canonical="https://havielearn.com/student"
+>
+  <Fragment slot="head">
+    <style>
+      .curved-underline {
+        position: relative;
+        display: inline-block;
+      }
+      .curved-underline::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 100%;
+        height: 6px;
+        border-bottom: 3.5px solid var(--orange, #ef7218);
+        border-radius: 50%;
+        transform: rotate(-1.5deg);
+      }
+    </style>
+  </Fragment>
 
   <!-- MAIN CONTENT -->
   <main class="flex-grow flex items-center justify-center py-12 sm:py-16 px-5 sm:px-8 relative">
@@ -147,146 +94,8 @@ import Footer from '../components/footer.astro';
     </div>
   </main>
 
-  <!-- DÙNG COMPONENT FOOTER CHUNG -->
-  <Footer />
-
-  <!-- MODAL ĐẶT LỊCH -->
-  <div id="consultModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white rounded-[32px] p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-stone-200 space-y-6 text-left">
-      <div class="flex items-center justify-between border-b border-stone-100 pb-4">
-        <div>
-          <span class="text-xs sm:text-sm font-black text-red-600 uppercase tracking-widest bg-red-50 px-3.5 py-1.5 rounded-lg border border-red-200 inline-block font-brand">1-ON-1 LESSONS</span>
-          <h3 class="text-2xl sm:text-3xl font-black text-slate-900 font-brand mt-1.5">Book 25-Min Trial Lesson</h3>
-        </div>
-        <button id="closeModalBtn" type="button" class="w-10 h-10 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 font-bold flex items-center justify-center text-lg cursor-pointer">
-          ✕
-        </button>
-      </div>
-
-      <form id="consultForm" class="space-y-4 text-sm">
-        <div>
-          <label class="block font-bold text-slate-800 mb-1.5 text-base">Full Name / Tên của bạn *</label>
-          <input type="text" id="cName" required placeholder="e.g. Alex Smith" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label class="block font-bold text-slate-800 mb-1.5 text-base">Country / Quốc gia *</label>
-            <input type="text" id="cCountry" required placeholder="e.g. Germany, USA" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
-          </div>
-          <div>
-            <label class="block font-bold text-slate-800 mb-1.5 text-base">Phone / SĐT</label>
-            <input type="tel" id="cPhone" placeholder="e.g. +49..." class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
-          </div>
-        </div>
-        <div>
-          <label class="block font-bold text-slate-800 mb-1.5 text-base">Email Address *</label>
-          <input type="email" id="cEmail" required placeholder="name@example.com" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
-        </div>
-        <div>
-          <label class="block font-bold text-slate-800 mb-1.5 text-base">Learning Goals / Mục tiêu học tập *</label>
-          <textarea id="cGoals" rows="3" required placeholder="Current level, target dialect (Hanoi/Saigon), goals..." class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 resize-none text-base"></textarea>
-        </div>
-        <button type="submit" class="w-full py-4 bg-red-600 hover:bg-red-700 text-white font-black rounded-2xl text-base shadow-md transition cursor-pointer mt-3 font-brand">
-          Submit Request to Hang →
-        </button>
-      </form>
-
-      <div id="successMessage" class="hidden text-center py-6 space-y-3">
-        <div class="text-4xl">🎉</div>
-        <h4 class="font-black text-slate-900 text-lg font-brand">Request Sent Successfully!</h4>
-        <p class="text-stone-600 text-sm leading-relaxed">Thank you! Hang has received your details and goals. She will reach out via email within 24 hours.</p>
-        <button id="btnCloseSuccess" type="button" class="px-6 py-3 bg-slate-900 text-white font-bold rounded-xl text-sm cursor-pointer font-brand">
-          Close Window
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- SCRIPTS -->
+  <!-- OTP SCRIPT -->
   <script is:inline>
-    // Mobile Menu Toggle
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
-    if (mobileMenuBtn && mobileMenu) {
-      mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
-      mobileLinks.forEach(link => {
-        link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
-      });
-    }
-
-    // Modal Control Script
-    const modal = document.getElementById('consultModal');
-    const openTriggers = document.querySelectorAll('.open-modal-trigger');
-    const closeModalBtn = document.getElementById('closeModalBtn');
-    const consultForm = document.getElementById('consultForm');
-    const successMessage = document.getElementById('successMessage');
-    const btnCloseSuccess = document.getElementById('btnCloseSuccess');
-
-    if (modal) {
-      openTriggers.forEach(btn => {
-        btn.addEventListener('click', () => {
-          modal.classList.remove('hidden');
-          if (consultForm) consultForm.classList.remove('hidden');
-          if (successMessage) successMessage.classList.add('hidden');
-          if (mobileMenu) mobileMenu.classList.add('hidden');
-        });
-      });
-
-      const hideModal = () => modal.classList.add('hidden');
-      if (closeModalBtn) closeModalBtn.addEventListener('click', hideModal);
-      if (btnCloseSuccess) closeModalBtn.addEventListener('click', hideModal);
-      modal.addEventListener('click', (e) => { if (e.target === modal) hideModal(); });
-    }
-
-    if (consultForm) {
-      consultForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const submitBtn = consultForm.querySelector('button[type="submit"]');
-        if (submitBtn.disabled) return;
-
-        const name = document.getElementById('cName').value;
-        const country = document.getElementById('cCountry').value;
-        const phone = document.getElementById('cPhone').value;
-        const email = document.getElementById('cEmail').value;
-        const goals = document.getElementById('cGoals').value;
-
-        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwALyCIFh4XLjpYQCaJxQH3S3krOkcRJERXz9IcAPWpUK3QKOpj583xWw6A31TfgvSDqw/exec'; 
-        const payload = { name, country, phone, email, goals };
-
-        submitBtn.disabled = true;
-        submitBtn.style.opacity = '0.7';
-        submitBtn.style.cursor = 'not-allowed';
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = 'Sending request... ⏳';
-
-        try {
-          await fetch(WEB_APP_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-            body: JSON.stringify(payload)
-          });
-
-          consultForm.classList.add('hidden');
-          if (successMessage) successMessage.classList.remove('hidden');
-
-        } catch (error) {
-          console.error("Error submitting form:", error);
-          consultForm.classList.add('hidden');
-          if (successMessage) successMessage.classList.add('hidden');
-        } finally {
-          submitBtn.disabled = false;
-          submitBtn.style.opacity = '1';
-          submitBtn.style.cursor = 'pointer';
-          submitBtn.innerHTML = originalText;
-        }
-      });
-    }
-
-    // OTP LOGIC
     const validCodes = ["FLN01", "FLN02", "FLS01", "WLN01", "WLS01", "SLN01", "SLS01", "FCS01", "AVB01", "KVN01", "KVS01"];
     const inputs = document.querySelectorAll('.otp-input');
     const hiddenInput = document.getElementById('accessCodeInput');
@@ -342,5 +151,4 @@ import Footer from '../components/footer.astro';
       });
     }
   </script>
-</body>
-</html>
+</Layout>

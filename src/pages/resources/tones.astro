@@ -1,92 +1,18 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+// src/pages/resources/tones.astro
+import Layout from '../../layout.astro';
 ---
 
-<BaseLayout 
+<Layout 
   title="Vietnamese Tones | Havie" 
-  description="Master 6 Vietnamese tones with native audio, vocal mechanics, dialect switcher, and interactive ear workout."
-  canonical="https://havielearn.com/resources/tones"
->
+description="Learn the 6 Vietnamese tones with native sound, easy pronunciation tips, North and South accents, and fun listening practice.">
   <!-- BACKGROUND GLOW -->
   <div class="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
     <div class="absolute top-0 right-[15%] w-[450px] h-[450px] bg-gradient-to-br from-amber-400/20 via-red-500/10 to-transparent rounded-full blur-3xl"></div>
     <div class="absolute top-40 left-[10%] w-[380px] h-[380px] bg-gradient-to-tr from-amber-200/30 to-transparent rounded-full blur-3xl"></div>
   </div>
 
-  <!-- NAVBAR -->
-  <header class="sticky top-0 z-40 bg-[#fffaf5]/90 backdrop-blur-md border-b border-stone-200/80 h-20">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 h-full flex items-center justify-between">
-      
-      <!-- LOGO BÊN TRÁI -->
-      <a href="/" class="group flex flex-col select-none text-left shrink-0">
-        <div class="h-7 sm:h-8 flex items-center">
-          <svg class="h-7 sm:h-8 w-auto overflow-visible" viewBox="0 0 175 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 2H6V12H18V2H24V28H18V17H6V28H0V2Z" fill="#dc2626"/>
-            <path d="M41 2L52 28H45.5L43.2 22H33.8L31.5 28H25L36 2H41ZM38.5 8.5L35.2 17.5H41.8L38.5 8.5Z" fill="#dc2626"/>
-            <path d="M53 2H59.5L67 21L74.5 2H81L70.5 28H63.5L53 2Z" fill="#dc2626"/>
-            <path d="M86 2H92V28H86V2Z" fill="#dc2626"/>
-            <path d="M98 2H117V7.5H104V12H115V17H104V22.5H117V28H98V2Z" fill="#dc2626"/>
-          </svg>
-        </div>
-        <span class="text-[9.5px] sm:text-[10px] font-bold tracking-[0.22em] sm:tracking-[0.26em] text-stone-400 uppercase mt-1 pl-0.5 leading-none">
-          Learn Vietnamese Online
-        </span>
-      </a>
-
-      <!-- CỤM MENU CHỮ Ở GIỮA -->
-      <nav class="hidden md:flex items-center space-x-7 lg:space-x-8 text-base font-bold text-slate-800">
-        <a href="/#about" class="hover:text-red-600 transition">About Me</a>
-        <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
-        <a href="/resources" class="text-red-600 font-brand font-extrabold transition">Resources</a>
-        <a href="/student" class="hover:text-red-600 transition">Student Portal</a>
-        <a href="/test" class="hover:text-red-600 transition">Level Test</a>
-      </nav>
-
-      <!-- NÚT BOOK -->
-      <div class="hidden md:flex items-center pl-6 shrink-0">
-        <button
-          type="button"
-          class="open-modal-trigger inline-flex items-center justify-center px-5 py-3 text-sm font-extrabold text-white bg-red-600 hover:bg-red-700 rounded-xl shadow-lg shadow-red-600/25 transition hover:-translate-y-0.5 cursor-pointer"
-        >
-          Book 25-Min Trial Lesson →
-        </button>
-      </div>
-
-      <!-- MOBILE TOGGLE BUTTON -->
-      <div class="flex items-center md:hidden">
-        <button 
-          id="mobileMenuBtn" 
-          type="button" 
-          aria-label="Toggle Menu"
-          class="w-10 h-10 rounded-xl bg-stone-100 hover:bg-stone-200 text-slate-800 flex items-center justify-center font-bold transition cursor-pointer"
-        >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-      </div>
-
-    </div>
-
-    <!-- Mobile Dropdown Menu -->
-    <div id="mobileMenu" class="hidden md:hidden absolute top-20 left-0 w-full bg-[#fffaf5] border-b border-stone-200 shadow-xl px-6 py-5 space-y-4 font-semibold text-slate-800 text-base">
-      <a href="/#about" class="mobile-link block hover:text-red-600 transition">About Me</a>
-      <a href="/#curriculum" class="mobile-link block hover:text-red-600 transition">Learning Tracks</a>
-      <a href="/resources" class="mobile-link block text-red-600 font-bold">Resources</a>
-      <a href="/student" class="mobile-link block hover:text-red-600 transition">Student Portal</a>
-      <a href="/test" class="mobile-link block hover:text-red-600 transition">Level Test</a>
-      <div class="pt-3 border-t border-stone-200">
-        <button
-          type="button"
-          class="open-modal-trigger w-full py-3.5 text-sm font-bold text-white bg-red-600 rounded-xl text-center shadow-md cursor-pointer"
-        >
-          Book 25-Min Trial Lesson →
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <main class="flex-grow py-10 lg:py-14">
+  <main class="flex-grow py-10 lg:py-14 font-brand">
     
     <!-- HEADER & DIALECT SWITCHER -->
     <section class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 mb-10">
@@ -96,7 +22,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             Tones Studio
           </span>
           <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight font-brand pt-1">
-            Master the 6 <span class="curved-underline text-red-600">Vietnamese Tones.</span>
+            Master the 6 <span class="text-red-600">Vietnamese Tones.</span>
           </h1>
           <p class="text-stone-600 text-base sm:text-lg leading-relaxed pt-2">
             Select your accent first, click any tone card to hear native pronunciation, and <a href="#workout" class="text-red-600 font-bold underline underline-offset-4 decoration-red-300 hover:decoration-red-600 transition cursor-pointer">practice</a> ↓.
@@ -130,7 +56,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     <!-- PRACTICE WORKOUT SECTION -->
     <section id="workout" class="max-w-5xl mx-auto px-5 sm:px-8 lg:px-12 pt-6 scroll-mt-28">
-      <div class="bg-white rounded-3xl p-6 sm:p-10 border border-stone-200/95 shadow-md relative overflow-hidden">
+      <div class="bg-white rounded-[28px] p-6 sm:p-10 border border-stone-200/95 shadow-xl shadow-stone-300/30 relative overflow-hidden">
         
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-stone-100">
           <div>
@@ -150,7 +76,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             <button 
               id="btnPlayQuiz" 
               onclick="playCurrentQuestionAudio()" 
-              class="px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-2xl text-sm sm:text-base shadow-md shadow-red-600/20 transition active:scale-95 inline-flex items-center gap-2.5 cursor-pointer"
+              class="px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-2xl text-sm sm:text-base shadow-lg shadow-red-600/20 transition active:scale-95 inline-flex items-center gap-2.5 cursor-pointer"
             >
               <span class="text-lg">🔊</span> 
               <span id="quizBtnText">Listen Audio</span>
@@ -165,9 +91,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           <div id="nextButtonArea" class="hidden mt-6 text-center">
             <button 
               onclick="goToNextQuestion()" 
-              class="px-8 py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl text-xs sm:text-sm transition shadow-sm cursor-pointer"
+              class="px-10 py-4 bg-slate-900 hover:bg-slate-800 text-white font-extrabold rounded-2xl text-base shadow-lg shadow-slate-900/20 transition cursor-pointer"
             >
-              Next Question →
+              Continue →
             </button>
           </div>
         </div>
@@ -178,17 +104,17 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           <h3 class="text-3xl font-black text-slate-900 font-brand">Workout Completed!</h3>
           <p id="quizFinalResultText" class="text-stone-600 text-sm sm:text-base max-w-md mx-auto leading-relaxed"></p>
           <div class="pt-4 flex justify-center gap-4">
-            <button type="button" class="open-modal-trigger px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-xs sm:text-sm shadow-md transition cursor-pointer">Book Trial Lesson →</button>
-            <button onclick="restartQuiz()" class="px-6 py-3 bg-stone-100 hover:bg-stone-200 text-slate-900 font-bold rounded-xl text-xs sm:text-sm transition cursor-pointer">Practice Again ↺</button>
+            <button type="button" class="open-modal-trigger px-6 py-3.5 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-xl text-sm shadow-md transition cursor-pointer">Book Trial Lesson →</button>
+            <button onclick="restartQuiz()" class="px-6 py-3.5 bg-stone-100 hover:bg-stone-200 text-slate-900 font-bold rounded-xl text-sm transition cursor-pointer">Practice Again ↺</button>
           </div>
         </div>
 
       </div>
 
       <!-- BANNER TRIAL -->
-      <div class="mt-10 rounded-3xl bg-gradient-to-r from-red-50 via-white to-amber-50 border border-red-200/80 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
+      <div class="mt-10 rounded-[28px] bg-gradient-to-r from-red-50 via-white to-amber-50 border border-red-200/80 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
         <div class="space-y-1 text-center md:text-left">
-          <span class="text-xs font-bold uppercase tracking-wider text-red-600">Personalized Coaching</span>
+          <span class="text-xs font-extrabold uppercase tracking-wider text-red-600">Personalized Coaching</span>
           <h3 class="text-xl font-extrabold text-slate-900 font-brand">Want to fix your pronunciation with Hang Luu?</h3>
           <p class="text-xs sm:text-sm text-stone-600">Let's figure out where you're getting stuck and practice together in a 25-minute trial session.</p>
         </div>
@@ -203,101 +129,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
   </main>
 
-  <!-- FOOTER -->
-  <footer class="bg-[#fffaf5] text-stone-600 py-10 border-t border-stone-200/80">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-      <div class="flex items-center justify-center gap-2.5">
-        <span class="font-brand font-black text-slate-900 tracking-wider text-base sm:text-lg">HAVIE</span>
-        <span class="text-stone-300">•</span>
-        <span class="text-xs sm:text-sm font-medium text-stone-500">Learn Vietnamese with Hang</span>
-      </div>
-      <div class="flex items-center gap-5 sm:gap-7 font-semibold text-xs sm:text-sm text-stone-700 flex-wrap justify-center">
-        <a href="/#about" class="hover:text-red-600 transition">About Me</a>
-        <a href="/#curriculum" class="hover:text-red-600 transition">Learning Tracks</a>
-        <a href="/resources" class="hover:text-red-600 transition font-bold">Resources</a>
-        <a href="/student" class="hover:text-red-600 transition">Student Portal</a>
-        <a href="/test" class="hover:text-red-600 transition">Level Test</a>
-        <button type="button" class="open-modal-trigger text-red-600 font-bold hover:underline cursor-pointer">Book Trial</button>
-      </div>
-    </div>
-  </footer>
-
-  <!-- CONSULTATION / BOOKING MODAL -->
-  <div id="consultModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-stone-200 space-y-6 text-left">
-      
-      <div class="flex items-center justify-between border-b border-stone-100 pb-4">
-        <div>
-          <span class="text-xs sm:text-sm font-black text-red-600 uppercase tracking-widest bg-red-50 px-3.5 py-1.5 rounded-lg border border-red-200 inline-block font-brand">1-ON-1 LESSONS</span>
-          <h3 class="text-2xl sm:text-3xl font-black text-slate-900 font-brand mt-1.5">Book 25-Min Trial Lesson</h3>
-        </div>
-        <button id="closeModalBtn" type="button" class="w-10 h-10 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 font-bold flex items-center justify-center text-lg cursor-pointer">
-          ✕
-        </button>
-      </div>
-
-      <form id="consultForm" class="space-y-4 text-sm">
-        <div>
-          <label class="block font-bold text-slate-800 mb-1.5 text-base">Full Name / Tên của bạn *</label>
-          <input type="text" id="cName" required placeholder="e.g. Alex Smith" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label class="block font-bold text-slate-800 mb-1.5 text-base">Country / Quốc gia *</label>
-            <input type="text" id="cCountry" required placeholder="e.g. Germany, USA" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
-          </div>
-          <div>
-            <label class="block font-bold text-slate-800 mb-1.5 text-base">Phone / SĐT</label>
-            <input type="tel" id="cPhone" placeholder="e.g. +49..." class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
-          </div>
-        </div>
-
-        <div>
-          <label class="block font-bold text-slate-800 mb-1.5 text-base">Email Address *</label>
-          <input type="email" id="cEmail" required placeholder="name@example.com" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
-        </div>
-
-        <div>
-          <label class="block font-bold text-slate-800 mb-1.5 text-base">Learning Goals / Mục tiêu học tập *</label>
-          <textarea id="cGoals" rows="3" required placeholder="Current level, target dialect (Hanoi/Saigon), goals..." class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 resize-none text-base"></textarea>
-        </div>
-
-        <button
-          type="submit"
-          class="w-full py-4 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl text-base shadow-md transition cursor-pointer mt-3"
-        >
-          Submit Request to Hang →
-        </button>
-      </form>
-
-      <div id="successMessage" class="hidden text-center py-6 space-y-3">
-        <div class="text-4xl">🎉</div>
-        <h4 class="font-black text-slate-900 text-lg font-brand">Request Sent Successfully!</h4>
-        <p class="text-stone-600 text-sm leading-relaxed">Thank you! Hang has received your details and goals. She will reach out via email within 24 hours.</p>
-        <button id="btnCloseSuccess" type="button" class="px-6 py-3 bg-slate-900 text-white font-bold rounded-xl text-sm cursor-pointer">
-          Close Window
-        </button>
-      </div>
-
-    </div>
-  </div>
-
   <!-- SCRIPTS -->
   <script is:inline>
-    // Mobile Menu Toggle
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
-    if (mobileMenuBtn && mobileMenu) {
-      mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
-      mobileLinks.forEach(link => {
-        link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
-      });
-    }
-
     // ĐỊNH NGHĨA DỮ LIỆU ĐỘC LẬP CHO 2 MIỀN
     const TONES_DATA = {
       north: [
@@ -607,80 +440,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       renderCurrentQuestion();
     }
 
-    // Modal Control Script
-    const modal = document.getElementById('consultModal');
-    const openTriggers = document.querySelectorAll('.open-modal-trigger');
-    const closeModalBtn = document.getElementById('closeModalBtn');
-    const consultForm = document.getElementById('consultForm');
-    const successMessage = document.getElementById('successMessage');
-    const btnCloseSuccess = document.getElementById('btnCloseSuccess');
-
-    openTriggers.forEach(btn => {
-      if (btn) {
-        btn.addEventListener('click', () => {
-          modal.classList.remove('hidden');
-          consultForm.classList.remove('hidden');
-          successMessage.classList.add('hidden');
-          if (mobileMenu) mobileMenu.classList.add('hidden');
-        });
-      }
-    });
-
-    const hideModalSafe = () => modal.classList.add('hidden');
-    if (closeModalBtn) closeModalBtn.addEventListener('click', hideModalSafe);
-    if (btnCloseSuccess) closeModalBtn.addEventListener('click', hideModalSafe);
-    modal.addEventListener('click', (e) => { if (e.target === modal) hideModalSafe(); });
-
-    // FORM SUBMISSION (Google Sheets)
-    consultForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const submitBtn = consultForm.querySelector('button[type="submit"]');
-      if (submitBtn.disabled) return;
-
-      const name = document.getElementById('cName').value;
-      const country = document.getElementById('cCountry').value;
-      const phone = document.getElementById('cPhone').value;
-      const email = document.getElementById('cEmail').value;
-      const goals = document.getElementById('cGoals').value;
-
-      const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwALyCIFh4XLjpYQCaJxQH3S3krOkcRJERXz9IcAPWpUK3QKOpj583xWw6A31TfgvSDqw/exec'; 
-      const payload = { name, country, phone, email, goals };
-
-      submitBtn.disabled = true;
-      submitBtn.style.opacity = '0.7';
-      submitBtn.style.cursor = 'not-allowed';
-      const originalText = submitBtn.innerHTML;
-      submitBtn.innerHTML = 'Sending request... ⏳';
-
-      try {
-        await fetch(WEB_APP_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: {
-            'Content-Type': 'text/plain;charset=utf-8',
-          },
-          body: JSON.stringify(payload)
-        });
-
-        consultForm.classList.add('hidden');
-        successMessage.classList.remove('hidden');
-
-      } catch (error) {
-        console.error("Error submitting form:", error);
-        consultForm.classList.add('hidden');
-        successMessage.classList.add('hidden');
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = '1';
-        submitBtn.style.cursor = 'pointer';
-        submitBtn.innerHTML = originalText;
-      }
-    });
-
     window.addEventListener('DOMContentLoaded', () => {
       renderTonesGrid();
       renderCurrentQuestion();
     });
   </script>
-</BaseLayout>
+</Layout>

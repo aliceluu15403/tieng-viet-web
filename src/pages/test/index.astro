@@ -1,64 +1,18 @@
 ---
 // src/pages/test/index.astro - Official Vietnamese Proficiency Placement Test (A1 - C2)
-import '../../styles/global.css';
-import Header from '../../components/header.astro';
-import Footer from '../../components/footer.astro';
+import Layout from '../../layout.astro';
 ---
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vietnamese Level Test — Havie</title>
-  <meta name="description" content="Take our comprehensive Vietnamese level test with Northern and Southern dialect tracks, audio tone discrimination, and real-time feedback." />
 
-  <!-- CANONICAL URL -->
-  <link rel="canonical" href="https://havielearn.com/test" />
-
-  <!-- GOOGLE ANALYTICS (GA4) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WGQRLL7424"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-WGQRLL7424');
-  </script>
-
-  <!-- FAVICON -->
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --cream: #fffaf5;
-      --navy: #0f172a;
-      --brand-red: #dc2626;
-      --orange: #ef7218;
-    }
-    html { scroll-padding-top: 100px; }
-    body { font-family: 'DM Sans', sans-serif; background-color: var(--cream); color: var(--navy); }
-    .font-brand { font-family: 'Plus Jakarta Sans', sans-serif; }
-    .curved-underline { position: relative; display: inline-block; }
-    .curved-underline::after {
-      content: ""; position: absolute; left: 0; bottom: -6px; width: 100%; height: 6px;
-      border-bottom: 3px solid var(--orange); border-radius: 50%; transform: rotate(-1.5deg);
-    }
-  </style>
-</head>
-<body class="selection:bg-red-600 selection:text-white min-h-screen flex flex-col antialiased relative overflow-x-hidden">
-
+<Layout 
+  title="Vietnamese Level Test — Havie"
+description="Ready to take a Vietnamese test? Evaluate your proficiency level with interactive tone, listening, and grammar modules for Northern and Southern dialects."
+  canonical="https://havielearn.com/test"
+>
   <!-- BACKGROUND GLOW -->
   <div class="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
     <div class="absolute top-0 right-[15%] w-[450px] h-[450px] bg-gradient-to-br from-amber-400/20 via-red-500/10 to-transparent rounded-full blur-3xl"></div>
     <div class="absolute top-40 left-[10%] w-[380px] h-[380px] bg-gradient-to-tr from-amber-200/30 to-transparent rounded-full blur-3xl"></div>
   </div>
-
-  <!-- HEADER DÙNG CHUNG -->
-  <Header />
 
   <!-- STICKY SCORE TRACKER -->
   <div class="sticky top-20 z-30 bg-white/90 backdrop-blur-md border-b border-stone-200/80 py-3.5 shadow-xs">
@@ -204,9 +158,6 @@ import Footer from '../../components/footer.astro';
       </div>
     </div>
   </div>
-
-  <!-- FOOTER DÙNG CHUNG -->
-  <Footer />
 
   <!-- SCRIPT LOGIC -->
   <script is:inline>
@@ -484,38 +435,24 @@ import Footer from '../../components/footer.astro';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Mobile Menu Toggle Fix
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
-    if (mobileMenuBtn && mobileMenu) {
-      mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
-      mobileLinks.forEach(link => {
-        link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
-      });
-    }
-
     // Consult Modal Controls
     const consultModal = document.getElementById('consultModal');
     document.querySelectorAll('.open-modal-trigger').forEach(btn => {
       btn.addEventListener('click', () => {
         resultModal.classList.add('hidden');
         consultModal.classList.remove('hidden');
-        if (mobileMenu) mobileMenu.classList.add('hidden');
       });
     });
     document.getElementById('closeConsultModalBtn').addEventListener('click', () => consultModal.classList.add('hidden'));
     document.getElementById('btnCloseSuccess').addEventListener('click', () => consultModal.classList.add('hidden'));
 
+    const consultForm = document.getElementById('consultForm');
     consultForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      document.getElementById('consultForm').classList.add('hidden');
+      consultForm.classList.add('hidden');
       document.getElementById('successMessage').classList.remove('hidden');
     });
 
     renderTest();
   </script>
-</body>
-</html>
+</Layout>
