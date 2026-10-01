@@ -481,18 +481,18 @@ const allListeningLessons = {
       {
         id: 2,
         question: "Anh đã tới Cần Thơ chưa?",
-        options: ["Rồi", "Chưa đi Cần Thơ", "Sẽ đi ngày mai", "Không nhắc đến"],
+        options: ["Rồi", "Chưa", "Sẽ đi ngày mai", "Không biết"],
         correct: 1
       },
       {
         id: 3,
-        question: "Anh ấy đã đến đâu rồi?",
+        question: "Anh ấy đã đi đâu rồi?",
         options: ["Cần Thơ", "Đà Nẵng", "Hà Nội", "Hồ Chí Minh"],
         correct: 1
       },
       {
         id: 4,
-        question: "Anh ấy đến đó mấy lần?",
+        question: "Anh ấy đã tới đó mấy lần?",
         options: ["Một lần", "Hai lần", "Ba lần", "Bốn lần"],
         correct: 1
       }
