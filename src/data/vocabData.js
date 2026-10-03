@@ -90,14 +90,20 @@ export default {
     type: "free",
     words: [
       { vn: "Đau bụng", en: "Stomachache" },
+      { vn: "Đau đầu", en: "Headache" },
       { vn: "Sốt", en: "Fever" },
       { vn: "Ho", en: "Cough" },
       { vn: "Sổ mũi", en: "Runny nose" },
+      { vn: "Uể oải", en: "Lethargic / Sluggish" },
+      { vn: "Trằn trọc", en: "Restless / Toss and turn" },
+      { vn: "Chợp mắt", en: "Doze off / Close one's eyes" },
+      { vn: "Cháo", en: "Congee / Rice porridge" },
+      { vn: "Thuốc", en: "Medicine" },
       { vn: "Dị ứng", en: "Allergy" },
       { vn: "Hiệu thuốc", en: "Pharmacy" },
       { vn: "Đơn thuốc", en: "Prescription" },
       { vn: "Khỏe hơn", en: "Better / Recovering" }
-    ]
+            ]
   },
 
   "family_expert": {

@@ -5,8 +5,8 @@ import Layout from '../layout.astro';
 
 <Layout 
   title="Student Portal | Havie"
-description="Access exclusive listening materials, vocabulary labs, and real-life conversation practice resources."  
-canonical="https://havielearn.com/student"
+  description="Access exclusive listening materials, vocabulary labs, and real-life conversation practice resources."  
+  canonical="https://havielearn.com/student"
 >
   <Fragment slot="head">
     <style>
@@ -96,7 +96,7 @@ canonical="https://havielearn.com/student"
 
   <!-- OTP SCRIPT -->
   <script is:inline>
-    const validCodes = ["FLN01", "FLN02", "FLS01", "WLN01", "WLS01", "SLN01", "SLS01", "FCS01", "AVB01", "KVN01", "KVS01"];
+    const validCodes = ["FLN01", "FLN02", "FLS01", "WLN01", "WLS01", "SLN01", "SLS01", "FCS01", "AVB01", "KVN01", "KVS01", "HLS01", "HLS02"];
     const inputs = document.querySelectorAll('.otp-input');
     const hiddenInput = document.getElementById('accessCodeInput');
     const codeForm = document.getElementById('codeForm');
@@ -134,7 +134,7 @@ canonical="https://havielearn.com/student"
         if (validCodes.includes(code)) {
           errorMessage.classList.add('hidden');
           
-          if (code.startsWith("FL") || code.startsWith("WL") || code.startsWith("SL")) {
+          if (code.startsWith("FL") || code.startsWith("WL") || code.startsWith("SL") || code.startsWith("HL")) {
             window.location.href = `/listening?code=${code}`;
           } else if (code.startsWith("AVB") || code.startsWith("KV")) {
             window.location.href = `/resources/vocabulary?code=${code}`;

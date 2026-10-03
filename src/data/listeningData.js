@@ -1,4 +1,3 @@
-// src/data/listeningData.js
 const allListeningLessons = {
   "FLN02": {
     title: "Travel & Relatives Dialogue (Northern Accent)",
@@ -114,11 +113,11 @@ const allListeningLessons = {
     questions: [
       {
         id: 1,
-        part1: "<b>A:</b> Gia đình em có mấy",
-        part2: "? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Nhà em có bốn người.",
-        typeAnswer: "nguoi",
-        correctMcq: "người",
-        mcqOptions: ["người", "ngươi", "ngưoi"]
+        part1: "<b>A:</b> Gia",
+        part2: "em có mấy người? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Nhà em có bốn người.",
+        typeAnswer: "dinh",
+        correctMcq: "đình",
+        mcqOptions: ["đình", "dinh", "đỉnh"]
       },
       {
         id: 2,
@@ -130,27 +129,27 @@ const allListeningLessons = {
       },
       {
         id: 3,
-        part1: "<b>A:</b> Anh trai em sống",
-        part2: "đâu? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Anh ấy sống ở Hà Nội.",
-        typeAnswer: "o",
-        correctMcq: "ở",
-        mcqOptions: ["ở", "o", "õ"]
+        part1: "<b>A:</b> Anh trai em sống ở",
+        part2: "? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Anh ấy sống ở Hà Nội.",
+        typeAnswer: "dau",
+        correctMcq: "đâu",
+        mcqOptions: ["đâu", "dau", "đấu"]
       },
       {
         id: 4,
-        part1: "<b>A:</b> Em có thường xuyên",
-        part2: "thăm gia đình không?",
-        typeAnswer: "ve",
-        correctMcq: "về",
-        mcqOptions: ["về", "ve", "vê"]
+        part1: "<b>A:</b> Em có thường xuyên về",
+        part2: "gia đình không?",
+        typeAnswer: "tham",
+        correctMcq: "thăm",
+        mcqOptions: ["thăm", "tham", "thám"]
       },
       {
         id: 5,
-        part1: "<b>B:</b> Có, khoảng vài tháng em",
-        part2: "về một lần.",
-        typeAnswer: "co",
-        correctMcq: "có",
-        mcqOptions: ["có", "cô", "cớ"]
+        part1: "<b>B:</b> Có, khoảng",
+        part2: "tháng em về một lần.",
+        typeAnswer: "vai",
+        correctMcq: "vài",
+        mcqOptions: ["vài", "vai", "vải"]
       }
     ],
     listeningMcqQuestions: [
@@ -192,11 +191,11 @@ const allListeningLessons = {
     questions: [
       {
         id: 1,
-        part1: "<b>A:</b> Gia đình em có mấy",
-        part2: "? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Nhà em có bốn người.",
-        typeAnswer: "nguoi",
-        correctMcq: "người",
-        mcqOptions: ["người", "ngươi", "ngưoi"]
+        part1: "<b>A:</b> Gia",
+        part2: "em có mấy người? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Nhà em có bốn người.",
+        typeAnswer: "dinh",
+        correctMcq: "đình",
+        mcqOptions: ["đình", "dinh", "đỉnh"]
       },
       {
         id: 2,
@@ -208,27 +207,27 @@ const allListeningLessons = {
       },
       {
         id: 3,
-        part1: "<b>A:</b> Anh trai em sống",
-        part2: "đâu? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Anh ấy sống ở Hà Nội.",
-        typeAnswer: "o",
-        correctMcq: "ở",
-        mcqOptions: ["ở", "o", "õ"]
+        part1: "<b>A:</b> Anh trai em sống ở",
+        part2: "? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Anh ấy sống ở Hà Nội.",
+        typeAnswer: "dau",
+        correctMcq: "đâu",
+        mcqOptions: ["đâu", "dau", "đấu"]
       },
       {
         id: 4,
-        part1: "<b>A:</b> Em có thường xuyên",
-        part2: "thăm gia đình không?",
-        typeAnswer: "ve",
-        correctMcq: "về",
-        mcqOptions: ["về", "ve", "vê"]
+        part1: "<b>A:</b> Em có thường xuyên về",
+        part2: "gia đình không?",
+        typeAnswer: "tham",
+        correctMcq: "thăm",
+        mcqOptions: ["thăm", "tham", "thám"]
       },
       {
         id: 5,
-        part1: "<b>B:</b> Có, khoảng vài tháng em",
-        part2: "về một lần.",
-        typeAnswer: "co",
-        correctMcq: "có",
-        mcqOptions: ["có", "cô", "cớ"]
+        part1: "<b>B:</b> Có, khoảng",
+        part2: "tháng em về một lần.",
+        typeAnswer: "vai",
+        correctMcq: "vài",
+        mcqOptions: ["vài", "vai", "vải"]
       }
     ],
     listeningMcqQuestions: [
@@ -363,7 +362,7 @@ const allListeningLessons = {
         mcqOptions: ["cuối", "cúi", "cuoi"]
       },
       {
-       id: 6,
+        id: 6,
         part1: "<b>B:</b> Nếu xong sớm thì",
         part2: "sớm.",
         typeAnswer: "nghi",
@@ -455,7 +454,7 @@ const allListeningLessons = {
         mcqOptions: ["bao giờ", "báo giờ", "bảo giở"]
       },
       {
-       id: 3,
+        id: 3,
         part1: "<b>A:</b> Vậy còn Đà Nẵng? &nbsp;&nbsp;|&nbsp;&nbsp; <b>B:</b> Đà Nẵng",
         part2: "anh đi rồi.",
         typeAnswer: "thi",
@@ -469,32 +468,6 @@ const allListeningLessons = {
         typeAnswer: "hai",
         correctMcq: "hai",
         mcqOptions: ["hai", "hải", "hại"]
-      }
-    ],
-    listeningMcqQuestions: [
-      {
-        id: 1,
-        question: "Đây là lần thứ mấy anh tới Việt Nam?",
-        options: ["Lần đầu tiên", "Lần thứ hai", "Lần thứ ba", "Lần thứ tư"],
-        correct: 2
-      },
-      {
-        id: 2,
-        question: "Anh đã tới Cần Thơ chưa?",
-        options: ["Rồi", "Chưa", "Sẽ đi ngày mai", "Không biết"],
-        correct: 1
-      },
-      {
-        id: 3,
-        question: "Anh ấy đã đi đâu rồi?",
-        options: ["Cần Thơ", "Đà Nẵng", "Hà Nội", "Hồ Chí Minh"],
-        correct: 1
-      },
-      {
-        id: 4,
-        question: "Anh ấy đã tới đó mấy lần?",
-        options: ["Một lần", "Hai lần", "Ba lần", "Bốn lần"],
-        correct: 1
       }
     ],
     listeningMcqQuestions: [
@@ -521,6 +494,182 @@ const allListeningLessons = {
         question: "Anh ấy tới đó mấy lần?",
         options: ["Một lần", "Hai lần", "Ba lần", "Bốn lần"],
         correct: 1
+      }
+    ]
+  },
+"HLS01": {
+    title: "Health & Feeling Dialogue (Southern Accent)",
+    audioFile: "HLS01.wav",
+    questions: [
+{
+        id: 1,
+        part1: "<b>Con:</b> Mẹ ơi, bữa nay mẹ thấy trong người",
+        part2: "rồi?",
+        typeAnswer: "sao",
+        correctMcq: "sao",
+        mcqOptions: ["sao", "sáo", "sảo"]
+      },
+      {
+        id: 2,
+        part1: "<b>Mẹ:</b> Mẹ vẫn thấy hơi mệt mệt, người cứ uể oải, với lại hơi",
+        part2: ".",
+        typeAnswer: "dau dau",
+        correctMcq: "đau đầu",
+        mcqOptions: ["đau đầu", "dau dau", "đầu đau"]
+      },
+      {
+        id: 3,
+        part1: "<b>Con:</b> Mẹ có",
+        part2: "hông?",
+        typeAnswer: "sot",
+        correctMcq: "sốt",
+        mcqOptions: ["sốt", "sot", "sớt"]
+      },
+      {
+        id: 4,
+        part1: "<b>Mẹ:</b> Một chút thôi. Chắc hổng sao đâu, mẹ nghỉ ngơi chút là",
+        part2: "à.",
+        typeAnswer: "khoe",
+        correctMcq: "khỏe",
+        mcqOptions: ["khoe", "khoẻ", "khoé"]
+      },
+      {
+        id: 5,
+        part1: "<b>Con:</b> Mẹ đừng có",
+        part2: "quá nghen. Mẹ ăn gì chưa?",
+        typeAnswer: "rang",
+        correctMcq: "ráng",
+        mcqOptions: ["ráng", "rang", "ràng"]
+      },
+      {
+        id: 6,
+        part1: "<b>Mẹ:</b> Hồi nãy mẹ có ăn chút",
+        part2: "rồi.",
+        typeAnswer: "chao",
+        correctMcq: "cháo",
+        mcqOptions: ["cháo", "chao", "chào"]
+      },
+      {
+        id: 7,
+        part1: "<b>Con:</b> Vậy mẹ uống thuốc chưa? Để con lấy cho mẹ ly",
+        part2: "nha.",
+        typeAnswer: "nuoc",
+        correctMcq: "nước",
+        mcqOptions: ["nước", "nuoc", "nuớc"]
+      },
+      {
+        id: 8,
+        part1: "<b>Mẹ:</b> Cảm ơn con, bây giờ mẹ",
+        part2: " uống.",
+        typeAnswer: "moi",
+        correctMcq: "mới",
+        mcqOptions: ["mới", "mọi", "mói"]
+      }
+    ],
+        listeningMcqQuestions: [
+      {
+        id: 1,
+        question: "Mẹ cảm thấy trong người thế nào?",
+        options: ["Rất khỏe", "Hơi đau đầu", "Bình thường", "Đau lưng"],
+        correct: 1
+      },
+      {
+        id: 2,
+        question: "Mẹ có bị sốt không?",
+        options: ["Không", "Sốt cao", "Sốt nhẹ", "Không biết"],
+        correct: 1
+      },
+      {
+        id: 3,
+        question: "Mẹ đã ăn gì chưa?",
+        options: ["Chưa", "Ăn cơm rồi", "Ăn chút cháo rồi", "Ăn phở rồi"],
+        correct: 2
+      },
+      {
+        id: 4,
+        question: "Con lấy gì cho mẹ?",
+        options: ["Nước", "Sữa", "Thuốc", "Trà"],
+        correct: 0
+      },
+      {
+        id: 5,
+        question: "Khi nào mẹ mới uống thuốc?",
+        options: ["Lát nữa", "Bây giờ", "Sáng mai", "Hôm qua"],
+        correct: 1
+      }
+    ]
+  },
+    "HLS02": {
+    title: "Health & Daily Habits Dialogue (Southern Accent)",
+    audioFile: "HLS02.wav",
+    questions: [
+      {
+        id: 1,
+        part1: "<b>Mẹ:</b> Tối qua con ngủ có ngon",
+        part2: "hông?",
+        typeAnswer: "ngon",
+        correctMcq: "ngon",
+        mcqOptions: ["ngon", "ngọn", "ngôn"]
+      },
+      {
+        id: 2,
+        part1: "<b>Con:</b> Dạ, hôm qua con",
+        part2: "cả đêm, gần sáng mới chợp mắt được chút.",
+        typeAnswer: "tran troc",
+        correctMcq: "trằn trọc",
+        mcqOptions: ["trằn trọc", "trằn troc", "tran trọc"]
+      },
+      {
+        id: 3,
+        part1: "<b>Mẹ:</b> Bộ con lại cầm điện thoại tới",
+        part2: "nữa hả?",
+        typeAnswer: "khuya",
+        correctMcq: "khuya",
+        mcqOptions: ["khuya", "khuya", "khuya"]
+      },
+      {
+        id: 4,
+        part1: "<b>Con:</b> Dạ… con coi chút xíu mà một hồi tới",
+        part2: "luôn.",
+        typeAnswer: "khuya",
+        correctMcq: "khuya",
+        mcqOptions: ["khuya", "khuya", "khuà"]
+      },
+      {
+        id: 5,
+        part1: "<b>Mẹ:</b> Thôi, tối nay bỏ điện thoại xuống, đi ngủ",
+        part2: "nghen.",
+        typeAnswer: "som",
+        correctMcq: "sớm",
+        mcqOptions: ["sớm", "sơm", "sớm"]
+      },
+      {
+        id: 6,
+        part1: "<b>Mẹ:</b> Đừng uống nhiều",
+        part2: "nữa.",
+        typeAnswer: "ca phe",
+        correctMcq: "cà phê",
+        mcqOptions: ["cà phê", "ca phe", "cà phể"]
+      }
+    ],
+    listeningMcqQuestions: [
+      {
+        id: 1,
+        question: "Tối qua con ngủ có ngon không?",
+        options: ["Ngủ rất ngon", "Trằn trọc cả đêm", "Ngủ sớm", "Không ngủ"],
+        correct: 1
+      },
+      {
+        id: 2,
+        question: "Tại sao con khó ngủ?",
+        options: ["Vì uống nhiều nước", "Vì xem điện thoại tới khuya", "Vì đau đầu", "Vì làm việc mệt"],
+        correct: 1
+      },
+      {
+        id: 3,
+        question: "Mẹ khuyên con điều gì?",
+        options: ["Đi ngủ sớm và ngừng uống nhiều cà phê", "Uống thuốc ngủ", "Đi khám bác sĩ", "Xem điện thoại ít hơn"],
+        correct: 0
       }
     ]
   }

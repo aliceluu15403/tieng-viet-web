@@ -86,7 +86,7 @@ canonical="https://havielearn.com/listening"
     const rawCode = urlParams.get('code');
     
     // Danh sách mã bài nghe hợp lệ
-    const validListeningCodes = ["FLN01", "FLN02", "FLS01", "WLN01", "WLS01", "SLN01", "SLS01", "FCS01"];
+    const validListeningCodes = ["FLN01", "FLN02", "FLS01", "WLN01", "WLS01", "SLN01", "SLS01", "FCS01","HLS01","HLS02"];
     const lessonCode = (rawCode || '').replace(/[\u200B-\u200D\uFEFF]/g, '').trim().toUpperCase();
 
     // Nếu không có mã hoặc mã không hợp lệ -> Chặn và đá thẳng về trang Student Portal
