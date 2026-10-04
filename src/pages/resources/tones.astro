@@ -5,7 +5,7 @@ import Layout from '../../layout.astro';
 
 <Layout 
   title="Vietnamese Tones | Havie" 
-description="Learn the 6 Vietnamese tones with native sound, easy pronunciation tips, North and South accents, and fun listening practice.">
+  description="Learn the 6 Vietnamese tones with native sound, easy pronunciation tips, North and South accents, and fun listening practice.">
   <!-- BACKGROUND GLOW -->
   <div class="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
     <div class="absolute top-0 right-[15%] w-[450px] h-[450px] bg-gradient-to-br from-amber-400/20 via-red-500/10 to-transparent rounded-full blur-3xl"></div>
@@ -146,8 +146,8 @@ description="Learn the 6 Vietnamese tones with native sound, easy pronunciation 
         { id: 'sac', num: '2', name: 'Sắc', type: 'Up', word: 'má', en: 'Mother', path: 'M 10,38 L 110,12', color: '#e52b27', bg: 'hover:border-red-400', mechanic: 'Start at mid pitch and shoot sharply upward. Tighten cords quickly, like asking: "WHAT?!".' },
         { id: 'huyen', num: '3', name: 'Huyền', type: 'Down', word: 'mà', en: 'But', path: 'M 10,15 L 110,38', color: '#3b82f6', bg: 'hover:border-blue-400', mechanic: 'Start at lower-mid pitch and glide down gently. Drop chin like a relaxed sigh: "Ahhh".' },
         { id: 'hoi', num: '4', name: 'Hỏi', type: 'Question Mark', word: 'mả', en: 'Tomb', path: 'M 10,20 Q 60,46 110,18', color: '#d97706', bg: 'hover:border-amber-400', mechanic: 'Dip deep into low pitch, then scoop upward with a questioning curve: "Reaaally?".' },
-        { id: 'nga', num: '5', name: 'Ngã', type: 'Wave', word: 'mã', en: 'Horse', path: 'M 10,20 Q 60,46 110,18', color: '#8b5cf6', bg: 'hover:border-purple-400', mechanic: 'In Southern accent, it is the same as Tone 4: dip down and scoop upward with a questioning curve: "Reaaally?".' },
-        { id: 'nang', num: '6', name: 'Nặng', type: 'Dot', word: 'mạ', en: 'Seedling', path: 'M 10,18 L 85,38', dot: true, color: '#ea580c', bg: 'hover:border-orange-400', mechanic: 'Drop pitch immediately to the bottom and cut airflow dead short, but held slightly longer than in Northern accent.' }
+        { id: 'nga', num: '5', name: 'Ngã', type: 'Wave', word: 'mã', en: 'Horse', path: 'M 10,20 Q 60,46 110,18', color: '#8b5cf6', bg: 'hover:border-purple-400', mechanic: 'In Southern accent, tone Ngã merges with tone Hỏi: dip down and scoop upward.' },
+        { id: 'nang', num: '6', name: 'Nặng', type: 'Dot', word: 'mạ', en: 'Seedling', path: 'M 10,18 L 85,38', dot: true, color: '#ea580c', bg: 'hover:border-orange-400', mechanic: 'Drop pitch immediately to the bottom and cut airflow dead short, but held slightly longer in Southern accent.' }
       ]
     };
 
@@ -259,17 +259,14 @@ description="Learn the 6 Vietnamese tones with native sound, easy pronunciation 
       nang:  { start: 7.2, end: 8.0 }
     };
 
-    const cardTimestampsSouthNang = {
-      start: 4.9, end: 5.7 
-    };
-
+    // Mốc thời gian được tối ưu lại rõ ràng, khoảng cách an toàn cho từng dấu giọng Nam (ma-south.m4a)
     const cardTimestampsSouth = {
-      ngang: { start: 0.6, end: 1.4 },
-      sac:   { start: 1.9, end: 2.7 },
-      huyen: { start: 2.9, end: 3.9 },
-      hoi:   { start: 4.6, end: 5.4 },
-      nga:   { start: 4.6, end: 5.4 }, 
-      nang:  cardTimestampsSouthNang
+      ngang: { start: 0.0, end: 1.0 },
+      sac:   { start: 1.7, end: 2.3 },
+      huyen: { start: 2.9, end: 3.4 },
+      hoi:   { start: 3.7, end: 4.7 },
+      nga:   { start: 3.7, end: 4.7 }, 
+      nang:  { start: 6.1, end: 7.1 }
     };
 
     const practiceNorthTimestamps = [
@@ -299,12 +296,8 @@ description="Learn the 6 Vietnamese tones with native sound, easy pronunciation 
       let range;
 
       if (currentDialect === 'south') {
-        if (toneKey === 'nang') {
-          activeAudio = southAudio;
-          range = cardTimestampsSouthNang;
-        } else {
-          range = cardTimestampsSouth[toneKey];
-        }
+        activeAudio = southAudio;
+        range = cardTimestampsSouth[toneKey];
       } else {
         range = cardTimestampsNorth[toneKey];
       }

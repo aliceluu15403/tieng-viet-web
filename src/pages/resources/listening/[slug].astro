@@ -1,0 +1,294 @@
+---
+import Layout from '../../../layout.astro';
+import { lessons } from '../../../data/listeningLessons.js';
+
+export async function getStaticPaths() {
+  return lessons.map((lesson) => ({
+    params: { slug: lesson.slug },
+    props: { lesson },
+  }));
+}
+
+const { lesson } = Astro.props;
+---
+
+<Layout title={`${lesson.title} | Vietnamese Listening Practice | Havie`} description={lesson.description}>
+  <main class="max-w-4xl mx-auto px-5 py-10 sm:py-16">
+    
+    <!-- Back to Hub -->
+    <div class="mb-6">
+      <a href="/resources/listening" class="text-sm font-bold text-stone-500 hover:text-red-600 transition flex items-center gap-1.5">
+        ← Back to Listening Hub
+      </a>
+    </div>
+
+    <!-- Lesson Header -->
+    <div class="space-y-3 mb-8">
+      <h1 class="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight font-brand">
+        {lesson.title}
+      </h1>
+      <p class="text-stone-600 text-base sm:text-lg font-medium">
+        {lesson.description}
+      </p>
+    </div>
+
+    <!-- ACCENT TOGGLE SWITCH (Bigger text) -->
+    <div class="flex items-center justify-center bg-stone-100 p-2 rounded-2xl max-w-md mx-auto mb-8 border border-stone-200">
+      <button 
+        type="button" 
+        id="btn-north"
+        class="flex-1 py-3.5 px-6 rounded-xl font-black text-base transition cursor-pointer bg-slate-900 text-white shadow-sm"
+      >
+        🇻🇳 Northern (Hanoi)
+      </button>
+      <button 
+        type="button" 
+        id="btn-south"
+        class="flex-1 py-3.5 px-6 rounded-xl font-black text-base transition cursor-pointer text-stone-600 hover:text-slate-900"
+      >
+        🇻🇳 Southern (Saigon)
+      </button>
+    </div>
+
+    <!-- AUDIO PLAYER -->
+    <div class="space-y-6 mb-10">
+      <div class="bg-[#fffaf5] border border-stone-200/90 rounded-3xl p-6 sm:p-8 shadow-xs space-y-4">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+          <h3 class="font-black text-slate-900 text-lg sm:text-xl flex items-center gap-2">
+            <span>🎧</span> Audio Practice
+          </h3>
+          <span class="text-sm font-bold text-stone-600 bg-stone-200/60 px-3 py-1 rounded-full">Listen carefully before answering!</span>
+        </div>
+        
+        <!-- Northern Audio -->
+        <audio id="audio-north" controls preload="metadata" class="w-full accent-slate-900">
+          <source src={lesson.northern.audioUrl} type="audio/mp4" />
+          Your browser does not support the audio element.
+        </audio>
+
+        <!-- Southern Audio (Hidden by default) -->
+        <audio id="audio-south" controls preload="metadata" class="w-full accent-slate-900 hidden">
+          <source src={lesson.southern.audioUrl} type="audio/mp4" />
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </div>
+
+    <!-- COMPREHENSION QUIZ (MANDATORY BEFORE UNLOCKING TRANSCRIPT) -->
+    {lesson.quiz && lesson.quiz.length > 0 && (
+      <div class="bg-white border border-stone-200/90 rounded-3xl p-6 sm:p-8 shadow-xs my-8 space-y-6">
+        <div>
+          <h3 class="text-xl sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+            <span>📝</span> Comprehension Quiz
+          </h3>
+          <p class="text-stone-700 text-base font-bold mt-1">Answer the questions below to check your score, unlock key vocabulary, and view transcripts.</p>
+        </div>
+        
+        <form id="quiz-form" class="space-y-6 divide-y divide-stone-100">
+          {lesson.quiz.map((q, qIndex) => (
+            <div class="pt-6 first:pt-0 space-y-3 quiz-question" data-question={qIndex}>
+              <p class="font-black text-slate-900 text-lg">{q.question}</p>
+              <div class="grid grid-cols-1 gap-3">
+                {q.options.map((opt, optIndex) => (
+                  <label class="flex items-center gap-3 p-4 rounded-xl border border-stone-200 bg-stone-50 hover:bg-stone-100 transition cursor-pointer text-base font-bold text-stone-900">
+                    <input 
+                      type="radio" 
+                      name={`question-${qIndex}`} 
+                      value={optIndex} 
+                      class="w-5 h-5 text-slate-900 focus:ring-slate-900" 
+                      required
+                    />
+                    <span>{opt}</span>
+                  </label>
+                ))}
+              </div>
+              <!-- Explanation Box (Bigger text) -->
+              <div class="explanation-box hidden p-4 rounded-xl text-base font-bold mt-2"></div>
+            </div>
+          ))}
+
+          <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <button 
+              type="submit" 
+              class="w-full sm:w-auto px-8 py-4 bg-slate-900 text-white font-black rounded-2xl shadow-md hover:bg-slate-800 transition cursor-pointer text-base"
+            >
+              Submit Answers & Check Score 🎯
+            </button>
+            <div id="quiz-result" class="hidden text-xl font-black text-slate-900"></div>
+          </div>
+        </form>
+      </div>
+    )}
+
+    <!-- KEY VOCABULARY (LOCKED UNTIL SUBMITTED) -->
+    <div id="vocab-section" class="bg-white border border-stone-200/90 rounded-3xl p-6 sm:p-8 shadow-xs my-8 space-y-4 hidden">
+      <h3 class="text-xl sm:text-2xl font-black text-slate-900 flex items-center gap-2"><span>📚</span> Key Vocabulary</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {lesson.vocabulary.map((vocab) => (
+          <div class="p-4 rounded-2xl bg-stone-50 border border-stone-100 flex flex-col justify-center">
+            <div class="flex items-center justify-between">
+              <span class="font-black text-slate-900 text-lg">{vocab.word}</span>
+              <span class="text-xs font-black px-2.5 py-1 bg-stone-200 text-stone-800 rounded-lg">{vocab.type}</span>
+            </div>
+            <span class="text-stone-700 text-base font-bold mt-1.5">{vocab.meaning}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- TRANSCRIPT (LOCKED UNTIL SUBMITTED) -->
+    <div id="transcript-section" class="space-y-6 my-8 hidden">
+      <!-- Northern Transcript (Uses "cốc") -->
+      <div id="transcript-north" class="bg-white border border-stone-200/90 rounded-3xl p-6 sm:p-8 shadow-xs space-y-5">
+        <h3 class="text-xl font-black text-slate-900 flex items-center gap-2">📜 Northern Transcript (Hanoi Accent)</h3>
+        <div class="space-y-6 divide-y divide-stone-100">
+          <div class="pt-5 first:pt-0">
+            <p class="text-lg font-black text-slate-900">A: Chào anh, anh muốn gọi món gì ạ?</p>
+            <p class="text-stone-700 text-base font-bold mt-1.5">Hello sir, what would you like to order?</p>
+          </div>
+          <div class="pt-5">
+            <p class="text-lg font-black text-slate-900">B: Dạ, cho anh một phở bò và một cốc trà đá nhé.</p>
+            <p class="text-stone-700 text-base font-bold mt-1.5">Yes, give me one beef pho and a glass of iced tea, please.</p>
+          </div>
+          <div class="pt-5">
+            <p class="text-lg font-black text-slate-900">A: Anh có gọi thêm gì không ạ?</p>
+            <p class="text-stone-700 text-base font-bold mt-1.5">Would you like to order anything else?</p>
+          </div>
+          <div class="pt-5">
+            <p class="text-lg font-black text-slate-900">B: Không, thế là được rồi.</p>
+            <p class="text-stone-700 text-base font-bold mt-1.5">No, that's enough.</p>
+          </div>
+          <div class="pt-5">
+            <p class="text-lg font-black text-slate-900">A: Vâng ạ. Anh đợi một chút nhé.</p>
+            <p class="text-stone-700 text-base font-bold mt-1.5">Alright. Please wait a moment.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Southern Transcript (Uses "ly") -->
+      <div id="transcript-south" class="bg-white border border-stone-200/90 rounded-3xl p-6 sm:p-8 shadow-xs space-y-5 hidden">
+        <h3 class="text-xl font-black text-slate-900 flex items-center gap-2">📜 Southern Transcript (Saigon Accent)</h3>
+        <div class="space-y-6 divide-y divide-stone-100">
+          <div class="pt-5 first:pt-0">
+            <p class="text-lg font-black text-slate-900">A: Chào anh, anh muốn gọi món gì ạ?</p>
+            <p class="text-stone-700 text-base font-bold mt-1.5">Hello sir, what would you like to order?</p>
+          </div>
+          <div class="pt-5">
+            <p class="text-lg font-black text-slate-900">B: Dạ, cho anh một phở bò với một ly trà đá nha.</p>
+            <p class="text-stone-700 text-base font-bold mt-1.5">Yes, give me one beef pho with a glass of iced tea, please.</p>
+          </div>
+          <div class="pt-5">
+            <p class="text-lg font-black text-slate-900">A: Anh có gọi thêm gì không ạ?</p>
+            <p class="text-stone-700 text-base font-bold mt-1.5">Would you like to order anything else?</p>
+          </div>
+          <div class="pt-5">
+            <p class="text-lg font-black text-slate-900">B: Không, vậy được rồi.</p>
+            <p class="text-stone-700 text-base font-bold mt-1.5">No, that's enough.</p>
+          </div>
+          <div class="pt-5">
+            <p class="text-lg font-black text-slate-900">A: Dạ. Anh đợi chút nha.</p>
+            <p class="text-stone-700 text-base font-bold mt-1.5">Alright. Please wait a moment.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA BOOKING BOX -->
+    <div class="bg-stone-900 text-white rounded-3xl p-6 sm:p-8 text-center space-y-3 shadow-lg mt-10 border border-stone-800">
+      <h3 class="text-xl sm:text-2xl font-black font-brand">Want to master both accents with Alice?</h3>
+      <p class="text-stone-300 max-w-md mx-auto text-sm sm:text-base font-bold">
+        Book a 1-on-1 trial session to practice real-life conversations tailored to your target region!
+      </p>
+      <div class="pt-1">
+        <button type="button" class="open-modal-trigger px-6 py-3 bg-white text-slate-900 font-black rounded-xl shadow-sm hover:bg-stone-100 transition cursor-pointer text-sm sm:text-base inline-flex items-center gap-2">
+          <span>📅</span>
+          <span>Book 25-Min Trial Lesson →</span>
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- SCRIPT HANDLING -->
+  <script define:vars={{ quizData: lesson.quiz }} is:inline>
+    const btnNorth = document.getElementById('btn-north');
+    const btnSouth = document.getElementById('btn-south');
+    const audioNorth = document.getElementById('audio-north');
+    const audioSouth = document.getElementById('audio-south');
+    const transcriptNorth = document.getElementById('transcript-north');
+    const transcriptSouth = document.getElementById('transcript-south');
+
+    if (btnNorth && btnSouth) {
+      btnNorth.addEventListener('click', () => {
+        btnNorth.className = "flex-1 py-3.5 px-6 rounded-xl font-black text-base transition cursor-pointer bg-slate-900 text-white shadow-sm";
+        btnSouth.className = "flex-1 py-3.5 px-6 rounded-xl font-black text-base transition cursor-pointer text-stone-600 hover:text-slate-900";
+        audioNorth.classList.remove('hidden');
+        audioSouth.classList.add('hidden');
+        if (transcriptNorth) transcriptNorth.classList.remove('hidden');
+        if (transcriptSouth) transcriptSouth.classList.add('hidden');
+      });
+
+      btnSouth.addEventListener('click', () => {
+        btnSouth.className = "flex-1 py-3.5 px-6 rounded-xl font-black text-base transition cursor-pointer bg-slate-900 text-white shadow-sm";
+        btnNorth.className = "flex-1 py-3.5 px-6 rounded-xl font-black text-base transition cursor-pointer text-stone-600 hover:text-slate-900";
+        audioSouth.classList.remove('hidden');
+        audioNorth.classList.add('hidden');
+        if (transcriptSouth) transcriptSouth.classList.remove('hidden');
+        if (transcriptNorth) transcriptNorth.classList.add('hidden');
+      });
+    }
+
+    const quizForm = document.getElementById('quiz-form');
+    const quizResult = document.getElementById('quiz-result');
+    const vocabSection = document.getElementById('vocab-section');
+    const transcriptSection = document.getElementById('transcript-section');
+
+    if (quizForm) {
+      quizForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let score = 0;
+        const total = quizData.length;
+
+        quizData.forEach((q, index) => {
+          const selected = quizForm.querySelector(`input[name="question-${index}"]:checked`);
+          const questionDiv = quizForm.querySelector(`[data-question="${index}"]`);
+          const explanationBox = questionDiv.querySelector('.explanation-box');
+          const radios = questionDiv.querySelectorAll('input[type="radio"]');
+
+          radios.forEach(r => r.disabled = true);
+
+          const userAns = selected ? parseInt(selected.value) : -1;
+          const correctAns = q.correct;
+
+          explanationBox.classList.remove('hidden');
+
+          if (userAns === correctAns) {
+            score++;
+            explanationBox.className = "explanation-box p-4 rounded-xl text-base font-black mt-2 bg-emerald-50 text-emerald-900 border border-emerald-200";
+            explanationBox.innerHTML = `✅ <strong class="font-black">Correct!</strong> ${q.explanation}`;
+            if (selected) {
+              selected.closest('label').classList.add('bg-emerald-100', 'border-emerald-300', 'font-black');
+            }
+          } else {
+            explanationBox.className = "explanation-box p-4 rounded-xl text-base font-black mt-2 bg-rose-50 text-rose-900 border border-rose-200";
+            explanationBox.innerHTML = `❌ <strong class="font-black">Incorrect.</strong> ${q.explanation}`;
+            if (selected) {
+              selected.closest('label').classList.add('bg-rose-100', 'border-rose-300');
+            }
+            const correctLabel = radios[correctAns].closest('label');
+            correctLabel.classList.add('bg-emerald-100', 'border-emerald-300', 'font-black');
+          }
+        });
+
+        quizResult.classList.remove('hidden');
+        quizResult.innerHTML = `🎉 Your Score: ${score} / ${total} (${Math.round((score/total)*100)}%)`;
+
+        if (vocabSection) vocabSection.classList.remove('hidden');
+        if (transcriptSection) {
+          transcriptSection.classList.remove('hidden');
+          transcriptSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    }
+  </script>
+</Layout>

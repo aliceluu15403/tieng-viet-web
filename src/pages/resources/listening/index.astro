@@ -1,0 +1,161 @@
+---
+import Layout from '../../../layout.astro';
+import { lessons } from '../../../data/listeningLessons.js';
+---
+
+<Layout 
+  title="Vietnamese Listening Practice Hub | Northern & Southern Accents | Havie" 
+  description="Practice listening to real Vietnamese with audio, interactive transcripts, and English translations. Choose between Northern (Hanoi) and Southern (Saigon) accents."
+>
+  <main class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-12 sm:py-20">
+    
+    <!-- HERO SECTION ĐỈNH CAO -->
+    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-stone-900 via-slate-900 to-stone-900 text-white p-8 sm:p-14 mb-12 shadow-2xl border border-stone-800">
+      <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-red-600/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -left-10 -top-10 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="relative z-10 max-w-3xl space-y-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-xs font-black tracking-wider uppercase text-amber-400">
+          <span>🎧</span> Interactive Learning Hub
+        </div>
+        <h1 class="text-3xl sm:text-6xl font-black tracking-tight font-brand">
+          Vietnamese Listening Practice
+        </h1>
+        <p class="text-stone-300 text-base sm:text-lg font-medium leading-relaxed">
+          Improve your listening comprehension with real-world conversations. Switch seamlessly between <span class="text-white font-bold underline decoration-red-500 underline-offset-4">Northern (Hanoi)</span> and <span class="text-white font-bold underline decoration-amber-500 underline-offset-4">Southern (Saigon)</span> accents in every lesson!
+        </p>
+        
+        <div class="pt-2 flex flex-wrap items-center gap-6 text-sm font-bold text-stone-300">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>15 Real-world Lessons</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span>📚</span>
+            <span>Levels from A1 to B1</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span>🎯</span>
+            <span>Quizzes & Key Vocabulary</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILTER BUTTONS (LEVEL FILTER) -->
+    <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-12">
+      <button 
+        type="button" 
+        data-filter="all"
+        class="filter-btn px-6 py-3 rounded-2xl text-sm font-black transition cursor-pointer bg-slate-900 text-white shadow-md hover:bg-slate-800"
+      >
+        All Lessons ({lessons.length})
+      </button>
+      <button 
+        type="button" 
+        data-filter="Beginner (A1)"
+        class="filter-btn px-6 py-3 rounded-2xl text-sm font-black transition cursor-pointer bg-white text-stone-700 hover:bg-stone-100 border border-stone-200 shadow-xs"
+      >
+        🟢 Beginner (A1)
+      </button>
+      <button 
+        type="button" 
+        data-filter="Elementary (A2)"
+        class="filter-btn px-6 py-3 rounded-2xl text-sm font-black transition cursor-pointer bg-white text-stone-700 hover:bg-stone-100 border border-stone-200 shadow-xs"
+      >
+        🔵 Elementary (A2)
+      </button>
+      <button 
+        type="button" 
+        data-filter="Intermediate (B1)"
+        class="filter-btn px-6 py-3 rounded-2xl text-sm font-black transition cursor-pointer bg-white text-stone-700 hover:bg-stone-100 border border-stone-200 shadow-xs"
+      >
+        🟣 Intermediate (B1)
+      </button>
+    </div>
+
+    <!-- LESSONS GRID -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      {lessons.map((lesson) => {
+        // Gán màu badge theo Level
+        const levelColor = lesson.level.includes('A1') 
+          ? 'bg-emerald-50 text-emerald-700 border-emerald-200' 
+          : lesson.level.includes('A2') 
+          ? 'bg-blue-50 text-blue-700 border-blue-200' 
+          : 'bg-purple-50 text-purple-700 border-purple-200';
+
+        return (
+          <a 
+            href={`/resources/listening/${lesson.slug}`}
+            data-level={lesson.level}
+            class="lesson-card bg-white rounded-3xl p-7 border border-stone-200/90 shadow-xs hover:shadow-2xl hover:border-slate-900 transition-all duration-300 flex flex-col justify-between group cursor-pointer relative overflow-hidden"
+          >
+            <!-- Hiệu ứng viền sáng khi hover -->
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-red-500 via-amber-500 to-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+
+            <div class="space-y-4">
+              <!-- Badges (Đã bỏ chữ North & South thừa) -->
+              <div class="flex items-center justify-end">
+                <span class={`text-xs font-black px-3 py-1 rounded-xl border ${levelColor}`}>
+                  {lesson.level}
+                </span>
+              </div>
+
+              <!-- Title & Description -->
+              <div class="space-y-2">
+                <h3 class="text-xl sm:text-2xl font-black text-slate-900 group-hover:text-red-600 transition-colors font-brand tracking-tight">
+                  {lesson.title}
+                </h3>
+                <p class="text-stone-600 text-sm sm:text-base line-clamp-2 font-medium leading-relaxed">
+                  {lesson.description}
+                </p>
+              </div>
+            </div>
+
+            <!-- Card Footer -->
+            <div class="mt-8 pt-4 border-t border-stone-100 flex items-center justify-between">
+              <span class="inline-flex items-center gap-2 text-sm font-extrabold text-slate-900 group-hover:text-red-600 transition-colors">
+                <span class="w-8 h-8 rounded-full bg-stone-100 group-hover:bg-red-50 flex items-center justify-center transition-colors">🎧</span>
+                <span>Listen & Practice</span>
+              </span>
+              <span class="w-8 h-8 rounded-full bg-stone-100 group-hover:bg-slate-900 group-hover:text-white flex items-center justify-center font-black transition-all group-hover:translate-x-1">
+                →
+              </span>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+
+  </main>
+
+  <!-- SCRIPT LỌC THEO LEVEL -->
+  <script is:inline>
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const lessonCards = document.querySelectorAll('.lesson-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Active state cho nút bấm
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-slate-900', 'text-white', 'shadow-md');
+          b.classList.add('bg-white', 'text-stone-700', 'border', 'border-stone-200', 'shadow-xs');
+        });
+        btn.classList.remove('bg-white', 'text-stone-700', 'border', 'border-stone-200', 'shadow-xs');
+        btn.classList.add('bg-slate-900', 'text-white', 'shadow-md');
+
+        const filterValue = btn.getAttribute('data-filter');
+
+        // Lọc thẻ bài học theo cấp độ
+        lessonCards.forEach(card => {
+          const level = card.getAttribute('data-level');
+          if (filterValue === 'all' || level === filterValue) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</Layout>

@@ -1,0 +1,479 @@
+---
+// src/pages/vietnamese-listening/ordering-food.astro
+import Layout from '../layout.astro';
+
+const lesson = {
+  slug: "ordering-food",
+  level: "A1",
+  title: "Ordering Food at a Local Restaurant",
+  description: "Select your preferred accent first, listen to the audio, choose the correct answers, and explore the lesson.",
+  audioNorth: "/audio/ordering-food-north.mp3",
+  audioSouth: "/audio/ordering-food-south.mp3",
+  
+  // Câu hỏi & Đáp án đúng cho miền Bắc
+  questionsNorth: [
+    {
+      id: "q1",
+      correct: "b",
+      question: "1. Hai người đang ở đâu?",
+      options: [
+        { value: "a", label: "A. Ở quán cà phê" },
+        { value: "b", label: "B. Ở quán ăn" },
+        { value: "c", label: "C. Ở siêu thị" }
+      ]
+    },
+    {
+      id: "q2",
+      correct: "a",
+      question: "2. Anh khách gọi món gì?",
+      options: [
+        { value: "a", label: "A. Phở bò và trà đá" },
+        { value: "b", label: "B. Phở gà và cà phê" },
+        { value: "c", label: "C. Bún bò và nước cam" }
+      ]
+    },
+    {
+      id: "q3",
+      correct: "b",
+      question: "3. Anh khách gọi trà đá như thế nào?",
+      options: [
+        { value: "a", label: "A. Một chai" },
+        { value: "b", label: "B. Một cốc" },
+        { value: "c", label: "C. Một bát" }
+      ]
+    },
+    {
+      id: "q4",
+      correct: "c",
+      question: "4. Anh khách có gọi thêm món gì không?",
+      options: [
+        { value: "a", label: "A. Có, anh gọi thêm một món ăn." },
+        { value: "b", label: "B. Có, anh gọi thêm một đồ uống." },
+        { value: "c", label: "C. Không, anh không gọi thêm gì." }
+      ]
+    },
+    {
+      id: "q5",
+      correct: "a",
+      question: "5. Cuối đoạn hội thoại, nhân viên nói gì với anh khách?",
+      options: [
+        { value: "a", label: "A. Anh đợi một chút nhé." },
+        { value: "b", label: "B. Anh gọi thêm món nhé." },
+        { value: "c", label: "C. Anh thanh toán nhé." }
+      ]
+    }
+  ],
+
+  // Câu hỏi & Đáp án đúng cho miền Nam
+  questionsSouth: [
+    {
+      id: "q1",
+      correct: "b",
+      question: "1. Hai người đang ở đâu?",
+      options: [
+        { value: "a", label: "A. Ở quán cà phê" },
+        { value: "b", label: "B. Ở quán ăn" },
+        { value: "c", label: "C. Ở siêu thị" }
+      ]
+    },
+    {
+      id: "q2",
+      correct: "a",
+      question: "2. Anh khách gọi món gì?",
+      options: [
+        { value: "a", label: "A. Phở bò và trà đá" },
+        { value: "b", label: "B. Phở gà và cà phê" },
+        { value: "c", label: "C. Bún bò và nước cam" }
+      ]
+    },
+    {
+      id: "q3",
+      correct: "b",
+      question: "3. Anh khách gọi trà đá như thế nào?",
+      options: [
+        { value: "a", label: "A. Một chai" },
+        { value: "b", label: "B. Một ly" },
+        { value: "c", label: "C. Một tô" }
+      ]
+    },
+    {
+      id: "q4",
+      correct: "c",
+      question: "4. Anh khách có gọi thêm món gì không?",
+      options: [
+        { value: "a", label: "A. Có, anh gọi thêm một món ăn." },
+        { value: "b", label: "B. Có, anh gọi thêm một đồ uống." },
+        { value: "c", label: "C. Không, anh không gọi thêm gì." }
+      ]
+    },
+    {
+      id: "q5",
+      correct: "a",
+      question: "5. Cuối đoạn hội thoại, nhân viên nói gì với anh khách?",
+      options: [
+        { value: "a", label: "A. Anh đợi chút nha." },
+        { value: "b", label: "B. Anh gọi thêm món nhé." },
+        { value: "c", label: "C. Anh thanh toán nhé." }
+      ]
+    }
+  ],
+
+  // Phần giải thích chi tiết cho miền Bắc
+  explanationNorth: [
+    "1. B — Ở quán ăn\n→ The conversation takes place at a local restaurant. The server asks “Anh muốn gọi món gì ạ?” (“What would you like to order?”).",
+    "2. A — Phở bò và trà đá\n→ The customer says “Cho anh một phở bò và một cốc trà đá.” He orders beef pho and iced tea.",
+    "3. B — Một cốc\n→ The Northern version uses “cốc” to mean a cup/glass for a drink.",
+    "4. C — Không, anh không gọi thêm gì.\n→ The server asks “Anh có gọi thêm gì không ạ?” (“Would you like anything else?”). The customer replies “Không, thế là được rồi.” (“No, that's enough.”)",
+    "5. A — Anh đợi một chút nhé.\n→ At the end, the server asks the customer to wait a little: “Anh đợi một chút nhé.”\n→ đợi một chút = to wait for a little while."
+  ],
+
+  // Phần giải thích chi tiết cho miền Nam
+  explanationSouth: [
+    "1. B — Ở quán ăn\n→ The conversation takes place at a local restaurant. The server asks “Anh muốn gọi món gì ạ?” (“What would you like to order?”).",
+    "2. A — Phở bò và trà đá\n→ The customer says “Cho anh một phở bò với một ly trà đá nha.” He orders beef pho and iced tea.",
+    "3. B — Một ly\n→ The Southern version uses “ly” to mean a cup/glass for a drink.",
+    "4. C — Không, anh không gọi thêm gì.\n→ The server asks “Anh có gọi thêm gì không ạ?” (“Would you like anything else?”). The customer replies “Không, vậy được rồi.” (“No, that's enough.”)",
+    "5. A — Anh đợi chút nha.\n→ At the end, the server asks the customer to wait a little: “Anh đợi chút nha.”\n→ đợi chút = to wait for a little while."
+  ],
+
+  vocabulary: [
+    { term: "quán ăn", pos: "N", meaning: "local eatery / casual restaurant" },
+    { term: "thực đơn", pos: "N", meaning: "menu" },
+    { term: "gọi món", pos: "V", meaning: "to order food" },
+    { term: "món", pos: "N", meaning: "dish / item" },
+    { term: "phở bò", pos: "N", meaning: "beef pho" },
+    { term: "trà đá", pos: "N", meaning: "iced tea" },
+    { term: "gọi thêm", pos: "V", meaning: "to order something else" },
+    { term: "đợi", pos: "V", meaning: "to wait" },
+    { term: "một chút", pos: "Phrase", meaning: "a little / for a moment" },
+    { term: "vậy được rồi", pos: "Phrase", meaning: "that's enough" }
+  ],
+  transcriptNorth: [
+    "A: Chào anh, anh muốn gọi món gì ạ?",
+    "B: Dạ, cho anh một phở bò và một cốc trà đá nhé.",
+    "A: Anh có gọi thêm gì không ạ?",
+    "B: Không, thế là được rồi.",
+    "A: Vâng ạ. Anh đợi một chút nhé."
+  ],
+  transcriptSouth: [
+    "A: Chào anh, anh muốn gọi món gì ạ?",
+    "B: Dạ, cho anh một phở bò với một ly trà đá nha.",
+    "A: Anh có gọi thêm gì không ạ?",
+    "B: Không, vậy được rồi.",
+    "A: Dạ. Anh đợi chút nha."
+  ],
+  cta: {
+    title: "Want to practice this conversation with a real teacher?",
+    subtitle: "Book a 1-on-1 Vietnamese lesson and speak with confidence.",
+    buttonText: "Book a 1-on-1 Vietnamese lesson",
+    buttonUrl: "#"
+  }
+};
+---
+
+<Layout title={`${lesson.title} | Havie Learn`}>
+  <main class="max-w-3xl mx-auto px-4 py-8 font-sans text-gray-800">
+    
+    <!-- Header -->
+    <header class="mb-8 border-b pb-4">
+      <div class="flex items-center gap-2 text-sm text-indigo-600 font-semibold mb-2">
+        <span class="bg-indigo-50 px-2.5 py-1 rounded">Level: {lesson.level}</span>
+        <span class="bg-gray-100 px-2.5 py-1 rounded text-gray-600">Topic: Ordering Food</span>
+      </div>
+      <h1 class="text-3xl font-bold text-gray-900">{lesson.title}</h1>
+      <p class="text-gray-600 mt-2">{lesson.description}</p>
+    </header>
+
+    <!-- CHỌN GIỌNG BẮC / NAM NGAY TỪ ĐẦU -->
+    <section class="mb-6 bg-indigo-50 p-4 rounded-xl border border-indigo-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-sm font-semibold text-indigo-900">
+        🎙️ Select your preferred accent:
+      </div>
+      <div class="flex gap-2">
+        <button type="button" onclick="setMainAccent('north')" id="main-btn-north" class="px-4 py-2 font-semibold text-sm rounded-xl bg-indigo-600 text-white shadow transition cursor-pointer">
+          🇻🇳 Northern Accent
+        </button>
+        <button type="button" onclick="setMainAccent('south')" id="main-btn-south" class="px-4 py-2 font-semibold text-sm rounded-xl bg-white text-gray-700 shadow-sm border border-gray-200 transition cursor-pointer">
+          🇻🇳 Southern Accent
+        </button>
+      </div>
+    </section>
+
+    <!-- ① Listening (Always visible) -->
+    <section class="mb-8 bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+      <h2 class="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+        <span>①</span> Listening <span class="text-sm font-normal text-gray-500">(No transcript)</span>
+      </h2>
+      <p class="text-gray-600 mb-4 italic">🎧 Listen to the audio and choose the best answer.</p>
+      <audio id="main-audio" controls class="w-full">
+        <source src={lesson.audioNorth} type="audio/mpeg" id="main-audio-source">
+        Your browser does not support the audio element.
+      </audio>
+    </section>
+
+    <!-- ② Easy comprehension (Interactive Quiz Form) -->
+    <section class="mb-8 bg-white p-6 rounded-xl shadow-sm border border-gray-100" id="quiz-section">
+      <h2 class="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
+        <span>②</span> Easy Comprehension
+      </h2>
+      <p class="text-gray-600 mb-6 italic">🎧 Listen to the audio and choose the best answer.</p>
+      
+      <form id="listening-form" class="space-y-6">
+        <!-- Khung câu hỏi miền Bắc -->
+        <div id="quiz-north" class="space-y-6">
+          {lesson.questionsNorth.map((q) => (
+            <div class="border-b border-gray-100 pb-5 last:border-none question-item" data-id={q.id} data-correct={q.correct}>
+              <p class="font-semibold text-gray-800 mb-3">{q.question}</p>
+              <div class="space-y-2 pl-2">
+                {q.options.map((opt) => (
+                  <label class="flex items-center gap-2 text-gray-600 cursor-pointer hover:text-gray-900">
+                    <input type="radio" name={q.id} value={opt.value} required class="text-indigo-600 focus:ring-indigo-500"> {opt.label}
+                  </label>
+                ))}
+              </div>
+              <p class="feedback-text text-sm font-medium mt-2 hidden"></p>
+            </div>
+          ))}
+        </div>
+
+        <!-- Khung câu hỏi miền Nam (Bị ẩn mặc định) -->
+        <div id="quiz-south" class="space-y-6 hidden">
+          {lesson.questionsSouth.map((q) => (
+            <div class="border-b border-gray-100 pb-5 last:border-none question-item" data-id={q.id} data-correct={q.correct}>
+              <p class="font-semibold text-gray-800 mb-3">{q.question}</p>
+              <div class="space-y-2 pl-2">
+                {q.options.map((opt) => (
+                  <label class="flex items-center gap-2 text-gray-600 cursor-pointer hover:text-gray-900">
+                    <input type="radio" name={q.id} value={opt.value} class="text-indigo-600 focus:ring-indigo-500"> {opt.label}
+                  </label>
+                ))}
+              </div>
+              <p class="feedback-text text-sm font-medium mt-2 hidden"></p>
+            </div>
+          ))}
+        </div>
+
+        <!-- Nút nộp bài -->
+        <div class="text-center pt-4">
+          <button type="submit" style="background-color: #4f46e5; color: #ffffff; padding: 12px 32px; border-radius: 12px; font-weight: 500; border: none; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+            Submit Answers & Reveal Script 🚀
+          </button>
+        </div>
+      </form>
+
+      <!-- Feedback kết quả tổng điểm -->
+      <div id="quiz-result" class="hidden mt-4 p-4 rounded-xl bg-indigo-50 text-indigo-900 font-semibold border border-indigo-200 text-center text-lg">
+      </div>
+    </section>
+
+    <!-- LOCKED CONTENT CONTAINER -->
+    <div id="locked-content" class="hidden space-y-8">
+      
+      <!-- ③ Answer & Explanation (Mới thêm) -->
+      <section class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+          <span>③</span> Answer & Explanation <span class="text-xs bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded">Unlocked</span>
+        </h2>
+        
+        <!-- Giải thích miền Bắc -->
+        <div id="exp-north" class="space-y-4 text-gray-700">
+          {lesson.explanationNorth.map((exp) => {
+            const parts = exp.split('\n');
+            return (
+              <div class="p-3 bg-gray-50 rounded-lg border border-gray-100">
+                <p class="font-bold text-gray-900">{parts[0]}</p>
+                <p class="text-sm text-gray-600 mt-1">{parts[1]}</p>
+              </div>
+            );
+          })}
+        </div>
+
+        <!-- Giải thích miền Nam -->
+        <div id="exp-south" class="space-y-4 text-gray-700 hidden">
+          {lesson.explanationSouth.map((exp) => {
+            const parts = exp.split('\n');
+            return (
+              <div class="p-3 bg-gray-50 rounded-lg border border-gray-100">
+                <p class="font-bold text-gray-900">{parts[0]}</p>
+                <p class="text-sm text-gray-600 mt-1">{parts[1]}</p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      <!-- ④ Vocabulary -->
+      <section class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+          <span>④</span> Key Vocabulary <span class="text-xs bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded">Unlocked</span>
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {lesson.vocabulary.map((vocab) => (
+            <div class="p-3 bg-gray-50 rounded-lg border border-gray-100">
+              <span class="font-bold text-indigo-600">{vocab.term}</span> <span class="text-xs text-gray-500">({vocab.pos})</span>
+              <p class="text-sm text-gray-600">{vocab.meaning}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- ⑤ Listen again -->
+      <section class="mb-8 bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <h2 class="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+          <span>⑤</span> Listen Again
+        </h2>
+        <p class="text-gray-600 mb-4 italic">🎧 Now listen again while following the unlocked transcript.</p>
+        
+        <audio id="locked-audio" controls class="w-full">
+          <source src={lesson.audioNorth} type="audio/mpeg" id="locked-audio-source">
+          Your browser does not support the audio element.
+        </audio>
+      </section>
+
+      <!-- ⑥ Transcript + CTA -->
+      <section class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+          <span>⑥</span> Transcript <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">Unlocked</span>
+        </h2>
+        
+        <!-- Transcript miền Bắc -->
+        <div id="transcript-north" class="space-y-3 text-gray-700 mb-6">
+          <h3 class="font-bold text-gray-900 text-base mb-2">🇻🇳 Northern Version</h3>
+          {lesson.transcriptNorth.map(line => <p>{line}</p>)}
+        </div>
+
+        <!-- Transcript miền Nam -->
+        <div id="transcript-south" class="space-y-3 text-gray-700 hidden mb-6">
+          <h3 class="font-bold text-gray-900 text-base mb-2">🇻🇳 Southern Version</h3>
+          {lesson.transcriptSouth.map(line => <p>{line}</p>)}
+        </div>
+
+        <!-- Level CTA đặt ngay dưới transcript -->
+        <div class="mt-6 bg-indigo-600 rounded-2xl p-6 text-white text-center shadow-lg">
+          <h3 class="text-xl font-bold mb-2 text-white">{lesson.cta.title}</h3>
+          <p class="text-indigo-100 text-sm mb-4">{lesson.cta.subtitle}</p>
+          <a href={lesson.cta.buttonUrl} class="inline-block bg-white text-indigo-600 font-semibold px-6 py-2.5 rounded-xl shadow hover:bg-indigo-50 transition">
+            {lesson.cta.buttonText}
+          </a>
+        </div>
+      </section>
+
+    </div><!-- End Locked Content -->
+
+  </main>
+</Layout>
+
+<script is:inline>
+  const form = document.getElementById('listening-form');
+  const lockedContent = document.getElementById('locked-content');
+  const quizResult = document.getElementById('quiz-result');
+
+  let currentAccent = 'north';
+
+  function setMainAccent(type) {
+    currentAccent = type;
+    const mainAudio = document.getElementById('main-audio');
+    const mainSource = document.getElementById('main-audio-source');
+    const lockedAudio = document.getElementById('locked-audio');
+    const lockedSource = document.getElementById('locked-audio-source');
+    
+    const btnNorth = document.getElementById('main-btn-north');
+    const btnSouth = document.getElementById('main-btn-south');
+    
+    const quizNorth = document.getElementById('quiz-north');
+    const quizSouth = document.getElementById('quiz-south');
+    
+    const expNorth = document.getElementById('exp-north');
+    const expSouth = document.getElementById('exp-south');
+    
+    const transcriptNorth = document.getElementById('transcript-north');
+    const transcriptSouth = document.getElementById('transcript-south');
+
+    const audioSrc = type === 'north' ? "{lesson.audioNorth}" : "{lesson.audioSouth}";
+
+    mainSource.src = audioSrc;
+    mainAudio.load();
+
+    if (lockedSource) {
+      lockedSource.src = audioSrc;
+      lockedAudio.load();
+    }
+
+    if (type === 'north') {
+      btnNorth.style.backgroundColor = "#4f46e5";
+      btnNorth.style.color = "#ffffff";
+      btnSouth.style.backgroundColor = "#ffffff";
+      btnSouth.style.color = "#374151";
+
+      quizNorth.classList.remove('hidden');
+      quizSouth.classList.add('hidden');
+      quizNorth.querySelectorAll('input').forEach(i => i.disabled = false);
+      quizNorth.querySelectorAll('input').forEach(i => i.required = true);
+      quizSouth.querySelectorAll('input').forEach(i => i.disabled = true);
+      quizSouth.querySelectorAll('input').forEach(i => i.required = false);
+
+      expNorth.classList.remove('hidden');
+      expSouth.classList.add('hidden');
+
+      transcriptNorth.classList.remove('hidden');
+      transcriptSouth.classList.add('hidden');
+    } else {
+      btnSouth.style.backgroundColor = "#4f46e5";
+      btnSouth.style.color = "#ffffff";
+      btnNorth.style.backgroundColor = "#ffffff";
+      btnNorth.style.color = "#374151";
+
+      quizSouth.classList.remove('hidden');
+      quizNorth.classList.add('hidden');
+      quizSouth.querySelectorAll('input').forEach(i => i.disabled = false);
+      quizSouth.querySelectorAll('input').forEach(i => i.required = true);
+      quizNorth.querySelectorAll('input').forEach(i => i.disabled = true);
+      quizNorth.querySelectorAll('input').forEach(i => i.required = false);
+
+      expSouth.classList.remove('hidden');
+      expNorth.classList.add('hidden');
+
+      transcriptSouth.classList.remove('hidden');
+      transcriptNorth.classList.add('hidden');
+    }
+  }
+
+  // Tự động chấm điểm khi bấm Submit
+  form.addEventListener('submit', function(e) {
+    e.preventDefault(); 
+
+    const activeQuizId = currentAccent === 'north' ? 'quiz-north' : 'quiz-south';
+    const activeQuizContainer = document.getElementById(activeQuizId);
+    const questions = activeQuizContainer.querySelectorAll('.question-item');
+
+    let score = 0;
+    const total = questions.length;
+
+    questions.forEach((qItem) => {
+      const correctVal = qItem.getAttribute('data-correct');
+      const selectedInput = qItem.querySelector('input[type="radio"]:checked');
+      const feedbackEl = qItem.querySelector('.feedback-text');
+
+      feedbackEl.classList.remove('hidden');
+
+      if (selectedInput && selectedInput.value === correctVal) {
+        score++;
+        feedbackEl.innerHTML = "✅ Correct!";
+        feedbackEl.className = "feedback-text text-sm font-semibold mt-2 text-green-600";
+      } else {
+        feedbackEl.innerHTML = `❌ Incorrect. The correct answer was option <b>${correctVal.toUpperCase()}</b>.`;
+        feedbackEl.className = "feedback-text text-sm font-semibold mt-2 text-red-600";
+      }
+
+      qItem.querySelectorAll('input').forEach(input => input.disabled = true);
+    });
+
+    quizResult.innerHTML = `🎉 You scored ${score} / ${total} (${Math.round((score/total)*100)}%). Explanations, vocabulary, and transcripts are now unlocked below!`;
+    quizResult.classList.remove('hidden');
+
+    form.querySelector('button[type="submit"]').style.display = 'none';
+
+    lockedContent.classList.remove('hidden');
+    lockedContent.scrollIntoView({ behavior: 'smooth' });
+  });
+</script>
