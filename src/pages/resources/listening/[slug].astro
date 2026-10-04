@@ -32,7 +32,7 @@ const { lesson } = Astro.props;
       </p>
     </div>
 
-    <!-- ACCENT TOGGLE SWITCH (Bigger text) -->
+    <!-- ACCENT TOGGLE SWITCH -->
     <div class="flex items-center justify-center bg-stone-100 p-2 rounded-2xl max-w-md mx-auto mb-8 border border-stone-200">
       <button 
         type="button" 
@@ -74,18 +74,18 @@ const { lesson } = Astro.props;
       </div>
     </div>
 
-    <!-- COMPREHENSION QUIZ (MANDATORY BEFORE UNLOCKING TRANSCRIPT) -->
-    {lesson.quiz && lesson.quiz.length > 0 && (
-      <div class="bg-white border border-stone-200/90 rounded-3xl p-6 sm:p-8 shadow-xs my-8 space-y-6">
+    <!-- COMPREHENSION QUIZ (NORTHERN) -->
+    {lesson.northern.quiz && lesson.northern.quiz.length > 0 && (
+      <div id="quiz-container-north" class="quiz-container bg-white border border-stone-200/90 rounded-3xl p-6 sm:p-8 shadow-xs my-8 space-y-6">
         <div>
           <h3 class="text-xl sm:text-2xl font-black text-slate-900 flex items-center gap-2">
-            <span>📝</span> Comprehension Quiz
+            <span>📝</span> Comprehension Quiz (Northern)
           </h3>
           <p class="text-stone-700 text-base font-bold mt-1">Answer the questions below to check your score, unlock key vocabulary, and view transcripts.</p>
         </div>
         
-        <form id="quiz-form" class="space-y-6 divide-y divide-stone-100">
-          {lesson.quiz.map((q, qIndex) => (
+        <form id="quiz-form-north" class="quiz-form space-y-6 divide-y divide-stone-100" data-region="north">
+          {lesson.northern.quiz.map((q, qIndex) => (
             <div class="pt-6 first:pt-0 space-y-3 quiz-question" data-question={qIndex}>
               <p class="font-black text-slate-900 text-lg">{q.question}</p>
               <div class="grid grid-cols-1 gap-3">
@@ -93,7 +93,7 @@ const { lesson } = Astro.props;
                   <label class="flex items-center gap-3 p-4 rounded-xl border border-stone-200 bg-stone-50 hover:bg-stone-100 transition cursor-pointer text-base font-bold text-stone-900">
                     <input 
                       type="radio" 
-                      name={`question-${qIndex}`} 
+                      name={`question-north-${qIndex}`} 
                       value={optIndex} 
                       class="w-5 h-5 text-slate-900 focus:ring-slate-900" 
                       required
@@ -102,7 +102,6 @@ const { lesson } = Astro.props;
                   </label>
                 ))}
               </div>
-              <!-- Explanation Box (Bigger text) -->
               <div class="explanation-box hidden p-4 rounded-xl text-base font-bold mt-2"></div>
             </div>
           ))}
@@ -114,17 +113,62 @@ const { lesson } = Astro.props;
             >
               Submit Answers & Check Score 🎯
             </button>
-            <div id="quiz-result" class="hidden text-xl font-black text-slate-900"></div>
+            <div id="quiz-result-north" class="quiz-result hidden text-xl font-black text-slate-900"></div>
           </div>
         </form>
       </div>
     )}
 
-    <!-- KEY VOCABULARY (LOCKED UNTIL SUBMITTED) -->
-    <div id="vocab-section" class="bg-white border border-stone-200/90 rounded-3xl p-6 sm:p-8 shadow-xs my-8 space-y-4 hidden">
-      <h3 class="text-xl sm:text-2xl font-black text-slate-900 flex items-center gap-2"><span>📚</span> Key Vocabulary</h3>
+    <!-- COMPREHENSION QUIZ (SOUTHERN) -->
+    {lesson.southern.quiz && lesson.southern.quiz.length > 0 && (
+      <div id="quiz-container-south" class="quiz-container bg-white border border-stone-200/90 rounded-3xl p-6 sm:p-8 shadow-xs my-8 space-y-6 hidden">
+        <div>
+          <h3 class="text-xl sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+            <span>📝</span> Comprehension Quiz (Southern)
+          </h3>
+          <p class="text-stone-700 text-base font-bold mt-1">Answer the questions below to check your score, unlock key vocabulary, and view transcripts.</p>
+        </div>
+        
+        <form id="quiz-form-south" class="quiz-form space-y-6 divide-y divide-stone-100" data-region="south">
+          {lesson.southern.quiz.map((q, qIndex) => (
+            <div class="pt-6 first:pt-0 space-y-3 quiz-question" data-question={qIndex}>
+              <p class="font-black text-slate-900 text-lg">{q.question}</p>
+              <div class="grid grid-cols-1 gap-3">
+                {q.options.map((opt, optIndex) => (
+                  <label class="flex items-center gap-3 p-4 rounded-xl border border-stone-200 bg-stone-50 hover:bg-stone-100 transition cursor-pointer text-base font-bold text-stone-900">
+                    <input 
+                      type="radio" 
+                      name={`question-south-${qIndex}`} 
+                      value={optIndex} 
+                      class="w-5 h-5 text-slate-900 focus:ring-slate-900" 
+                      required
+                    />
+                    <span>{opt}</span>
+                  </label>
+                ))}
+              </div>
+              <div class="explanation-box hidden p-4 rounded-xl text-base font-bold mt-2"></div>
+            </div>
+          ))}
+
+          <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <button 
+              type="submit" 
+              class="w-full sm:w-auto px-8 py-4 bg-slate-900 text-white font-black rounded-2xl shadow-md hover:bg-slate-800 transition cursor-pointer text-base"
+            >
+              Submit Answers & Check Score 🎯
+            </button>
+            <div id="quiz-result-south" class="quiz-result hidden text-xl font-black text-slate-900"></div>
+          </div>
+        </form>
+      </div>
+    )}
+
+    <!-- KEY VOCABULARY (NORTHERN) -->
+    <div id="vocab-section-north" class="vocab-section bg-white border border-stone-200/90 rounded-3xl p-6 sm:p-8 shadow-xs my-8 space-y-4 hidden">
+      <h3 class="text-xl sm:text-2xl font-black text-slate-900 flex items-center gap-2"><span>📚</span> Key Vocabulary (Northern)</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {lesson.vocabulary.map((vocab) => (
+        {lesson.northern.vocabulary.map((vocab) => (
           <div class="p-4 rounded-2xl bg-stone-50 border border-stone-100 flex flex-col justify-center">
             <div class="flex items-center justify-between">
               <span class="font-black text-slate-900 text-lg">{vocab.word}</span>
@@ -136,59 +180,47 @@ const { lesson } = Astro.props;
       </div>
     </div>
 
-    <!-- TRANSCRIPT (LOCKED UNTIL SUBMITTED) -->
+    <!-- KEY VOCABULARY (SOUTHERN) -->
+    <div id="vocab-section-south" class="vocab-section bg-white border border-stone-200/90 rounded-3xl p-6 sm:p-8 shadow-xs my-8 space-y-4 hidden">
+      <h3 class="text-xl sm:text-2xl font-black text-slate-900 flex items-center gap-2"><span>📚</span> Key Vocabulary (Southern)</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {lesson.southern.vocabulary.map((vocab) => (
+          <div class="p-4 rounded-2xl bg-stone-50 border border-stone-100 flex flex-col justify-center">
+            <div class="flex items-center justify-between">
+              <span class="font-black text-slate-900 text-lg">{vocab.word}</span>
+              <span class="text-xs font-black px-2.5 py-1 bg-stone-200 text-stone-800 rounded-lg">{vocab.type}</span>
+            </div>
+            <span class="text-stone-700 text-base font-bold mt-1.5">{vocab.meaning}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- TRANSCRIPT SECTION -->
     <div id="transcript-section" class="space-y-6 my-8 hidden">
-      <!-- Northern Transcript (Uses "cốc") -->
+      <!-- Northern Transcript -->
       <div id="transcript-north" class="bg-white border border-stone-200/90 rounded-3xl p-6 sm:p-8 shadow-xs space-y-5">
         <h3 class="text-xl font-black text-slate-900 flex items-center gap-2">📜 Northern Transcript (Hanoi Accent)</h3>
         <div class="space-y-6 divide-y divide-stone-100">
-          <div class="pt-5 first:pt-0">
-            <p class="text-lg font-black text-slate-900">A: Chào anh, anh muốn gọi món gì ạ?</p>
-            <p class="text-stone-700 text-base font-bold mt-1.5">Hello sir, what would you like to order?</p>
-          </div>
-          <div class="pt-5">
-            <p class="text-lg font-black text-slate-900">B: Dạ, cho anh một phở bò và một cốc trà đá nhé.</p>
-            <p class="text-stone-700 text-base font-bold mt-1.5">Yes, give me one beef pho and a glass of iced tea, please.</p>
-          </div>
-          <div class="pt-5">
-            <p class="text-lg font-black text-slate-900">A: Anh có gọi thêm gì không ạ?</p>
-            <p class="text-stone-700 text-base font-bold mt-1.5">Would you like to order anything else?</p>
-          </div>
-          <div class="pt-5">
-            <p class="text-lg font-black text-slate-900">B: Không, thế là được rồi.</p>
-            <p class="text-stone-700 text-base font-bold mt-1.5">No, that's enough.</p>
-          </div>
-          <div class="pt-5">
-            <p class="text-lg font-black text-slate-900">A: Vâng ạ. Anh đợi một chút nhé.</p>
-            <p class="text-stone-700 text-base font-bold mt-1.5">Alright. Please wait a moment.</p>
-          </div>
+          {lesson.northern.transcript.map(({ vietnamese, english }) => (
+            <div class="pt-5 first:pt-0">
+              <p class="text-lg font-black text-slate-900">{vietnamese}</p>
+              <p class="text-stone-700 text-base font-bold mt-1.5">{english}</p>
+            </div>
+          ))}
         </div>
       </div>
 
-      <!-- Southern Transcript (Uses "ly") -->
+      <!-- Southern Transcript -->
       <div id="transcript-south" class="bg-white border border-stone-200/90 rounded-3xl p-6 sm:p-8 shadow-xs space-y-5 hidden">
         <h3 class="text-xl font-black text-slate-900 flex items-center gap-2">📜 Southern Transcript (Saigon Accent)</h3>
         <div class="space-y-6 divide-y divide-stone-100">
-          <div class="pt-5 first:pt-0">
-            <p class="text-lg font-black text-slate-900">A: Chào anh, anh muốn gọi món gì ạ?</p>
-            <p class="text-stone-700 text-base font-bold mt-1.5">Hello sir, what would you like to order?</p>
-          </div>
-          <div class="pt-5">
-            <p class="text-lg font-black text-slate-900">B: Dạ, cho anh một phở bò với một ly trà đá nha.</p>
-            <p class="text-stone-700 text-base font-bold mt-1.5">Yes, give me one beef pho with a glass of iced tea, please.</p>
-          </div>
-          <div class="pt-5">
-            <p class="text-lg font-black text-slate-900">A: Anh có gọi thêm gì không ạ?</p>
-            <p class="text-stone-700 text-base font-bold mt-1.5">Would you like to order anything else?</p>
-          </div>
-          <div class="pt-5">
-            <p class="text-lg font-black text-slate-900">B: Không, vậy được rồi.</p>
-            <p class="text-stone-700 text-base font-bold mt-1.5">No, that's enough.</p>
-          </div>
-          <div class="pt-5">
-            <p class="text-lg font-black text-slate-900">A: Dạ. Anh đợi chút nha.</p>
-            <p class="text-stone-700 text-base font-bold mt-1.5">Alright. Please wait a moment.</p>
-          </div>
+          {lesson.southern.transcript.map(({ vietnamese, english }) => (
+            <div class="pt-5 first:pt-0">
+              <p class="text-lg font-black text-slate-900">{vietnamese}</p>
+              <p class="text-stone-700 text-base font-bold mt-1.5">{english}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -210,47 +242,75 @@ const { lesson } = Astro.props;
   </main>
 
   <!-- SCRIPT HANDLING -->
-  <script define:vars={{ quizData: lesson.quiz }} is:inline>
+  <script define:vars={{ quizNorth: lesson.northern.quiz, quizSouth: lesson.southern.quiz }} is:inline>
     const btnNorth = document.getElementById('btn-north');
     const btnSouth = document.getElementById('btn-south');
     const audioNorth = document.getElementById('audio-north');
     const audioSouth = document.getElementById('audio-south');
+    
+    const quizContainerNorth = document.getElementById('quiz-container-north');
+    const quizContainerSouth = document.getElementById('quiz-container-south');
+    const vocabNorth = document.getElementById('vocab-section-north');
+    const vocabSouth = document.getElementById('vocab-section-south');
+    
+    const transcriptSection = document.getElementById('transcript-section');
     const transcriptNorth = document.getElementById('transcript-north');
     const transcriptSouth = document.getElementById('transcript-south');
 
+    let currentRegion = 'north';
+
     if (btnNorth && btnSouth) {
       btnNorth.addEventListener('click', () => {
+        currentRegion = 'north';
         btnNorth.className = "flex-1 py-3.5 px-6 rounded-xl font-black text-base transition cursor-pointer bg-slate-900 text-white shadow-sm";
         btnSouth.className = "flex-1 py-3.5 px-6 rounded-xl font-black text-base transition cursor-pointer text-stone-600 hover:text-slate-900";
+        
         audioNorth.classList.remove('hidden');
         audioSouth.classList.add('hidden');
-        if (transcriptNorth) transcriptNorth.classList.remove('hidden');
-        if (transcriptSouth) transcriptSouth.classList.add('hidden');
+
+        quizContainerNorth.classList.remove('hidden');
+        quizContainerSouth.classList.add('hidden');
+
+        vocabNorth.classList.remove('hidden');
+        vocabSouth.classList.add('hidden');
+
+        transcriptNorth.classList.remove('hidden');
+        transcriptSouth.classList.add('hidden');
       });
 
       btnSouth.addEventListener('click', () => {
+        currentRegion = 'south';
         btnSouth.className = "flex-1 py-3.5 px-6 rounded-xl font-black text-base transition cursor-pointer bg-slate-900 text-white shadow-sm";
         btnNorth.className = "flex-1 py-3.5 px-6 rounded-xl font-black text-base transition cursor-pointer text-stone-600 hover:text-slate-900";
+        
         audioSouth.classList.remove('hidden');
         audioNorth.classList.add('hidden');
-        if (transcriptSouth) transcriptSouth.classList.remove('hidden');
-        if (transcriptNorth) transcriptNorth.classList.add('hidden');
+
+        quizContainerSouth.classList.remove('hidden');
+        quizContainerNorth.classList.add('hidden');
+
+        vocabSouth.classList.remove('hidden');
+        vocabNorth.classList.add('hidden');
+
+        transcriptSouth.classList.remove('hidden');
+        transcriptNorth.classList.add('hidden');
       });
     }
 
-    const quizForm = document.getElementById('quiz-form');
-    const quizResult = document.getElementById('quiz-result');
-    const vocabSection = document.getElementById('vocab-section');
-    const transcriptSection = document.getElementById('transcript-section');
-
-    if (quizForm) {
+    // Quiz submission handler for both forms
+    document.querySelectorAll('.quiz-form').forEach(quizForm => {
       quizForm.addEventListener('submit', (e) => {
         e.preventDefault();
+        const region = quizForm.getAttribute('data-region');
+        const quizData = region === 'north' ? quizNorth : quizSouth;
+        const quizResult = quizForm.querySelector('.quiz-result');
+        const vocabSection = document.getElementById(`vocab-section-${region}`);
+
         let score = 0;
         const total = quizData.length;
 
         quizData.forEach((q, index) => {
-          const selected = quizForm.querySelector(`input[name="question-${index}"]:checked`);
+          const selected = quizForm.querySelector(`input[name="question-${region}-${index}"]:checked`);
           const questionDiv = quizForm.querySelector(`[data-question="${index}"]`);
           const explanationBox = questionDiv.querySelector('.explanation-box');
           const radios = questionDiv.querySelectorAll('input[type="radio"]');
@@ -289,6 +349,6 @@ const { lesson } = Astro.props;
           transcriptSection.scrollIntoView({ behavior: 'smooth' });
         }
       });
-    }
+    });
   </script>
 </Layout>
