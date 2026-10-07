@@ -830,60 +830,67 @@ export const lessons = [
       ['Để em coi lại địa chỉ trên thiệp.', 'Yes. I checked the address on the invitation.']
     ]
   }),
-
-  // 15. FEELINGS & EMOTIONS
-  createLesson({
-    slug: 'expressing-feelings-and-emotions',
-    title: 'Expressing Feelings & Emotions',
-    level: 'Intermediate (B1)',
-    description: 'Learn how to describe emotional states, explain the reason behind them, and discuss possible solutions at work.',
-    audioNorthFile: 'colleagues-north.wav',
-    audioSouthFile: 'colleagues-south.wav',
-    quizNorth: [
-      ["1. Vì sao nhận ra đồng nghiệp đang có chuyện?", ["Chủ động kể", "Trông mệt mỏi", "Sếp nói", "Nghỉ làm"], 1, "Looking tired: \"Trông mệt mỏi\"."],
-      ["2. Vấn đề đang gặp phải là gì?", ["Công việc ít", "Khối lượng công việc tăng", "Được giao việc mới", "Không có việc"], 1, "Increased workload: \"Khối lượng công việc tăng\"."],
-      ["3. Cảm thấy thế nào?", ["Thoải mái", "Quá tải và mất động lực", "Hào hứng", "Buồn"], 1, "Overloaded: \"Quá tải\"."],
-      ["4. Được gợi ý làm gì?", ["Nghỉ việc ngay", "Nói chuyện với quản lý", "Làm thêm", "Tìm việc mới ngay"], 1, "Talk to the manager: \"Nói chuyện quản lý\"."],
-      ["5. Quá tải nghĩa là gì?", ["Overloaded", "Relaxed", "Excited"], 0, "Overloaded means quá tải."]
-    ],
-    quizSouth: [
-      ["1. Vì sao nhận ra đồng nghiệp đang có chuyện?", ["Chủ động kể", "Trông mệt mỏi", "Sếp nói", "Nghỉ làm"], 1, "Looking tired: \"Trông mệt mỏi\"."],
-      ["2. Vấn đề đang gặp phải là gì?", ["Công việc ít", "Khối lượng công việc tăng", "Được giao việc mới", "Không có việc"], 1, "Increased workload: \"Khối lượng công việc tăng\"."],
-      ["3. Cảm thấy thế nào?", ["Thoải mái", "Quá tải và mất động lực", "Hào hứng", "Buồn"], 1, "Overloaded: \"Quá tải\"."],
-      ["4. Được gợi ý làm gì?", ["Nghỉ việc ngay", "Nói chuyện với quản lý", "Làm thêm", "Tìm việc mới ngay"], 1, "Talk to the manager: \"Nói chuyện quản lý\"."],
-      ["5. Quá tải nghĩa là gì?", ["Overloaded", "Relaxed", "Excited"], 0, "Overloaded means quá tải."]
-    ],
-    vocabNorth: [
-      ['quá tải', 'Adj', 'overloaded'],
-      ['mất động lực', 'V', 'lose motivation'],
-      ['khối lượng công việc', 'N', 'workload'],
-      ['kiệt sức', 'Adj', 'burned out'],
-      ['chia sẻ', 'V', 'share'],
-      ['trao đổi', 'V', 'discuss']
-    ],
-    vocabSouth: [
-      ['quá tải', 'Adj', 'overloaded'],
-      ['mất động lực', 'V', 'lose motivation'],
-      ['khối lượng công việc', 'N', 'workload'],
-      ['kiệt sức', 'Adj', 'burned out'],
-      ['chia sẻ', 'V', 'share'],
-      ['trao đổi', 'V', 'discuss']
-    ],
-    transcriptNorth: [
-      ['Dạo này trông em mệt thế? Có chuyện gì à em?', 'You look tired lately. Is something wrong?'],
-      ['Không hẳn đâu anh. Chỉ là khối lượng công việc tăng nên em hơi quá tải.', 'Not really. The workload has increased, so I feel a bit overloaded.'],
-      ['Thế em có thấy mất động lực không?', 'Do you feel like you are losing motivation?'],
-      ['Vâng anh. Em vẫn thích công việc này nhưng cứ thế này thì hơi khó.', 'Yes. I still like this job, but it is getting difficult like this.'],
-      ['Hay em thử trao đổi với quản lý xem sao?', 'Maybe you could discuss it with your manager.'],
-      ['Vâng, chắc em nên chia sẻ rõ tình hình của mình với sếp.', 'Yeah, I think I should explain my situation clearly.']
-    ],
-    transcriptSouth: [
-      ['Dạo này thấy em mệt quá vậy? Có chuyện gì hả em?', 'You look tired lately. Is something wrong?'],
-      ['Không hẳn đâu anh. Chỉ là khối lượng công việc tăng nên em hơi quá tải.', 'Not really. The workload has increased, so I feel a bit overloaded.'],
-      ['Vậy em có thấy mất động lực không?', 'Do you feel like you are losing motivation?'],
-      ['Dạ có anh. Em vẫn thích công việc này nhưng cứ thế này thì hơi khó.', 'Yes. I still like this job, but it is getting difficult like this.'],
-      ['Hay em thử trao đổi với quản lý xem sao?', 'Maybe you could discuss it with your manager.'],
-      ['Dạ, chắc em nên chia sẻ rõ tình hình của mình.', 'Yeah, I think I should explain my situation clearly.']
-    ]
-  })
+// 15. COMPARING CAFÉS
+createLesson({
+  slug: 'comparing-cafes',
+  title: 'Compare Two Coffee Shops',
+  level: 'Intermediate (B1)',
+  description: 'Learn how to compare cafés, talk about prices, distance, and quality, and express which option is the best.',
+  audioNorthFile: 'comparing-cafes-north.wav',
+  audioSouthFile: 'comparing-cafes-south.wav',
+quizNorth: [
+    ["1. Tại sao anh muốn đi uống cà phê?", ["Vì anh mới nhận lương", "Vì anh muốn uống cà phê", "Vì anh muốn đi ra ngoài", "Vì anh không phải đi làm"], 3, "Because he has the day off tomorrow / doesn't have to work: \"Mai anh được nghỉ làm.\""],
+    ["2. Quán cà phê mới so với quán cà phê cũ thì ___", ["Rộng hơn", "Nhỏ hơn", "Bằng nhau", "Không biết"], 0, "The new café is bigger: \"Quán này rộng hơn quán mình hay đi.\""],
+    ["3. Giá ở quán mới như thế nào?", ["Thấp hơn", "Cao hơn", "Bằng nhau", "Rẻ hơn nhiều"], 1, "The prices are a little higher: \"Giá ở đây cũng cao hơn một chút.\""],
+    ["4. Theo anh, quán nào có cà phê ngon nhất?", ["Quán gần nhà", "Quán hôm qua", "Quán trước đây", "Hai quán như nhau"], 2, "The old café has the best coffee: \"Theo anh thì ở quán cũ là ngon nhất.\""],
+    ["5. Quán nào gần hơn?", ["Không đề cập", "Quán mới", "Quán hôm qua", "Hai quán bằng nhau"], 2, "The café from yesterday is closer: \"Quán hôm qua gần hơn.\""],
+    ["6. \"Thoải mái\" nghĩa là gì?", ["Comfortable", "Expensive", "Crowded", "Far away"], 0, "\"Thoải mái\" means comfortable."]
+  ],
+  quizSouth: [
+    ["1. Tại sao anh muốn đi uống cà phê?", ["Vì anh mới nhận lương", "Vì anh muốn uống cà phê", "Vì anh muốn đi ra ngoài", "Vì anh không phải đi làm"], 3, "Because he has the day off tomorrow / doesn't have to work: \"Mai anh được nghỉ làm.\""],
+    ["2. Quán cà phê mới so với quán cà phê cũ thì ___", ["Rộng hơn", "Nhỏ hơn", "Bằng nhau", "Không biết"], 0, "The new café is bigger: \"Quán này rộng hơn quán mình hay đi.\""],
+    ["3. Giá ở quán mới như thế nào?", ["Thấp hơn", "Cao hơn", "Bằng nhau", "Rẻ hơn nhiều"], 1, "The prices are a little higher: \"Giá ở đây cũng cao hơn chút.\""],
+    ["4. Theo anh, quán nào có cà phê ngon nhất?", ["Quán gần nhà", "Quán hôm qua", "Quán trước đây", "Hai quán như nhau"], 2, "The old café has the best coffee: \"Theo anh thì quán cũ ngon nhất.\""],
+    ["5. Quán nào gần hơn?", ["Không đề cập", "Quán mới", "Quán hôm qua", "Hai quán bằng nhau"], 2, "The café from yesterday is closer: \"Quán hôm qua gần hơn.\""],
+    ["6. \"Thoải mái\" nghĩa là gì?", ["Comfortable", "Expensive", "Crowded", "Far away"], 0, "\"Thoải mái\" means comfortable."]
+  ],
+      vocabNorth: [
+    ['rộng hơn', 'ADJ', 'wider / more spacious'],
+    ['cao hơn', 'ADJ', 'higher / more expensive'],
+    ['ngon nhất', 'ADJ', 'the best / the tastiest'],
+    ['gần hơn', 'ADJ', 'closer'],
+    ['như nhau', 'PHRASE', 'the same / alike'],
+    ['bằng nhau', 'PHRASE', 'equal / the same in degree']
+  ],
+  vocabSouth: [
+    ['rộng hơn', 'ADJ', 'wider / more spacious'],
+    ['cao hơn', 'ADJ', 'higher / more expensive'],
+    ['ngon nhất', 'ADJ', 'the best / the tastiest'],
+    ['gần hơn', 'ADJ', 'closer'],
+    ['như nhau', 'PHRASE', 'the same / alike'],
+    ['bằng nhau', 'PHRASE', 'equal / the same in degree']
+  ],
+  transcriptNorth: [
+    ['Mai anh được nghỉ làm. Em có muốn đi uống cà phê không?', 'I have the day off tomorrow. Do you want to go get some coffee?'],
+    ['Được. Mình đi đâu vậy anh?', 'Sure. Where should we go?'],
+    ['Em còn nhớ quán mình đi hôm qua không, quán 24 giờ ấy?', 'Do you remember the coffee shop we went to yesterday, the 24-hour one?'],
+    ['Quán này rộng hơn quán mình hay đi.', 'This coffee shop is bigger than the one we usually go to.'],
+    ['Ừ, mà giá ở đây cũng cao hơn một chút.', 'Yeah, but the prices here are also a little higher.'],
+    ['Anh thấy cà phê ở quán nào ngon nhất?', 'Which coffee shop do you think has the best coffee?'],
+    ['Theo anh thì ở quán cũ là ngon nhất.', 'I think the old one has the best coffee.'],
+    ['Còn về đường đi thì quán hôm qua gần hơn.', 'But the coffee shop we went to yesterday is closer.'],
+    ['Anh thấy mình đi quán hôm qua đi, chỗ ngồi thoải mái hơn.', 'I think we should go to the coffee shop from yesterday. The seats are more comfortable.']
+  ],
+  transcriptSouth: [
+    ['Mai anh được nghỉ làm. Em có muốn đi uống cà phê không?', 'I have the day off tomorrow. Do you want to go get some coffee?'],
+    ['Dạ được. Mình đi đâu vậy anh?', 'Sure. Where should we go?'],
+    ['Em còn nhớ quán mình đi hôm qua không, quán 24 giờ ấy?', 'Do you remember the coffee shop we went to yesterday, the 24-hour one?'],
+    ['Quán này rộng hơn quán mình hay đi.', 'This coffee shop is bigger than the one we usually go to.'],
+    ['Ừ, mà giá ở đây cũng cao hơn chút.', 'Yeah, but the prices here are also a little higher.'],
+    ['Anh thấy cà phê ở quán nào ngon nhất?', 'Which coffee shop do you think has the best coffee?'],
+    ['Theo anh thì quán cũ ngon nhất.', 'I think the old one has the best coffee.'],
+    ['Còn về đường đi thì quán hôm qua gần hơn.', 'But the coffee shop we went to yesterday is closer.'],
+    ['Anh thấy mình đi quán hôm qua đi, chỗ ngồi thoải mái hơn.', 'I think we should go to the coffee shop from yesterday. The seats are more comfortable.']
+  ]
+}),
 ];

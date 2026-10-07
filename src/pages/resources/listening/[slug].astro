@@ -10,21 +10,23 @@ export async function getStaticPaths() {
 }
 
 const { lesson } = Astro.props;
+
+// Lọc các bài học cùng chung level (trừ bài hiện tại), xáo trộn ngẫu nhiên và lấy ra 3 bài
+const sameLevelLessons = lessons.filter(l => l.level === lesson.level && l.slug !== lesson.slug);
+const otherLessons = [...sameLevelLessons].sort(() => Math.random() - 0.5).slice(0, 3);
 ---
 
 <Layout title={`${lesson.title} | Vietnamese Listening Practice | Havie`} description={lesson.description}>
-  <main class="max-w-4xl mx-auto px-5 py-10 sm:py-16">
+  <main class="max-w-4xl mx-auto px-5 py-10 sm:py-16 font-brand">
     
-    <!-- Back to Hub -->
-    <div class="mb-6">
-      <a href="/resources/listening" class="text-sm font-bold text-stone-500 hover:text-red-600 transition flex items-center gap-1.5">
-        ← Back to Listening Hub
-      </a>
-    </div>
-
     <!-- Lesson Header -->
     <div class="space-y-3 mb-8 text-center max-w-2xl mx-auto">
-      <h1 class="text-3xl sm:text-4xl font-black tracking-tight font-brand">
+      <div>
+        <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-red-50 text-red-600 border border-red-200 text-xs font-bold uppercase tracking-wider shadow-2xs">
+          {lesson.level} Practice
+        </span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-slate-900">
         <span class="text-red-600">{lesson.title}</span>
       </h1>
       <p class="text-stone-600 text-base sm:text-lg font-medium">
@@ -33,40 +35,42 @@ const { lesson } = Astro.props;
     </div>
 
     <!-- ACCENT TOGGLE SWITCH -->
-    <div class="flex items-center justify-center bg-stone-100 p-2 rounded-2xl max-w-md mx-auto mb-8 border border-stone-200">
+    <div class="flex items-center justify-center bg-stone-200/80 p-1.5 rounded-2xl max-w-md mx-auto mb-10 border border-stone-300/80 shadow-inner">
       <button 
         type="button" 
         id="btn-north"
-        class="flex-1 py-3.5 px-6 rounded-xl font-black text-base transition cursor-pointer bg-slate-900 text-white shadow-sm"
+        class="flex-1 py-3 px-5 rounded-xl font-extrabold text-sm sm:text-base transition-all cursor-pointer bg-slate-900 text-white shadow-md flex items-center justify-center gap-2"
       >
-        🇻🇳 Northern (Hanoi)
+        <span>🇻🇳</span> Northern (Hanoi)
       </button>
       <button 
         type="button" 
         id="btn-south"
-        class="flex-1 py-3.5 px-6 rounded-xl font-black text-base transition cursor-pointer text-stone-600 hover:text-slate-900"
+        class="flex-1 py-3 px-5 rounded-xl font-extrabold text-sm sm:text-base transition-all cursor-pointer text-stone-600 hover:text-slate-900 flex items-center justify-center gap-2"
       >
-        🇻🇳 Southern (Saigon)
+        <span>🇻🇳</span> Southern (Saigon)
       </button>
     </div>
 
     <!-- AUDIO PLAYER -->
     <div class="space-y-6 mb-10">
-      <div class="bg-[#fffaf5] border border-stone-200/90 rounded-3xl p-6 sm:p-8 shadow-xs space-y-4">
+      <div class="bg-white border-2 border-stone-200 rounded-3xl p-6 sm:p-8 shadow-md space-y-4">
         <div class="flex items-center justify-between">
-          <h3 class="font-black text-slate-900 text-lg sm:text-xl flex items-center gap-2">
-            <span>🎧</span> Audio Practice
+          <h3 class="font-black text-slate-900 text-base sm:text-lg flex items-center gap-2">
+            <span class="w-8 h-8 rounded-xl bg-red-50 text-red-600 flex items-center justify-center text-sm border border-red-100 shadow-2xs">🎧</span>
+            <span>Audio Practice</span>
           </h3>
+          <span class="text-xs font-bold text-stone-400 uppercase tracking-wider">Listen & Repeat</span>
         </div>
         
-        <!-- Northern Audio (Cho phép tua, dừng, chọn thời điểm nghe & Chặn tải xuống) -->
-        <audio id="audio-north" controls controlsList="nodownload" oncontextmenu="return false;" preload="metadata" class="w-full accent-slate-900">
+        <!-- Northern Audio -->
+        <audio id="audio-north" controls controlsList="nodownload" oncontextmenu="return false;" preload="metadata" class="w-full accent-slate-900 py-2">
           <source src={lesson.northern.audioUrl} type="audio/wav" />
           Your browser does not support the audio element.
         </audio>
 
-        <!-- Southern Audio (Hidden by default, cho phép tua, dừng, chọn thời điểm nghe & Chặn tải xuống) -->
-        <audio id="audio-south" controls controlsList="nodownload" oncontextmenu="return false;" preload="metadata" class="w-full accent-slate-900 hidden">
+        <!-- Southern Audio -->
+        <audio id="audio-south" controls controlsList="nodownload" oncontextmenu="return false;" preload="metadata" class="w-full accent-slate-900 py-2 hidden">
           <source src={lesson.southern.audioUrl} type="audio/wav" />
           Your browser does not support the audio element.
         </audio>
@@ -77,43 +81,42 @@ const { lesson } = Astro.props;
     {lesson.northern.quiz && lesson.northern.quiz.length > 0 && (
       <div id="quiz-container-north" class="quiz-container bg-white border border-stone-200/90 rounded-3xl p-6 sm:p-8 shadow-xs my-8 space-y-6">
         <div>
-          <h3 class="text-xl sm:text-2xl font-black text-slate-900 flex items-center gap-2">
-            <span>📝</span> Comprehension Quiz (Northern)
+          <h3 class="text-xl font-black text-slate-900">
+            Comprehension Quiz
           </h3>
-          <p class="text-stone-700 text-base font-bold mt-1">Answer the questions below to check your score, unlock key vocabulary, and view transcripts.</p>
+          <p class="text-stone-500 text-sm font-medium mt-1">Answer the questions below to check your score, unlock key vocabulary, and view transcripts.</p>
         </div>
         
         <form id="quiz-form-north" class="quiz-form space-y-6 divide-y divide-stone-100" data-region="north">
           {lesson.northern.quiz.map((q, qIndex) => (
             <div class="pt-6 first:pt-0 space-y-3 quiz-question" data-question={qIndex}>
-              <p class="font-black text-slate-900 text-lg">{q.question}</p>
-              <div class="grid grid-cols-1 gap-3">
+              <p class="font-bold text-slate-900 text-base">{q.question}</p>
+              <div class="grid grid-cols-1 gap-2.5">
                 {q.options.map((opt, optIndex) => (
-                  <label class="flex items-center gap-3 p-4 rounded-xl border border-stone-200 bg-stone-50 hover:bg-stone-100 transition cursor-pointer text-base font-bold text-slate-900">
+                  <label class="flex items-center gap-3 p-3.5 rounded-xl border border-stone-200 bg-stone-50 hover:bg-stone-100 transition cursor-pointer text-sm sm:text-base font-bold text-slate-800">
                     <input 
                       type="radio" 
                       name={`question-north-${qIndex}`} 
                       value={optIndex} 
-                      class="w-5 h-5 text-slate-900 focus:ring-slate-900" 
+                      class="w-4 h-4 text-slate-900 focus:ring-slate-900" 
                       required
                     />
                     <span>{opt}</span>
                   </label>
                 ))}
               </div>
-              <div class="explanation-box hidden p-4 rounded-xl text-base font-bold mt-2"></div>
+              <div class="explanation-box hidden p-3.5 rounded-xl text-sm font-medium mt-2"></div>
             </div>
           ))}
 
-          <!-- Nút Submit -->
           <div class="pt-6 flex flex-col items-center justify-center gap-4 text-center">
             <button 
               type="submit" 
-              class="w-full sm:w-auto px-8 py-4 bg-slate-900 text-white font-black rounded-2xl shadow-md hover:bg-slate-800 transition cursor-pointer text-base mx-auto"
+              class="w-full sm:w-auto px-8 py-3.5 bg-slate-900 text-white font-extrabold rounded-xl shadow-md hover:bg-slate-800 transition cursor-pointer text-sm sm:text-base mx-auto"
             >
-              Submit Answers & Check Score 🎯
+              Submit Answers & Check Score
             </button>
-            <div id="quiz-result-north" class="quiz-result hidden text-xl font-black text-slate-900"></div>
+            <div id="quiz-result-north" class="quiz-result hidden text-base font-black text-slate-900"></div>
           </div>
         </form>
       </div>
@@ -123,43 +126,42 @@ const { lesson } = Astro.props;
     {lesson.southern.quiz && lesson.southern.quiz.length > 0 && (
       <div id="quiz-container-south" class="quiz-container bg-white border border-stone-200/90 rounded-3xl p-6 sm:p-8 shadow-xs my-8 space-y-6 hidden">
         <div>
-          <h3 class="text-xl sm:text-2xl font-black text-slate-900 flex items-center gap-2">
-            <span>📝</span> Comprehension Quiz (Southern)
+          <h3 class="text-xl font-black text-slate-900">
+            Comprehension Quiz
           </h3>
-          <p class="text-stone-700 text-base font-bold mt-1">Answer the questions below to check your score, unlock key vocabulary, and view transcripts.</p>
+          <p class="text-stone-500 text-sm font-medium mt-1">Answer the questions below to check your score, unlock key vocabulary, and view transcripts.</p>
         </div>
         
         <form id="quiz-form-south" class="quiz-form space-y-6 divide-y divide-stone-100" data-region="south">
           {lesson.southern.quiz.map((q, qIndex) => (
             <div class="pt-6 first:pt-0 space-y-3 quiz-question" data-question={qIndex}>
-              <p class="font-black text-slate-900 text-lg">{q.question}</p>
-              <div class="grid grid-cols-1 gap-3">
+              <p class="font-bold text-slate-900 text-base">{q.question}</p>
+              <div class="grid grid-cols-1 gap-2.5">
                 {q.options.map((opt, optIndex) => (
-                  <label class="flex items-center gap-3 p-4 rounded-xl border border-stone-200 bg-stone-50 hover:bg-stone-100 transition cursor-pointer text-base font-bold text-slate-900">
+                  <label class="flex items-center gap-3 p-3.5 rounded-xl border border-stone-200 bg-stone-50 hover:bg-stone-100 transition cursor-pointer text-sm sm:text-base font-bold text-slate-800">
                     <input 
                       type="radio" 
                       name={`question-south-${qIndex}`} 
                       value={optIndex} 
-                      class="w-5 h-5 text-slate-900 focus:ring-slate-900" 
+                      class="w-4 h-4 text-slate-900 focus:ring-slate-900" 
                       required
                     />
                     <span>{opt}</span>
                   </label>
                 ))}
               </div>
-              <div class="explanation-box hidden p-4 rounded-xl text-base font-bold mt-2"></div>
+              <div class="explanation-box hidden p-3.5 rounded-xl text-sm font-medium mt-2"></div>
             </div>
           ))}
 
-          <!-- Nút Submit -->
           <div class="pt-6 flex flex-col items-center justify-center gap-4 text-center">
             <button 
               type="submit" 
-              class="w-full sm:w-auto px-8 py-4 bg-slate-900 text-white font-black rounded-2xl shadow-md hover:bg-slate-800 transition cursor-pointer text-base mx-auto"
+              class="w-full sm:w-auto px-8 py-3.5 bg-slate-900 text-white font-extrabold rounded-xl shadow-md hover:bg-slate-800 transition cursor-pointer text-sm sm:text-base mx-auto"
             >
-              Submit Answers & Check Score 🎯
+              Submit Answers & Check Score
             </button>
-            <div id="quiz-result-south" class="quiz-result hidden text-xl font-black text-slate-900"></div>
+            <div id="quiz-result-south" class="quiz-result hidden text-base font-black text-slate-900"></div>
           </div>
         </form>
       </div>
@@ -167,12 +169,12 @@ const { lesson } = Astro.props;
 
     <!-- KEY VOCABULARY (NORTHERN) -->
     <div id="vocab-section-north" class="vocab-section bg-white border border-stone-200/90 rounded-3xl p-6 sm:p-8 shadow-xs my-8 space-y-4 hidden">
-      <h3 class="text-xl sm:text-2xl font-black text-slate-900 flex items-center gap-2"><span>📚</span> Key Vocabulary (Northern)</h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <h3 class="text-xl font-black text-slate-900">Key Vocabulary</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
         {lesson.northern.vocabulary.map((vocab) => (
           <div class="p-4 rounded-2xl bg-stone-50 border border-stone-100 flex flex-col justify-center">
-            <span class="font-black text-slate-900 text-lg">{vocab.word}</span>
-            <span class="text-stone-700 text-base font-bold mt-1">{vocab.meaning}</span>
+            <span class="font-black text-slate-900 text-base">{vocab.word}</span>
+            <span class="text-stone-500 text-sm font-medium mt-0.5">{vocab.meaning}</span>
           </div>
         ))}
       </div>
@@ -180,12 +182,12 @@ const { lesson } = Astro.props;
 
     <!-- KEY VOCABULARY (SOUTHERN) -->
     <div id="vocab-section-south" class="vocab-section bg-white border border-stone-200/90 rounded-3xl p-6 sm:p-8 shadow-xs my-8 space-y-4 hidden">
-      <h3 class="text-xl sm:text-2xl font-black text-slate-900 flex items-center gap-2"><span>📚</span> Key Vocabulary (Southern)</h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <h3 class="text-xl font-black text-slate-900">Key Vocabulary</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
         {lesson.southern.vocabulary.map((vocab) => (
           <div class="p-4 rounded-2xl bg-stone-50 border border-stone-100 flex flex-col justify-center">
-            <span class="font-black text-slate-900 text-lg">{vocab.word}</span>
-            <span class="text-stone-700 text-base font-bold mt-1">{vocab.meaning}</span>
+            <span class="font-black text-slate-900 text-base">{vocab.word}</span>
+            <span class="text-stone-500 text-sm font-medium mt-0.5">{vocab.meaning}</span>
           </div>
         ))}
       </div>
@@ -195,12 +197,12 @@ const { lesson } = Astro.props;
     <div id="transcript-section" class="space-y-6 my-8 hidden">
       <!-- Northern Transcript -->
       <div id="transcript-north" class="bg-white border border-stone-200/90 rounded-3xl p-6 sm:p-8 shadow-xs space-y-5 hidden">
-        <h3 class="text-xl font-black text-slate-900 flex items-center gap-2">📜 Northern Transcript (Hanoi Accent)</h3>
-        <div class="space-y-6 divide-y divide-stone-100">
+        <h3 class="text-xl font-black text-slate-900">Transcript</h3>
+        <div class="space-y-5 divide-y divide-stone-100">
           {lesson.northern.transcript.map(({ vietnamese, english }) => (
-            <div class="pt-5 first:pt-0">
-              <p class="text-lg font-black text-slate-900">{vietnamese}</p>
-              <p class="text-stone-700 text-base font-bold mt-1.5">{english}</p>
+            <div class="pt-4 first:pt-0">
+              <p class="text-base sm:text-lg font-bold text-slate-900">{vietnamese}</p>
+              <p class="text-stone-500 text-sm font-medium mt-1">{english}</p>
             </div>
           ))}
         </div>
@@ -208,17 +210,53 @@ const { lesson } = Astro.props;
 
       <!-- Southern Transcript -->
       <div id="transcript-south" class="bg-white border border-stone-200/90 rounded-3xl p-6 sm:p-8 shadow-xs space-y-5 hidden">
-        <h3 class="text-xl font-black text-slate-900 flex items-center gap-2">📜 Southern Transcript (Saigon Accent)</h3>
-        <div class="space-y-6 divide-y divide-stone-100">
+        <h3 class="text-xl font-black text-slate-900">Transcript</h3>
+        <div class="space-y-5 divide-y divide-stone-100">
           {lesson.southern.transcript.map(({ vietnamese, english }) => (
-            <div class="pt-5 first:pt-0">
-              <p class="text-lg font-black text-slate-900">{vietnamese}</p>
-              <p class="text-stone-700 text-base font-bold mt-1.5">{english}</p>
+            <div class="pt-4 first:pt-0">
+              <p class="text-base sm:text-lg font-bold text-slate-900">{vietnamese}</p>
+              <p class="text-stone-500 text-sm font-medium mt-1">{english}</p>
             </div>
           ))}
         </div>
       </div>
     </div>
+
+    <!-- GỢI Ý BÀI HỌC CÙNG LEVEL -->
+    {otherLessons.length > 0 && (
+      <div class="my-12 bg-gradient-to-br from-red-50/40 via-white to-amber-50/30 border border-red-100 rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
+        <div class="flex items-center justify-between">
+          <div class="space-y-1">
+            <h3 class="text-xl sm:text-2xl font-black text-slate-900">
+              Level up your listening!
+            </h3>
+            <p class="text-stone-600 text-sm font-medium">Choose your next conversation and keep improving.</p>
+          </div>
+          <span class="text-xs font-black text-red-600 bg-red-50 border border-red-200 px-3.5 py-1.5 rounded-full uppercase tracking-wider">
+            {lesson.level}
+          </span>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {otherLessons.map((item) => (
+            <a href={`/resources/listening/${item.slug}`} class="group p-5 rounded-2xl bg-white hover:bg-slate-900 border border-stone-200/90 hover:border-slate-900 transition-all duration-300 flex flex-col justify-between shadow-xs hover:shadow-xl transform hover:-translate-y-1">
+              <div class="space-y-3">
+                <span class="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-lg bg-stone-100 text-stone-700 group-hover:bg-stone-800 group-hover:text-stone-300 transition-colors">
+                  {item.level}
+                </span>
+                <h4 class="font-black text-slate-900 group-hover:text-white transition-colors text-lg sm:text-xl line-clamp-2">
+                  {item.title}
+                </h4>
+              </div>
+              <div class="mt-6 pt-4 border-t border-stone-100 group-hover:border-stone-800 flex items-center justify-between text-sm font-black text-red-600 group-hover:text-amber-400 transition-colors">
+                <span>Start lesson</span>
+                <span class="transform group-hover:translate-x-1.5 transition-transform">→</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
 
     <!-- CTA BOOKING BOX -->
     <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-amber-100/90 via-orange-100/50 to-stone-200/70 border-2 border-amber-300/80 p-8 sm:p-12 my-12 shadow-md text-center">
@@ -226,15 +264,14 @@ const { lesson } = Astro.props;
       <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-amber-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
       <div class="relative z-10 max-w-xl mx-auto space-y-4">
-        <h3 class="text-2xl sm:text-3xl font-black tracking-tight font-brand text-slate-900">
+        <h3 class="text-2xl sm:text-3xl font-black tracking-tight text-slate-900">
           Want to master both accents with Alice?
         </h3>
         <p class="text-stone-700 text-sm sm:text-base font-medium leading-relaxed">
           Book a 1-on-1 trial session to practice real-life conversations tailored to your target region!
         </p>
         <div class="pt-2">
-          <button type="button" class="open-modal-trigger px-8 py-4 bg-red-600 text-white font-black rounded-2xl shadow-md hover:bg-red-700 transition cursor-pointer text-sm sm:text-base inline-flex items-center gap-2">
-            <span>📅</span>
+          <button type="button" class="open-modal-trigger px-8 py-3.5 bg-red-600 text-white font-extrabold rounded-xl shadow-md hover:bg-red-700 transition cursor-pointer text-sm sm:text-base inline-flex items-center gap-2">
             <span>Book 25-Min Trial Lesson →</span>
           </button>
         </div>
@@ -264,8 +301,8 @@ const { lesson } = Astro.props;
     if (btnNorth && btnSouth) {
       btnNorth.addEventListener('click', () => {
         currentRegion = 'north';
-        btnNorth.className = "flex-1 py-3.5 px-6 rounded-xl font-black text-base transition cursor-pointer bg-slate-900 text-white shadow-sm";
-        btnSouth.className = "flex-1 py-3.5 px-6 rounded-xl font-black text-base transition cursor-pointer text-stone-600 hover:text-slate-900";
+        btnNorth.className = "flex-1 py-3 px-5 rounded-xl font-extrabold text-sm sm:text-base transition-all cursor-pointer bg-slate-900 text-white shadow-md flex items-center justify-center gap-2";
+        btnSouth.className = "flex-1 py-3 px-5 rounded-xl font-extrabold text-sm sm:text-base transition-all cursor-pointer text-stone-600 hover:text-slate-900 flex items-center justify-center gap-2";
         
         audioNorth.classList.remove('hidden');
         audioSouth.classList.add('hidden');
@@ -286,8 +323,8 @@ const { lesson } = Astro.props;
 
       btnSouth.addEventListener('click', () => {
         currentRegion = 'south';
-        btnSouth.className = "flex-1 py-3.5 px-6 rounded-xl font-black text-base transition cursor-pointer bg-slate-900 text-white shadow-sm";
-        btnNorth.className = "flex-1 py-3.5 px-6 rounded-xl font-black text-base transition cursor-pointer text-stone-600 hover:text-slate-900";
+        btnSouth.className = "flex-1 py-3 px-5 rounded-xl font-extrabold text-sm sm:text-base transition-all cursor-pointer bg-slate-900 text-white shadow-md flex items-center justify-center gap-2";
+        btnNorth.className = "flex-1 py-3 px-5 rounded-xl font-extrabold text-sm sm:text-base transition-all cursor-pointer text-stone-600 hover:text-slate-900 flex items-center justify-center gap-2";
         
         audioSouth.classList.remove('hidden');
         audioNorth.classList.add('hidden');
@@ -307,7 +344,7 @@ const { lesson } = Astro.props;
       });
     }
 
-    // Quiz submission handler for both forms
+    // Quiz submission handler
     document.querySelectorAll('.quiz-form').forEach(quizForm => {
       quizForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -333,26 +370,36 @@ const { lesson } = Astro.props;
 
           explanationBox.classList.remove('hidden');
 
+          let rawExp = q.explanation;
+          let formattedExp = rawExp;
+
+          if (rawExp.includes(':')) {
+            const parts = rawExp.split(':');
+            formattedExp = `<strong>${parts[0].trim()}:</strong> ${parts.slice(1).join(':').trim()}`;
+          } else {
+            formattedExp = `<strong>${rawExp}</strong>`;
+          }
+
           if (userAns === correctAns) {
             score++;
-            explanationBox.className = "explanation-box p-4 rounded-xl text-base font-black mt-2 bg-emerald-50 text-emerald-900 border border-emerald-200";
-            explanationBox.innerHTML = `✅ <strong class="font-black">Correct!</strong> ${q.explanation}`;
+            explanationBox.className = "explanation-box p-3.5 rounded-xl text-sm font-medium mt-2 bg-emerald-50 text-emerald-900 border border-emerald-200";
+            explanationBox.innerHTML = `${formattedExp}`;
             if (selected) {
-              selected.closest('label').classList.add('bg-emerald-100', 'border-emerald-300', 'font-black');
+              selected.closest('label').classList.add('bg-emerald-100', 'border-emerald-300', 'font-bold');
             }
           } else {
-            explanationBox.className = "explanation-box p-4 rounded-xl text-base font-black mt-2 bg-rose-50 text-rose-900 border border-rose-200";
-            explanationBox.innerHTML = `❌ <strong class="font-black">Incorrect.</strong> ${q.explanation}`;
+            explanationBox.className = "explanation-box p-3.5 rounded-xl text-sm font-medium mt-2 bg-rose-50 text-rose-900 border border-rose-200";
+            explanationBox.innerHTML = `${formattedExp}`;
             if (selected) {
               selected.closest('label').classList.add('bg-rose-100', 'border-rose-300');
             }
             const correctLabel = radios[correctAns].closest('label');
-            correctLabel.classList.add('bg-emerald-100', 'border-emerald-300', 'font-black');
+            correctLabel.classList.add('bg-emerald-100', 'border-emerald-300', 'font-bold');
           }
         });
 
         quizResult.classList.remove('hidden');
-        quizResult.innerHTML = `🎉 Your Score: ${score} / ${total} (${Math.round((score/total)*100)}%)`;
+        quizResult.innerHTML = `Your Score: ${score} / ${total} (${Math.round((score/total)*100)}%)`;
 
         if (vocabSection) vocabSection.classList.remove('hidden');
         if (transcriptSection) transcriptSection.classList.remove('hidden');

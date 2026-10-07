@@ -105,7 +105,37 @@ export default {
       { vn: "Khỏe hơn", en: "Better / Recovering" }
             ]
   },
-
+  "clothing_expert": {
+    title: "Clothing & Accessories",
+    type: "free",
+    words: [
+      { vn: "mặc", en: "to wear (clothes, shirts, skirts / áo, quần, đầm)" },
+      { vn: "đi", en: "to wear / put on (shoes, sandals, high heels / giày, dép, giày cao gót)" },
+      { vn: "đội", en: "to wear / put on (hats, helmets / nón, nón bảo hiểm, nón len)" },
+      { vn: "cầm / mang", en: "to hold / carry (bags, keys / bóp, chìa khóa)" },
+      { vn: "xách / mang", en: "to carry by hand (bags / túi)" },
+      { vn: "đeo", en: "to wear / put on (glasses, backpack, watch, bracelet, earrings / kính, balo, tai nghe, đồng hồ, vòng tay, bông tai)" },
+      { vn: "áo", en: "shirt / top" },
+      { vn: "quần", en: "pants / trousers" },
+      { vn: "đầm", en: "dress" },
+      { vn: "giày", en: "shoes" },
+      { vn: "dép", en: "sandals / slippers" },
+      { vn: "giày cao gót", en: "high heels" },
+      { vn: "nón", en: "hat / cap" },
+      { vn: "nón bảo hiểm", en: "helmet" },
+      { vn: "nón len", en: "beanie / wool hat" },
+      { vn: "bóp", en: "wallet / purse" },
+      { vn: "chìa khóa", en: "key" },
+      { vn: "túi", en: "bag" },
+      { vn: "kính", en: "glasses" },
+      { vn: "balo", en: "backpack" },
+      { vn: "tai nghe", en: "headphones / earphones" },
+      { vn: "đồng hồ", en: "watch" },
+      { vn: "vòng tay", en: "bracelet" },
+      { vn: "bông tai", en: "earrings" }
+    ]
+  },
+  
   "family_expert": {
     title: "Family",
     type: "free",
