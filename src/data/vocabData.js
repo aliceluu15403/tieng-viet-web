@@ -140,19 +140,24 @@ export default {
     title: "Family",
     type: "free",
     words: [
-      { vn: "Cô / Dì", en: "Aunt" },
-      { vn: "Chú", en: "Uncle" },
-      { vn: "Bác", en: "Parent's older sibling" },
+{ vn: "Ông", en: "Grandfather" },
+      { vn: "Bà", en: "Grandmother" },
+      { vn: "Bố", en: "Father" },
+      { vn: "Mẹ", en: "Mother" },
+      { vn: "Con", en: "Child" },
       { vn: "Anh", en: "Older brother" },
       { vn: "Chị", en: "Older sister" },
       { vn: "Em", en: "Younger sibling" },
+      { vn: "Bác", en: "Parent's older sibling" },
+      { vn: "Cô", en: "Aunt (father's younger sister)" },
+      { vn: "Chú", en: "Uncle (father's younger brother)" },
+      { vn: "Dì", en: "Aunt (mother's sister)" },
+      { vn: "Cậu", en: "Uncle (mother's brother)" },
+      { vn: "Mợ", en: "Aunt (wife of mother's brother)" },
+      { vn: "Nội", en: "Paternal" },
+      { vn: "Ngoại", en: "Maternal" },
       { vn: "Chồng", en: "Husband" },
-      { vn: "Vợ", en: "Wife" },
-      { vn: "Bà nội", en: "Paternal grandmother" },
-      { vn: "Bà ngoại", en: "Maternal grandmother" },
-      { vn: "Ông nội", en: "Paternal grandfather" },
-      { vn: "Ông ngoại", en: "Maternal grandfather" }
-    ]
+      { vn: "Vợ", en: "Wife" }    ]
   },
 
   "hobbies_expert": {

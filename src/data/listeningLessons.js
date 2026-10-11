@@ -37,8 +37,8 @@ export const lessons = [
     title: 'Ordering Phở & Drinks',
     level: 'Beginner (A1)',
     description: 'Learn how to order Phở, specify quantities, and add or refuse extra items at a Vietnamese eatery.',
-    audioNorthFile: 'appointment-north.wav',
-    audioSouthFile: 'appointment-south.wav',
+    audioNorthFile: 'ordering-pho-north.wav',
+    audioSouthFile: 'ordering-pho-south.wav',
     quizNorth: [
       ["1. Họ đang ở đâu?", ["Ở quán cà phê", "Ở quán ăn", "Ở siêu thị"], 1, "The conversation takes place at a Vietnamese eatery. The customer uses expressions like \"cho anh một bát phở bò\"."],
       ["2. Anh gọi món gì?", ["Phở bò và trà đá", "Phở gà và cà phê", "Bún bò và nước cam"], 0, "He says \"cho anh một bát phở bò với một cốc trà đá\" in the Northern version."],
@@ -70,16 +70,16 @@ export const lessons = [
       ['trà đá', 'N', 'iced tea']
     ],
     transcriptNorth: [
-      ['Chào anh, anh dùng gì ạ?', 'Hello sir, what would you like?'],
-      ['Dạ, cho anh một bát phở bò với một cốc trà đá.', 'A bowl of beef Pho and a glass of iced tea, please.'],
+      ['Anh dùng gì ạ?', 'What would you like?'],
+      ['Cho anh một bát phở bò với một cốc trà đá.', 'A bowl of beef Pho and a glass of iced tea, please.'],
       ['Anh có lấy thêm gì nữa không ạ?', 'Would you like anything else?'],
       ['Không, anh lấy vậy thôi.', 'No, that is all for me.'],
       ['Vâng. Anh ngồi đợi một chút nhé.', 'Alright. Please have a seat and wait a moment.']
     ],
     transcriptSouth: [
-      ['Chào anh, anh dùng gì ạ?', 'Hello sir, what would you like?'],
-      ['Dạ, cho anh một tô phở bò với một ly trà đá.', 'A bowl of beef Pho and a glass of iced tea, please.'],
-      ['Anh có lấy thêm gì nữa không ạ?', 'Would you like anything else?'],
+      ['Dạ anh dùng gì?', 'What would you like?'],
+      ['Cho anh một tô phở bò với một ly trà đá.', 'A bowl of beef Pho and a glass of iced tea, please.'],
+      ['Dạ, anh có lấy thêm gì nữa không?', 'Would you like anything else?'],
       ['Không, anh lấy vậy thôi.', 'No, that is all for me.'],
       ['Dạ. Anh ngồi đợi chút nha.', 'Alright. Please have a seat and wait a moment.']
     ]
@@ -163,11 +163,11 @@ export const lessons = [
       ["5. Chị ấy mua thêm gì?", ["Cam", "Chuối", "Táo"], 0, "The customer adds: \"cho em thêm nửa cân cam.\""]
     ],
     quizSouth: [
-      ["1. Chị ấy muốn mua gì?", ["Cam", "Xoài", "Chuối"], 1, "The customer asks about the price of mangoes first: \"Xoài bao nhiêu tiền một ký vậy?\""],
+      ["1. Anh ấy muốn mua gì?", ["Cam", "Xoài", "Chuối"], 1, "The customer asks about the price of mangoes first: \"Xoài bao nhiêu tiền một ký vậy?\""],
       ["2. Xoài bao nhiêu tiền?", ["20 ngàn", "30 ngàn", "40 ngàn"], 1, "The seller states the price: \"Ba chục ngàn một ký.\""],
       ["3. Người bán nói xoài như thế nào?", ["Chua", "Ngon", "Ngọt"], 2, "The seller describes the mangoes: \"ăn ngọt lắm.\""],
-      ["4. Chị ấy mua bao nhiêu xoài?", ["Một ký", "Hai ký", "Ba ký"], 1, "The customer says: \"Vậy lấy em hai ký.\""],
-      ["5. Chị ấy mua thêm gì?", ["Cam", "Chuối", "Táo"], 0, "The customer adds: \"cho em thêm nửa ký cam.\""]
+      ["4. Anh ấy mua bao nhiêu xoài?", ["Một ký", "Hai ký", "Ba ký"], 1, "The customer says: \"Vậy lấy em hai ký.\""],
+      ["5. Anh ấy mua thêm gì?", ["Cam", "Chuối", "Táo"], 0, "The customer adds: \"cho em thêm nửa ký cam.\""]
     ],
     vocabNorth: [
       ['quả', 'N', 'fruit'],
@@ -269,27 +269,25 @@ export const lessons = [
     description: 'Learn how to describe changing weather, talk about forecasts, and give practical advice.',
     audioNorthFile: 'talking-about-the-weather-north.wav',
     audioSouthFile: 'talking-about-the-weather-south.wav',
-    quizNorth: [
-      ["1. Hôm nay thời tiết như thế nào?", ["Trời lạnh", "Trời nóng", "Trời mưa"], 1, "Hôm nay trời khá nóng."],
-      ["2. Buổi sáng thời tiết có như thế nào?", ["Rất nóng", "Khá mát", "Rất lạnh"], 1, "Buổi sáng khá mát."],
-      ["3. Buổi chiều có khả năng có gì?", ["Mưa", "Tuyết", "Bão tuyết"], 0, "Buổi chiều có khả năng mưa."],
-      ["4. Người nói cần chuẩn bị gì?", ["Áo len", "Ô", "Khăn"], 1, "Người nói nên mang theo ô."],
-      ["5. Vì sao nên mang ô?", ["Vì trời có thể mưa", "Vì trời rất lạnh", "Vì trời có tuyết"], 0, "Vì dự báo cho biết trời có thể mưa."]
-    ],
-    quizSouth: [
-      ["1. Hôm nay thời tiết như thế nào?", ["Trời lạnh", "Trời nóng", "Trời mưa"], 1, "Hôm nay trời khá nóng."],
-      ["2. Buổi sáng thời tiết có như thế nào?", ["Rất nóng", "Khá mát", "Rất lạnh"], 1, "Buổi sáng khá mát."],
-      ["3. Buổi chiều có khả năng có gì?", ["Mưa", "Tuyết", "Bão tuyết"], 0, "Buổi chiều có khả năng mưa."],
-      ["4. Người nói cần chuẩn bị gì?", ["Áo len", "Ô", "Khăn"], 1, "Người nói nên mang theo ô."],
-      ["5. Vì sao nên mang ô?", ["Vì trời có thể mưa", "Vì trời rất lạnh", "Vì trời có tuyết"], 0, "Vì dự báo cho biết trời có thể mưa."]
-    ],
+quizNorth: [
+  ["1. Hôm nay thời tiết như thế nào?", ["Trời lạnh", "Trời nóng", "Trời mưa"], 1, "The weather is hot today: \"Hôm nay trời nóng nhỉ?\""],
+  ["2. Buổi sáng thời tiết có như thế nào?", ["Rất nóng", "Khá mát", "Rất lạnh"], 1, "The morning was quite cool: \"Sáng nay khá mát.\""],
+  ["3. Buổi chiều có khả năng có gì?", ["Mưa", "Nắng", "Gió"], 0, "There is a chance of showers in the afternoon: \"Có khả năng có mưa rào đấy.\""],
+  ["4. Người nói nên chuẩn bị gì?", ["Áo khoác", "Ô", "Khăn"], 1, "He should bring an umbrella because there is a chance of rain: \"Thế chắc anh phải mang ô theo.\""],
+  ["5. \"Cho yên tâm\" trong đoạn hội thoại có nghĩa là gì?", ["To be safe / just in case", "To be faster", "To be less tired"], 0, "\"Cho yên tâm\" means doing something just in case, so you do not have to worry later. Here, bringing an umbrella is a precaution in case it rains."]
+],quizSouth: [
+  ["1. Hôm nay thời tiết như thế nào?", ["Trời lạnh", "Trời nóng", "Trời mưa"], 1, "The weather is hot today: \"Hôm nay trời nóng nhỉ?\""],
+  ["2. Buổi sáng thời tiết có như thế nào?", ["Rất nóng", "Khá mát", "Rất lạnh"], 1, "The morning was quite cool: \"Sáng nay khá mát.\""],
+  ["3. Buổi chiều có khả năng có gì?", ["Mưa", "Nắng", "Gió"], 0, "There is a chance of showers in the afternoon: \"Có khả năng có mưa rào đấy.\""],
+  ["4. Người nói nên chuẩn bị gì?", ["Áo khoác", "Dù", "Khăn"], 1, "He should bring an umbrella because there is a chance of rain: \"Thế chắc anh phải mang ô theo.\""],
+  ["5. \"Cho yên tâm\" trong đoạn hội thoại có nghĩa là gì?", ["To be safe / just in case", "To be faster", "To be less tired"], 0, "\"Cho yên tâm\" means doing something just in case, so you do not have to worry later. Here, bringing an umbrella is a precaution in case it rains."]    ],
     vocabNorth: [
       ['dự báo', 'V', 'forecast'],
       ['khả năng', 'N', 'possibility'],
       ['có thể', 'Phrase', 'may'],
       ['mát', 'Adj', 'cool'],
       ['mưa rào', 'N', 'shower'],
-      ['mang theo', 'V', 'bring (North)']
+      ['mang theo', 'V', 'bring']
     ],
     vocabSouth: [
       ['dự báo', 'V', 'forecast'],
@@ -297,7 +295,7 @@ export const lessons = [
       ['có thể', 'Phrase', 'may'],
       ['mát', 'Adj', 'cool'],
       ['mưa rào', 'N', 'shower'],
-      ['đem theo', 'V', 'bring (South)']
+      ['đem theo', 'V', 'bring']
     ],
     transcriptNorth: [
       ['Hôm nay trời nóng nhỉ?', "It's hot today, isn't it?"],
@@ -497,22 +495,21 @@ export const lessons = [
     title: 'Supermarket & Convenience Store',
     level: 'Elementary (A2)',
     description: 'Learn how to locate products, ask about promotions, compare quantities, and complete a simple purchase.',
-    audioNorthFile: 'wedding-invitation-north.wav',
-    audioSouthFile: 'wedding-invitation-south.wav',
-    quizNorth: [
-      ["1. Người khách đang tìm gì?", ["Nước giặt", "Dầu gội", "Kem đánh răng"], 0, "Nước giặt."],
-      ["2. Nước giặt ở đâu?", ["Tầng một", "Cuối cửa hàng", "Gần quầy tính tiền"], 1, "Cuối cửa hàng."],
-      ["3. Sản phẩm đang có chương trình gì?", ["Mua một tặng một", "Giảm 20%", "Mua hai giảm 50%"], 1, "Giảm 20%."],
-      ["4. Người khách mua bao nhiêu chai?", ["Một chai", "Hai chai", "Ba chai"], 1, "Hai chai."],
-      ["5. Vì sao người khách mua hai chai?", ["Vì đang giảm giá", "Vì nhân viên giới thiệu", "Vì cửa hàng sắp đóng cửa"], 0, "Đang giảm giá."]
-    ],
-    quizSouth: [
-      ["1. Người khách đang tìm gì?", ["Nước giặt", "Dầu gội", "Kem đánh răng"], 0, "Nước giặt."],
-      ["2. Nước giặt ở đâu?", ["Tầng một", "Cuối cửa hàng", "Gần quầy tính tiền"], 1, "Cuối cửa hàng."],
-      ["3. Sản phẩm đang có chương trình gì?", ["Mua một tặng một", "Giảm 20%", "Mua hai giảm 50%"], 1, "Giảm 20%."],
-      ["4. Người khách mua bao nhiêu chai?", ["Một chai", "Hai chai", "Ba chai"], 1, "Hai chai."],
-      ["5. Vì sao người khách mua hai chai?", ["Vì đang giảm giá", "Vì nhân viên giới thiệu", "Vì cửa hàng sắp đóng cửa"], 0, "Đang giảm giá."]
-    ],
+    audioNorthFile: 'supermarket-north.wav',
+    audioSouthFile: 'supermarket-south.wav',
+quizNorth: [
+  ["1. Cô ấy muốn mua gì?", ["Nước giặt", "Dầu gội", "Kem đánh răng"], 0, "She wants to buy laundry detergent (\"nước giặt\")."],
+  ["2. Nước giặt ở đâu?", ["Tầng một", "Cuối cửa hàng", "Gần quầy tính tiền"], 1, "It is at the end of the store (\"cuối cửa hàng\")."],
+  ["3. Sản phẩm đang có khuyến mại gì?", ["Mua một tặng một", "Giảm 20%", "Mua hai giảm 50%"], 1, "It is 20% off today (\"giảm hai mươi phần trăm\")."],
+  ["4. Người khách mua bao nhiêu chai?", ["Một chai", "Hai chai", "Ba chai"], 1, "She buys two bottles (\"lấy hai chai\")."],
+  ["5. Cô ấy có lấy túi không?", ["Không", "Có", "Không nhắc tới"], 1, "She takes one (\"Có ạ, cho em một cái\")."]
+],quizSouth: [
+  ["1. Cô ấy muốn mua gì?", ["Nước giặt", "Dầu gội", "Kem đánh răng"], 0, "She wants to buy laundry detergent (\"nước giặt\")."],
+  ["2. Nước giặt ở đâu?", ["Tầng một", "Cuối cửa hàng", "Gần quầy tính tiền"], 1, "It is at the end of the store (\"cuối cửa hàng\")."],
+  ["3. Sản phẩm đang có khuyến mại gì?", ["Mua một tặng một", "Giảm 20%", "Mua hai giảm 50%"], 1, "It is 20% off today (\"giảm hai mươi phần trăm\")."],
+  ["4. Người khách mua bao nhiêu chai?", ["Một chai", "Hai chai", "Ba chai"], 1, "She buys two bottles (\"lấy hai chai\")."],
+  ["5. Cô ấy có lấy bịch không?", ["Không", "Có", "Không nhắc tới"], 1, "She takes one (\"Dạ có, cho em một cái\")."]
+],
     vocabNorth: [
       ['nước giặt', 'N', 'laundry detergent'],
       ['quầy tính tiền', 'N', 'checkout'],
@@ -530,7 +527,7 @@ export const lessons = [
     transcriptNorth: [
       ['Chị ơi, cho em hỏi nước giặt nằm ở khu nào ạ?', 'Excuse me, which section is the laundry detergent in?'],
       ['Em đi thẳng xuống cuối cửa hàng, rồi rẽ phải nhé.', 'Go straight to the back of the store, then turn right.'],
-      ['Loại này hiện có chương trình gì không chị?', 'Does this product have any promotion right now?'],
+      ['Loại này nay có khuyến mãi gì không chị?', 'Does this product have any promotion right now?'],
       ['Hôm nay giảm hai mươi phần trăm em ạ.', 'It is 20 percent off today.'],
       ['Vậy em lấy hai chai.', 'Then I will take two bottles.'],
       ['Em có cần túi không?', 'Do you need a bag?'],
@@ -790,14 +787,13 @@ export const lessons = [
       ["2. Đám cưới tổ chức vào lúc nào?", ["Chủ nhật tuần này", "Thứ bảy tuần sau", "Tháng sau", "Hôm nay"], 0, "Đám cưới diễn ra vào chủ nhật tuần này: \"Đám cưới tổ chức vào chủ nhật tuần này\"."],
       ["3. Tiệc cưới được tổ chức ở đâu?", ["Ở nhà hàng", "Ở nhà cô dâu", "Ở công ty", "Ở quán cà phê"], 0, "Tiệc cưới tổ chức ở nhà hàng: \"tiệc cưới tổ chức ở nhà hàng\"."],
       ["4. Em đã biết địa chỉ nhà hàng chưa?", ["Chưa biết", "Xem trên thiệp rồi", "Quên rồi", "Phải hỏi lại"], 1, "Em đã xem địa chỉ trên thiệp: \"Em xem địa chỉ trên thiệp rồi\"."],
-      ["5. Thiệp cưới nghĩa là gì?", ["Wedding invitation", "Birthday card", "New Year card"], 0, "Wedding invitation means thiệp cưới."]
-    ],
+["5. Thiệp cưới nghĩa là gì?", ["Wedding card", "Wedding gift", "Wedding voucher", "Wedding invitation"], 3, "Wedding invitation means thiệp cưới."]    ],
     quizSouth: [
       ["1. Em nhận được cái gì?", ["Thiệp cưới", "Thư mời họp", "Thư cảm ơn", "Hóa đơn"], 0, "Em nhận được thiệp cưới: \"Em nhận được thiệp cưới chưa?\""],
       ["2. Đám cưới tổ chức vào lúc nào?", ["Chủ nhật tuần này", "Thứ bảy tuần sau", "Tháng sau", "Hôm nay"], 0, "Đám cưới diễn ra vào chủ nhật tuần này: \"Đám cưới tổ chức chủ nhật tuần này\"."],
       ["3. Tiệc cưới được tổ chức ở đâu?", ["Ở nhà hàng", "Ở nhà cô dâu", "Ở công ty", "Ở quán cà phê"], 0, "Tiệc cưới tổ chức ở nhà hàng: \"tiệc cưới tổ chức ở nhà hàng\"."],
       ["4. Em đã biết địa chỉ nhà hàng chưa?", ["Chưa biết", "Xem trên thiệp rồi", "Quên rồi", "Phải hỏi lại"], 1, "Em đã coi địa chỉ trên thiệp: \"Em coi địa chỉ trên thiệp rồi\"."],
-      ["5. Thiệp cưới nghĩa là gì?", ["Wedding invitation", "Birthday card", "New Year card"], 0, "Wedding invitation means thiệp cưới."]
+      ["5. Thiệp cưới nghĩa là gì?", ["Wedding card", "Wedding gift", "Wedding voucher", "Wedding invitation"], 3, "Wedding invitation means thiệp cưới."]
     ],
     vocabNorth: [
       ['thiệp cưới', 'N', 'wedding invitation'],
@@ -893,4 +889,116 @@ quizNorth: [
     ['Anh thấy mình đi quán hôm qua đi, chỗ ngồi thoải mái hơn.', 'I think we should go to the coffee shop from yesterday. The seats are more comfortable.']
   ]
 }),
+// 16. VISITING GRANDPARENTS: HEALTH & DAILY LIFE
+createLesson({
+  slug: 'visiting-grandparents-health',
+  title: 'Visiting Grandparents: Health & Daily Life',
+  level: 'Intermediate (B1)',
+  description: 'Learn how to greet grandparents, ask about their physical health, daily routines, and dietary habits.',
+  audioNorthFile: 'visiting-grandparents-health-north.wav',
+  audioSouthFile: 'visiting-grandparents-health-south.wav',
+  quizNorth: [
+  ["1. Những ai đang nói chuyện?", ["Ông bà và cháu", "Bà và cháu", "Ông và bà", "Ông và cháu"], 3, "Grandpa and grandchild are talking."],
+  ["2. Dạo này chân ông như thế nào?", ["Khỏe hơn", "Yếu hơn", "Bị đau", "Không đi được"], 1, "His legs have been a little weak lately: \"Dạo này chân hơi yếu.\""],
+  ["3. Bà có thích ông đi bộ nhiều không?", ["Có", "Không", "Không đề cập",], 1, "Grandma doesn't like him walking too much."],
+  ["4. Vì sao bà nói vậy?", ["Vì bà không thích đi bộ", "Vì ông đi quá chậm", "Vì sợ ông mệt", "Vì ông bị đau chân"], 2, "Grandma tells him not to walk too much because she is afraid he will get tired: \"Bà cứ nói ông đừng đi nhiều quá, sợ ông mệt.\""],
+  ["5. \"Đừng ráng quá\" trong đoạn hội thoại có nghĩa gần nhất là gì?", ["Đừng cố quá sức", "Đừng đi bộ", "Đừng nghỉ ngơi", "Đừng làm việc"], 0, "\"Đừng ráng quá\" means not to push yourself too hard or overexert yourself."]
+],quizSouth: [
+  ["1. Những ai đang nói chuyện?", ["Ông bà và cháu", "Bà và cháu", "Ông và bà", "Ông và cháu"], 3, "Grandpa and grandchild are talking."],
+  ["2. Dạo này chân ông như thế nào?", ["Khỏe hơn", "Yếu hơn", "Bị đau", "Không đi được"], 1, "His legs have been a little weak lately: \"Dạo này chân hơi yếu.\""],
+  ["3. Bà có thích ông đi bộ nhiều không?", ["Có", "Không", "Không đề cập",], 1, "Grandma doesn't like him walking too much."],
+  ["4. Vì sao bà nói vậy?", ["Vì bà không thích đi bộ", "Vì ông đi quá chậm", "Vì sợ ông mệt", "Vì ông bị đau chân"], 2, "Grandma tells him not to walk too much because she is afraid he will get tired: \"Bà cứ nói ông đừng đi nhiều quá, sợ ông mệt.\""],
+  ["5. \"Đừng ráng quá\" trong đoạn hội thoại có nghĩa gần nhất là gì?", ["Đừng cố quá sức", "Đừng đi bộ", "Đừng nghỉ ngơi", "Đừng làm việc"], 0, "\"Đừng ráng quá\" means not to push yourself too hard or overexert yourself."]
+],
+vocabNorth: [
+  ['chân', 'NOUN', 'leg / foot'],
+  ['yếu', 'ADJ', 'weak'],
+  ['vận động', 'VERB', 'to exercise / move'],
+  ['cố', 'VERB', 'to try / push oneself'],
+  ['mệt', 'ADJ', 'tired'],
+  ['chú ý', 'VERB', 'to pay attention'],
+  ['nghỉ ngơi', 'VERB', 'to rest']
+],vocabSouth: [
+  ['chân', 'NOUN', 'leg / foot'],
+  ['yếu', 'ADJ', 'weak'],
+  ['vận động', 'VERB', 'to exercise / move'],
+  ['ráng', 'VERB', 'to try / push oneself (Southern)'],
+  ['mệt', 'ADJ', 'tired'],
+  ['bữa', 'NOUN', 'day / time (Southern)'],
+  ['nghỉ ngơi', 'VERB', 'to rest']
+],
+  transcriptNorth: [
+    ['Cháo chào ông bà, cháu mới đến ạ.', 'Hi Grandma and Grandpa, I just got here.'],
+    ['Ừ, cháu vào trong đi.', 'Come on in.'],
+    ['Dạo này ông bà thấy trong người thế nào?', 'How have you been feeling lately?'],
+    ['Ông thì vẫn khỏe, chỉ là dạo này chân hơi yếu, đi lại không được nhanh như trước.', 'Grandpa is still doing well. It is just that my legs have been a little weak lately, so I cannot walk as quickly as before.'],
+    ['Vậy ông có đi bộ thường xuyên không?', 'Do you still go for walks regularly?'],
+    ['Có, nhưng bà cứ bảo ông đừng đi nhiều quá, sợ ông mệt.', 'I do, but Grandma keeps telling me not to walk too much because she is afraid I will get tired.'],
+    ['Bà nói cũng đúng. Ở tuổi của ông, nên vận động vừa phải, chứ đừng cố quá.', 'Grandma is right. At your age, you should exercise moderately instead of pushing yourself too hard.'],
+    ['Được rồi, ông biết rồi, lần sau ông sẽ chú ý hơn.', 'Alright, I know, I will be more careful next time.']
+  ],
+  transcriptSouth: [
+    ['Con chào ông bà, con mới tới.', 'Hi Grandma and Grandpa, I just got here.'],
+    ['Ừ, con vào trong đi.', 'Come on in.'],
+    ['Dạo này ông bà thấy trong người sao rồi?', 'How have you been feeling lately?'],
+    ['Ông thì vẫn khỏe, chỉ là dạo này chân hơi yếu, đi lại không được nhanh như trước.', 'Grandpa is still doing well. It is just that my legs have been a little weak lately, so I cannot walk as quickly as before.'],
+    ['Vậy ông có đi bộ thường xuyên không?', 'Do you still go for walks regularly?'],
+    ['Có, nhưng bà cứ nói ông đừng đi nhiều quá, sợ ông mệt.', 'I do, but Grandma keeps telling me not to walk too much because she is afraid I will get tired.'],
+    ['Bà nói cũng đúng. Ở tuổi của ông, nên vận động vừa phải, chứ đừng ráng quá.', 'Grandma is right. At your age, you should exercise moderately instead of pushing yourself too hard.'],
+    ['Được rồi, ông biết rồi, bữa sau ông sẽ chú ý hơn.', 'Alright, I know, I will be more careful next time.']
+  ]
+}),
+// 17. TALKING TO GRANDPARENTS: WORK & LIFESTYLE
+createLesson({
+  slug: 'talking-to-grandparents-work',
+  title: 'Talking to Grandparents: Work & Lifestyle',
+  level: 'Intermediate (B1)',
+  description: 'Practice discussing your busy new job, how you adapted to changes, and receiving health advice from family.',
+  audioNorthFile: 'talking-to-grandparents-work-north.wav',
+  audioSouthFile: 'talking-to-grandparents-work-south.wav',
+  quizNorth: [
+    ["1. Vì sao cháu ít có thời gian về nhà?", ["Vì cháu đang đi học", "Vì cháu chuyển nhà", "Vì công việc mới bận hơn", "Vì cháu đi du lịch"], 2, "The new job is busier, so the grandchild has less time to come home."],
+    ["2. Ban đầu cháu thấy công việc mới thế nào?", ["Rất dễ", "Hơi khó", "Rất chán", "Không có gì thay đổi"], 1, "The new job was a little difficult at first (\"Lúc đầu hơi khó\")."],
+    ["3. Ông nhắc cháu điều gì?", ["Ăn nhiều hơn", "Về nhà thường xuyên hơn", "Giữ gìn sức khỏe và đừng thức khuya", "Đổi công việc"], 2, "He reminds the grandchild to take care of their health and not stay up too late (\"giữ gìn sức khỏe, đừng thức khuya quá\")."],
+    ["4. \"Quen dần\" nghĩa là gì?", ["Become familiar / gradually get used to it", "Become tired", "Become busy", "Become interested"], 0, "\"Quen dần\" means gradually getting used to something."],
+    ["5. Cuối đoạn hội thoại, cháu hứa sẽ làm gì?", ["Đổi công việc mới", "Qua thăm ông bà thường xuyên hơn", "Nghỉ làm ở nhà", "Đi ngủ sớm mỗi ngày"], 1, "The grandchild promises to visit grandparents more often (\"sắp xếp qua thăm ông bà thường xuyên hơn\")."]
+  ],
+  quizSouth: [
+    ["1. Vì sao cháu ít có thời gian về nhà?", ["Vì cháu đang đi học", "Vì cháu chuyển nhà", "Vì công việc mới bận hơn", "Vì cháu đi du lịch"], 2, "The new job is busier, so the grandchild has less time to come home."],
+    ["2. Ban đầu cháu thấy công việc mới thế nào?", ["Rất dễ", "Hơi khó", "Rất chán", "Không có gì thay đổi"], 1, "The new job was a little difficult at first (\"Lúc đầu hơi khó\")."],
+    ["3. Ông nhắc cháu điều gì?", ["Ăn nhiều hơn", "Về nhà thường xuyên hơn", "Giữ gìn sức khỏe và đừng thức khuya", "Đổi công việc"], 2, "He reminds the grandchild to take care of their health and not stay up too late (\"giữ gìn sức khỏe, đừng thức khuya quá\")."],
+    ["4. \"Quen dần\" nghĩa là gì?", ["Become familiar / gradually get used to it", "Become tired", "Become busy", "Become interested"], 0, "\"Quen dần\" means gradually getting used to something."],
+    ["5. Cuối đoạn hội thoại, cháu hứa sẽ làm gì?", ["Đổi công việc mới", "Qua thăm ông bà thường xuyên hơn", "Nghỉ làm ở nhà", "Đi ngủ sớm mỗi ngày"], 1, "The grandchild promises to visit grandparents more often (\"sắp xếp qua thăm ông bà thường xuyên hơn\")."]
+  ],
+  vocabNorth: [
+    ['công việc', 'NOUN', 'job / work'],
+    ['đổi', 'VERB', 'to change / switch'],
+    ['quen', 'ADJ/VERB', 'used to / familiar with'],
+    ['sức khỏe', 'NOUN', 'health'],
+    ['thức khuya', 'VERB', 'to stay up late']
+  ],
+  vocabSouth: [
+    ['công việc', 'NOUN', 'job / work'],
+    ['đổi', 'VERB', 'to change / switch'],
+    ['quen', 'ADJ/VERB', 'used to / familiar with'],
+    ['sức khỏe', 'NOUN', 'health'],
+    ['thức khuya', 'VERB', 'to stay up late']
+  ],
+  transcriptNorth: [
+    ['Dạo này công việc của cháu có bận lắm không?', 'Have you been very busy with work lately?'],
+    ['Cũng hơi bận ạ. Từ khi đổi công việc mới, cháu phải làm nhiều hơn trước.', 'Pretty busy. Since I changed jobs, I have had to work more than before.'],
+    ['Vậy cháu có thấy quen với công việc mới chưa?', 'So have you gotten used to the new job yet?'],
+    ['Rồi ạ. Lúc đầu hơi khó, nhưng sau một thời gian thì cũng quen dần.', 'Yes. It was a little difficult at first, but after some time I gradually got used to it.'],
+    ['Vậy là tốt. Nhưng cháu cũng nhớ giữ gìn sức khỏe, đừng vì công việc mà thức khuya quá.', 'That is good. But remember to take care of your health too. Do not stay up too late because of work.'],
+    ['Vâng. Cháu sẽ sắp xếp qua thăm ông bà thường xuyên hơn.', 'Yes. I will arrange to visit you and grandma more often.']
+  ],
+  transcriptSouth: [
+    ['Dạo này công việc của con có bận lắm không?', 'Have you been very busy with work lately?'],
+    ['Dạ cũng hơi bận. Từ khi đổi công việc mới, con phải làm nhiều hơn trước.', 'Pretty busy. Since I changed jobs, I have had to work more than before.'],
+    ['Vậy con có thấy quen với công việc mới chưa?', 'So have you gotten used to the new job yet?'],
+    ['Dạ rồi. Lúc đầu hơi khó, nhưng sau một thời gian cũng quen dần.', 'Yes. It was a little difficult at first, but after some time I gradually got used to it.'],
+    ['Vậy là tốt. Nhưng con cũng nhớ giữ gìn sức khỏe, đừng vì công việc mà thức khuya quá.', 'That is good. But remember to take care of your health too. Do not stay up too late because of work.'],
+    ['Dạ. Con sẽ sắp xếp qua thăm ông bà thường xuyên hơn.', 'Yes. I will arrange to visit you and grandma more often.']
+  ]
+})
 ];
