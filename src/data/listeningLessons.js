@@ -948,6 +948,65 @@ vocabNorth: [
     ['Được rồi, ông biết rồi, bữa sau ông sẽ chú ý hơn.', 'Alright, I know, I will be more careful next time.']
   ]
 }),
+// TALKING ABOUT LATE NIGHTS & TIREDNESS
+createLesson({
+  slug: 'talking-about-late-nights-and-tiredness',
+  title: 'Talking About Late Nights & Tiredness',
+  level: 'Intermediate (B1)',
+  description: 'Practice discussing late work hours, lack of sleep, daily habits, and plans for resting on the weekend.',
+  audioNorthFile: 'talking-about-late-nights-north.wav',
+  audioSouthFile: 'talking-about-late-nights-south.wav',
+quizNorth: [
+    ["1. Anh đi làm về lúc mấy giờ?", ["Gần sáu giờ", "Hơn chín giờ", "Gần mười hai giờ", "Gần chín giờ"], 3, "The man came home close to 9 PM (\"đi làm về cũng gần chín giờ rồi\")."],
+    ["2. Tối qua, vì sao anh ngủ muộn?", ["Vì anh đi chơi với bạn", "Vì anh xem điện thoại muộn", "Vì anh phải làm việc ở công ty", "Vì anh ăn tối muộn"], 1, "He spent time on his phone until late."],
+    ["3. Sáng nay anh dậy lúc mấy giờ?", ["Bảy giờ", "Sáu giờ", "Tám giờ", "Năm giờ"], 1, "He had to wake up at 6 AM (\"Sáu giờ là phải dậy rồi\")."],
+    ["4. Vì sao anh uống cà phê ở công ty?", ["Vì anh khát nước", "Vì anh muốn đi ngủ sớm", "Vì anh thích uống cà phê", "Vì anh muốn tỉnh táo"], 3, "He drank coffee to stay awake / alert (\"làm ly cà phê cho tỉnh ngủ\")."],
+    ["5. Cuối tuần này, vì sao anh muốn ở nhà?", ["Vì anh muốn ngủ thêm", "Vì anh muốn có thời gian làm việc nhà", "Vì anh không muốn gặp bạn bè", "Vì anh phải làm bù công việc"], 0, "He wants to stay home to get a good sleep (\"ngủ cho đã\")."]
+  ],
+  quizSouth: [
+    ["1. Anh đi làm về lúc mấy giờ?", ["Gần chín giờ", "Gần sáu giờ", "Gần mười hai giờ", "Hơn sáu giờ"], 0, "The man came home close to 9 PM (\"đi làm về cũng gần chín giờ rồi\")."],
+    ["2. Tối qua, sao anh ngủ trễ vậy?", ["Vì anh đi chơi với bạn", "Vì anh phải làm việc ở công ty", "Vì anh ăn tối trễ", "Vì anh coi điện thoại trễ"], 3, "He spent time on his phone until late."],
+    ["3. Vậy sáng nay anh dậy lúc mấy giờ?", ["Bảy giờ", "Tám giờ", "Sáu giờ", "Năm giờ"], 2, "He had to wake up at 6 AM (\"Sáu giờ là phải dậy rồi\")."],
+    ["4. Tại sao anh uống cà phê ở công ty?", ["Vì anh khát nước", "Vì anh muốn tỉnh táo", "Vì anh thích uống cà phê", "Vì anh muốn đi ngủ sớm"], 1, "He drank coffee to stay awake / alert (\"làm ly cà phê cho tỉnh ngủ\")."],
+    ["5. Cuối tuần này, tại sao anh muốn ở nhà?", ["Vì anh muốn có thời gian làm việc nhà", "Vì anh không muốn gặp bạn bè", "Vì anh muốn ngủ thêm", "Vì anh phải làm bù công việc"], 2, "He wants to stay home to get a good sleep (\"ngủ cho đã\")."]
+  ],
+      vocabNorth: [
+    ['mệt', 'ADJ', 'tired'],
+    ['tắm rửa', 'VERB', 'to bathe / wash up'],
+    ['dọn dẹp', 'VERB', 'to clean up / tidy up'],
+    ['tỉnh ngủ', 'VERB/ADJ', 'to wake up fully / stay alert'],
+    ['nghỉ ngơi', 'VERB', 'to rest']
+  ],
+  vocabSouth: [
+    ['mệt', 'ADJ', 'tired'],
+    ['tắm rửa', 'VERB', 'to bathe / wash up'],
+    ['dọn dẹp', 'VERB', 'to clean up / tidy up'],
+    ['tỉnh ngủ', 'VERB/ADJ', 'to wake up fully / stay alert'],
+    ['nghỉ ngơi', 'VERB', 'to rest']
+  ],
+transcriptNorth: [
+    ['Sao hôm nay nhìn anh mệt thế?', 'Why do you look so tired today?'],
+    ['Ừ, tối qua anh ngủ muộn quá. Anh đi làm về cũng gần chín giờ rồi.', 'Yeah, I went to sleep too late last night. I came home from work near 9 PM.'],
+    ['Tắm rửa, ăn cơm xong còn dọn dẹp này kia. Rồi anh ngồi xem điện thoại một chút, nhìn lại gần mười hai giờ luôn.', 'After showering and eating, I still had to clean up. Then I looked at my phone for a bit, and suddenly it was almost 12 AM.'],
+    ['Thế sáng nay anh dậy lúc mấy giờ?', 'So what time did you wake up this morning?'],
+    ['Sáu giờ là phải dậy rồi. Đến công ty làm cốc cà phê cho tỉnh ngủ, chứ không là chịu không nổi.', 'I had to get up at 6 AM. When I got to the office, I had a cup of coffee to wake up, otherwise I couldn\'t stand it.'],
+    ['Chiều nay anh có về sớm không?', 'Are you coming home early this afternoon?'],
+    ['Chắc không. Mà hôm nay về anh không làm gì nữa hết. Tắm cái rồi kiếm gì ăn, xong đi ngủ sớm.', 'Probably not. But when I get home today, I won\'t do anything else. Just take a shower, find something to eat, and go to bed early.'],
+    ['Thế cũng được. Cuối tuần anh nghỉ ngơi cho khỏe.', 'That\'s fine then. Rest well over the weekend.'],
+    ['Cuối tuần này anh định ở nhà thôi. Lâu rồi chưa có bữa nào ngủ cho đã.', 'I plan to just stay home this weekend. It\'s been a while since I had a really good sleep.']
+  ],
+  transcriptSouth: [
+    ['Sao hôm nay trông anh mệt vậy?', 'Why do you look so tired today?'],
+    ['Ừ, tối qua anh ngủ trễ quá. Anh đi làm về cũng gần chín giờ rồi.', 'Yeah, I went to sleep too late last night. I came home from work near 9 PM.'],
+    ['Tắm rửa, ăn cơm xong còn dọn dẹp này kia. Rồi anh ngồi coi điện thoại chút xíu, ngó lại cái gần mười hai giờ luôn.', 'After showering and eating, I still had to clean up. Then I looked at my phone for a bit, and suddenly it was almost 12 AM.'],
+    ['Vậy sáng nay anh dậy lúc mấy giờ?', 'So what time did you wake up this morning?'],
+    ['Sáu giờ là phải dậy rồi. Tới công ty làm ly cà phê cho tỉnh ngủ, chứ không là chịu không nổi.', 'I had to get up at 6 AM. When I got to the office, I had a cup of coffee to wake up, otherwise I couldn\'t stand it.'],
+    ['Chiều nay anh có về sớm không?', 'Are you coming home early this afternoon?'],
+    ['Chắc không. Mà bữa nay về anh không làm gì nữa hết. Tắm cái rồi kiếm gì ăn, xong đi ngủ sớm.', 'Probably not. But when I get home today, I won\'t do anything else. Just take a shower, find something to eat, and go to bed early.'],
+    ['Vậy cũng được. Cuối tuần anh nghỉ ngơi cho khỏe.', 'That\'s fine then. Rest well over the weekend.'],
+    ['Cuối tuần này anh tính ở nhà thôi. Lâu rồi chưa có bữa nào ngủ cho đã.', 'I plan to just stay home this weekend. It\'s been a while since I had a really good sleep.']
+  ]
+}),
 // 17. TALKING TO GRANDPARENTS: WORK & LIFESTYLE
 createLesson({
   slug: 'talking-to-grandparents-work',
