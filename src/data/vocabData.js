@@ -343,7 +343,90 @@ export default {
       { vn: "Khô", en: "Dry" }
     ]
   },
+  "people_expert": {
+    title: "People",
+    type: "free",
+    words: [
+      // Ngoại hình
+      { vn: "Cao", en: "Tall" },
+      { vn: "Thấp", en: "Short" },
+      { vn: "Ốm", en: "Thin / Slim" },
+      { vn: "Mập", en: "Fat / Chubby" },
+      { vn: "Đẹp", en: "Beautiful / Handsome" },
+      { vn: "Xinh", en: "Pretty" },
+      { vn: "Dễ thương", en: "Cute / Adorable" },
+      
+      // Tính cách
+      { vn: "Vui vẻ", en: "Cheerful / Joyful" },
+      { vn: "Thân thiện", en: "Friendly" },
+      { vn: "Khó tính", en: "Strict / Hard to please" },
+      { vn: "Dễ tính", en: "Easygoing" }
+    ]
+  },
 
+  "work_status_expert": {
+    title: "Work Status",
+    type: "free",
+    words: [
+      { vn: "Khó", en: "Difficult / Hard" },
+      { vn: "Dễ", en: "Easy" },
+      { vn: "Bận", en: "Busy" },
+      { vn: "Mệt", en: "Tired" }
+    ]
+  },
+
+  "food_adjectives": {
+    title: "Food & Taste",
+    type: "free",
+    words: [
+      { vn: "Ngon", en: "Delicious / Tasty" },
+      { vn: "Dở", en: "Bad-tasting / Bad" },
+      { vn: "Cay", en: "Spicy" },
+      { vn: "Ngọt", en: "Sweet" },
+      { vn: "Mặn", en: "Salty" },
+      { vn: "Béo", en: "Rich / Creamy / Fatty" }
+    ]
+  },
+
+  "place_adjectives": {
+    title: "Space & Environment",
+    type: "free",
+    words: [
+      { vn: "Rộng", en: "Spacious / Wide" },
+      { vn: "Chật", en: "Tight / Narrow / Crowded" },
+      { vn: "Sạch", en: "Clean" },
+      { vn: "Bẩn", en: "Dirty" },
+      { vn: "Yên tĩnh", en: "Quiet / Peaceful" },
+      { vn: "Ồn", en: "Noisy" }
+    ]
+  },
+
+  "weather_feelings": {
+    title: "Weather & Feelings",
+    type: "free",
+    words: [
+      { vn: "Nóng", en: "Hot" },
+      { vn: "Lạnh", en: "Cold" },
+      { vn: "Ẩm", en: "Humid / Damp" },
+      { vn: "Khô", en: "Dry" },
+      { vn: "Dễ chịu", en: "Comfortable / Pleasant" },
+      { vn: "Khó chịu", en: "Uncomfortable / Annoying" }
+    ]
+  },
+
+  "emotions_expert": {
+    title: "Emotions",
+    type: "free",
+    words: [
+      { vn: "Vui", en: "Happy" },
+      { vn: "Buồn", en: "Sad" },
+      { vn: "Lo", en: "Worried" },
+      { vn: "Sợ", en: "Scared / Afraid" },
+      { vn: "Chán", en: "Bored / Boring" },
+      { vn: "Tự tin", en: "Confident" },
+      { vn: "Xấu hổ / Ngại", en: "Shy / Embarrassed" }
+    ]
+  },
   "kitchen_south": {
     title: "Kitchen",
     type: "locked",

@@ -84,7 +84,69 @@ export const lessons = [
       ['Dạ. Anh ngồi đợi chút nha.', 'Alright. Please have a seat and wait a moment.']
     ]
   }),
-
+// TALKING ABOUT FOOD & HUNGER
+createLesson({
+  slug: 'talking-about-food-and-hunger',
+  title: 'Talking About Food & Hunger',
+  level: 'Beginner (A1)',
+  description: 'Practice basic daily phrases about feeling tired, hungry, and deciding what to eat.',
+  audioNorthFile: 'talking-about-food-north.wav',
+  audioSouthFile: 'talking-about-food-south.wav',
+  quizNorth: [
+    ["1. Em đang làm gì?", ["Đang nấu ăn", "Đang nằm", "Đang đi mua đồ", "Đang đi làm"], 1, "She said she is just lying down (\"Em đang nằm thôi\")."],
+    ["2. Vì sao em mệt?", ["Vì ốm", "Vì đi xa", "Vì nhiều việc", "Vì đói"], 2, "She had a lot of work today (\"nhiều việc lắm\")."],
+    ["3. Em đã ăn chưa?", ["Ăn rồi", "Đang ăn", "Chưa ăn", "Không ăn"], 2, "She hasn't eaten yet because she feels lazy (\"em lười đi mua đồ ăn quá\")."],
+    ["4. Anh nói em làm gì?", ["Đi ngủ", "Tự nấu ăn", "Đi ra ngoài", "Đặt đồ ăn"], 3, "He suggested ordering food so she won't stay hungry (\"Hay em đặt đồ ăn đi\")."],
+    ["5. Anh đã ăn gì?", ["Cơm tấm", "Cơm gà", "Phở gà", "Bún bò"], 1, "He said he ate chicken rice (\"Anh ăn cơm gà\")."]
+  ],
+  quizSouth: [
+    ["1. Em đang làm gì?", ["Đang nằm", "Đang nấu ăn", "Đang làm việc", "Đang đi chợ"], 0, "She said she is just lying down (\"Em đang nằm thôi\")."],
+    ["2. Sao em mệt vậy?", ["Vì bị bệnh", "Vì nhiều việc", "Vì kẹt xe", "Vì thức khuya"], 1, "She had a lot of work today (\"nhiều việc lắm\")."],
+    ["3. Em ăn cơm chưa?", ["Đang ăn", "Ăn rồi", "Chưa ăn", "Mới ăn xong"], 2, "She hasn't eaten yet because she feels lazy (\"em lười đi mua đồ ăn quá\")."],
+    ["4. Anh nói em làm gì?", ["Đặt đồ ăn", "Tự nấu ăn", "Qua nhà anh ăn", "Đi ngủ luôn"], 0, "He suggested ordering food so she won't stay hungry (\"Hay em đặt đồ ăn đi\")."],
+    ["5. Anh đã ăn gì?", ["Cơm tấm", "Bún riêu", "Hủ tiếu", "Cơm gà"], 3, "He said he ate chicken rice (\"Anh ăn cơm gà\")."]
+  ],
+  vocabNorth: [
+    ['mệt', 'ADJ', 'tired'],
+    ['nhiều việc', 'NOUN/ADJ', 'a lot of work / busy'],
+    ['mới về', 'VERB', 'just arrived home'],
+    ['lười', 'ADJ', 'lazy / not in the mood to'],
+    ['đặt đồ ăn', 'VERB', 'to order food']
+  ],
+  vocabSouth: [
+    ['mệt', 'ADJ', 'tired'],
+    ['nhiều việc', 'NOUN/ADJ', 'a lot of work / busy'],
+    ['mới về', 'VERB', 'just arrived home'],
+    ['lười', 'ADJ', 'lazy / not in the mood to'],
+    ['đặt đồ ăn', 'VERB', 'to order food']
+  ],
+  transcriptNorth: [
+    ['Em đang làm gì đấy?', 'What are you doing?'],
+    ['Em đang nằm thôi.', 'I\'m just lying down.'],
+    ['Nay đi làm mệt hả em?', 'Were you tired from work today?'],
+    ['Ừ, nhiều việc lắm. Còn anh?', 'Yeah, there was a lot of work. How about you?'],
+    ['Anh mới về đến nhà. Em ăn gì chưa?', 'I just got home. Have you eaten anything yet?'],
+    ['Chưa, em lười đi mua đồ ăn quá.', 'Not yet, I\'m too lazy to go out and buy food.'],
+    ['Ủa, giờ chưa ăn luôn hả? Vậy em định ăn gì?', 'Oh, you haven\'t eaten yet? So what are you planning to eat?'],
+    ['Em chưa biết nữa. Anh ăn chưa?', 'I don\'t know yet. Have you eaten?'],
+    ['Anh ăn rồi. Hay em đặt đồ ăn đi, đừng để đói.', 'I\'ve eaten already. Why don\'t you order some food? Don\'t stay hungry.'],
+    ['Em biết rồi. Anh ăn gì đó?', 'I know. What did you eat?'],
+    ['Anh ăn cơm gà.', 'I ate chicken rice.']
+  ],
+  transcriptSouth: [
+    ['Em đang làm gì vậy?', 'What are you doing?'],
+    ['Em đang nằm thôi.', 'I\'m just lying down.'],
+    ['Nay đi làm mệt hả em?', 'Were you tired from work today?'],
+    ['Ừa, nhiều việc lắm. Còn anh?', 'Yeah, there was a lot of work. How about you?'],
+    ['Anh mới về tới nhà. Em ăn gì chưa?', 'I just got home. Have you eaten anything yet?'],
+    ['Chưa, em lười đi mua đồ ăn quá.', 'Not yet, I\'m too lazy to go out and buy food.'],
+    ['Ủa, giờ chưa ăn luôn hả? Vậy em định ăn gì?', 'Oh, you haven\'t eaten yet? So what are you planning to eat?'],
+    ['Em chưa biết nữa. Anh ăn chưa?', 'I don\'t know yet. Have you eaten?'],
+    ['Anh ăn rồi. Hay em đặt đồ ăn đi, đừng để đói.', 'I\'ve eaten already. Why don\'t you order some food? Don\'t stay hungry.'],
+    ['Em biết rồi. Anh ăn gì đó?', 'I know. What did you eat?'],
+    ['Anh ăn cơm gà.', 'I ate chicken rice.']
+  ]
+}),
   // 2. COFFEE SHOP
   createLesson({
     slug: 'at-a-coffee-shop',
@@ -271,16 +333,16 @@ export const lessons = [
     audioSouthFile: 'talking-about-the-weather-south.wav',
 quizNorth: [
   ["1. Hôm nay thời tiết như thế nào?", ["Trời lạnh", "Trời nóng", "Trời mưa"], 1, "The weather is hot today: \"Hôm nay trời nóng nhỉ?\""],
-  ["2. Buổi sáng thời tiết có như thế nào?", ["Rất nóng", "Khá mát", "Rất lạnh"], 1, "The morning was quite cool: \"Sáng nay khá mát.\""],
+  ["2. Buổi sáng thời tiết như thế nào?", ["Rất nóng", "Khá mát", "Rất lạnh"], 1, "The morning was quite cool: \"Sáng nay khá mát.\""],
   ["3. Buổi chiều có khả năng có gì?", ["Mưa", "Nắng", "Gió"], 0, "There is a chance of showers in the afternoon: \"Có khả năng có mưa rào đấy.\""],
   ["4. Người nói nên chuẩn bị gì?", ["Áo khoác", "Ô", "Khăn"], 1, "He should bring an umbrella because there is a chance of rain: \"Thế chắc anh phải mang ô theo.\""],
-  ["5. \"Cho yên tâm\" trong đoạn hội thoại có nghĩa là gì?", ["To be safe / just in case", "To be faster", "To be less tired"], 0, "\"Cho yên tâm\" means doing something just in case, so you do not have to worry later. Here, bringing an umbrella is a precaution in case it rains."]
+  ["5. \"Cho yên tâm\" có nghĩa là gì?", ["To be safe / just in case", "To be faster", "To be less tired"], 0, "\"Cho yên tâm\" means doing something just in case, so you do not have to worry later. Here, bringing an umbrella is a precaution in case it rains."]
 ],quizSouth: [
-  ["1. Hôm nay thời tiết như thế nào?", ["Trời lạnh", "Trời nóng", "Trời mưa"], 1, "The weather is hot today: \"Hôm nay trời nóng nhỉ?\""],
-  ["2. Buổi sáng thời tiết có như thế nào?", ["Rất nóng", "Khá mát", "Rất lạnh"], 1, "The morning was quite cool: \"Sáng nay khá mát.\""],
-  ["3. Buổi chiều có khả năng có gì?", ["Mưa", "Nắng", "Gió"], 0, "There is a chance of showers in the afternoon: \"Có khả năng có mưa rào đấy.\""],
-  ["4. Người nói nên chuẩn bị gì?", ["Áo khoác", "Dù", "Khăn"], 1, "He should bring an umbrella because there is a chance of rain: \"Thế chắc anh phải mang ô theo.\""],
-  ["5. \"Cho yên tâm\" trong đoạn hội thoại có nghĩa là gì?", ["To be safe / just in case", "To be faster", "To be less tired"], 0, "\"Cho yên tâm\" means doing something just in case, so you do not have to worry later. Here, bringing an umbrella is a precaution in case it rains."]    ],
+  ["1. Hôm nay thời tiết như thế nào?", ["Trời lạnh", "Trời nóng", "Trời mưa"], 1, "The weather is hot today: \"trời nóng\""],
+  ["2. Buổi sáng thời tiết như thế nào?", ["Rất nóng", "Khá mát", "Rất lạnh"], 1, "The morning was quite cool: \"Sáng nay khá mát.\""],
+  ["3. Buổi chiều có khả năng có gì?", ["Mưa", "Nắng", "Gió"], 0, "There is a chance of showers in the afternoon: \"Có khả năng có mưa lớn á.\""],
+  ["4. Người nói nên chuẩn bị gì?", ["Áo khoác", "Dù", "Khăn"], 1, "He should bring an umbrella because there is a chance of rain: \"đem cây dù theo.\""],
+  ["5. \"Cho yên tâm\" có nghĩa là gì?", ["To be safe / just in case", "To be faster", "To be less tired"], 0, "\"Cho yên tâm\" means doing something just in case, so you do not have to worry later. Here, bringing an umbrella is a precaution in case it rains."]    ],
     vocabNorth: [
       ['dự báo', 'V', 'forecast'],
       ['khả năng', 'N', 'possibility'],

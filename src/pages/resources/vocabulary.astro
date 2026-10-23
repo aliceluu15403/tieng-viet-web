@@ -2,36 +2,315 @@
 // src/pages/resources/vocabulary.astro
 import Layout from '../../layout.astro';
 import allTopics from '../../data/vocabData.js';
+
+const freeTopics = Object.entries(allTopics).filter(([_, topic]) => topic.type === 'free');
 ---
 
 <Layout 
-  title="Vocabulary Games & Flashcards | Havie"
-  description="Practice and memorize Vietnamese vocabulary with interactive flashcards, matching games, multiple-choice quizzes, and word scramble challenges for all levels."
+  title="Vocabulary Lab | Havie Vietnamese"
+  description="Practice and memorize Vietnamese vocabulary with interactive flashcards, matching games, multiple-choice quizzes, and word scramble challenges."
 >
-  <div class="max-w-4xl mx-auto px-5 sm:px-8 pt-8 pb-3 flex flex-row items-center justify-between gap-4 font-brand">
+  <Fragment slot="head">
+    <style>
+      .curved-underline {
+        position: relative;
+        display: inline-block;
+      }
+      .curved-underline::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 100%;
+        height: 6px;
+        border-bottom: 3.5px solid #ef7218;
+        border-radius: 50%;
+        transform: rotate(-1.5deg);
+      }
+    </style>
+  </Fragment>
+
+  <!-- CONTAINER THAY ĐỔI ĐỘ RỘNG LINH HOẠT THEO TRẠNG THÁI -->
+  <main id="pageMainContainer" class="min-h-screen py-10 px-5 sm:px-8 font-brand max-w-6xl mx-auto flex flex-col justify-between transition-all duration-300">
+    
     <div>
-      <span class="text-xs font-extrabold text-red-600 uppercase tracking-widest bg-red-50 px-3.5 py-1.5 rounded-full border border-red-200 inline-block">
-        Vocabulary Lab
-      </span>
-    </div>
+      <!-- TOP NAV / BREADCRUMB & DROPDOWN -->
+      <div class="flex items-center justify-between gap-4 mb-6">
+        <!-- Chỉ hiện khi đã vào trang chi tiết bài từ vựng -->
+        <div id="breadcrumbWrapper" style="display: none;">
+          <a href="/resources/vocabulary" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-stone-200 text-xs font-extrabold text-red-600 hover:border-red-300 shadow-2xs transition">
+            ← VOCABULARY LAB
+          </a>
+        </div>
+        <div></div>
 
-    <div id="topicSelectorWrapper" class="relative w-44 sm:w-48 shrink-0">
-      <button type="button" id="dropdownToggleBtn" class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-stone-200 text-xs sm:text-sm font-bold text-slate-900 shadow-2xs flex items-center justify-between cursor-pointer hover:border-stone-300 transition">
-        <span id="currentTopicLabel" class="truncate">Select Topic</span>
-        <svg id="dropdownArrow" class="w-4 h-4 text-stone-400 shrink-0 ml-2 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
-      </button>
-
-      <div id="dropdownMenu" class="hidden absolute top-[calc(100%+6px)] right-0 w-full bg-white border border-stone-200 rounded-xl shadow-2xl py-1.5 z-50 max-h-[240px] overflow-y-auto">
-        {Object.keys(allTopics).map(key => (
-          <div data-value={key} class="topic-option px-4 py-2.5 text-sm font-bold text-slate-800 hover:bg-red-50 hover:text-red-600 cursor-pointer transition">
-            {allTopics[key].title}
+<!-- DROPDOWN SELECTOR -->
+        <div id="topicSelectorWrapper" class="relative w-36 sm:w-44 shrink-0" style="display: none;"> <!-- Đã thu ngắn độ rộng ở đây -->
+          <button type="button" id="dropdownToggleBtn" class="w-full px-4 py-2.5 rounded-2xl bg-white border border-stone-200 text-xs sm:text-sm font-extrabold text-slate-800 shadow-xs flex items-center justify-between cursor-pointer hover:border-red-300 transition-all">
+            <span id="currentTopicLabel" class="truncate">Select Topic</span>
+            <svg id="dropdownArrow" class="w-4 h-4 text-stone-400 shrink-0 ml-2 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          
+          <div id="dropdownMenu" class="hidden absolute top-[calc(100%+8px)] right-0 w-full bg-white border border-stone-200 rounded-2xl shadow-xl py-2 z-50 max-h-[280px] overflow-y-auto">
+            {freeTopics.map(([key, topic]) => (
+              <div data-value={key} class="topic-option px-4 py-2.5 text-xs sm:text-sm font-extrabold text-slate-700 hover:bg-red-50 hover:text-red-600 cursor-pointer transition">
+                {topic.title}
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
-    </div>
+
+<!-- PAGE TITLE -->
+      <div class="text-center max-w-2xl mx-auto mb-6">
+        <div class="inline-block">
+          <span class="text-[11px] font-extrabold uppercase tracking-widest text-red-500 bg-red-50 px-3 py-1 rounded-full border border-red-200 mb-1.5 inline-block">
+            Practice & Master
+          </span>
+          <h1 id="topicTitle" class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+            <span class="curved-underline text-red-600">Vocabulary Lab</span>
+          </h1>
+        </div>
+      </div>
+
+      <!-- AUDIO NOTICE BANNER -->
+      <div id="audioNoticeBanner" class="hidden max-w-max mx-auto mb-6 text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-[#fffaf0] border border-amber-200/80 text-amber-900 text-xs sm:text-sm font-bold shadow-2xs whitespace-nowrap">
+          <span>💡</span>
+          <span>Audio supports Northern accent (HN). Southern coming soon!</span>
+        </div>
+      </div>
+      
+      <!-- TABS CHUYỂN GAME -->
+      <div id="gameTabsWrapper" class="hidden items-center justify-start md:justify-center gap-1.5 bg-stone-200/80 p-2 rounded-2xl max-w-2xl mx-auto w-full overflow-x-auto border border-stone-200 shadow-inner font-brand mb-8">
+        <button data-game="flashcard" class="game-tab flex-1 min-w-[90px] py-2.5 px-3 rounded-xl text-xs sm:text-sm font-black transition-all cursor-pointer text-center text-stone-600 hover:text-slate-900">Flashcards</button>
+        <button data-game="matching" class="game-tab flex-1 min-w-[80px] py-2.5 px-3 rounded-xl text-xs sm:text-sm font-black transition-all cursor-pointer text-center text-stone-600 hover:text-slate-900">Matching</button>
+        <button data-game="mcqs" class="game-tab flex-1 min-w-[70px] py-2.5 px-3 rounded-xl text-xs sm:text-sm font-black transition-all cursor-pointer text-center text-stone-600 hover:text-slate-900">MCQs</button>
+        <button data-game="scramble" class="game-tab flex-1 min-w-[85px] py-2.5 px-3 rounded-xl text-xs sm:text-sm font-black transition-all cursor-pointer text-center text-stone-600 hover:text-slate-900">Scramble</button>
+        <button data-game="truefalse" class="game-tab flex-1 min-w-[95px] py-2.5 px-3 rounded-xl text-xs sm:text-sm font-black transition-all cursor-pointer text-center text-stone-600 hover:text-slate-900">True/False</button>
+        <button data-game="fulllist" class="game-tab flex-1 min-w-[85px] py-2.5 px-3 rounded-xl text-xs sm:text-sm font-black transition-all cursor-pointer text-center text-stone-600 hover:text-slate-900">Full List</button>
+      </div>
+
+<!-- MAIN CONTAINER -->
+      <div id="mainGameBox" class="w-full">
+        
+        <!-- GIAO DIỆN CHỌN TOPIC (RỘNG RÃI) -->
+        <div id="noTopicSelectedState" class="w-full mt-8 sm:mt-10">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+            {freeTopics.map(([key, topic]) => (
+              <a 
+                href={`/resources/vocabulary?topic=${key}`}
+                class="group bg-white hover:bg-stone-100/80 border border-stone-200/90 hover:border-red-200/80 rounded-3xl p-6 sm:p-7 transition-all duration-300 shadow-xs hover:shadow-md hover:-translate-y-1 flex flex-col justify-between min-h-[160px]"
+              >
+                <div class="space-y-3">
+                  <div>
+                    <span class="text-[11px] font-black uppercase tracking-wider text-red-600 bg-red-50/80 px-3 py-1 rounded-full border border-red-100 inline-block">
+                      {topic.words?.length || 0} Words
+                    </span>
+                  </div>
+                  
+                  <h3 class="text-xl sm:text-2xl font-black text-slate-900 transition-colors tracking-tight">
+                    {topic.title}
+                  </h3>
+                </div>
+
+                <div class="pt-4 border-t border-stone-100 flex items-center justify-between text-xs sm:text-sm font-extrabold text-slate-700 group-hover:text-red-600 transition-colors">
+                  <span>Start Practice</span>
+                  <div class="w-7 h-7 rounded-full bg-stone-100 group-hover:bg-red-600 text-slate-600 group-hover:text-white flex items-center justify-center transition-all group-hover:translate-x-1">
+                    →
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- 1. FLASHCARD PANEL -->
+        <div id="game-flashcard" class="game-panel hidden bg-white rounded-[32px] p-6 sm:p-10 shadow-xl border border-stone-200/90 flex-col gap-5 w-full">
+          <div class="grid grid-cols-3 items-center font-brand">
+            <div class="flex justify-start">
+              <button type="button" class="openGuideBtn text-red-600 hover:text-red-700 font-extrabold bg-red-50 hover:bg-red-100 px-3.5 py-1.5 rounded-xl transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200/60 shadow-2xs text-xs sm:text-sm">
+                <span>ℹ️</span> How to play
+              </button>
+            </div>
+            <div class="flex justify-center">
+              <span id="fc-counter" class="text-slate-700 font-black text-sm sm:text-base">1 / 5</span>
+            </div>
+            <div class="flex justify-end">
+              <span class="text-stone-400 uppercase tracking-wider font-bold text-xs sm:text-sm">CLICK CARD TO FLIP 🔄</span>
+            </div>
+          </div>
+          <div class="perspective w-full max-w-md mx-auto h-[230px] cursor-pointer" id="flashcard-container" style="perspective: 1000px;">
+            <div class="card-inner relative w-full h-full transition-transform duration-500 rounded-3xl shadow-lg" id="flashcard-inner" style="transform-style: preserve-3d;">
+              <div class="card-face absolute inset-0 w-full h-full rounded-3xl bg-gradient-to-br from-red-50/50 via-white to-stone-50 border-2 border-red-100 flex flex-col items-center justify-center p-5 text-center" style="backface-visibility: hidden;">
+                <span class="text-xs font-black uppercase tracking-widest text-red-600 mb-1.5 font-brand">Vietnamese Word</span>
+                <div class="font-brand text-2xl sm:text-3xl font-black text-slate-900 leading-tight px-4 mb-3" id="fc-front">Word</div>
+                <div class="z-10" onclick="event.stopPropagation()">
+                  <button type="button" id="speakAudioBtn" class="px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 font-extrabold text-xs rounded-full shadow-2xs transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200">
+                    🔊 Listen
+                  </button>
+                </div>
+              </div>
+              <div class="card-face absolute inset-0 w-full h-full rounded-3xl bg-slate-900 text-white flex flex-col items-center justify-center p-5 text-center" style="backface-visibility: hidden; transform: rotateY(180deg);">
+                <span class="text-xs font-black uppercase tracking-widest text-amber-400 mb-1.5 font-brand">English Meaning</span>
+                <div class="font-brand text-xl sm:text-2xl font-black text-white leading-tight px-4" id="fc-back">Meaning</div>
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-center gap-4 pt-1 font-brand">
+            <button id="prevCardBtn" class="px-8 py-3.5 bg-stone-100 hover:bg-stone-200 text-slate-800 font-extrabold rounded-2xl text-sm sm:text-base transition cursor-pointer shadow-xs">← Prev</button>
+            <button id="nextCardBtn" class="px-10 py-3.5 bg-red-600 hover:bg-red-700 text-white font-black rounded-2xl text-sm sm:text-base shadow-lg shadow-red-600/30 cursor-pointer transition">Next →</button>
+          </div>
+        </div>
+
+        <!-- 2. MATCHING PANEL -->
+        <div id="game-matching" class="game-panel hidden bg-white rounded-[32px] p-6 sm:p-10 shadow-xl border border-stone-200/90 flex-col gap-4 w-full font-brand">
+          <div class="flex justify-between items-center font-brand">
+            <button type="button" class="openGuideBtn text-red-600 hover:text-red-700 font-extrabold bg-red-50 hover:bg-red-100 px-3.5 py-1.5 rounded-xl transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200/60 shadow-2xs text-xs sm:text-sm">
+              <span>ℹ️</span> How to play
+            </button>
+            <span></span>
+          </div>
+          <div id="match-setup" class="flex flex-col items-center justify-center text-center py-4 space-y-4 my-auto">
+            <div class="w-14 h-14 bg-red-50 text-red-600 rounded-2xl flex items-center justify-center text-2xl shadow-inner border border-red-100">🧩</div>
+            <div class="space-y-1">
+              <h3 class="font-brand text-xl sm:text-2xl font-black text-slate-900 tracking-tight">Enter number of pairs to play</h3>
+              <p class="text-stone-500 text-xs sm:text-sm">Total available words in this topic: <span id="match-total-words" class="font-bold text-slate-900">5</span></p>
+            </div>
+            <div class="flex items-center justify-center gap-2.5 max-w-xs mx-auto w-full pt-1">
+              <input type="number" id="match-custom-count" min="1" value="5" class="w-32 px-4 py-2.5 rounded-xl border border-stone-300 font-bold text-center text-sm outline-none focus:border-red-600 bg-stone-50 transition" />
+              <button type="button" id="startMatchCustomBtn" class="px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-xs shadow-md cursor-pointer transition shrink-0">Start →</button>
+            </div>
+            <p id="match-error-msg" class="text-xs font-bold text-red-600 min-h-[16px]"></p>
+          </div>
+
+          <div id="match-play-area" class="flex-col gap-4 w-full" style="display: none;">
+            <div class="flex justify-between items-center text-xs font-bold">
+              <button type="button" id="backToMatchSetup" class="px-3 py-1 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-xl transition cursor-pointer font-bold">← Change Count</button>
+              <span class="bg-red-50 text-red-600 px-3 py-1 rounded-xl border border-red-200 text-xs font-black shadow-2xs" id="match-score">Matched: 0 / 5</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><div id="match-vn-col" class="flex flex-col gap-2"></div><div id="match-en-col" class="flex flex-col gap-2"></div></div>
+            <div id="match-msg" class="text-center font-bold text-emerald-600 text-xs bg-emerald-50 border border-emerald-200 py-3 rounded-xl" style="display: none;"></div>
+          </div>
+        </div>
+
+        <!-- 3. MCQS PANEL -->
+        <div id="game-mcqs" class="game-panel hidden bg-white rounded-[32px] p-6 sm:p-10 shadow-xl border border-stone-200/90 flex-col gap-5 w-full font-brand">
+          <div class="grid grid-cols-3 items-center font-brand">
+            <div class="flex justify-start">
+              <button type="button" class="openGuideBtn text-red-600 hover:text-red-700 font-extrabold bg-red-50 hover:bg-red-100 px-3.5 py-1.5 rounded-xl transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200/60 shadow-2xs text-xs sm:text-sm">
+                <span>ℹ️</span> How to play
+              </button>
+            </div>
+            <div class="flex justify-center">
+              <span id="mcq-progress" class="text-slate-700 font-black text-sm sm:text-base">1 / 5</span>
+            </div>
+            <div class="flex justify-end">
+              <span id="mcq-score-box" class="text-red-600 font-black text-sm sm:text-base">Score: 0</span>
+            </div>
+          </div>
+          <div class="bg-gradient-to-br from-red-50/50 via-white to-stone-50 border-2 border-red-100 rounded-3xl p-6 text-center max-w-md mx-auto w-full space-y-2.5 shadow-sm">
+            <span class="text-xs font-black uppercase tracking-widest text-red-600 font-brand">What is the correct word?</span>
+            <h3 class="font-brand text-2xl sm:text-3xl font-black text-slate-900 leading-tight mb-2" id="mcq-word">Word</h3>
+            <button type="button" id="speakMcqBtn" class="px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 font-extrabold text-xs rounded-full shadow-2xs transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200 mx-auto">🔊 Listen</button>
+          </div>
+          <div id="mcq-options" class="grid grid-cols-1 gap-2.5 max-w-md mx-auto w-full"></div>
+          <div id="mcq-feedback-area" class="text-center pt-1"></div>
+        </div>
+
+        <!-- 4. SCRAMBLE PANEL -->
+        <div id="game-scramble" class="game-panel hidden bg-white rounded-[32px] p-6 sm:p-10 shadow-xl border border-stone-200/90 flex-col gap-5 w-full text-center font-brand">
+          <div class="grid grid-cols-3 items-center font-brand">
+            <div class="flex justify-start">
+              <button type="button" class="openGuideBtn text-red-600 hover:text-red-700 font-extrabold bg-red-50 hover:bg-red-100 px-3.5 py-1.5 rounded-xl transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200/60 shadow-2xs text-xs sm:text-sm">
+                <span>ℹ️</span> How to play
+              </button>
+            </div>
+            <div class="flex justify-center">
+              <span id="scramble-progress" class="text-slate-700 font-black text-sm sm:text-base">1 / 5</span>
+            </div>
+            <div class="flex justify-end">
+              <span id="scramble-score-box" class="text-red-600 font-black text-sm sm:text-base">Score: 0</span>
+            </div>
+          </div>
+          <div class="bg-gradient-to-b from-stone-50/80 to-white border border-stone-200/90 rounded-2xl p-6 max-w-md mx-auto w-full space-y-3 shadow-sm">
+            <div class="text-stone-400 font-bold text-xs uppercase tracking-widest">💡 Hint</div>
+            <div id="scramble-hint" class="text-slate-900 font-black text-lg sm:text-xl font-brand">Meaning</div>
+            <button type="button" id="speakScrBtn" class="px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 font-extrabold text-xs rounded-full shadow-2xs transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200 mx-auto">🔊 Listen</button>
+            <div class="w-10 h-0.5 bg-stone-200 mx-auto"></div>
+            <div id="scramble-letters" class="font-brand text-xl sm:text-2xl font-black text-red-600 tracking-[0.15em] py-1">word</div>
+          </div>
+          <div class="flex gap-2.5 max-w-md mx-auto w-full" id="scramble-action-area">
+            <input type="text" id="scramble-input" placeholder="Type here..." class="w-full px-4 py-2.5 rounded-xl border border-stone-300 font-bold text-center text-sm outline-none focus:border-red-600 bg-stone-50/50 transition" />
+            <button id="checkScrambleBtn" class="px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl text-xs sm:text-sm shadow-md cursor-pointer transition shrink-0">Check</button>
+          </div>
+          <div id="scramble-feedback" class="text-xs sm:text-sm font-bold min-h-[20px]"></div>
+        </div>
+
+        <!-- 5. TRUE / FALSE PANEL -->
+        <div id="game-truefalse" class="game-panel hidden bg-white rounded-[32px] p-6 sm:p-10 shadow-xl border border-stone-200/90 flex-col gap-5 w-full text-center font-brand">
+          <div class="grid grid-cols-3 items-center font-brand">
+            <div class="flex justify-start">
+              <button type="button" class="openGuideBtn text-red-600 hover:text-red-700 font-extrabold bg-red-50 hover:bg-red-100 px-3.5 py-1.5 rounded-xl transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200/60 shadow-2xs text-xs sm:text-sm">
+                <span>ℹ️</span> How to play
+              </button>
+            </div>
+            <div class="flex justify-center">
+              <span id="tf-progress" class="text-slate-700 font-black text-sm sm:text-base">1 / 5</span>
+            </div>
+            <div class="flex justify-end">
+              <span id="tf-score-box" class="text-red-600 font-black text-sm sm:text-base">Score: 0</span>
+            </div>
+          </div>
+          <div class="bg-gradient-to-b from-stone-50/80 to-white border border-stone-200/90 rounded-2xl p-6 max-w-md mx-auto w-full space-y-3 shadow-sm">
+            <span class="text-[10px] font-extrabold uppercase tracking-widest text-stone-400">Translate Check</span>
+            <div id="tf-word" class="font-brand text-xl sm:text-2xl font-black text-slate-900 leading-tight px-2">Word</div>
+            <button type="button" id="speakTfBtn" class="px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 font-extrabold text-xs rounded-full shadow-2xs transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200 mx-auto">🔊 Listen</button>
+            <div class="w-10 h-0.5 bg-stone-200 mx-auto"></div>
+            <div id="tf-meaning" class="font-brand text-base sm:text-lg font-extrabold text-red-600 px-2">Meaning</div>
+          </div>
+          <div class="flex justify-center gap-3" id="tf-buttons-wrapper">
+            <button id="tfTrueBtn" class="px-8 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold rounded-xl text-xs sm:text-sm shadow-md cursor-pointer transition">True</button>
+            <button id="tfFalseBtn" class="px-8 py-2.5 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-xl text-xs sm:text-sm shadow-md cursor-pointer transition">False</button>
+          </div>
+          <div id="tf-feedback" class="text-xs sm:text-sm font-bold min-h-[20px]"></div>
+        </div>
+
+<!-- 6. FULL VOCABULARY LIST VIEW -->
+<div id="game-fulllist" class="game-panel hidden bg-white rounded-[32px] p-6 sm:p-10 shadow-xl border border-stone-300 flex flex-col gap-6 w-full max-w-4xl mx-auto font-brand">
+  <!-- Header -->
+  <div class="flex justify-between items-center gap-4 pb-3 border-b-2 border-stone-200">
+    <h2 class="text-lg sm:text-xl font-bold text-slate-700 tracking-tight">Vocabulary List</h2>
+    <span id="list-total-count" class="shrink-0 px-4 py-1.5 bg-red-50 border border-red-300 rounded-2xl text-xs sm:text-sm font-black text-red-600 shadow-2xs"></span>
   </div>
 
-  <!-- MODAL HƯỚNG DẪN HOW TO PLAY -->
+  <!-- Vocabulary Table -->
+  <div class="bg-white border-2 border-stone-300 rounded-2xl overflow-hidden shadow-xs">
+    <div class="max-h-[480px] overflow-y-auto">
+      <table class="w-full table-fixed border-collapse">
+        <colgroup>
+          <col class="w-[28%]">
+          <col class="w-[47%]">
+          <col class="w-[25%]">
+        </colgroup>
+        <thead class="bg-stone-100 sticky top-0 border-b-2 border-stone-300 text-stone-800 text-xs uppercase tracking-wider font-black z-10">
+          <tr>
+            <th class="py-3 px-2 sm:px-4 text-center">Vietnamese</th>
+            <th class="py-3 px-2 sm:px-4 text-center">English Meaning</th>
+            <th class="py-3 px-2 sm:px-4 text-center">Audio</th>
+          </tr>
+        </thead>
+        <tbody id="vocab-table-body" class="divide-y divide-stone-200 text-sm sm:text-base font-bold text-slate-900 [&_td]:text-center [&_td]:px-2 [&_td]:py-2.5">
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+    </div>
+    </div>
+  </main>
+
+  <!-- MODAL HƯỚNG DẪN GAME -->
   <div id="guideModal" class="hidden fixed inset-0 bg-slate-900/40 backdrop-blur-xs z-50 flex items-center justify-center p-4 font-brand">
     <div class="bg-white rounded-3xl max-w-md w-full p-7 shadow-2xl border border-stone-200 space-y-4 relative">
       <div class="flex items-center justify-between">
@@ -47,182 +326,6 @@ import allTopics from '../../data/vocabData.js';
     </div>
   </div>
 
-  <main class="flex-grow max-w-4xl w-full mx-auto px-5 sm:px-8 pb-16 pt-2 flex flex-col gap-5 justify-center">
-    <div class="text-center flex flex-col items-center gap-1.5">
-      <h1 id="topicTitle" class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 font-brand tracking-tight">Topic Title</h1>
-      <p id="topicDesc" class="text-stone-600 text-xs sm:text-sm max-w-lg mx-auto font-medium"></p>
-      <span class="text-xs sm:text-sm font-bold text-amber-800 bg-amber-50 border border-amber-200 px-4 py-2 rounded-full mt-2 inline-block">💡 Audio supports Northern accent (HN). Southern coming soon!</span>
-    </div>
-
-    <div id="gameTabsWrapper" class="flex items-center justify-start md:justify-center gap-1 bg-stone-200/70 p-1.5 rounded-2xl max-w-xl mx-auto w-full overflow-x-auto border border-stone-200/90 shadow-inner font-brand">
-      <button data-game="flashcard" class="game-tab flex-1 min-w-[90px] py-2.5 px-3 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer text-center text-stone-600 hover:text-slate-900">Flashcards</button>
-      <button data-game="matching" class="game-tab flex-1 min-w-[80px] py-2.5 px-3 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer text-center text-stone-600 hover:text-slate-900">Matching</button>
-      <button data-game="mcqs" class="game-tab flex-1 min-w-[70px] py-2.5 px-3 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer text-center text-stone-600 hover:text-slate-900">MCQs</button>
-      <button data-game="scramble" class="game-tab flex-1 min-w-[85px] py-2.5 px-3 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer text-center text-stone-600 hover:text-slate-900">Scramble</button>
-      <button data-game="truefalse" class="game-tab flex-1 min-w-[95px] py-2.5 px-3 rounded-xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer text-center text-stone-600 hover:text-slate-900">True/False</button>
-    </div>
-
-    <!-- KHUNG GAME CÂN ĐỐI, GỌN GÀNG -->
-    <div id="mainGameBox" class="bg-white rounded-[28px] p-5 sm:p-8 shadow-xl shadow-stone-300/40 border border-stone-200/90 min-h-[360px] flex flex-col justify-between relative">
-      
-      <!-- 1. FLASHCARD -->
-      <div id="game-flashcard" class="game-panel flex flex-col gap-5 w-full">
-        <div class="grid grid-cols-3 items-center font-brand">
-          <div class="flex justify-start">
-            <button type="button" class="openGuideBtn text-red-600 hover:text-red-700 font-extrabold bg-red-50 hover:bg-red-100 px-3.5 py-1.5 rounded-xl transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200/60 shadow-2xs text-xs sm:text-sm">
-              <span>ℹ️</span> How to play
-            </button>
-          </div>
-          <div class="flex justify-center">
-            <span id="fc-counter" class="text-slate-700 font-black text-sm sm:text-base">1 / 5</span>
-          </div>
-          <div class="flex justify-end">
-            <span class="text-stone-400 uppercase tracking-wider font-bold text-xs sm:text-sm">CLICK CARD TO FLIP 🔄</span>
-          </div>
-        </div>
-        <div class="perspective w-full max-w-md mx-auto h-[230px] cursor-pointer" id="flashcard-container" style="perspective: 1000px;">
-          <div class="card-inner relative w-full h-full transition-transform duration-500 rounded-3xl shadow-lg" id="flashcard-inner" style="transform-style: preserve-3d;">
-            <div class="card-face absolute inset-0 w-full h-full rounded-3xl bg-gradient-to-br from-red-50/50 via-white to-stone-50 border-2 border-red-100 flex flex-col items-center justify-center p-5 text-center" style="backface-visibility: hidden;">
-              <span class="text-xs font-black uppercase tracking-widest text-red-600 mb-1.5 font-brand">Vietnamese Word</span>
-              <div class="font-brand text-2xl sm:text-3xl font-black text-slate-900 leading-tight px-4 mb-3" id="fc-front">Word</div>
-              <div class="z-10" onclick="event.stopPropagation()">
-                <button type="button" id="speakAudioBtn" class="px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 font-extrabold text-xs rounded-full shadow-2xs transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200">
-                  🔊 Listen
-                </button>
-              </div>
-            </div>
-            <div class="card-face absolute inset-0 w-full h-full rounded-3xl bg-slate-900 text-white flex flex-col items-center justify-center p-5 text-center" style="backface-visibility: hidden; transform: rotateY(180deg);">
-              <span class="text-xs font-black uppercase tracking-widest text-amber-400 mb-1.5 font-brand">English Meaning</span>
-              <div class="font-brand text-xl sm:text-2xl font-black text-white leading-tight px-4" id="fc-back">Meaning</div>
-            </div>
-          </div>
-        </div>
-        <div class="flex justify-between items-center text-xs sm:text-sm font-bold text-stone-400 uppercase tracking-wider font-brand px-1">
-          <span></span>
-          <span></span>
-        </div>
-        <div class="flex justify-center gap-4 pt-1 font-brand">
-          <button id="prevCardBtn" class="px-8 py-3.5 bg-stone-100 hover:bg-stone-200 text-slate-800 font-extrabold rounded-2xl text-sm sm:text-base transition cursor-pointer shadow-xs">← Prev</button>
-          <button id="nextCardBtn" class="px-10 py-3.5 bg-red-600 hover:bg-red-700 text-white font-black rounded-2xl text-sm sm:text-base shadow-lg shadow-red-600/30 cursor-pointer transition">Next →</button>
-        </div>
-      </div>
-
-      <!-- 2. MATCHING -->
-      <div id="game-matching" class="game-panel flex-col gap-4 w-full font-brand" style="display: none;">
-        <div class="flex justify-between items-center font-brand">
-          <button type="button" class="openGuideBtn text-red-600 hover:text-red-700 font-extrabold bg-red-50 hover:bg-red-100 px-3.5 py-1.5 rounded-xl transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200/60 shadow-2xs text-xs sm:text-sm">
-            <span>ℹ️</span> How to play
-          </button>
-          <span></span>
-        </div>
-        <div id="match-setup" class="flex flex-col items-center justify-center text-center py-4 space-y-4 my-auto">
-          <div class="w-14 h-14 bg-red-50 text-red-600 rounded-2xl flex items-center justify-center text-2xl shadow-inner border border-red-100">🧩</div>
-          <div class="space-y-1">
-            <h3 class="font-brand text-xl sm:text-2xl font-black text-slate-900 tracking-tight">Enter number of pairs to play</h3>
-            <p class="text-stone-500 text-xs sm:text-sm">Total available words in this topic: <span id="match-total-words" class="font-bold text-slate-900">5</span></p>
-          </div>
-          <div class="flex items-center justify-center gap-2.5 max-w-xs mx-auto w-full pt-1">
-            <input type="number" id="match-custom-count" min="1" value="5" class="w-32 px-4 py-2.5 rounded-xl border border-stone-300 font-bold text-center text-sm outline-none focus:border-red-600 bg-stone-50 transition" />
-            <button type="button" id="startMatchCustomBtn" class="px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-xs shadow-md cursor-pointer transition shrink-0">Start →</button>
-          </div>
-          <p id="match-error-msg" class="text-xs font-bold text-red-600 min-h-[16px]"></p>
-        </div>
-
-        <div id="match-play-area" class="flex-col gap-4 w-full" style="display: none;">
-          <div class="flex justify-between items-center text-xs font-bold">
-            <button type="button" id="backToMatchSetup" class="px-3 py-1 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-xl transition cursor-pointer font-bold">← Change Count</button>
-            <span class="bg-red-50 text-red-600 px-3 py-1 rounded-xl border border-red-200 text-xs font-black shadow-2xs" id="match-score">Matched: 0 / 5</span>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3"><div id="match-vn-col" class="flex flex-col gap-2"></div><div id="match-en-col" class="flex flex-col gap-2"></div></div>
-          <div id="match-msg" class="text-center font-bold text-emerald-600 text-xs bg-emerald-50 border border-emerald-200 py-3 rounded-xl" style="display: none;"></div>
-        </div>
-      </div>
-
-      <!-- 3. MCQS -->
-      <div id="game-mcqs" class="game-panel flex-col gap-5 w-full font-brand" style="display: none;">
-        <div class="grid grid-cols-3 items-center font-brand">
-          <div class="flex justify-start">
-            <button type="button" class="openGuideBtn text-red-600 hover:text-red-700 font-extrabold bg-red-50 hover:bg-red-100 px-3.5 py-1.5 rounded-xl transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200/60 shadow-2xs text-xs sm:text-sm">
-              <span>ℹ️</span> How to play
-            </button>
-          </div>
-          <div class="flex justify-center">
-            <span id="mcq-progress" class="text-slate-700 font-black text-sm sm:text-base">1 / 5</span>
-          </div>
-          <div class="flex justify-end">
-            <span id="mcq-score-box" class="text-red-600 font-black text-sm sm:text-base">Score: 0</span>
-          </div>
-        </div>
-        <div class="bg-gradient-to-br from-red-50/50 via-white to-stone-50 border-2 border-red-100 rounded-3xl p-6 text-center max-w-md mx-auto w-full space-y-2.5 shadow-sm">
-          <span class="text-xs font-black uppercase tracking-widest text-red-600 font-brand">What is the correct word?</span>
-          <h3 class="font-brand text-2xl sm:text-3xl font-black text-slate-900 leading-tight mb-2" id="mcq-word">Word</h3>
-          <button type="button" id="speakMcqBtn" class="px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 font-extrabold text-xs rounded-full shadow-2xs transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200 mx-auto">🔊 Listen</button>
-        </div>
-        <div id="mcq-options" class="grid grid-cols-1 gap-2.5 max-w-md mx-auto w-full"></div>
-        <div id="mcq-feedback-area" class="text-center pt-1"></div>
-      </div>
-
-      <!-- 4. SCRAMBLE -->
-      <div id="game-scramble" class="game-panel flex-col gap-5 w-full text-center font-brand" style="display: none;">
-        <div class="grid grid-cols-3 items-center font-brand">
-          <div class="flex justify-start">
-            <button type="button" class="openGuideBtn text-red-600 hover:text-red-700 font-extrabold bg-red-50 hover:bg-red-100 px-3.5 py-1.5 rounded-xl transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200/60 shadow-2xs text-xs sm:text-sm">
-              <span>ℹ️</span> How to play
-            </button>
-          </div>
-          <div class="flex justify-center">
-            <span id="scramble-progress" class="text-slate-700 font-black text-sm sm:text-base">1 / 5</span>
-          </div>
-          <div class="flex justify-end">
-            <span id="scramble-score-box" class="text-red-600 font-black text-sm sm:text-base">Score: 0</span>
-          </div>
-        </div>
-        <div class="bg-gradient-to-b from-stone-50/80 to-white border border-stone-200/90 rounded-2xl p-6 max-w-md mx-auto w-full space-y-3 shadow-sm">
-          <div class="text-stone-400 font-bold text-xs uppercase tracking-widest">💡 Hint</div>
-          <div id="scramble-hint" class="text-slate-900 font-black text-lg sm:text-xl font-brand">Meaning</div>
-          <button type="button" id="speakScrBtn" class="px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 font-extrabold text-xs rounded-full shadow-2xs transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200 mx-auto">🔊 Listen</button>
-          <div class="w-10 h-0.5 bg-stone-200 mx-auto"></div>
-          <div id="scramble-letters" class="font-brand text-xl sm:text-2xl font-black text-red-600 tracking-[0.15em] py-1">word</div>
-        </div>
-        <div class="flex gap-2.5 max-w-md mx-auto w-full" id="scramble-action-area">
-          <input type="text" id="scramble-input" placeholder="Type here..." class="w-full px-4 py-2.5 rounded-xl border border-stone-300 font-bold text-center text-sm outline-none focus:border-red-600 bg-stone-50/50 transition" />
-          <button id="checkScrambleBtn" class="px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl text-xs sm:text-sm shadow-md cursor-pointer transition shrink-0">Check</button>
-        </div>
-        <div id="scramble-feedback" class="text-xs sm:text-sm font-bold min-h-[20px]"></div>
-      </div>
-
-      <!-- 5. TRUE / FALSE -->
-      <div id="game-truefalse" class="game-panel flex-col gap-5 w-full text-center font-brand" style="display: none;">
-        <div class="grid grid-cols-3 items-center font-brand">
-          <div class="flex justify-start">
-            <button type="button" class="openGuideBtn text-red-600 hover:text-red-700 font-extrabold bg-red-50 hover:bg-red-100 px-3.5 py-1.5 rounded-xl transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200/60 shadow-2xs text-xs sm:text-sm">
-              <span>ℹ️</span> How to play
-            </button>
-          </div>
-          <div class="flex justify-center">
-            <span id="tf-progress" class="text-slate-700 font-black text-sm sm:text-base">1 / 5</span>
-          </div>
-          <div class="flex justify-end">
-            <span id="tf-score-box" class="text-red-600 font-black text-sm sm:text-base">Score: 0</span>
-          </div>
-        </div>
-        <div class="bg-gradient-to-b from-stone-50/80 to-white border border-stone-200/90 rounded-2xl p-6 max-w-md mx-auto w-full space-y-3 shadow-sm">
-          <span class="text-[10px] font-extrabold uppercase tracking-widest text-stone-400">Translate Check</span>
-          <div id="tf-word" class="font-brand text-xl sm:text-2xl font-black text-slate-900 leading-tight px-2">Word</div>
-          <button type="button" id="speakTfBtn" class="px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 font-extrabold text-xs rounded-full shadow-2xs transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200 mx-auto">🔊 Listen</button>
-          <div class="w-10 h-0.5 bg-stone-200 mx-auto"></div>
-          <div id="tf-meaning" class="font-brand text-base sm:text-lg font-extrabold text-red-600 px-2">Meaning</div>
-        </div>
-        <div class="flex justify-center gap-3" id="tf-buttons-wrapper">
-          <button id="tfTrueBtn" class="px-8 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold rounded-xl text-xs sm:text-sm shadow-md cursor-pointer transition">True</button>
-          <button id="tfFalseBtn" class="px-8 py-2.5 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-xl text-xs sm:text-sm shadow-md cursor-pointer transition">False</button>
-        </div>
-        <div id="tf-feedback" class="text-xs sm:text-sm font-bold min-h-[20px]"></div>
-      </div>
-
-    </div>
-  </main>
-
   <script is:inline define:vars={{ allTopics }}>
     const urlParams = new URLSearchParams(window.location.search);
     let userCode = (urlParams.get('code') || '').trim().toUpperCase();
@@ -232,18 +335,26 @@ import allTopics from '../../data/vocabData.js';
     else if (userCode === 'KVN01') currentTopicKey = 'kitchen_north';
     else if (userCode === 'KVS01') currentTopicKey = 'kitchen_south';
 
-    const topicKeys = allTopics ? Object.keys(allTopics) : [];
-    if (!currentTopicKey || !allTopics || !allTopics[currentTopicKey]) {
-      currentTopicKey = topicKeys.length > 0 ? topicKeys[0] : 'numbers_expert';
-    }
-    const currentTopic = (allTopics && allTopics[currentTopicKey]) ? allTopics[currentTopicKey] : { title: "Vocabulary Lab", description: "Practice your vocabulary.", words: [] };
-
-    if (userCode) document.getElementById('topicSelectorWrapper').style.display = 'none';
+    const currentTopic = (currentTopicKey && allTopics && allTopics[currentTopicKey]) ? allTopics[currentTopicKey] : null;
 
     const toggleBtn = document.getElementById('dropdownToggleBtn');
     const dropdownMenu = document.getElementById('dropdownMenu');
     const dropdownArrow = document.getElementById('dropdownArrow');
-    document.getElementById('currentTopicLabel').textContent = currentTopic.title;
+    
+    if (currentTopic) {
+      document.getElementById('currentTopicLabel').textContent = currentTopic.title;
+      // KHI ĐÃ VÀO TRANG CHI TIẾT TỪ VỰNG: Thu hẹp khung chính (max-w-4xl), hiện breadcrumb và audio banner
+      document.getElementById('pageMainContainer').classList.remove('max-w-6xl');
+      document.getElementById('pageMainContainer').classList.add('max-w-4xl');
+      document.getElementById('breadcrumbWrapper').style.display = 'block';
+      document.getElementById('topicSelectorWrapper').style.display = 'block';
+      document.getElementById('audioNoticeBanner').classList.remove('hidden');
+    } else {
+      // KHI Ở TRANG CHỦ VOCABULARY LAB: Giữ khung rộng (max-w-6xl)
+      document.getElementById('topicSelectorWrapper').style.display = 'none';
+    }
+
+    if (userCode) document.getElementById('topicSelectorWrapper').style.display = 'none';
 
     toggleBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -283,7 +394,8 @@ import allTopics from '../../data/vocabData.js';
       matching: "👉 Enter how many pairs you want to practice, then select a Vietnamese word and match it with its correct English meaning on the right.",
       mcqs: "👉 Read the vocabulary word, listen to the audio if needed, and choose the correct answer from 4 options.",
       scramble: "👉 Look at the English hint, un-scramble the letters, type the correct Vietnamese word into the input box, and hit Check.",
-      truefalse: "👉 Check if the displayed Vietnamese word matches the English meaning. Click True if correct and False if incorrect."
+      truefalse: "👉 Check if the displayed Vietnamese word matches the English meaning. Click True if correct and False if incorrect.",
+      fulllist: "📜 Browse the complete vocabulary list for this topic. Click 'Listen' to hear the pronunciation of each word."
     };
 
     const updateInstruction = (gameId) => {
@@ -293,14 +405,19 @@ import allTopics from '../../data/vocabData.js';
       }
     };
 
-    const lockedCodes = { 'daily_activities': 'AVB01', 'kitchen_north': 'KVN01', 'kitchen_south': 'KVS01' };
+    const lockedCodes = { 'daily_activities': 'AVB01', 'kitchen_north': 'KVN01', 'kitchen_south': 'KVS01', 'bedroom_expert': 'LOCKED', 'bathroom_expert': 'LOCKED' };
 
-    if (lockedCodes[currentTopicKey] && userCode !== lockedCodes[currentTopicKey]) {
+    if (!currentTopic) {
       document.getElementById('gameTabsWrapper').style.display = 'none';
-      document.getElementById('topicTitle').textContent = `🔒 ${currentTopic.title} (Locked)`;
+      document.getElementById('noTopicSelectedState').style.display = 'block';
+    } 
+    else if ((allTopics[currentTopicKey] && allTopics[currentTopicKey].type === 'locked') && userCode !== lockedCodes[currentTopicKey]) {
+      document.getElementById('gameTabsWrapper').style.display = 'none';
+      document.getElementById('noTopicSelectedState').style.display = 'none';
+      document.getElementById('topicTitle').innerHTML = `🔒 ${currentTopic.title} (Locked)`;
       document.getElementById('topicDesc').textContent = "This content is exclusive to active students.";
       document.getElementById('mainGameBox').innerHTML = `
-        <div class="max-w-md mx-auto my-auto text-center space-y-5 py-6 font-brand">
+        <div class="max-w-md mx-auto bg-white rounded-3xl p-8 border border-stone-200 text-center space-y-5 py-8 font-brand shadow-lg">
           <div class="w-14 h-14 bg-red-50 text-red-600 rounded-2xl mx-auto flex items-center justify-center text-xl shadow-inner border border-red-100">🔐</div>
           <div class="space-y-1.5">
             <span class="text-[10px] font-extrabold uppercase tracking-widest text-red-600 bg-red-50 px-3 py-1 rounded-full border border-red-100 inline-block">Student Portal Exclusive</span>
@@ -309,57 +426,46 @@ import allTopics from '../../data/vocabData.js';
           </div>
           <div class="space-y-2.5">
             <a href="/student" class="block w-full py-3.5 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-xl text-xs sm:text-sm shadow-md transition">Đến Student Portal nhập mã →</a>
-            <a href="/resources/vocabulary?topic=numbers_expert" class="block w-full py-3 bg-stone-100 hover:bg-stone-200 text-slate-700 font-bold rounded-xl text-xs sm:text-sm transition">Quay lại học các phần Free khác</a>
+            <a href="/resources/vocabulary" class="block w-full py-3 bg-stone-100 hover:bg-stone-200 text-slate-700 font-bold rounded-xl text-xs sm:text-sm transition">Quay lại chọn chủ đề khác</a>
           </div>
         </div>`;
-    } else if (currentTopic) {
+    } 
+    else {
+      document.getElementById('gameTabsWrapper').style.display = 'flex';
+      document.getElementById('noTopicSelectedState').style.display = 'none';
       document.getElementById('topicTitle').textContent = currentTopic.title;
-      document.getElementById('topicDesc').textContent = currentTopic.description || "";
 
       let flashcardData = currentTopic.words || [];
-      let vocabData = [...flashcardData].sort(() => Math.random() - 0.5);
-
-      const removeDiacritics = (str) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');
-
-      let audioCtx = null;
-      const playSound = (freq1, freq2) => {
-        try {
-          if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-          if (audioCtx.state === 'suspended') audioCtx.resume();
-          const now = audioCtx.currentTime;
-          [[freq1, now, 0.2], [freq2, now + 0.1, 0.25]].forEach(([f, t, d]) => {
-            const osc = audioCtx.createOscillator(), g = audioCtx.createGain();
-            osc.frequency.setValueAtTime(f, t);
-            g.gain.setValueAtTime(0.2, t);
-            g.gain.exponentialRampToValueAtTime(0.001, t + d);
-            osc.connect(g); g.connect(audioCtx.destination);
-            osc.start(t); osc.stop(t + d);
-          });
-        } catch(e) {}
-      };
 
       const renderCompletionScreen = (panelId, cb, scoreText) => {
         const panel = document.getElementById(panelId);
         panel.innerHTML = `
           <div class="flex flex-col items-center justify-center text-center py-6 my-auto space-y-3 w-full font-brand">
-            <div class="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center text-2xl shadow-sm border border-red-100 animate-bounce">🎯</div>
+            <div class="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center text-xl shadow-sm border border-red-100 animate-bounce">🎯</div>
             <div class="space-y-1">
-              <h3 class="font-brand text-xl sm:text-2xl font-black text-slate-900 tracking-tight">Challenge Finished!</h3>
-              ${scoreText ? `<div class="text-xs sm:text-sm font-extrabold text-red-600 bg-red-50 px-3.5 py-1 rounded-xl border border-red-100 inline-block mt-1">${scoreText}</div>` : ''}
+              <h3 class="font-brand text-lg sm:text-xl font-black text-slate-900 tracking-tight">Challenge Finished!</h3>
+              ${scoreText ? `<div class="text-xs font-extrabold text-red-600 bg-red-50 px-3 py-1 rounded-xl border border-red-100 inline-block mt-1">${scoreText}</div>` : ''}
               <p class="text-stone-500 font-medium text-xs">Great job completing this vocabulary session.</p>
             </div>
-            <button type="button" class="restart-btn px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-xl text-xs sm:text-sm shadow-md cursor-pointer transition mt-1">Play Again</button>
+            <button type="button" class="restart-btn px-5 py-2 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-xl text-xs shadow-md cursor-pointer transition mt-1">Play Again</button>
           </div>`;
         panel.querySelector('.restart-btn').addEventListener('click', cb);
       };
 
       const switchGame = (gameId) => {
-        document.querySelectorAll('.game-panel').forEach(p => p.style.display = 'none');
+        document.querySelectorAll('.game-panel').forEach(p => {
+          p.style.display = 'none';
+          p.classList.add('hidden');
+        });
         document.querySelectorAll('.game-tab').forEach(t => {
           t.classList.remove('bg-white', 'text-slate-900', 'shadow-md', 'active');
           t.classList.add('text-stone-600');
         });
-        document.getElementById(`game-${gameId}`).style.display = 'flex';
+        
+        const activePanel = document.getElementById(`game-${gameId}`);
+        activePanel.style.display = 'flex';
+        activePanel.classList.remove('hidden');
+
         const activeTab = document.querySelector(`[data-game="${gameId}"]`);
         activeTab.classList.add('bg-white', 'text-slate-900', 'shadow-md', 'active');
         activeTab.classList.remove('text-stone-600');
@@ -370,14 +476,14 @@ import allTopics from '../../data/vocabData.js';
         if (gameId === 'mcqs') initMcq();
         if (gameId === 'scramble') initScramble();
         if (gameId === 'truefalse') initTrueFalse();
+        if (gameId === 'fulllist') initFullList();
       };
 
       document.querySelectorAll('.game-tab').forEach(tab => tab.addEventListener('click', () => switchGame(tab.getAttribute('data-game'))));
-      document.querySelector('[data-game="flashcard"]').classList.add('bg-white', 'text-slate-900', 'shadow-md', 'active');
-      document.querySelector('[data-game="flashcard"]').classList.remove('text-stone-600');
-      updateInstruction('flashcard');
+      
+      switchGame('flashcard');
 
-      // 1. Flashcard logic
+      // Flashcard logic
       let fcIndex = 0, isFlipped = false;
       const updateFc = () => {
         if (!flashcardData || flashcardData.length === 0) return;
@@ -398,7 +504,7 @@ import allTopics from '../../data/vocabData.js';
       document.getElementById('prevCardBtn').addEventListener('click', () => { if(flashcardData.length){ fcIndex = (fcIndex - 1 + flashcardData.length) % flashcardData.length; updateFc(); } });
       updateFc();
 
-      // 2. Matching logic with custom input count
+      // Matching logic
       let currentMatchingData = [];
       let sVn = null, sEn = null, matchCnt = 0;
 
@@ -442,13 +548,13 @@ import allTopics from '../../data/vocabData.js';
 
         [...currentMatchingData].sort(() => Math.random() - 0.5).forEach(i => {
           let b = document.createElement('button');
-          b.className = "w-full p-3 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-xs sm:text-sm text-slate-800 text-left transition cursor-pointer";
+          b.className = "w-full p-2.5 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-xs text-slate-800 text-left transition cursor-pointer";
           b.textContent = i.vn; b.addEventListener('click', () => selectMatch(b, i.vn, 'vn'));
           vnCol.appendChild(b);
         });
         [...currentMatchingData].sort(() => Math.random() - 0.5).forEach(i => {
           let b = document.createElement('button');
-          b.className = "w-full p-3 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-xs sm:text-sm text-slate-800 text-left transition cursor-pointer";
+          b.className = "w-full p-2.5 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-xs text-slate-800 text-left transition cursor-pointer";
           b.textContent = i.en; b.addEventListener('click', () => selectMatch(b, i.en, 'en'));
           enCol.appendChild(b);
         });
@@ -459,215 +565,258 @@ import allTopics from '../../data/vocabData.js';
       const selectMatch = (btn, val, type) => {
         if (btn.classList.contains('bg-emerald-50')) return;
         const col = type === 'vn' ? '#match-vn-col' : '#match-en-col';
-        document.querySelectorAll(`${col} button`).forEach(b => { if(!b.classList.contains('bg-emerald-50')) b.className = "w-full p-3 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-xs sm:text-sm text-slate-800 text-left transition cursor-pointer"; });
-        btn.className = "w-full p-3 bg-red-50 border border-red-500 rounded-xl font-bold text-xs sm:text-sm text-red-600 text-left transition cursor-pointer";
-        if (type === 'vn') { sVn = val; } else sEn = val;
-        if (sVn && sEn) {
+        document.querySelectorAll(`${col} button`).forEach(b => { if(!b.classList.contains('bg-emerald-50')) b.className = "w-full p-2.5 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-xs text-slate-800 text-left transition cursor-pointer"; });
+        btn.className = "w-full p-2.5 bg-red-50 border-2 border-red-500 rounded-xl font-bold text-xs text-red-600 text-left transition cursor-pointer shadow-sm";
+        if(type === 'vn') sVn = val; else sEn = val;
+
+        if(sVn && sEn) {
           const match = currentMatchingData.find(i => i.vn === sVn && i.en === sEn);
-          if (match) {
-            matchCnt++; playSound(523, 659);
-            document.getElementById('match-score').textContent = `Matched: ${matchCnt} / ${currentMatchingData.length}`;
+          if(match) {
             document.querySelectorAll('#match-vn-col button, #match-en-col button').forEach(b => {
-              if (b.textContent === sVn || b.textContent === sEn) b.className = "w-full p-3 bg-emerald-50 border border-emerald-300 rounded-xl font-bold text-xs sm:text-sm text-emerald-700 text-left pointer-events-none opacity-80";
+              if(b.textContent === sVn || b.textContent === sEn) b.className = "w-full p-2.5 bg-emerald-50 border border-emerald-300 rounded-xl font-bold text-xs text-emerald-700 text-left transition opacity-75 cursor-default";
             });
+            matchCnt++;
+            document.getElementById('match-score').textContent = `Matched: ${matchCnt} / ${currentMatchingData.length}`;
             sVn = null; sEn = null;
-            if (matchCnt === currentMatchingData.length) { 
-              const m = document.getElementById('match-msg'); 
-              m.textContent = "🎉 Awesome! All matched correctly!"; 
-              m.style.display = 'block'; 
+            if(matchCnt === currentMatchingData.length) {
+              renderCompletionScreen('game-matching', initMatchingSetup, `All ${currentMatchingData.length} pairs matched successfully!`);
             }
           } else {
-            playSound(180, 130);
-            setTimeout(() => { sVn = null; sEn = null; document.querySelectorAll('#match-vn-col button, #match-en-col button').forEach(b => { if(!b.classList.contains('bg-emerald-50')) b.className = "w-full p-3 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-xs sm:text-sm text-slate-800 text-left transition cursor-pointer"; }); }, 400);
+            setTimeout(() => {
+              document.querySelectorAll('#match-vn-col button, #match-en-col button').forEach(b => {
+                if(!b.classList.contains('bg-emerald-50')) b.className = "w-full p-2.5 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-xs text-slate-800 text-left transition cursor-pointer";
+              });
+            }, 400);
+            sVn = null; sEn = null;
           }
         }
       };
 
-      // 3. MCQ logic (4 options)
-      let mcqIdx = 0, mcqScore = 0;
-      const initMcq = () => { mcqIdx = 0; mcqScore = 0; vocabData = [...flashcardData].sort(() => Math.random() - 0.5); loadMcq(); };
+// MCQs logic
+      let mcqIdx = 0, mcqScore = 0, mcqList = [];
+      const initMcq = () => {
+        mcqIdx = 0; mcqScore = 0;
+        mcqList = [...flashcardData].sort(() => Math.random() - 0.5);
+        loadMcq();
+      };
+
+      // Hàm tạo âm thanh thông báo đúng/sai nhanh bằng Web Audio API
+      const playSound = (isCorrect) => {
+        try {
+          const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          
+          if (isCorrect) {
+            osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // Nốt D5 (đúng)
+            osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.1); // Nốt A5
+          } else {
+            osc.frequency.setValueAtTime(220, audioCtx.currentTime); // Nốt A3 (sai trầm)
+            osc.frequency.setValueAtTime(150, audioCtx.currentTime + 0.1);
+          }
+          
+          gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
+          osc.start();
+          osc.stop(audioCtx.currentTime + 0.3);
+        } catch (e) {}
+      };
+
       const loadMcq = () => {
-        if (mcqIdx >= vocabData.length) return renderCompletionScreen('game-mcqs', initMcq, `Final Score: ${mcqScore} / ${vocabData.length}`);
-        const cur = vocabData[mcqIdx];
-        const askEn = Math.random() < 0.5, qTxt = askEn ? cur.en : cur.vn, cAns = askEn ? cur.vn : cur.en;
-        let opts = [cAns];
-        while (opts.length < 4 && opts.length < flashcardData.length) {
-          const r = askEn ? flashcardData[Math.floor(Math.random() * flashcardData.length)].vn : flashcardData[Math.floor(Math.random() * flashcardData.length)].en;
-          if (!opts.includes(r)) opts.push(r);
+        if(mcqIdx >= mcqList.length) {
+          renderCompletionScreen('game-mcqs', initMcq, `Score: ${mcqScore} / ${mcqList.length}`);
+          return;
+        }
+        document.getElementById('mcq-progress').textContent = `${mcqIdx + 1} / ${mcqList.length}`;
+        document.getElementById('mcq-score-box').textContent = `Score: ${mcqScore}`;
+        const cur = mcqList[mcqIdx];
+        document.getElementById('mcq-word').textContent = cur.vn;
+        document.getElementById('speakMcqBtn').onclick = () => speakWord(cur.vn);
+
+        let opts = [cur.en];
+        while(opts.length < 4 && opts.length < flashcardData.length) {
+          let rand = flashcardData[Math.floor(Math.random() * flashcardData.length)].en;
+          if(!opts.includes(rand)) opts.push(rand);
         }
         opts.sort(() => Math.random() - 0.5);
-        const panel = document.getElementById('game-mcqs');
-        panel.innerHTML = `
-          <div class="grid grid-cols-3 items-center font-brand">
-            <div class="flex justify-start">
-              <button type="button" class="openGuideBtn text-red-600 hover:text-red-700 font-extrabold bg-red-50 hover:bg-red-100 px-3.5 py-1.5 rounded-xl transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200/60 shadow-2xs text-xs sm:text-sm">
-                <span>ℹ️</span> How to play
-              </button>
-            </div>
-            <div class="flex justify-center">
-              <span id="mcq-progress" class="text-slate-700 font-black text-sm sm:text-base">${mcqIdx + 1} / ${vocabData.length}</span>
-            </div>
-            <div class="flex justify-end">
-              <span id="mcq-score-box" class="text-red-600 font-black text-sm sm:text-base">Score: ${mcqScore}</span>
-            </div>
-          </div>
-          <div class="bg-gradient-to-br from-red-50/50 via-white to-stone-50 border-2 border-red-100 rounded-3xl p-6 text-center max-w-md mx-auto w-full space-y-2.5 shadow-sm">
-            <span class="text-xs font-black uppercase tracking-widest text-red-600 font-brand">What is the correct word?</span>
-            <h3 class="font-brand text-2xl sm:text-3xl font-black text-slate-900 leading-tight mb-2" id="mcq-word">${qTxt}</h3>
-            <button type="button" id="speakMcqBtn" class="px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 font-extrabold text-xs rounded-full shadow-2xs transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200 mx-auto">🔊 Listen</button>
-          </div>
-          <div id="mcq-options" class="grid grid-cols-1 gap-2.5 max-w-md mx-auto w-full"></div>
-          <div id="mcq-feedback-area" class="text-center pt-1"></div>`;
-        
-        document.querySelectorAll('.openGuideBtn').forEach(b => b.addEventListener('click', () => guideModal.classList.remove('hidden')));
-        document.getElementById('speakMcqBtn').addEventListener('click', () => speakWord(askEn ? cur.vn : qTxt));
 
-        const box = document.getElementById('mcq-options');
+        const optContainer = document.getElementById('mcq-options');
+        optContainer.innerHTML = '';
+        document.getElementById('mcq-feedback-area').innerHTML = '';
+
         opts.forEach(o => {
           let b = document.createElement('button');
-          b.className = "w-full p-3 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-xs sm:text-sm text-slate-800 transition cursor-pointer text-center";
+          b.type = 'button';
+          b.className = "w-full py-2.5 px-4 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-base text-slate-800 text-center transition cursor-pointer shadow-2xs";
           b.textContent = o;
           b.addEventListener('click', () => {
-            box.querySelectorAll('button').forEach(btn => btn.style.pointerEvents = 'none');
-            if (o === cAns) {
-              mcqScore++; playSound(523, 659);
-              b.className = "w-full p-3 bg-emerald-50 border border-emerald-300 rounded-xl font-bold text-xs sm:text-sm text-emerald-700 text-center";
-              setTimeout(() => { mcqIdx++; loadMcq(); }, 700);
+            const allBtns = optContainer.querySelectorAll('button');
+            allBtns.forEach(btn => btn.disabled = true);
+
+            if(o === cur.en) {
+              // Chọn đúng: Viền mảnh nhẹ, tự động chuyển câu sau 800ms
+              b.className = "w-full py-2.5 px-4 bg-emerald-50 border border-emerald-300 rounded-xl font-bold text-base text-emerald-700 text-center transition shadow-xs";
+              mcqScore++;
+              document.getElementById('mcq-score-box').textContent = `Score: ${mcqScore}`;
+              playSound(true);
+              setTimeout(() => {
+                mcqIdx++;
+                loadMcq();
+              }, 800);
             } else {
-              playSound(180, 130);
-              b.className = "w-full p-3 bg-red-50 border border-red-300 rounded-xl font-bold text-xs sm:text-sm text-red-600 text-center";
-              box.querySelectorAll('button').forEach(btn => { if (btn.textContent === cAns) btn.className = "w-full p-3 bg-emerald-50 border border-emerald-300 rounded-xl font-bold text-xs sm:text-sm text-emerald-700 text-center"; });
-              document.getElementById('mcq-feedback-area').innerHTML = `<button type="button" id="mcqNextBtn" class="w-full sm:w-auto px-10 py-4 bg-slate-900 hover:bg-slate-800 text-white font-extrabold rounded-2xl text-base shadow-lg shadow-slate-900/20 cursor-pointer transition">Continue →</button>`;
-              document.getElementById('mcqNextBtn').addEventListener('click', () => { mcqIdx++; loadMcq(); });
+              // Chọn sai: Viền mảnh nhẹ màu đỏ, hiện đáp án đúng và bắt buộc bấm Continue
+              b.className = "w-full py-2.5 px-4 bg-red-50 border border-red-300 rounded-xl font-bold text-base text-red-600 text-center transition shadow-xs";
+              allBtns.forEach(btn => { 
+                if(btn.textContent === cur.en) {
+                  btn.className = "w-full py-2.5 px-4 bg-emerald-50 border border-emerald-300 rounded-xl font-bold text-base text-emerald-700 text-center transition shadow-xs";
+                } 
+              });
+              playSound(false);
+              
+              let feedbackArea = document.getElementById('mcq-feedback-area');
+              feedbackArea.innerHTML = `
+                <div class="pt-4 flex justify-center">
+                  <button type="button" id="mcqContinueBtn" class="px-8 py-3 bg-[#111827] hover:bg-black text-white font-black rounded-2xl text-sm shadow-lg transition cursor-pointer">
+                    Continue →
+                  </button>
+                </div>
+              `;
+              document.getElementById('mcqContinueBtn').addEventListener('click', () => {
+                mcqIdx++;
+                loadMcq();
+              });
             }
           });
-          box.appendChild(b);
+          optContainer.appendChild(b);
         });
       };
-
-      // 4. Scramble logic
-      let scrIdx = 0, scrScore = 0;
-      const initScramble = () => { scrIdx = 0; scrScore = 0; loadScramble(); };
-      const shuffleStr = (str) => str.normalize('NFC').split(' ').map(w => {
-        let arr = Array.from(w), sh;
-        do { for (let i = arr.length - 1; i > 0; i--) { let j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } sh = arr.join(''); } while (sh === w && arr.length > 1);
-        return sh.toLowerCase();
-      }).join(' ');
+            // Scramble logic
+      let scrIdx = 0, scrScore = 0, scrList = [];
+      const initScramble = () => {
+        scrIdx = 0; scrScore = 0;
+        scrList = [...flashcardData].sort(() => Math.random() - 0.5);
+        loadScramble();
+      };
       const loadScramble = () => {
-        if (scrIdx >= vocabData.length) return renderCompletionScreen('game-scramble', initScramble, `Final Score: ${scrScore} / ${vocabData.length}`);
-        const cur = vocabData[scrIdx];
-        const panel = document.getElementById('game-scramble');
-        panel.innerHTML = `
-          <div class="grid grid-cols-3 items-center font-brand">
-            <div class="flex justify-start">
-              <button type="button" class="openGuideBtn text-red-600 hover:text-red-700 font-extrabold bg-red-50 hover:bg-red-100 px-3.5 py-1.5 rounded-xl transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200/60 shadow-2xs text-xs sm:text-sm">
-                <span>ℹ️</span> How to play
-              </button>
-            </div>
-            <div class="flex justify-center">
-              <span id="scramble-progress" class="text-slate-700 font-black text-sm sm:text-base">${scrIdx + 1} / ${vocabData.length}</span>
-            </div>
-            <div class="flex justify-end">
-              <span id="scramble-score-box" class="text-red-600 font-black text-sm sm:text-base">Score: ${scrScore}</span>
-            </div>
-          </div>
-          <div class="bg-gradient-to-b from-stone-50/80 to-white border border-stone-200/90 rounded-2xl p-6 max-w-md mx-auto w-full space-y-3 shadow-sm">
-            <div class="text-stone-400 font-bold text-xs uppercase tracking-widest">💡 Hint</div>
-            <div id="scramble-hint" class="text-slate-900 font-black text-lg sm:text-xl font-brand">${cur.en}</div>
-            <button type="button" id="speakScrBtn" class="px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 font-extrabold text-xs rounded-full shadow-2xs transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200 mx-auto">🔊 Listen</button>
-            <div class="w-10 h-0.5 bg-stone-200 mx-auto"></div>
-            <div id="scramble-letters" class="font-brand text-xl sm:text-2xl font-black text-red-600 tracking-[0.15em] py-1">${shuffleStr(cur.vn)}</div>
-          </div>
-          <div class="flex gap-2.5 max-w-md mx-auto w-full" id="scramble-action-area">
-            <input type="text" id="scramble-input" placeholder="Type here..." class="w-full px-4 py-2.5 rounded-xl border border-stone-300 font-bold text-center text-sm outline-none focus:border-red-600 bg-stone-50/50 transition" />
-            <button id="checkScrambleBtn" class="px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl text-xs sm:text-sm shadow-md cursor-pointer transition shrink-0">Check</button>
-          </div>
-          <div id="scramble-feedback" class="text-xs sm:text-sm font-bold min-h-[20px]"></div>`;
-        
-        document.querySelectorAll('.openGuideBtn').forEach(b => b.addEventListener('click', () => guideModal.classList.remove('hidden')));
-        document.getElementById('speakScrBtn').addEventListener('click', () => speakWord(cur.vn));
-
-        const check = () => {
-          const input = document.getElementById('scramble-input'), btn = document.getElementById('checkScrambleBtn');
-          if (input.disabled) return;
-          input.disabled = true; btn.style.pointerEvents = 'none';
-          const val = removeDiacritics(input.value.trim().toLowerCase()).replace(/\s+/g, '');
-          const valid = [removeDiacritics(cur.vn.toLowerCase()).replace(/\s+/g, ''), ...cur.vn.split(/[\/,]/).map(a => removeDiacritics(a.replace(/[^\p{L}\s]/gu, '').trim().toLowerCase()).replace(/\s+/g, ''))];
-          const fb = document.getElementById('scramble-feedback');
-          if (valid.includes(val)) {
-            scrScore++; playSound(523, 659);
-            fb.textContent = "✓ Correct!"; fb.style.color = "#059669";
-            setTimeout(() => { scrIdx++; loadScramble(); }, 800);
-          } else {
-            playSound(180, 130);
-            fb.innerHTML = `❌ Incorrect! Answer: <strong class="text-slate-900 underline">${cur.vn}</strong>`; fb.style.color = "#dc2626";
-            document.getElementById('scramble-action-area').innerHTML = `<button type="button" id="scrNextBtn" class="w-full py-4 bg-slate-900 hover:bg-slate-800 text-white font-extrabold rounded-2xl text-base shadow-lg shadow-slate-900/20 cursor-pointer transition text-center">Continue →</button>`;
-            document.getElementById('scrNextBtn').addEventListener('click', () => { scrIdx++; loadScramble(); });
-          }
-        };
-        document.getElementById('checkScrambleBtn').addEventListener('click', check);
-        document.getElementById('scramble-input').addEventListener('keydown', (e) => { if (e.key === 'Enter') check(); });
-      };
-
-      // 5. True/False logic
-      let tfIdx = 0, tfScore = 0, tfPair = null;
-      const initTrueFalse = () => { tfIdx = 0; tfScore = 0; loadTf(); };
-      const loadTf = () => {
-        if (tfIdx >= vocabData.length) return renderCompletionScreen('game-truefalse', initTrueFalse, `Final Score: ${tfScore} / ${vocabData.length}`);
-        const item = vocabData[tfIdx], isTrue = Math.random() < 0.5;
-        let dMeaning = item.en;
-        if (!isTrue) {
-          const others = vocabData.filter(i => i.en !== item.en);
-          if (others.length) dMeaning = others[Math.floor(Math.random() * others.length)].en;
+        if(scrIdx >= scrList.length) {
+          renderCompletionScreen('game-scramble', initScramble, `Score: ${scrScore} / ${scrList.length}`);
+          return;
         }
-        tfPair = { vn: item.vn, correctEn: item.en, shownEn: dMeaning, isTrue };
-        const panel = document.getElementById('game-truefalse');
-        panel.innerHTML = `
-          <div class="grid grid-cols-3 items-center font-brand">
-            <div class="flex justify-start">
-              <button type="button" class="openGuideBtn text-red-600 hover:text-red-700 font-extrabold bg-red-50 hover:bg-red-100 px-3.5 py-1.5 rounded-xl transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200/60 shadow-2xs text-xs sm:text-sm">
-                <span>ℹ️</span> How to play
-              </button>
-            </div>
-            <div class="flex justify-center">
-              <span id="tf-progress" class="text-slate-700 font-black text-sm sm:text-base">${tfIdx + 1} / ${vocabData.length}</span>
-            </div>
-            <div class="flex justify-end">
-              <span id="tf-score-box" class="text-red-600 font-black text-sm sm:text-base">Score: ${tfScore}</span>
-            </div>
-          </div>
-          <div class="bg-gradient-to-b from-stone-50/80 to-white border border-stone-200/90 rounded-2xl p-6 max-w-md mx-auto w-full space-y-3 shadow-sm">
-            <span class="text-[10px] font-extrabold uppercase tracking-widest text-stone-400">Translate Check</span>
-            <div id="tf-word" class="font-brand text-xl sm:text-2xl font-black text-slate-900 leading-tight px-2">${tfPair.vn}</div>
-            <button type="button" id="speakTfBtn" class="px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 font-extrabold text-xs rounded-full shadow-2xs transition cursor-pointer inline-flex items-center gap-1.5 border border-red-200 mx-auto">🔊 Listen</button>
-            <div class="w-10 h-0.5 bg-stone-200 mx-auto"></div>
-            <div id="tf-meaning" class="font-brand text-base sm:text-lg font-extrabold text-red-600 px-2">${tfPair.shownEn}</div>
-          </div>
-          <div class="flex justify-center gap-3" id="tf-buttons-wrapper">
-            <button id="tfTrueBtn" class="px-8 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold rounded-xl text-xs sm:text-sm shadow-md cursor-pointer transition">True</button>
-            <button id="tfFalseBtn" class="px-8 py-2.5 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-xl text-xs sm:text-sm shadow-md cursor-pointer transition">False</button>
-          </div>
-          <div id="tf-feedback" class="text-xs sm:text-sm font-bold min-h-[20px]"></div>`;
+        document.getElementById('scramble-progress').textContent = `${scrIdx + 1} / ${scrList.length}`;
+        document.getElementById('scramble-score-box').textContent = `Score: ${scrScore}`;
+        const cur = scrList[scrIdx];
+        document.getElementById('scramble-hint').textContent = cur.en;
+        document.getElementById('speakScrBtn').onclick = () => speakWord(cur.vn);
+
+        let scrambled = cur.vn.split('').sort(() => Math.random() - 0.5).join('');
+        if(scrambled === cur.vn && cur.vn.length > 1) scrambled = cur.vn.split('').reverse().join('');
+        document.getElementById('scramble-letters').textContent = scrambled;
         
-        document.querySelectorAll('.openGuideBtn').forEach(b => b.addEventListener('click', () => guideModal.classList.remove('hidden')));
-        document.getElementById('speakTfBtn').addEventListener('click', () => speakWord(tfPair.vn));
-        document.getElementById('tfTrueBtn').addEventListener('click', () => checkTf(true));
-        document.getElementById('tfFalseBtn').addEventListener('click', () => checkTf(false));
+        const input = document.getElementById('scramble-input');
+        input.value = ''; input.disabled = false;
+        document.getElementById('checkScrambleBtn').disabled = false;
+        document.getElementById('scramble-feedback').innerHTML = '';
+        input.focus();
       };
-      const checkTf = (guessTrue) => {
-        document.getElementById('tfTrueBtn').style.pointerEvents = 'none';
-        document.getElementById('tfFalseBtn').style.pointerEvents = 'none';
-        const fb = document.getElementById('tf-feedback');
-        if (guessTrue === tfPair.isTrue) {
-          tfScore++; playSound(523, 659); speakWord(tfPair.vn);
-          fb.textContent = "✓ Correct!"; fb.style.color = "#059669";
-          setTimeout(() => { tfIdx++; loadTf(); }, 800);
+
+      const checkScramble = () => {
+        const input = document.getElementById('scramble-input');
+        const cur = scrList[scrIdx];
+        const val = input.value.trim();
+        if(!val) return;
+
+        input.disabled = true;
+        document.getElementById('checkScrambleBtn').disabled = true;
+
+        const removeDiacritics = (str) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');
+
+        if(removeDiacritics(val.toLowerCase()) === removeDiacritics(cur.vn.toLowerCase())) {
+          scrScore++;
+          document.getElementById('scramble-feedback').innerHTML = `<span class="text-emerald-600 font-black">✨ Correct! (${cur.vn})</span>`;
+          document.getElementById('scramble-score-box').textContent = `Score: ${scrScore}`;
         } else {
-          playSound(180, 130);
-          fb.innerHTML = `❌ Incorrect! <strong class="text-slate-900">${tfPair.vn}</strong> means <em class="text-red-600">${tfPair.correctEn}</em>`; fb.style.color = "#dc2626";
-          document.getElementById('tf-buttons-wrapper').innerHTML = `<button type="button" id="tfNextBtn" class="px-10 py-4 bg-slate-900 hover:bg-slate-800 text-white font-extrabold rounded-2xl text-base shadow-lg shadow-slate-900/20 cursor-pointer transition">Continue →</button>`;
-          document.getElementById('tfNextBtn').addEventListener('click', () => { tfIdx++; loadTf(); });
+          document.getElementById('scramble-feedback').innerHTML = `<span class="text-red-600 font-black">❌ Incorrect. Correct answer: ${cur.vn}</span>`;
         }
+        setTimeout(() => { scrIdx++; loadScramble(); }, 1500);
+      };
+
+      document.getElementById('checkScrambleBtn').onclick = checkScramble;
+      document.getElementById('scramble-input').addEventListener('keydown', (e) => { if(e.key === 'Enter') checkScramble(); });
+
+      // True / False logic
+      let tfIdx = 0, tfScore = 0, tfList = [], currentTfItem = null, isTfCorrect = true;
+      const initTrueFalse = () => {
+        tfIdx = 0; tfScore = 0;
+        tfList = [...flashcardData].sort(() => Math.random() - 0.5);
+        loadTrueFalse();
+      };
+      const loadTrueFalse = () => {
+        if(tfIdx >= tfList.length) {
+          renderCompletionScreen('game-truefalse', initTrueFalse, `Score: ${tfScore} / ${tfList.length}`);
+          return;
+        }
+        document.getElementById('tf-progress').textContent = `${tfIdx + 1} / ${tfList.length}`;
+        document.getElementById('tf-score-box').textContent = `Score: ${tfScore}`;
+        currentTfItem = tfList[tfIdx];
+        
+        isTfCorrect = Math.random() < 0.5;
+        let displayedMeaning = currentTfItem.en;
+        if(!isTfCorrect && flashcardData.length > 1) {
+          let wrong;
+          do {
+            wrong = flashcardData[Math.floor(Math.random() * flashcardData.length)].en;
+          } while(wrong === currentTfItem.en);
+          displayedMeaning = wrong;
+        }
+
+        document.getElementById('tf-word').textContent = currentTfItem.vn;
+        document.getElementById('tf-meaning').textContent = displayedMeaning;
+        document.getElementById('speakTfBtn').onclick = () => speakWord(currentTfItem.vn);
+        document.getElementById('tf-feedback').innerHTML = '';
+        document.getElementById('tfTrueBtn').disabled = false;
+        document.getElementById('tfFalseBtn').disabled = false;
+      };
+
+      const handleTfAnswer = (userChoice) => {
+        document.getElementById('tfTrueBtn').disabled = true;
+        document.getElementById('tfFalseBtn').disabled = true;
+
+        if(userChoice === isTfCorrect) {
+          tfScore++;
+          document.getElementById('tf-feedback').innerHTML = `<span class="text-emerald-600 font-black">✨ Correct!</span>`;
+          document.getElementById('tf-score-box').textContent = `Score: ${tfScore}`;
+        } else {
+          document.getElementById('tf-feedback').innerHTML = `<span class="text-red-600 font-black">❌ Incorrect</span>`;
+        }
+        setTimeout(() => { tfIdx++; loadTrueFalse(); }, 1200);
+      };
+
+      document.getElementById('tfTrueBtn').onclick = () => handleTfAnswer(true);
+      document.getElementById('tfFalseBtn').onclick = () => handleTfAnswer(false);
+
+      // Full List Logic
+      const initFullList = () => {
+        const tbody = document.getElementById('vocab-table-body');
+        tbody.innerHTML = '';
+        document.getElementById('list-total-count').textContent = `Total: ${flashcardData.length} words`;
+        
+        flashcardData.forEach((item) => {
+          let tr = document.createElement('tr');
+          tr.className = "hover:bg-stone-50/80 transition";
+          tr.innerHTML = `
+            <td class="py-2.5 px-4 font-black text-slate-900">${item.vn}</td>
+            <td class="py-2.5 px-4 text-stone-600">${item.en}</td>
+            <td class="py-2.5 px-4 text-center">
+              <button type="button" class="px-3 py-1 bg-red-50 hover:bg-red-100 text-red-600 font-extrabold text-xs rounded-lg transition cursor-pointer inline-flex items-center gap-1 border border-red-200">
+                🔊 Listen
+              </button>
+            </td>
+          `;
+          tr.querySelector('button').addEventListener('click', () => speakWord(item.vn));
+          tbody.appendChild(tr);
+        });
       };
     }
   </script>
