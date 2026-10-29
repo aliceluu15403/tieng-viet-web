@@ -901,7 +901,7 @@ quizNorth: [
     ["2. Quán cà phê mới so với quán cà phê cũ thì ___", ["Rộng hơn", "Nhỏ hơn", "Bằng nhau", "Không biết"], 0, "The new café is bigger: \"Quán này rộng hơn quán mình hay đi.\""],
     ["3. Giá ở quán mới như thế nào?", ["Thấp hơn", "Cao hơn", "Bằng nhau", "Rẻ hơn nhiều"], 1, "The prices are a little higher: \"Giá ở đây cũng cao hơn một chút.\""],
     ["4. Theo anh, quán nào có cà phê ngon nhất?", ["Quán gần nhà", "Quán hôm qua", "Quán trước đây", "Hai quán như nhau"], 2, "The old café has the best coffee: \"Theo anh thì ở quán cũ là ngon nhất.\""],
-    ["5. Quán nào gần hơn?", ["Không đề cập", "Quán mới", "Quán hôm qua", "Hai quán bằng nhau"], 2, "The café from yesterday is closer: \"Quán hôm qua gần hơn.\""],
+    ["5. Quán nào gần hơn?", ["Không đề cập", "Quán cũ", "Quán hôm qua", "Hai quán bằng nhau"], 2, "The café from yesterday is closer: \"Quán hôm qua gần hơn.\""],
     ["6. \"Thoải mái\" nghĩa là gì?", ["Comfortable", "Expensive", "Crowded", "Far away"], 0, "\"Thoải mái\" means comfortable."]
   ],
   quizSouth: [
@@ -909,7 +909,7 @@ quizNorth: [
     ["2. Quán cà phê mới so với quán cà phê cũ thì ___", ["Rộng hơn", "Nhỏ hơn", "Bằng nhau", "Không biết"], 0, "The new café is bigger: \"Quán này rộng hơn quán mình hay đi.\""],
     ["3. Giá ở quán mới như thế nào?", ["Thấp hơn", "Cao hơn", "Bằng nhau", "Rẻ hơn nhiều"], 1, "The prices are a little higher: \"Giá ở đây cũng cao hơn chút.\""],
     ["4. Theo anh, quán nào có cà phê ngon nhất?", ["Quán gần nhà", "Quán hôm qua", "Quán trước đây", "Hai quán như nhau"], 2, "The old café has the best coffee: \"Theo anh thì quán cũ ngon nhất.\""],
-    ["5. Quán nào gần hơn?", ["Không đề cập", "Quán mới", "Quán hôm qua", "Hai quán bằng nhau"], 2, "The café from yesterday is closer: \"Quán hôm qua gần hơn.\""],
+    ["5. Quán nào gần hơn?", ["Không đề cập", "Quán cũ", "Quán hôm qua", "Hai quán bằng nhau"], 2, "The café from yesterday is closer: \"Quán hôm qua gần hơn.\""],
     ["6. \"Thoải mái\" nghĩa là gì?", ["Comfortable", "Expensive", "Crowded", "Far away"], 0, "\"Thoải mái\" means comfortable."]
   ],
       vocabNorth: [

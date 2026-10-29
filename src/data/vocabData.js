@@ -223,7 +223,9 @@ export default {
       { vn: "Tuần sau", en: "Next week" },
       { vn: "Cuối tuần", en: "Weekend" },
       { vn: "Tháng", en: "Month" },
-      { vn: "Năm", en: "Year" }
+      { vn: "Năm", en: "Year" },
+      { vn: "Năm ngoái", en: "Last year" },
+      { vn: "Năm sau", en: "Next year" }
     ]
   },
 
@@ -361,17 +363,6 @@ export default {
       { vn: "Thân thiện", en: "Friendly" },
       { vn: "Khó tính", en: "Strict / Hard to please" },
       { vn: "Dễ tính", en: "Easygoing" }
-    ]
-  },
-
-  "work_status_expert": {
-    title: "Work Status",
-    type: "free",
-    words: [
-      { vn: "Khó", en: "Difficult / Hard" },
-      { vn: "Dễ", en: "Easy" },
-      { vn: "Bận", en: "Busy" },
-      { vn: "Mệt", en: "Tired" }
     ]
   },
 

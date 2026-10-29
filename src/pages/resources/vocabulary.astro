@@ -44,8 +44,8 @@ const freeTopics = Object.entries(allTopics).filter(([_, topic]) => topic.type =
         </div>
         <div></div>
 
-<!-- DROPDOWN SELECTOR -->
-        <div id="topicSelectorWrapper" class="relative w-36 sm:w-44 shrink-0" style="display: none;"> <!-- Đã thu ngắn độ rộng ở đây -->
+        <!-- DROPDOWN SELECTOR -->
+        <div id="topicSelectorWrapper" class="relative w-36 sm:w-44 shrink-0" style="display: none;">
           <button type="button" id="dropdownToggleBtn" class="w-full px-4 py-2.5 rounded-2xl bg-white border border-stone-200 text-xs sm:text-sm font-extrabold text-slate-800 shadow-xs flex items-center justify-between cursor-pointer hover:border-red-300 transition-all">
             <span id="currentTopicLabel" class="truncate">Select Topic</span>
             <svg id="dropdownArrow" class="w-4 h-4 text-stone-400 shrink-0 ml-2 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
@@ -61,8 +61,8 @@ const freeTopics = Object.entries(allTopics).filter(([_, topic]) => topic.type =
         </div>
       </div>
 
-<!-- PAGE TITLE -->
-      <div class="text-center max-w-2xl mx-auto mb-6">
+      <!-- PAGE TITLE & INTRO DESCRIPTION -->
+      <div class="text-center max-w-2xl mx-auto mb-8">
         <div class="inline-block">
           <span class="text-[11px] font-extrabold uppercase tracking-widest text-red-500 bg-red-50 px-3 py-1 rounded-full border border-red-200 mb-1.5 inline-block">
             Practice & Master
@@ -71,6 +71,10 @@ const freeTopics = Object.entries(allTopics).filter(([_, topic]) => topic.type =
             <span class="curved-underline text-red-600">Vocabulary Lab</span>
           </h1>
         </div>
+        <!-- Đoạn giới thiệu chỉ hiển thị ở trang tổng quan danh sách chủ đề -->
+        <p id="vocabIntroDescription" class="text-stone-600 text-sm sm:text-base font-medium mt-3 leading-relaxed">
+          Explore curated vocabulary topics with interactive flashcards, matching games, and quizzes to build your real-world Vietnamese conversational skills.
+        </p>
       </div>
 
       <!-- AUDIO NOTICE BANNER -->
@@ -91,11 +95,11 @@ const freeTopics = Object.entries(allTopics).filter(([_, topic]) => topic.type =
         <button data-game="fulllist" class="game-tab flex-1 min-w-[85px] py-2.5 px-3 rounded-xl text-xs sm:text-sm font-black transition-all cursor-pointer text-center text-stone-600 hover:text-slate-900">Full List</button>
       </div>
 
-<!-- MAIN CONTAINER -->
+      <!-- MAIN CONTAINER -->
       <div id="mainGameBox" class="w-full">
         
-        <!-- GIAO DIỆN CHỌN TOPIC (RỘNG RÃI) -->
-        <div id="noTopicSelectedState" class="w-full mt-8 sm:mt-10">
+        <!-- GIAO DIỆN CHỌN TOPIC -->
+        <div id="noTopicSelectedState" class="w-full mt-2 sm:mt-4">
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {freeTopics.map(([key, topic]) => (
               <a 
@@ -276,37 +280,36 @@ const freeTopics = Object.entries(allTopics).filter(([_, topic]) => topic.type =
           <div id="tf-feedback" class="text-xs sm:text-sm font-bold min-h-[20px]"></div>
         </div>
 
-<!-- 6. FULL VOCABULARY LIST VIEW -->
-<div id="game-fulllist" class="game-panel hidden bg-white rounded-[32px] p-6 sm:p-10 shadow-xl border border-stone-300 flex flex-col gap-6 w-full max-w-4xl mx-auto font-brand">
-  <!-- Header -->
-  <div class="flex justify-between items-center gap-4 pb-3 border-b-2 border-stone-200">
-    <h2 class="text-lg sm:text-xl font-bold text-slate-700 tracking-tight">Vocabulary List</h2>
-    <span id="list-total-count" class="shrink-0 px-4 py-1.5 bg-red-50 border border-red-300 rounded-2xl text-xs sm:text-sm font-black text-red-600 shadow-2xs"></span>
-  </div>
+        <!-- 6. FULL VOCABULARY LIST VIEW -->
+        <div id="game-fulllist" class="game-panel hidden bg-white rounded-[32px] p-6 sm:p-10 shadow-xl border border-stone-300 flex flex-col gap-6 w-full max-w-4xl mx-auto font-brand">
+          <div class="flex justify-between items-center gap-4 pb-3 border-b-2 border-stone-200">
+            <h2 class="text-lg sm:text-xl font-bold text-slate-700 tracking-tight">Vocabulary List</h2>
+            <span id="list-total-count" class="shrink-0 px-4 py-1.5 bg-red-50 border border-red-300 rounded-2xl text-xs sm:text-sm font-black text-red-600 shadow-2xs"></span>
+          </div>
 
-  <!-- Vocabulary Table -->
-  <div class="bg-white border-2 border-stone-300 rounded-2xl overflow-hidden shadow-xs">
-    <div class="max-h-[480px] overflow-y-auto">
-      <table class="w-full table-fixed border-collapse">
-        <colgroup>
-          <col class="w-[28%]">
-          <col class="w-[47%]">
-          <col class="w-[25%]">
-        </colgroup>
-        <thead class="bg-stone-100 sticky top-0 border-b-2 border-stone-300 text-stone-800 text-xs uppercase tracking-wider font-black z-10">
-          <tr>
-            <th class="py-3 px-2 sm:px-4 text-center">Vietnamese</th>
-            <th class="py-3 px-2 sm:px-4 text-center">English Meaning</th>
-            <th class="py-3 px-2 sm:px-4 text-center">Audio</th>
-          </tr>
-        </thead>
-        <tbody id="vocab-table-body" class="divide-y divide-stone-200 text-sm sm:text-base font-bold text-slate-900 [&_td]:text-center [&_td]:px-2 [&_td]:py-2.5">
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-    </div>
+          <div class="bg-white border-2 border-stone-300 rounded-2xl overflow-hidden shadow-xs">
+            <div class="max-h-[480px] overflow-y-auto">
+              <table class="w-full table-fixed border-collapse">
+                <colgroup>
+                  <col class="w-[28%]">
+                  <col class="w-[47%]">
+                  <col class="w-[25%]">
+                </colgroup>
+                <thead class="bg-stone-100 sticky top-0 border-b-2 border-stone-300 text-stone-800 text-xs uppercase tracking-wider font-black z-10">
+                  <tr>
+                    <th class="py-3 px-2 sm:px-4 text-center">Vietnamese</th>
+                    <th class="py-3 px-2 sm:px-4 text-center">English Meaning</th>
+                    <th class="py-3 px-2 sm:px-4 text-center">Audio</th>
+                  </tr>
+                </thead>
+                <tbody id="vocab-table-body" class="divide-y divide-stone-200 text-sm sm:text-base font-bold text-slate-900 [&_td]:text-center [&_td]:px-2 [&_td]:py-2.5">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </main>
 
@@ -340,30 +343,33 @@ const freeTopics = Object.entries(allTopics).filter(([_, topic]) => topic.type =
     const toggleBtn = document.getElementById('dropdownToggleBtn');
     const dropdownMenu = document.getElementById('dropdownMenu');
     const dropdownArrow = document.getElementById('dropdownArrow');
+    const vocabIntroDescription = document.getElementById('vocabIntroDescription');
     
     if (currentTopic) {
       document.getElementById('currentTopicLabel').textContent = currentTopic.title;
-      // KHI ĐÃ VÀO TRANG CHI TIẾT TỪ VỰNG: Thu hẹp khung chính (max-w-4xl), hiện breadcrumb và audio banner
       document.getElementById('pageMainContainer').classList.remove('max-w-6xl');
       document.getElementById('pageMainContainer').classList.add('max-w-4xl');
       document.getElementById('breadcrumbWrapper').style.display = 'block';
       document.getElementById('topicSelectorWrapper').style.display = 'block';
       document.getElementById('audioNoticeBanner').classList.remove('hidden');
+      if (vocabIntroDescription) vocabIntroDescription.style.display = 'none'; // Ẩn đoạn giới thiệu khi vào trang chi tiết
     } else {
-      // KHI Ở TRANG CHỦ VOCABULARY LAB: Giữ khung rộng (max-w-6xl)
       document.getElementById('topicSelectorWrapper').style.display = 'none';
+      if (vocabIntroDescription) vocabIntroDescription.style.display = 'block'; // Hiện đoạn giới thiệu ở trang chủ danh sách chủ đề
     }
 
     if (userCode) document.getElementById('topicSelectorWrapper').style.display = 'none';
 
-    toggleBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      dropdownMenu.classList.toggle('hidden');
-      dropdownArrow.classList.toggle('rotate-180');
-    });
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdownMenu.classList.toggle('hidden');
+        dropdownArrow.classList.toggle('rotate-180');
+      });
+    }
     document.addEventListener('click', () => {
-      dropdownMenu.classList.add('hidden');
-      dropdownArrow.classList.remove('rotate-180');
+      if (dropdownMenu) dropdownMenu.classList.add('hidden');
+      if (dropdownArrow) dropdownArrow.classList.remove('rotate-180');
     });
 
     document.querySelectorAll('.topic-option').forEach(opt => {
@@ -415,7 +421,6 @@ const freeTopics = Object.entries(allTopics).filter(([_, topic]) => topic.type =
       document.getElementById('gameTabsWrapper').style.display = 'none';
       document.getElementById('noTopicSelectedState').style.display = 'none';
       document.getElementById('topicTitle').innerHTML = `🔒 ${currentTopic.title} (Locked)`;
-      document.getElementById('topicDesc').textContent = "This content is exclusive to active students.";
       document.getElementById('mainGameBox').innerHTML = `
         <div class="max-w-md mx-auto bg-white rounded-3xl p-8 border border-stone-200 text-center space-y-5 py-8 font-brand shadow-lg">
           <div class="w-14 h-14 bg-red-50 text-red-600 rounded-2xl mx-auto flex items-center justify-center text-xl shadow-inner border border-red-100">🔐</div>
@@ -435,7 +440,7 @@ const freeTopics = Object.entries(allTopics).filter(([_, topic]) => topic.type =
       document.getElementById('noTopicSelectedState').style.display = 'none';
       document.getElementById('topicTitle').textContent = currentTopic.title;
 
-      let flashcardData = currentTopic.words || [];
+      let vocabData = currentTopic.words || [];
 
       const renderCompletionScreen = (panelId, cb, scoreText) => {
         const panel = document.getElementById(panelId);
@@ -472,352 +477,375 @@ const freeTopics = Object.entries(allTopics).filter(([_, topic]) => topic.type =
 
         updateInstruction(gameId);
 
-        if (gameId === 'matching') initMatchingSetup();
-        if (gameId === 'mcqs') initMcq();
-        if (gameId === 'scramble') initScramble();
-        if (gameId === 'truefalse') initTrueFalse();
-        if (gameId === 'fulllist') initFullList();
+        if (gameId === 'flashcard') initFlashcard();
+        else if (gameId === 'matching') initMatchingSetup();
+        else if (gameId === 'mcqs') initMcqs();
+        else if (gameId === 'scramble') initScramble();
+        else if (gameId === 'truefalse') initTrueFalse();
+        else if (gameId === 'fulllist') initFullList();
       };
 
-      document.querySelectorAll('.game-tab').forEach(tab => tab.addEventListener('click', () => switchGame(tab.getAttribute('data-game'))));
-      
-      switchGame('flashcard');
-
-      // Flashcard logic
-      let fcIndex = 0, isFlipped = false;
-      const updateFc = () => {
-        if (!flashcardData || flashcardData.length === 0) return;
-        const currentWord = flashcardData[fcIndex].vn;
-        document.getElementById('fc-front').textContent = currentWord;
-        document.getElementById('fc-back').textContent = flashcardData[fcIndex].en;
-        document.getElementById('fc-counter').textContent = `${fcIndex + 1} / ${flashcardData.length}`;
-        isFlipped = false;
+      // 1. Flashcards logic
+      let fcIndex = 0;
+      const initFlashcard = () => {
+        fcIndex = 0;
+        renderFlashcard();
+      };
+      const renderFlashcard = () => {
+        const item = vocabData[fcIndex];
+        document.getElementById('fc-counter').textContent = `${fcIndex + 1} / ${vocabData.length}`;
+        document.getElementById('fc-front').textContent = item.vn;
+        document.getElementById('fc-back').textContent = item.en;
         document.getElementById('flashcard-inner').style.transform = 'rotateY(0deg)';
-
-        document.getElementById('speakAudioBtn').onclick = (e) => { e.stopPropagation(); speakWord(currentWord); };
       };
+
       document.getElementById('flashcard-container').addEventListener('click', () => {
-        isFlipped = !isFlipped;
-        document.getElementById('flashcard-inner').style.transform = isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
+        const inner = document.getElementById('flashcard-inner');
+        const currentTransform = inner.style.transform;
+        inner.style.transform = (!currentTransform || currentTransform === 'rotateY(0deg)') ? 'rotateY(180deg)' : 'rotateY(0deg)';
       });
-      document.getElementById('nextCardBtn').addEventListener('click', () => { if(flashcardData.length){ fcIndex = (fcIndex + 1) % flashcardData.length; updateFc(); } });
-      document.getElementById('prevCardBtn').addEventListener('click', () => { if(flashcardData.length){ fcIndex = (fcIndex - 1 + flashcardData.length) % flashcardData.length; updateFc(); } });
-      updateFc();
+      document.getElementById('speakAudioBtn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        speakWord(vocabData[fcIndex].vn);
+      });
+      document.getElementById('prevCardBtn').addEventListener('click', () => {
+        if (fcIndex > 0) { fcIndex--; renderFlashcard(); }
+      });
+      document.getElementById('nextCardBtn').addEventListener('click', () => {
+        if (fcIndex < vocabData.length - 1) { fcIndex++; renderFlashcard(); }
+        else {
+          renderCompletionScreen('game-flashcard', initFlashcard);
+        }
+      });
 
-      // Matching logic
-      let currentMatchingData = [];
-      let sVn = null, sEn = null, matchCnt = 0;
-
+      // 2. Matching logic
       const initMatchingSetup = () => {
-        document.getElementById('match-setup').style.display = 'flex';
-        document.getElementById('match-play-area').style.display = 'none';
-        document.getElementById('match-total-words').textContent = flashcardData.length;
-        document.getElementById('match-custom-count').value = Math.min(5, flashcardData.length);
-        document.getElementById('match-custom-count').max = flashcardData.length;
+        const setupDiv = document.getElementById('match-setup');
+        const playDiv = document.getElementById('match-play-area');
+        setupDiv.style.display = 'flex';
+        playDiv.style.display = 'none';
+        document.getElementById('match-total-words').textContent = vocabData.length;
+        document.getElementById('match-custom-count').value = Math.min(5, vocabData.length);
         document.getElementById('match-error-msg').textContent = '';
       };
 
-      const handleStartCustomMatch = () => {
-        const inputVal = parseInt(document.getElementById('match-custom-count').value);
+      document.getElementById('startMatchCustomBtn').addEventListener('click', () => {
+        const count = parseInt(document.getElementById('match-custom-count').value);
         const errEl = document.getElementById('match-error-msg');
-        if (isNaN(inputVal) || inputVal < 1) {
-          errEl.textContent = "Please enter a valid number greater than 0.";
-          return;
-        }
-        if (inputVal > flashcardData.length) {
-          errEl.textContent = `Cannot exceed total available words (${flashcardData.length}).`;
+        if (isNaN(count) || count < 1 || count > vocabData.length) {
+          errEl.textContent = `Please enter a number between 1 and ${vocabData.length}`;
           return;
         }
         errEl.textContent = '';
-        startMatchingGame(inputVal);
-      };
-
-      document.getElementById('startMatchCustomBtn').addEventListener('click', handleStartCustomMatch);
-      document.getElementById('match-custom-count').addEventListener('keydown', (e) => { if (e.key === 'Enter') handleStartCustomMatch(); });
-
-      const startMatchingGame = (count) => {
-        currentMatchingData = [...flashcardData].sort(() => Math.random() - 0.5).slice(0, count);
-        matchCnt = 0; sVn = null; sEn = null;
         document.getElementById('match-setup').style.display = 'none';
         document.getElementById('match-play-area').style.display = 'flex';
-        document.getElementById('match-score').textContent = `Matched: 0 / ${currentMatchingData.length}`;
-        document.getElementById('match-msg').style.display = 'none';
-
-        const vnCol = document.getElementById('match-vn-col'), enCol = document.getElementById('match-en-col');
-        vnCol.innerHTML = ''; enCol.innerHTML = '';
-
-        [...currentMatchingData].sort(() => Math.random() - 0.5).forEach(i => {
-          let b = document.createElement('button');
-          b.className = "w-full p-2.5 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-xs text-slate-800 text-left transition cursor-pointer";
-          b.textContent = i.vn; b.addEventListener('click', () => selectMatch(b, i.vn, 'vn'));
-          vnCol.appendChild(b);
-        });
-        [...currentMatchingData].sort(() => Math.random() - 0.5).forEach(i => {
-          let b = document.createElement('button');
-          b.className = "w-full p-2.5 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-xs text-slate-800 text-left transition cursor-pointer";
-          b.textContent = i.en; b.addEventListener('click', () => selectMatch(b, i.en, 'en'));
-          enCol.appendChild(b);
-        });
-      };
+        startMatchingGame(count);
+      });
 
       document.getElementById('backToMatchSetup').addEventListener('click', initMatchingSetup);
 
-      const selectMatch = (btn, val, type) => {
-        if (btn.classList.contains('bg-emerald-50')) return;
-        const col = type === 'vn' ? '#match-vn-col' : '#match-en-col';
-        document.querySelectorAll(`${col} button`).forEach(b => { if(!b.classList.contains('bg-emerald-50')) b.className = "w-full p-2.5 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-xs text-slate-800 text-left transition cursor-pointer"; });
-        btn.className = "w-full p-2.5 bg-red-50 border-2 border-red-500 rounded-xl font-bold text-xs text-red-600 text-left transition cursor-pointer shadow-sm";
-        if(type === 'vn') sVn = val; else sEn = val;
+      const startMatchingGame = (count) => {
+        const shuffled = [...vocabData].sort(() => 0.5 - Math.random()).slice(0, count);
+        const vnCol = document.getElementById('match-vn-col');
+        const enCol = document.getElementById('match-en-col');
+        vnCol.innerHTML = '';
+        enCol.innerHTML = '';
 
-        if(sVn && sEn) {
-          const match = currentMatchingData.find(i => i.vn === sVn && i.en === sEn);
-          if(match) {
-            document.querySelectorAll('#match-vn-col button, #match-en-col button').forEach(b => {
-              if(b.textContent === sVn || b.textContent === sEn) b.className = "w-full p-2.5 bg-emerald-50 border border-emerald-300 rounded-xl font-bold text-xs text-emerald-700 text-left transition opacity-75 cursor-default";
-            });
-            matchCnt++;
-            document.getElementById('match-score').textContent = `Matched: ${matchCnt} / ${currentMatchingData.length}`;
-            sVn = null; sEn = null;
-            if(matchCnt === currentMatchingData.length) {
-              renderCompletionScreen('game-matching', initMatchingSetup, `All ${currentMatchingData.length} pairs matched successfully!`);
+        let matchedCount = 0;
+        document.getElementById('match-score').textContent = `Matched: 0 / ${count}`;
+        document.getElementById('match-msg').style.display = 'none';
+
+        const shuffledVn = [...shuffled].sort(() => 0.5 - Math.random());
+        const shuffledEn = [...shuffled].sort(() => 0.5 - Math.random());
+
+        let selectedVn = null;
+        let selectedEn = null;
+
+        const checkMatch = () => {
+          if (selectedVn && selectedEn) {
+            if (selectedVn.dataset.id === selectedEn.dataset.id) {
+              selectedVn.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-800', 'opacity-50', 'pointer-events-none');
+              selectedEn.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-800', 'opacity-50', 'pointer-events-none');
+              matchedCount++;
+              document.getElementById('match-score').textContent = `Matched: ${matchedCount} / ${count}`;
+              if (matchedCount === count) {
+                const msg = document.getElementById('match-msg');
+                msg.textContent = "🎉 Excellent! All pairs matched correctly!";
+                msg.style.display = 'block';
+              }
+            } else {
+              selectedVn.classList.add('bg-red-100', 'border-red-400', 'text-red-700');
+              selectedEn.classList.add('bg-red-100', 'border-red-400', 'text-red-700');
+              setTimeout(() => {
+                selectedVn.classList.remove('bg-red-100', 'border-red-400', 'text-red-700', 'bg-red-50', 'border-red-500');
+                selectedEn.classList.remove('bg-red-100', 'border-red-400', 'text-red-700', 'bg-red-50', 'border-red-500');
+              }, 600);
             }
-          } else {
-            setTimeout(() => {
-              document.querySelectorAll('#match-vn-col button, #match-en-col button').forEach(b => {
-                if(!b.classList.contains('bg-emerald-50')) b.className = "w-full p-2.5 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-xs text-slate-800 text-left transition cursor-pointer";
-              });
-            }, 400);
-            sVn = null; sEn = null;
+            selectedVn = null;
+            selectedEn = null;
           }
-        }
+        };
+
+        shuffledVn.forEach(item => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.textContent = item.vn;
+          btn.dataset.id = item.vn;
+          btn.className = 'w-full py-3 px-4 rounded-xl border border-stone-200 bg-white hover:bg-stone-50 text-slate-800 font-extrabold text-xs sm:text-sm transition shadow-2xs cursor-pointer text-center';
+          btn.addEventListener('click', () => {
+            if (selectedVn) selectedVn.classList.remove('bg-red-50', 'border-red-500');
+            selectedVn = btn;
+            btn.classList.add('bg-red-50', 'border-red-500');
+            speakWord(item.vn);
+            checkMatch();
+          });
+          vnCol.appendChild(btn);
+        });
+
+        shuffledEn.forEach(item => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.textContent = item.en;
+          btn.dataset.id = item.vn;
+          btn.className = 'w-full py-3 px-4 rounded-xl border border-stone-200 bg-white hover:bg-stone-50 text-slate-800 font-extrabold text-xs sm:text-sm transition shadow-2xs cursor-pointer text-center';
+          btn.addEventListener('click', () => {
+            if (selectedEn) selectedEn.classList.remove('bg-red-50', 'border-red-500');
+            selectedEn = btn;
+            btn.classList.add('bg-red-50', 'border-red-500');
+            checkMatch();
+          });
+          enCol.appendChild(btn);
+        });
       };
 
-// MCQs logic
-      let mcqIdx = 0, mcqScore = 0, mcqList = [];
-      const initMcq = () => {
-        mcqIdx = 0; mcqScore = 0;
-        mcqList = [...flashcardData].sort(() => Math.random() - 0.5);
-        loadMcq();
+      // 3. MCQs logic
+      let mcqIndex = 0;
+      let mcqScore = 0;
+      let mcqList = [];
+      const initMcqs = () => {
+        mcqIndex = 0;
+        mcqScore = 0;
+        mcqList = [...vocabData].sort(() => 0.5 - Math.random());
+        renderMcqQuestion();
       };
 
-      // Hàm tạo âm thanh thông báo đúng/sai nhanh bằng Web Audio API
-      const playSound = (isCorrect) => {
-        try {
-          const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-          const osc = audioCtx.createOscillator();
-          const gain = audioCtx.createGain();
-          osc.connect(gain);
-          gain.connect(audioCtx.destination);
-          
-          if (isCorrect) {
-            osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // Nốt D5 (đúng)
-            osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.1); // Nốt A5
-          } else {
-            osc.frequency.setValueAtTime(220, audioCtx.currentTime); // Nốt A3 (sai trầm)
-            osc.frequency.setValueAtTime(150, audioCtx.currentTime + 0.1);
-          }
-          
-          gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
-          osc.start();
-          osc.stop(audioCtx.currentTime + 0.3);
-        } catch (e) {}
-      };
-
-      const loadMcq = () => {
-        if(mcqIdx >= mcqList.length) {
-          renderCompletionScreen('game-mcqs', initMcq, `Score: ${mcqScore} / ${mcqList.length}`);
+      const renderMcqQuestion = () => {
+        if (mcqIndex >= mcqList.length) {
+          renderCompletionScreen('game-mcqs', initMcqs, `Score: ${mcqScore} / ${mcqList.length}`);
           return;
         }
-        document.getElementById('mcq-progress').textContent = `${mcqIdx + 1} / ${mcqList.length}`;
+        const current = mcqList[mcqIndex];
+        document.getElementById('mcq-progress').textContent = `${mcqIndex + 1} / ${mcqList.length}`;
         document.getElementById('mcq-score-box').textContent = `Score: ${mcqScore}`;
-        const cur = mcqList[mcqIdx];
-        document.getElementById('mcq-word').textContent = cur.vn;
-        document.getElementById('speakMcqBtn').onclick = () => speakWord(cur.vn);
+        document.getElementById('mcq-word').textContent = current.vn;
+        document.getElementById('mcq-feedback-area').innerHTML = '';
 
-        let opts = [cur.en];
-        while(opts.length < 4 && opts.length < flashcardData.length) {
-          let rand = flashcardData[Math.floor(Math.random() * flashcardData.length)].en;
-          if(!opts.includes(rand)) opts.push(rand);
-        }
-        opts.sort(() => Math.random() - 0.5);
+        const wrongOptions = vocabData.filter(w => w.en !== current.en).sort(() => 0.5 - Math.random()).slice(0, 3);
+        const options = [...wrongOptions, current].sort(() => 0.5 - Math.random());
 
         const optContainer = document.getElementById('mcq-options');
         optContainer.innerHTML = '';
-        document.getElementById('mcq-feedback-area').innerHTML = '';
 
-        opts.forEach(o => {
-          let b = document.createElement('button');
-          b.type = 'button';
-          b.className = "w-full py-2.5 px-4 bg-stone-50 hover:bg-stone-100 border border-stone-200 rounded-xl font-bold text-base text-slate-800 text-center transition cursor-pointer shadow-2xs";
-          b.textContent = o;
-          b.addEventListener('click', () => {
+        options.forEach(opt => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.textContent = opt.en;
+          btn.className = 'w-full py-3.5 px-4 rounded-2xl border border-stone-200 bg-white hover:bg-stone-50 text-slate-800 font-extrabold text-sm sm:text-base transition shadow-2xs cursor-pointer text-center';
+          btn.addEventListener('click', () => {
             const allBtns = optContainer.querySelectorAll('button');
-            allBtns.forEach(btn => btn.disabled = true);
-
-            if(o === cur.en) {
-              // Chọn đúng: Viền mảnh nhẹ, tự động chuyển câu sau 800ms
-              b.className = "w-full py-2.5 px-4 bg-emerald-50 border border-emerald-300 rounded-xl font-bold text-base text-emerald-700 text-center transition shadow-xs";
+            allBtns.forEach(b => b.disabled = true);
+            if (opt.en === current.en) {
+              btn.className = 'w-full py-3.5 px-4 rounded-2xl border border-emerald-500 bg-emerald-50 text-emerald-800 font-extrabold text-sm sm:text-base shadow-2xs text-center';
               mcqScore++;
               document.getElementById('mcq-score-box').textContent = `Score: ${mcqScore}`;
-              playSound(true);
-              setTimeout(() => {
-                mcqIdx++;
-                loadMcq();
-              }, 800);
             } else {
-              // Chọn sai: Viền mảnh nhẹ màu đỏ, hiện đáp án đúng và bắt buộc bấm Continue
-              b.className = "w-full py-2.5 px-4 bg-red-50 border border-red-300 rounded-xl font-bold text-base text-red-600 text-center transition shadow-xs";
-              allBtns.forEach(btn => { 
-                if(btn.textContent === cur.en) {
-                  btn.className = "w-full py-2.5 px-4 bg-emerald-50 border border-emerald-300 rounded-xl font-bold text-base text-emerald-700 text-center transition shadow-xs";
-                } 
-              });
-              playSound(false);
-              
-              let feedbackArea = document.getElementById('mcq-feedback-area');
-              feedbackArea.innerHTML = `
-                <div class="pt-4 flex justify-center">
-                  <button type="button" id="mcqContinueBtn" class="px-8 py-3 bg-[#111827] hover:bg-black text-white font-black rounded-2xl text-sm shadow-lg transition cursor-pointer">
-                    Continue →
-                  </button>
-                </div>
-              `;
-              document.getElementById('mcqContinueBtn').addEventListener('click', () => {
-                mcqIdx++;
-                loadMcq();
+              btn.className = 'w-full py-3.5 px-4 rounded-2xl border border-red-400 bg-red-50 text-red-700 font-extrabold text-sm sm:text-base shadow-2xs text-center';
+              allBtns.forEach(b => {
+                if (b.textContent === current.en) b.className = 'w-full py-3.5 px-4 rounded-2xl border border-emerald-500 bg-emerald-50 text-emerald-800 font-extrabold text-sm sm:text-base shadow-2xs text-center';
               });
             }
+            setTimeout(() => {
+              mcqIndex++;
+              renderMcqQuestion();
+            }, 1000);
           });
-          optContainer.appendChild(b);
+          optContainer.appendChild(btn);
         });
       };
-            // Scramble logic
-      let scrIdx = 0, scrScore = 0, scrList = [];
+      document.getElementById('speakMcqBtn').addEventListener('click', () => {
+        speakWord(mcqList[mcqIndex].vn);
+      });
+
+      // 4. Scramble logic
+      let scrIndex = 0;
+      let scrScore = 0;
+      let scrList = [];
       const initScramble = () => {
-        scrIdx = 0; scrScore = 0;
-        scrList = [...flashcardData].sort(() => Math.random() - 0.5);
-        loadScramble();
+        scrIndex = 0;
+        scrScore = 0;
+        scrList = [...vocabData].sort(() => 0.5 - Math.random());
+        renderScrambleQuestion();
       };
-      const loadScramble = () => {
-        if(scrIdx >= scrList.length) {
+
+      const renderScrambleQuestion = () => {
+        if (scrIndex >= scrList.length) {
           renderCompletionScreen('game-scramble', initScramble, `Score: ${scrScore} / ${scrList.length}`);
           return;
         }
-        document.getElementById('scramble-progress').textContent = `${scrIdx + 1} / ${scrList.length}`;
+        const current = scrList[scrIndex];
+        document.getElementById('scramble-progress').textContent = `${scrIndex + 1} / ${scrList.length}`;
         document.getElementById('scramble-score-box').textContent = `Score: ${scrScore}`;
-        const cur = scrList[scrIdx];
-        document.getElementById('scramble-hint').textContent = cur.en;
-        document.getElementById('speakScrBtn').onclick = () => speakWord(cur.vn);
-
-        let scrambled = cur.vn.split('').sort(() => Math.random() - 0.5).join('');
-        if(scrambled === cur.vn && cur.vn.length > 1) scrambled = cur.vn.split('').reverse().join('');
-        document.getElementById('scramble-letters').textContent = scrambled;
-        
-        const input = document.getElementById('scramble-input');
-        input.value = ''; input.disabled = false;
+        document.getElementById('scramble-hint').textContent = current.en;
+        document.getElementById('scramble-feedback').textContent = '';
+        document.getElementById('scramble-input').value = '';
+        document.getElementById('scramble-input').disabled = false;
         document.getElementById('checkScrambleBtn').disabled = false;
-        document.getElementById('scramble-feedback').innerHTML = '';
-        input.focus();
+
+        const scrambled = current.vn.split('').sort(() => 0.5 - Math.random()).join(' ');
+        document.getElementById('scramble-letters').textContent = scrambled;
       };
 
-      const checkScramble = () => {
+      document.getElementById('speakScrBtn').addEventListener('click', () => {
+        speakWord(scrList[scrIndex].vn);
+      });
+
+      const handleScrambleCheck = () => {
         const input = document.getElementById('scramble-input');
-        const cur = scrList[scrIdx];
-        const val = input.value.trim();
-        if(!val) return;
+        const feedback = document.getElementById('scramble-feedback');
+        const current = scrList[scrIndex];
+        if (!input.value.trim()) return;
 
-        input.disabled = true;
-        document.getElementById('checkScrambleBtn').disabled = true;
-
-        const removeDiacritics = (str) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');
-
-        if(removeDiacritics(val.toLowerCase()) === removeDiacritics(cur.vn.toLowerCase())) {
+        if (input.value.trim().toLowerCase() === current.vn.toLowerCase()) {
+          feedback.textContent = "✅ Correct!";
+          feedback.className = "text-xs sm:text-sm font-bold text-emerald-600 min-h-[20px]";
           scrScore++;
-          document.getElementById('scramble-feedback').innerHTML = `<span class="text-emerald-600 font-black">✨ Correct! (${cur.vn})</span>`;
           document.getElementById('scramble-score-box').textContent = `Score: ${scrScore}`;
+          input.disabled = true;
+          document.getElementById('checkScrambleBtn').disabled = true;
+          setTimeout(() => {
+            scrIndex++;
+            renderScrambleQuestion();
+          }, 1000);
         } else {
-          document.getElementById('scramble-feedback').innerHTML = `<span class="text-red-600 font-black">❌ Incorrect. Correct answer: ${cur.vn}</span>`;
+          feedback.textContent = `❌ Incorrect. The correct word is: ${current.vn}`;
+          feedback.className = "text-xs sm:text-sm font-bold text-red-600 min-h-[20px]";
         }
-        setTimeout(() => { scrIdx++; loadScramble(); }, 1500);
       };
 
-      document.getElementById('checkScrambleBtn').onclick = checkScramble;
-      document.getElementById('scramble-input').addEventListener('keydown', (e) => { if(e.key === 'Enter') checkScramble(); });
+      document.getElementById('checkScrambleBtn').addEventListener('click', handleScrambleCheck);
+      document.getElementById('scramble-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleScrambleCheck();
+      });
 
-      // True / False logic
-      let tfIdx = 0, tfScore = 0, tfList = [], currentTfItem = null, isTfCorrect = true;
+      // 5. True / False logic
+      let tfIndex = 0;
+      let tfScore = 0;
+      let tfList = [];
       const initTrueFalse = () => {
-        tfIdx = 0; tfScore = 0;
-        tfList = [...flashcardData].sort(() => Math.random() - 0.5);
-        loadTrueFalse();
+        tfIndex = 0;
+        tfScore = 0;
+        tfList = [...vocabData].sort(() => 0.5 - Math.random());
+        renderTfQuestion();
       };
-      const loadTrueFalse = () => {
-        if(tfIdx >= tfList.length) {
+
+      const renderTfQuestion = () => {
+        if (tfIndex >= tfList.length) {
           renderCompletionScreen('game-truefalse', initTrueFalse, `Score: ${tfScore} / ${tfList.length}`);
           return;
         }
-        document.getElementById('tf-progress').textContent = `${tfIdx + 1} / ${tfList.length}`;
+        const current = tfList[tfIndex];
+        document.getElementById('tf-progress').textContent = `${tfIndex + 1} / ${tfList.length}`;
         document.getElementById('tf-score-box').textContent = `Score: ${tfScore}`;
-        currentTfItem = tfList[tfIdx];
-        
-        isTfCorrect = Math.random() < 0.5;
-        let displayedMeaning = currentTfItem.en;
-        if(!isTfCorrect && flashcardData.length > 1) {
-          let wrong;
-          do {
-            wrong = flashcardData[Math.floor(Math.random() * flashcardData.length)].en;
-          } while(wrong === currentTfItem.en);
-          displayedMeaning = wrong;
-        }
-
-        document.getElementById('tf-word').textContent = currentTfItem.vn;
-        document.getElementById('tf-meaning').textContent = displayedMeaning;
-        document.getElementById('speakTfBtn').onclick = () => speakWord(currentTfItem.vn);
-        document.getElementById('tf-feedback').innerHTML = '';
+        document.getElementById('tf-feedback').textContent = '';
         document.getElementById('tfTrueBtn').disabled = false;
         document.getElementById('tfFalseBtn').disabled = false;
+
+        document.getElementById('tf-word').textContent = current.vn;
+
+        const isTrue = Math.random() < 0.5;
+        let displayMeaning = current.en;
+        if (!isTrue) {
+          const wrong = vocabData.filter(w => w.en !== current.en);
+          if (wrong.length > 0) {
+            displayMeaning = wrong[Math.floor(Math.random() * wrong.length)].en;
+          }
+        }
+        document.getElementById('tf-meaning').textContent = displayMeaning;
+        document.getElementById('tf-buttons-wrapper').dataset.correct = (displayMeaning === current.en) ? 'true' : 'false';
       };
 
-      const handleTfAnswer = (userChoice) => {
+      document.getElementById('speakTfBtn').addEventListener('click', () => {
+        speakWord(tfList[tfIndex].vn);
+      });
+
+      const handleTfAnswer = (userAns) => {
+        const correctAns = document.getElementById('tf-buttons-wrapper').dataset.correct === 'true';
+        const feedback = document.getElementById('tf-feedback');
         document.getElementById('tfTrueBtn').disabled = true;
         document.getElementById('tfFalseBtn').disabled = true;
 
-        if(userChoice === isTfCorrect) {
+        if (userAns === correctAns) {
+          feedback.textContent = "✅ Correct!";
+          feedback.className = "text-xs sm:text-sm font-bold text-emerald-600 min-h-[20px]";
           tfScore++;
-          document.getElementById('tf-feedback').innerHTML = `<span class="text-emerald-600 font-black">✨ Correct!</span>`;
           document.getElementById('tf-score-box').textContent = `Score: ${tfScore}`;
         } else {
-          document.getElementById('tf-feedback').innerHTML = `<span class="text-red-600 font-black">❌ Incorrect</span>`;
+          feedback.textContent = "❌ Incorrect!";
+          feedback.className = "text-xs sm:text-sm font-bold text-red-600 min-h-[20px]";
         }
-        setTimeout(() => { tfIdx++; loadTrueFalse(); }, 1200);
+        setTimeout(() => {
+          tfIndex++;
+          renderTfQuestion();
+        }, 1000);
       };
 
-      document.getElementById('tfTrueBtn').onclick = () => handleTfAnswer(true);
-      document.getElementById('tfFalseBtn').onclick = () => handleTfAnswer(false);
+      document.getElementById('tfTrueBtn').addEventListener('click', () => handleTfAnswer(true));
+      document.getElementById('tfFalseBtn').addEventListener('click', () => handleTfAnswer(false));
 
-      // Full List Logic
+      // 6. Full List logic
       const initFullList = () => {
         const tbody = document.getElementById('vocab-table-body');
         tbody.innerHTML = '';
-        document.getElementById('list-total-count').textContent = `Total: ${flashcardData.length} words`;
-        
-        flashcardData.forEach((item) => {
-          let tr = document.createElement('tr');
-          tr.className = "hover:bg-stone-50/80 transition";
-          tr.innerHTML = `
-            <td class="py-2.5 px-4 font-black text-slate-900">${item.vn}</td>
-            <td class="py-2.5 px-4 text-stone-600">${item.en}</td>
-            <td class="py-2.5 px-4 text-center">
-              <button type="button" class="px-3 py-1 bg-red-50 hover:bg-red-100 text-red-600 font-extrabold text-xs rounded-lg transition cursor-pointer inline-flex items-center gap-1 border border-red-200">
-                🔊 Listen
-              </button>
-            </td>
-          `;
-          tr.querySelector('button').addEventListener('click', () => speakWord(item.vn));
+        document.getElementById('list-total-count').textContent = `${vocabData.length} Words`;
+
+        vocabData.forEach(item => {
+          const tr = document.createElement('tr');
+          tr.className = 'hover:bg-stone-50 transition';
+
+          const tdVn = document.createElement('td');
+          tdVn.textContent = item.vn;
+          tdVn.className = 'font-black text-slate-900 py-3 px-2 sm:px-4 text-center';
+
+          const tdEn = document.createElement('td');
+          tdEn.textContent = item.en;
+          tdEn.className = 'font-medium text-stone-700 py-3 px-2 sm:px-4 text-center';
+
+          const tdAudio = document.createElement('td');
+          tdAudio.className = 'py-3 px-2 sm:px-4 text-center';
+          const listenBtn = document.createElement('button');
+          listenBtn.type = 'button';
+          listenBtn.innerHTML = '🔊 Listen';
+          listenBtn.className = 'px-3 py-1.5 bg-red-50 hover:bg-red-100 text-red-600 font-extrabold text-xs rounded-full shadow-2xs transition cursor-pointer inline-flex items-center gap-1 border border-red-200';
+          listenBtn.addEventListener('click', () => speakWord(item.vn));
+          tdAudio.appendChild(listenBtn);
+
+          tr.appendChild(tdVn);
+          tr.appendChild(tdEn);
+          tr.appendChild(tdAudio);
           tbody.appendChild(tr);
         });
       };
+
+      // Tab switcher event listeners
+      document.querySelectorAll('.game-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          const gameId = tab.getAttribute('data-game');
+          switchGame(gameId);
+        });
+      });
+
+      // Khởi động mặc định vào flashcard khi load trang chi tiết
+      switchGame('flashcard');
     }
   </script>
 </Layout>

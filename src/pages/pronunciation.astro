@@ -1,0 +1,361 @@
+---
+// src/pages/pronunciation.astro
+import Layout from '../layout.astro';
+---
+
+<Layout title="Master N - NG - NH Pronunciation | HAVIE Vietnamese">
+    <main class="max-w-5xl mx-auto px-4 py-8 space-y-12">
+        
+        <!-- HOOK HEADER SECTION -->
+        <div class="bg-slate-900 rounded-3xl p-8 sm:p-12 text-white shadow-xl space-y-5 text-center relative overflow-hidden border border-slate-800 flex flex-col items-center">
+            <span class="text-xs font-black text-amber-400 bg-amber-400/10 px-3.5 py-1.5 rounded-full uppercase tracking-wider border border-amber-400/20 inline-block">
+                Essential Pronunciation Masterclass
+            </span>
+            
+            <h1 class="text-2xl sm:text-4xl font-black tracking-tight leading-tight max-w-2xl">
+                Why is <span class="text-amber-400">"NG"</span> so hard for foreign learners?
+            </h1>
+            
+            <p class="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed font-normal">
+                Did you know that nearly <b>40% of Vietnamese people share the surname Nguyễn</b>? From ordering delicious food (<i class="text-amber-300">Ngon</i>), saying thank you (<i class="text-amber-300">Cảm ơn</i>), to asking for directions (<i class="text-amber-300">Nhà</i>), mastering <b>N, NG, and NH</b> is your key to speaking clear, natural Vietnamese.
+            </p>
+        </div>
+
+        <!-- 1. TONGUE & MOUTH POSITION DIAGRAMS (ĐÃ TĂNG CỠ CHỮ TO HƠN) -->
+        <section class="space-y-6">
+            <h2 class="text-2xl font-black text-slate-900">1. Anatomical Tongue Position Diagrams</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Sound N -->
+                <div class="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm space-y-5 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between border-b border-stone-100 pb-3">
+                            <span class="text-3xl font-black text-red-600">N</span>
+                            <span class="text-xs font-bold text-stone-400 uppercase tracking-wider">Alveolar Nasal</span>
+                        </div>
+                        
+                        <div class="bg-stone-50 rounded-xl p-4 flex flex-col items-center justify-center min-h-[180px] border border-stone-200">
+                            <svg viewBox="0 0 160 120" class="w-full h-32">
+                                <path d="M 20 35 Q 80 15 140 35" fill="none" stroke="#cbd5e1" stroke-width="5" stroke-linecap="round"/>
+                                <rect x="35" y="32" width="12" height="15" rx="3" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+                                <path d="M 35 110 Q 40 70 52 42 Q 70 90 120 110 Z" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+                                <circle cx="52" cy="42" r="5" fill="#eab308"/>
+                            </svg>
+                            <span class="text-xs font-bold text-red-600 mt-2">Tip touches upper gum ridge</span>
+                        </div>
+
+                        <p class="text-sm text-stone-700 leading-relaxed font-medium">
+                            Press the <b>tip of your tongue</b> firmly against the ridge right behind your upper front teeth (like English "n").
+                        </p>
+                    </div>
+
+                    <button onclick="speakText('Na')" class="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-sm transition cursor-pointer shadow-xs">
+                        🔊 Listen: Na
+                    </button>
+                </div>
+
+                <!-- Sound NG -->
+                <div class="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm space-y-5 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between border-b border-stone-100 pb-3">
+                            <span class="text-3xl font-black text-amber-600">NG</span>
+                            <span class="text-xs font-bold text-stone-400 uppercase tracking-wider">Velar Nasal</span>
+                        </div>
+                        
+                        <div class="bg-stone-50 rounded-xl p-4 flex flex-col items-center justify-center min-h-[180px] border border-stone-200">
+                            <svg viewBox="0 0 160 120" class="w-full h-32">
+                                <path d="M 20 35 Q 80 15 140 35" fill="none" stroke="#cbd5e1" stroke-width="5" stroke-linecap="round"/>
+                                <rect x="35" y="32" width="12" height="15" rx="3" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+                                <path d="M 35 110 Q 55 105 80 100 Q 120 70 128 50 Q 140 90 135 110 Z" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+                                <circle cx="128" cy="50" r="5" fill="#eab308"/>
+                                <text x="36" y="65" fill="#ef4444" font-size="14" font-weight="black">✕</text>
+                            </svg>
+                            <span class="text-xs font-bold text-amber-600 mt-2">Back touches soft palate (Like "sing")</span>
+                        </div>
+
+                        <p class="text-sm text-stone-700 leading-relaxed font-medium">
+                            <b>Do NOT touch teeth!</b> Raise the back of your tongue like the sound <b>"-ng" in English words like "sing" or "song"</b>.
+                        </p>
+                    </div>
+
+                    <button onclick="speakText('Nga')" class="w-full py-3 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-xl text-sm transition cursor-pointer shadow-xs">
+                        🔊 Listen: Nga
+                    </button>
+                </div>
+
+                <!-- Sound NH -->
+                <div class="bg-white rounded-2xl p-6 border border-stone-200 shadow-sm space-y-5 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between border-b border-stone-100 pb-3">
+                            <span class="text-3xl font-black text-emerald-600">NH</span>
+                            <span class="text-xs font-bold text-stone-400 uppercase tracking-wider">Palatal Nasal</span>
+                        </div>
+                        
+                        <div class="bg-stone-50 rounded-xl p-4 flex flex-col items-center justify-center min-h-[180px] border border-stone-200">
+                            <svg viewBox="0 0 160 120" class="w-full h-32">
+                                <path d="M 20 35 Q 80 15 140 35" fill="none" stroke="#cbd5e1" stroke-width="5" stroke-linecap="round"/>
+                                <rect x="35" y="32" width="12" height="15" rx="3" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+                                <path d="M 35 110 Q 50 85 80 48 Q 110 85 135 110 Z" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+                                <ellipse cx="80" cy="48" rx="12" ry="4" fill="#eab308"/>
+                            </svg>
+                            <span class="text-xs font-bold text-emerald-600 mt-2">Flat middle pressed against roof</span>
+                        </div>
+
+                        <p class="text-sm text-stone-700 leading-relaxed font-medium">
+                            Press the <b>flat middle surface of your tongue</b> upward against the hard arch of your mouth (like Spanish <i>ñ</i>).
+                        </p>
+                    </div>
+
+                    <button onclick="speakText('Nha')" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-sm transition cursor-pointer shadow-xs">
+                        🔊 Listen: Nha
+                    </button>
+                </div>
+            </div>
+        </section>
+
+<!-- SPECIAL MASTERCLASS BOX: HOW TO MASTER "NG" SOUND (CLEAN VERTICAL LAYOUT) -->
+        <section class="bg-amber-50/90 border-2 border-amber-200/80 rounded-3xl p-6 sm:p-10 space-y-6 shadow-sm">
+            <div class="flex items-center gap-4 border-b border-amber-200/60 pb-5">
+                <span class="text-4xl">💡</span>
+                <div>
+                    <h3 class="text-xl sm:text-2xl font-black text-amber-950">Pro-Tips: How to Guarantee You Pronounce "NG" Correctly</h3>
+                    <p class="text-sm text-amber-900 font-medium">Follow these foolproof steps if you struggle with the "NG" sound.</p>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Step 1 -->
+                <div class="bg-white p-6 rounded-2xl border border-amber-200/80 shadow-xs flex flex-col sm:flex-row sm:items-center gap-4">
+                    <div class="sm:w-44 shrink-0">
+                        <span class="text-xs font-black bg-amber-100 text-amber-900 px-3 py-1 rounded-md uppercase">Step 1</span>
+                        <h4 class="text-base font-black text-slate-900 mt-2">Think "Si<u>ng</u>" or "So<u>ng</u>"</h4>
+                    </div>
+                    <p class="text-sm text-stone-700 leading-relaxed border-t sm:border-t-0 sm:border-l border-stone-100 pt-3 sm:pt-0 sm:pl-5">
+                        Say the English word <b>"sing"</b> out loud and hold the ending sound: <i>si-NG-g-g</i>. That exact back-of-the-throat block is the Vietnamese "NG"!
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-white p-6 rounded-2xl border border-amber-200/80 shadow-xs flex flex-col sm:flex-row sm:items-center gap-4">
+                    <div class="sm:w-44 shrink-0">
+                        <span class="text-xs font-black bg-amber-100 text-amber-900 px-3 py-1 rounded-md uppercase">Step 2</span>
+                        <h4 class="text-base font-black text-slate-900 mt-2">Keep Tongue Tip Down</h4>
+                    </div>
+                    <p class="text-sm text-stone-700 leading-relaxed border-t sm:border-t-0 sm:border-l border-stone-100 pt-3 sm:pt-0 sm:pl-5">
+                        Your front teeth and tongue tip must remain <b>completely relaxed and away from your teeth</b>. If your tongue touches the front, it accidentally becomes an "N".
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-white p-6 rounded-2xl border border-amber-200/80 shadow-xs flex flex-col sm:flex-row sm:items-center gap-4">
+                    <div class="sm:w-44 shrink-0">
+                        <span class="text-xs font-black bg-amber-100 text-amber-900 px-3 py-1 rounded-md uppercase">Step 3</span>
+                        <h4 class="text-base font-black text-slate-900 mt-2">The "Sing-A-Song" Bridge</h4>
+                    </div>
+                    <p class="text-sm text-stone-700 leading-relaxed border-t sm:border-t-0 sm:border-l border-stone-100 pt-3 sm:pt-0 sm:pl-5">
+                        Say <b>"SING A SONG"</b> quickly. The transition from "-ng" into "a" (<i>si-ng-a</i>) is precisely how native speakers pronounce <i>Nga</i>!
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- 2. INTERACTIVE LISTENING QUIZ (10 QUESTIONS) -->
+        <section class="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-stone-200/90 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-stone-100 pb-4">
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+                        <span>🎧 Interactive Listening Test</span>
+                    </h2>
+                    <p class="text-xs text-stone-500 font-medium">Listen carefully to the audio and pick the exact word you hear.</p>
+                </div>
+                
+                <div class="flex items-center space-x-3 bg-stone-50 px-4 py-2 rounded-2xl border border-stone-200/80 self-start sm:self-auto">
+                    <span class="text-xs text-stone-500 font-bold uppercase">Score:</span>
+                    <span id="quiz-score" class="text-lg font-black text-red-600">0 / 10</span>
+                </div>
+            </div>
+
+            <div class="bg-stone-50/70 rounded-2xl p-6 sm:p-8 border border-stone-200/80 space-y-6 text-center">
+                <div class="space-y-3">
+                    <span class="text-xs font-black text-stone-400 uppercase tracking-wider block">Question <span id="quiz-step-num">1 / 10</span></span>
+                    
+                    <button onclick="playCurrentQuizAudio()" class="px-6 py-3.5 bg-red-600 hover:bg-red-700 text-white font-black rounded-2xl text-sm transition shadow-md shadow-red-600/20 cursor-pointer inline-flex items-center gap-2">
+                        <span class="text-lg">🔊</span> Click to Play Audio
+                    </button>
+                </div>
+
+                <!-- Multiple Choice Options -->
+                <div id="quiz-options-container" class="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-xl mx-auto pt-2">
+                </div>
+
+                <!-- Result Feedback -->
+                <div id="quiz-feedback" class="text-sm font-bold min-h-[1.5rem] pt-2"></div>
+
+                <!-- Next Question Button -->
+                <div>
+                    <button onclick="nextQuizQuestion()" id="next-quiz-btn" class="hidden px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white text-xs font-black rounded-xl transition shadow-md cursor-pointer mx-auto items-center gap-2">
+                        <span>Next Question →</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. MINIMAL PAIRS EAR TRAINING -->
+        <section class="bg-white rounded-2xl p-6 border border-stone-200 space-y-6 shadow-xs">
+            <div>
+                <h2 class="text-xl font-black text-slate-900">3. Minimal Pairs Ear Training</h2>
+                <p class="text-xs text-stone-500">Tap any word to listen to its pronunciation.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- N vs NG -->
+                <div class="bg-stone-50 p-4 rounded-xl border border-stone-200 space-y-3">
+                    <h3 class="text-xs font-black uppercase text-red-600 tracking-wider">N vs NG</h3>
+                    <div class="space-y-2 text-sm">
+                        <div onclick="speakText('Na')" class="p-2.5 bg-white rounded-lg border border-stone-200 flex justify-between cursor-pointer hover:border-red-400 transition">
+                            <b>Na</b> <span class="text-xs font-bold text-red-600">🔊 Listen</span>
+                        </div>
+                        <div onclick="speakText('Nga')" class="p-2.5 bg-white rounded-lg border border-stone-200 flex justify-between cursor-pointer hover:border-amber-400 transition">
+                            <b>Nga</b> <span class="text-xs font-bold text-amber-600">🔊 Listen</span>
+                        </div>
+                        <div onclick="speakText('Nơ')" class="p-2.5 bg-white rounded-lg border border-stone-200 flex justify-between cursor-pointer hover:border-red-400 transition">
+                            <b>Nơ</b> <span class="text-xs font-bold text-red-600">🔊 Listen</span>
+                        </div>
+                        <div onclick="speakText('Ngơ')" class="p-2.5 bg-white rounded-lg border border-stone-200 flex justify-between cursor-pointer hover:border-amber-400 transition">
+                            <b>Ngơ</b> <span class="text-xs font-bold text-amber-600">🔊 Listen</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- N vs NH -->
+                <div class="bg-stone-50 p-4 rounded-xl border border-stone-200 space-y-3">
+                    <h3 class="text-xs font-black uppercase text-emerald-600 tracking-wider">N vs NH</h3>
+                    <div class="space-y-2 text-sm">
+                        <div onclick="speakText('No')" class="p-2.5 bg-white rounded-lg border border-stone-200 flex justify-between cursor-pointer hover:border-red-400 transition">
+                            <b>No</b> <span class="text-xs font-bold text-red-600">🔊 Listen</span>
+                        </div>
+                        <div onclick="speakText('Nho')" class="p-2.5 bg-white rounded-lg border border-stone-200 flex justify-between cursor-pointer hover:border-emerald-400 transition">
+                            <b>Nho</b> <span class="text-xs font-bold text-emerald-600">🔊 Listen</span>
+                        </div>
+                        <div onclick="speakText('Nam')" class="p-2.5 bg-white rounded-lg border border-stone-200 flex justify-between cursor-pointer hover:border-red-400 transition">
+                            <b>Nam</b> <span class="text-xs font-bold text-red-600">🔊 Listen</span>
+                        </div>
+                        <div onclick="speakText('Nham')" class="p-2.5 bg-white rounded-lg border border-stone-200 flex justify-between cursor-pointer hover:border-emerald-400 transition">
+                            <b>Nham</b> <span class="text-xs font-bold text-emerald-600">🔊 Listen</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NG vs NH -->
+                <div class="bg-stone-50 p-4 rounded-xl border border-stone-200 space-y-3">
+                    <h3 class="text-xs font-black uppercase text-purple-600 tracking-wider">NG vs NH</h3>
+                    <div class="space-y-2 text-sm">
+                        <div onclick="speakText('Ngô')" class="p-2.5 bg-white rounded-lg border border-stone-200 flex justify-between cursor-pointer hover:border-amber-400 transition">
+                            <b>Ngô</b> <span class="text-xs font-bold text-amber-600">🔊 Listen</span>
+                        </div>
+                        <div onclick="speakText('Nhô')" class="p-2.5 bg-white rounded-lg border border-stone-200 flex justify-between cursor-pointer hover:border-emerald-400 transition">
+                            <b>Nhô</b> <span class="text-xs font-bold text-emerald-600">🔊 Listen</span>
+                        </div>
+                        <div onclick="speakText('Ngạc')" class="p-2.5 bg-white rounded-lg border border-stone-200 flex justify-between cursor-pointer hover:border-amber-400 transition">
+                            <b>Ngạc</b> <span class="text-xs font-bold text-amber-600">🔊 Listen</span>
+                        </div>
+                        <div onclick="speakText('Nhạc')" class="p-2.5 bg-white rounded-lg border border-stone-200 flex justify-between cursor-pointer hover:border-emerald-400 transition">
+                            <b>Nhạc</b> <span class="text-xs font-bold text-emerald-600">🔊 Listen</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Script Logic & 10-Question Quiz Handler -->
+    <script is:inline>
+        const quizData = [
+            { target: "Nga", options: ["Na", "Nga", "Nha"] },
+            { target: "Nho", options: ["No", "Ngô", "Nho"] },
+            { target: "Nguyên", options: ["Nuyên", "Nguyên", "Nhiên"] },
+            { target: "Ngon", options: ["Non", "Ngon", "Nhon"] },
+            { target: "Nhà", options: ["Nà", "Ngà", "Nhà"] },
+            { target: "Nai", options: ["Nai", "Ngai", "Nhai"] },
+            { target: "Ngân", options: ["Nân", "Ngân", "Nhân"] },
+            { target: "Ngô", options: ["No", "Ngô", "Nho"] },
+            { target: "Nơ", options: ["Nơ", "Ngơ", "Nhơ"] },
+            { target: "Ngạc", options: ["Nạc", "Ngạc", "Nhạc"] }
+        ];
+
+        let currentQuizIndex = 0;
+        let score = 0;
+
+        function speakText(text) {
+            if (!('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'vi-VN';
+            utterance.rate = 0.85;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function playCurrentQuizAudio() {
+            speakText(quizData[currentQuizIndex].target);
+        }
+
+        function renderQuizQuestion() {
+            const item = quizData[currentQuizIndex];
+            document.getElementById('quiz-step-num').innerText = `${currentQuizIndex + 1} / ${quizData.length}`;
+            document.getElementById('quiz-feedback').innerText = '';
+            document.getElementById('next-quiz-btn').classList.add('hidden');
+            document.getElementById('next-quiz-btn').classList.remove('inline-flex');
+
+            const container = document.getElementById('quiz-options-container');
+            container.innerHTML = '';
+
+            item.options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'py-4 px-4 bg-white hover:bg-stone-100 border-2 border-stone-200 font-black rounded-2xl text-base text-slate-800 transition shadow-xs cursor-pointer hover:border-stone-300';
+                btn.innerText = opt;
+                btn.onclick = () => checkQuizAnswer(opt, btn);
+                container.appendChild(btn);
+            });
+        }
+
+        function checkQuizAnswer(selectedOption, buttonEl) {
+            const item = quizData[currentQuizIndex];
+            const feedbackEl = document.getElementById('quiz-feedback');
+            const allButtons = document.querySelectorAll('#quiz-options-container button');
+
+            allButtons.forEach(b => b.disabled = true);
+
+            if (selectedOption === item.target) {
+                score++;
+                buttonEl.className = 'py-4 px-4 bg-emerald-600 text-white font-black rounded-2xl text-base border-2 border-emerald-500 shadow-md';
+                feedbackEl.innerHTML = `<span class="text-emerald-600">✓ Correct! That was "${item.target}".</span>`;
+            } else {
+                buttonEl.className = 'py-4 px-4 bg-red-600 text-white font-black rounded-2xl text-base border-2 border-red-500 shadow-md';
+                feedbackEl.innerHTML = `<span class="text-red-600">✕ Incorrect. The correct answer was "${item.target}".</span>`;
+            }
+
+            document.getElementById('quiz-score').innerText = `${score} / ${quizData.length}`;
+            const nextBtn = document.getElementById('next-quiz-btn');
+            nextBtn.classList.remove('hidden');
+            nextBtn.classList.add('inline-flex');
+        }
+
+        function nextQuizQuestion() {
+            if (currentQuizIndex < quizData.length - 1) {
+                currentQuizIndex++;
+                renderQuizQuestion();
+            } else {
+                document.getElementById('quiz-options-container').innerHTML = `
+                    <div class="col-span-3 py-6 text-emerald-600 font-black text-lg">
+                        🎉 Test Completed! Final Score: ${score} / ${quizData.length}
+                    </div>
+                `;
+                document.getElementById('quiz-feedback').innerText = '';
+                document.getElementById('next-quiz-btn').classList.add('hidden');
+                document.getElementById('next-quiz-btn').classList.remove('inline-flex');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', renderQuizQuestion);
+    </script>
+</Layout>

@@ -94,157 +94,148 @@ const {
   <!-- FOOTER -->
   <Footer />
 
-  <!-- CONSULTATION / BOOKING MODAL -->
-  <div id="consultModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-stone-200 space-y-6 text-left">
-      
-      <div class="flex items-center justify-between border-b border-stone-100 pb-4">
-        <div>
-          <span class="text-xs sm:text-sm font-black text-red-600 uppercase tracking-widest bg-red-50 px-3.5 py-1.5 rounded-lg border border-red-200 inline-block font-brand">1-ON-1 LESSONS</span>
-          <h3 class="text-2xl sm:text-3xl font-black text-slate-900 font-brand mt-1.5">Book 25-Min Trial Lesson</h3>
-        </div>
-        <button id="closeModalBtn" type="button" class="w-10 h-10 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 font-bold flex items-center justify-center text-lg cursor-pointer">
-          ✕
-        </button>
+<!-- CONSULTATION / BOOKING MODAL -->
+<div id="consultModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+  <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-stone-200 space-y-6 text-left">
+    
+    <div class="flex items-center justify-between border-b border-stone-100 pb-4">
+      <div>
+        <span class="text-xs sm:text-sm font-black text-red-600 uppercase tracking-widest bg-red-50 px-3.5 py-1.5 rounded-lg border border-red-200 inline-block font-brand">1-ON-1 LESSONS</span>
+        <h3 class="text-2xl sm:text-3xl font-black text-slate-900 font-brand mt-1.5">Book 25-Min Trial Lesson</h3>
       </div>
-
-      <form id="consultForm" class="space-y-4 text-sm">
-        <div>
-          <label class="block font-bold text-slate-800 mb-1.5 text-base">Full Name / Tên của bạn *</label>
-          <input type="text" id="cName" required placeholder="e.g. Alex Smith" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label class="block font-bold text-slate-800 mb-1.5 text-base">Country / Quốc gia *</label>
-            <input type="text" id="cCountry" required placeholder="e.g. Germany, USA" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
-          </div>
-          <div>
-            <label class="block font-bold text-slate-800 mb-1.5 text-base">Phone / SĐT</label>
-            <input type="tel" id="cPhone" placeholder="e.g. +49..." class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
-          </div>
-        </div>
-
-        <div>
-          <label class="block font-bold text-slate-800 mb-1.5 text-base">Email Address *</label>
-          <input type="email" id="cEmail" required placeholder="name@example.com" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
-        </div>
-
-        <div>
-          <label class="block font-bold text-slate-800 mb-1.5 text-base">Learning Goals / Mục tiêu học tập *</label>
-          <textarea id="cGoals" rows="3" required placeholder="Current level, target dialect (Hanoi/Saigon), goals..." class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 resize-none text-base"></textarea>
-        </div>
-
-        <button
-          type="submit"
-          class="w-full py-4 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl text-base shadow-md transition cursor-pointer mt-3"
-        >
-          Submit Request to Hang →
-        </button>
-      </form>
-
-      <div id="successMessage" class="hidden text-center py-6 space-y-3">
-        <div class="text-4xl">🎉</div>
-        <h4 class="font-black text-slate-900 text-lg font-brand">Request Sent Successfully!</h4>
-        <p class="text-stone-600 text-sm leading-relaxed">Thank you! Hang has received your details and goals. She will reach out via email within 24 hours.</p>
-        <button id="btnCloseSuccess" type="button" class="px-6 py-3 bg-slate-900 text-white font-bold rounded-xl text-sm cursor-pointer">
-          Close Window
-        </button>
-      </div>
-
+      <button id="closeModalBtn" type="button" class="w-10 h-10 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 font-bold flex items-center justify-center text-lg cursor-pointer">
+        ✕
+      </button>
     </div>
+
+    <!-- FORM NỐI VỚI FORMSPREE CỦA BẠN -->
+    <form id="consultForm" action="https://formspree.io/f/xgaaeqnq" method="POST" class="space-y-4 text-sm">
+      <div>
+        <label class="block font-bold text-slate-800 mb-1.5 text-base">Full Name / Tên của bạn *</label>
+        <input type="text" id="cName" name="name" required placeholder="e.g. Alex Smith" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block font-bold text-slate-800 mb-1.5 text-base">Country / Quốc gia *</label>
+          <input type="text" id="cCountry" name="country" required placeholder="e.g. Germany, USA" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
+        </div>
+        <div>
+          <label class="block font-bold text-slate-800 mb-1.5 text-base">Phone / SĐT</label>
+          <input type="tel" id="cPhone" name="phone" placeholder="e.g. +49..." class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
+        </div>
+      </div>
+
+      <div>
+        <label class="block font-bold text-slate-800 mb-1.5 text-base">Email Address *</label>
+        <input type="email" id="cEmail" name="email" required placeholder="name@example.com" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 text-base" />
+      </div>
+
+      <div>
+        <label class="block font-bold text-slate-800 mb-1.5 text-base">Learning Goals / Mục tiêu học tập *</label>
+        <textarea id="cGoals" name="goals" rows="3" required placeholder="Current level, target dialect (Hanoi/Saigon), goals..." class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:outline-none focus:border-red-500 bg-stone-50/50 resize-none text-base"></textarea>
+      </div>
+
+      <button
+        type="submit"
+        class="w-full py-4 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl text-base shadow-md transition cursor-pointer mt-3"
+      >
+        Submit Request to Hang →
+      </button>
+    </form>
+
+    <div id="successMessage" class="hidden text-center py-6 space-y-3">
+      <div class="text-4xl">🎉</div>
+      <h4 class="font-black text-slate-900 text-lg font-brand">Request Sent Successfully!</h4>
+      <p class="text-stone-600 text-sm leading-relaxed">Thank you! Hang has received your details and goals. She will reach out via email within 24 hours.</p>
+      <button id="btnCloseSuccess" type="button" class="px-6 py-3 bg-slate-900 text-white font-bold rounded-xl text-sm cursor-pointer">
+        Close Window
+      </button>
+    </div>
+
   </div>
+</div>
 
-  <!-- SCRIPT XỬ LÝ MODAL VÀ FORM -->
-  <script is:inline>
-    document.addEventListener('DOMContentLoaded', () => {
-      const modal = document.getElementById('consultModal');
-      const closeModalBtn = document.getElementById('closeModalBtn');
-      const btnCloseSuccess = document.getElementById('btnCloseSuccess');
-      const consultForm = document.getElementById('consultForm');
-      const successMessage = document.getElementById('successMessage');
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('consultModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const btnCloseSuccess = document.getElementById('btnCloseSuccess');
+    const consultForm = document.getElementById('consultForm');
+    const successMessage = document.getElementById('successMessage');
 
-      document.body.addEventListener('click', (e) => {
-        const trigger = e.target.closest('.open-modal-trigger');
-        if (trigger) {
-          e.preventDefault();
-          if (modal) {
-            modal.classList.remove('hidden');
-            if (consultForm) consultForm.classList.remove('hidden');
-            if (successMessage) successMessage.classList.add('hidden');
-            const mobileMenu = document.getElementById('mobileMenu');
-            if (mobileMenu) mobileMenu.classList.add('hidden');
-          }
+    document.body.addEventListener('click', (e) => {
+      const trigger = e.target.closest('.open-modal-trigger');
+      if (trigger) {
+        e.preventDefault();
+        if (modal) {
+          modal.classList.remove('hidden');
+          if (consultForm) consultForm.classList.remove('hidden');
+          if (successMessage) successMessage.classList.add('hidden');
+          const mobileMenu = document.getElementById('mobileMenu');
+          if (mobileMenu) mobileMenu.classList.add('hidden');
         }
-      });
-
-      const hideModal = () => {
-        if (modal) modal.classList.add('hidden');
-        if (consultForm && successMessage) {
-          consultForm.classList.remove('hidden');
-          successMessage.classList.add('hidden');
-          consultForm.reset();
-        }
-      };
-
-      if (closeModalBtn) closeModalBtn.addEventListener('click', hideModal);
-      if (btnCloseSuccess) btnCloseSuccess.addEventListener('click', hideModal);
-      if (modal) {
-        modal.addEventListener('click', (e) => { 
-          if (e.target === modal) hideModal(); 
-        });
-      }
-
-      if (consultForm) {
-        consultForm.addEventListener('submit', async (e) => {
-          e.preventDefault();
-          const submitBtn = consultForm.querySelector('button[type="submit"]');
-          if (submitBtn.disabled) return;
-
-          const name = document.getElementById('cName').value;
-          const country = document.getElementById('cCountry').value;
-          const phone = document.getElementById('cPhone').value;
-          const email = document.getElementById('cEmail').value;
-          const goals = document.getElementById('cGoals').value;
-
-          const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwALyCIFh4XLjpYQCaJxQH3S3krOkcRJERXz9IcAPWpUK3QKOpj583xWw6A31TfgvSDqw/exec'; 
-
-          const formData = new URLSearchParams();
-          formData.append('name', name);
-          formData.append('country', country);
-          formData.append('phone', phone);
-          formData.append('email', email);
-          formData.append('goals', goals);
-
-          submitBtn.disabled = true;
-          submitBtn.style.opacity = '0.7';
-          submitBtn.style.cursor = 'not-allowed';
-          const originalText = submitBtn.innerHTML;
-          submitBtn.innerHTML = 'Sending request... ⏳';
-
-          try {
-            await fetch(WEB_APP_URL, {
-              method: 'POST',
-              mode: 'no-cors',
-              body: formData
-            });
-
-            consultForm.classList.add('hidden');
-            successMessage.classList.remove('hidden');
-
-          } catch (error) {
-            console.error("Error submitting form:", error);
-            consultForm.classList.add('hidden');
-            successMessage.classList.add('hidden');
-          } finally {
-            submitBtn.disabled = false;
-            submitBtn.style.opacity = '1';
-            submitBtn.style.cursor = 'pointer';
-            submitBtn.innerHTML = originalText;
-          }
-        });
       }
     });
-  </script>
+
+    const hideModal = () => {
+      if (modal) modal.classList.add('hidden');
+      if (consultForm && successMessage) {
+        consultForm.classList.remove('hidden');
+        successMessage.classList.add('hidden');
+        consultForm.reset();
+      }
+    };
+
+    if (closeModalBtn) closeModalBtn.addEventListener('click', hideModal);
+    if (btnCloseSuccess) btnCloseSuccess.addEventListener('click', hideModal);
+    if (modal) {
+      modal.addEventListener('click', (e) => { 
+        if (e.target === modal) hideModal(); 
+      });
+    }
+
+    if (consultForm) {
+      consultForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const submitBtn = consultForm.querySelector('button[type="submit"]');
+        if (submitBtn.disabled) return;
+
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = '0.7';
+        submitBtn.style.cursor = 'not-allowed';
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = 'Sending request... ⏳';
+
+        const formData = new FormData(consultForm);
+
+        try {
+          const response = await fetch(consultForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          if (response.ok) {
+            consultForm.classList.add('hidden');
+            successMessage.classList.remove('hidden');
+          } else {
+            alert("Oops! There was a problem submitting your form. Please try again.");
+          }
+        } catch (error) {
+          console.error("Error submitting form:", error);
+          alert("Network error. Please try again later.");
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.style.opacity = '1';
+          submitBtn.style.cursor = 'pointer';
+          submitBtn.innerHTML = originalText;
+        }
+      });
+    }
+  });
+</script>
 </body>
 </html>
