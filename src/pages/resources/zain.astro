@@ -1,0 +1,850 @@
+---
+// src/pages/resources/Zain.astro
+import Layout from '../../layout.astro';
+---
+
+<Layout title="How to order · Learn Vietnamese">
+  <div class="min-h-screen bg-[#fdfbf7] text-stone-900 pb-20 font-sans antialiased selection:bg-red-500 selection:text-white">
+    
+    <!-- TOP TABS NAVIGATION BAR (Cuộn ngang mượt trên Mobile) -->
+    <div class="bg-[#fdfbf7]/90 backdrop-blur-md border-b border-stone-200/60 py-3 px-3 sm:px-6 sticky top-0 z-50 shadow-2xs">
+      <div class="max-w-4xl mx-auto flex items-center justify-start sm:justify-center gap-2 overflow-x-auto scrollbar-none no-scrollbar py-0.5" id="tabs"></div>
+    </div>
+
+    <!-- STICKY PRONOUN SELECTORS CONTROL PANEL (Tối ưu cho Mobile) -->
+    <div class="sticky top-[57px] z-40 max-w-4xl mx-auto px-3 sm:px-6 pt-3">
+      <div class="bg-white/95 backdrop-blur-xl border border-stone-200/90 rounded-2xl p-2.5 sm:p-3.5 shadow-xl shadow-stone-200/40">
+        
+        <!-- PRONOUN SELECTORS -->
+        <div class="grid grid-cols-2 gap-2 sm:gap-3">
+          <!-- DROPDOWN 1: LISTENER -->
+          <div class="relative" id="dropdown-who-container">
+            <div class="lbl text-center text-[10px] sm:text-xs">👤 Listener</div>
+            <button id="dropdown-who-btn" class="w-full flex items-center justify-between bg-stone-50/80 border border-stone-200 px-2.5 sm:px-4 py-2 rounded-xl text-left font-bold text-stone-900 hover:border-red-400 hover:bg-white transition cursor-pointer">
+              <span id="dropdown-who-text" class="text-xs sm:text-base truncate mx-auto"></span>
+              <svg id="dropdown-who-arrow" class="w-3.5 h-3.5 text-red-500 transition-transform duration-200 flex-shrink-0 ml-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div id="dropdown-who-menu" class="hidden absolute left-0 right-0 top-full mt-1.5 bg-white border border-stone-200 rounded-xl shadow-2xl overflow-hidden z-50 p-1.5 space-y-1"></div>
+          </div>
+
+          <!-- DROPDOWN 2: ME -->
+          <div class="relative" id="dropdown-me-container">
+            <div class="lbl text-center text-[10px] sm:text-xs">🙋‍♂️ Me (Tôi)</div>
+            <button id="dropdown-me-btn" class="w-full flex items-center justify-between bg-stone-50/80 border border-stone-200 px-2.5 sm:px-4 py-2 rounded-xl text-left font-bold text-stone-900 hover:border-red-400 hover:bg-white transition cursor-pointer">
+              <span id="dropdown-me-text" class="text-xs sm:text-base truncate mx-auto"></span>
+              <svg id="dropdown-me-arrow" class="w-3.5 h-3.5 text-red-500 transition-transform duration-200 flex-shrink-0 ml-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div id="dropdown-me-menu" class="hidden absolute left-0 right-0 top-full mt-1.5 bg-white border border-stone-200 rounded-xl shadow-2xl overflow-hidden z-50 p-1.5 space-y-1"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="max-w-4xl mx-auto px-3 sm:px-6 pt-4 sm:pt-6">
+
+      <!-- TAB 1: ORDER -->
+      <section id="tab-order" class="space-y-6 sm:space-y-8">
+        
+        <!-- SECTION 1: EXCUSE ME -->
+        <div>
+          <h2 class="sec"><span>👋</span> 1. Excuse me</h2>
+          <div class="card card-compact row shadow-xs">
+            <div class="text-left">
+              <div class="vi text-sm sm:text-base" id="excuse"></div>
+              <div class="en text-xs text-stone-500 font-medium">Excuse me</div>
+            </div>
+            <div id="excuseBtn" class="flex items-center"></div>
+          </div>
+        </div>
+
+        <!-- SECTION 2 -->
+        <div>
+          <h2 class="sec"><span>🍜</span> 2. Order Food</h2>
+          <div class="card-formula mb-4 sm:mb-6" id="formula"></div>
+          
+          <div class="card card-tinted mb-4 shadow-xs text-center">
+            <div class="lbl">🔢 Quantity / Số lượng</div>
+            <div class="flex flex-wrap justify-center gap-1.5 sm:gap-2.5 mt-2" id="b-num"></div>
+          </div>
+
+          <div class="card card-tinted mb-5 space-y-5 shadow-xs text-center">
+            <div>
+              <div class="lbl">🍲 Choose Dish</div>
+              <div class="flex flex-wrap justify-center gap-1.5 sm:gap-2.5 mt-2" id="f-dish"></div>
+            </div>
+            <div>
+              <div class="lbl">🥩 Meat / Protein <span class="font-normal text-stone-400 lowercase">(no pork)</span></div>
+              <div class="flex flex-wrap justify-center gap-1.5 sm:gap-2.5 mt-2" id="f-meat"></div>
+            </div>
+            <div id="f-sea-wrap">
+              <div class="lbl">🦐 Seafood Type</div>
+              <div class="flex flex-wrap justify-center gap-1.5 sm:gap-2.5 mt-2" id="f-sea"></div>
+            </div>
+          </div>
+
+          <!-- RESULT PREVIEW CARD -->
+          <div class="card card-result row mb-5 shadow-lg">
+            <div class="text-left pr-2">
+              <span class="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-widest text-red-600 bg-red-50 px-2 py-0.5 rounded-full mb-1 inline-block border border-red-100">Live Phrase</span>
+              <div class="vi text-base sm:text-lg text-stone-900" id="fVi"></div>
+              <div class="en text-xs sm:text-sm mt-0.5 text-stone-500 font-medium" id="fEn"></div>
+            </div>
+            <div id="fBtn" class="flex items-center"></div>
+          </div>
+
+          <!-- DIETARY NOTE -->
+          <div class="p-3 sm:p-4 rounded-2xl bg-amber-500/10 border border-amber-400/20 text-amber-900 font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 sm:gap-3 mb-4 shadow-2xs text-center">
+            <span class="text-lg sm:text-xl">🚫🐖</span> Don’t eat pork? Say it clearly:
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5 mb-6 sm:mb-8" id="ex-pork"></div>
+        </div>
+
+        <!-- DRINKS SECTION -->
+        <div>
+          <h2 class="sec"><span>🧋</span> Drinks & Beverages</h2>
+          <div class="card card-tinted mb-5 space-y-5 shadow-xs text-center">
+            <div>
+              <div class="lbl">☕ Drink Category</div>
+              <div class="flex flex-wrap justify-center gap-1.5 sm:gap-2.5 mt-2" id="d-drink"></div>
+            </div>
+            <div id="d-fruit-wrap">
+              <div class="lbl">🥭 Fruit Flavor</div>
+              <div class="flex flex-wrap justify-center gap-1.5 sm:gap-2.5 mt-2" id="d-fruit"></div>
+            </div>
+            <div id="d-temp-wrap">
+              <div class="lbl flex items-center justify-center gap-1">
+                🧊 Temperature / Ice 
+                <span class="text-[10px] font-normal lowercase text-stone-400 bg-stone-100 px-1.5 py-0.5 rounded-md border border-stone-200">(optional)</span>
+              </div>
+              <div class="flex flex-wrap justify-center gap-1.5 sm:gap-2.5 mt-2" id="d-temp"></div>
+            </div>
+          </div>
+
+          <!-- RESULT DRINK -->
+          <div class="card card-result row mb-6 sm:mb-8 shadow-lg">
+            <div class="text-left pr-2">
+              <span class="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-widest text-red-600 bg-red-50 px-2 py-0.5 rounded-full mb-1 inline-block border border-red-100">Live Phrase</span>
+              <div class="vi text-base sm:text-lg text-stone-900" id="dVi"></div>
+              <div class="en text-xs sm:text-sm mt-0.5 text-stone-500 font-medium" id="dEn"></div>
+            </div>
+            <div id="dBtn" class="flex items-center"></div>
+          </div>
+        </div>
+
+        <!-- ASK FOR MENU -->
+        <div>
+          <h2 class="sec"><span>📖</span> Ask for the Menu</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5 mb-6 sm:mb-8" id="ex-menu"></div>
+        </div>
+
+        <!-- SECTION 3: THE BILL -->
+        <div>
+          <h2 class="sec"><span>💳</span> 3. Pay the Bill</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5 mb-6 sm:mb-8" id="bill"></div>
+        </div>
+      </section>
+
+      <!-- TAB 2: BOOK A RIDE -->
+      <section id="tab-ride" hidden class="space-y-6 sm:space-y-8">
+        <div>
+          <h2 class="sec"><span>🚕</span> 1. Book a Ride</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5 mb-5" id="ex-book"></div>
+          <div class="card card-tinted mb-5 shadow-xs text-center">
+            <div class="lbl">📍 Destination (Where to?)</div>
+            <div class="flex flex-wrap justify-center gap-1.5 sm:gap-2.5 mt-2" id="r-dest"></div>
+          </div>
+          <div class="card card-result row mb-6 sm:mb-8 shadow-lg">
+            <div class="text-left pr-2">
+              <span class="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-widest text-red-600 bg-red-50 px-2 py-0.5 rounded-full mb-1 inline-block border border-red-100">Live Phrase</span>
+              <div class="vi text-base sm:text-lg text-stone-900" id="rVi"></div>
+              <div class="en text-xs sm:text-sm mt-0.5 text-stone-500 font-medium" id="rEn"></div>
+            </div>
+            <div id="rBtn" class="flex items-center"></div>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="sec"><span>🚦</span> 2. During the Ride</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5 mb-6 sm:mb-8" id="ex-ride"></div>
+        </div>
+
+        <div>
+          <h2 class="sec"><span>💵</span> 3. Payment</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5 mb-6 sm:mb-8" id="ex-pay"></div>
+        </div>
+      </section>
+
+      <!-- TAB 3: SHOPPING -->
+      <section id="tab-shop" hidden class="space-y-6 sm:space-y-8">
+        <div>
+          <h2 class="sec"><span>🛍️</span> 1. Ask Price & Bargain</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5 mb-6 sm:mb-8" id="ex-price"></div>
+        </div>
+
+        <div>
+          <h2 class="sec"><span>👕</span> 2. Choose Options</h2>
+          <div class="card card-tinted mb-4 shadow-xs text-center">
+            <div class="lbl">📐 Size</div>
+            <div class="flex flex-wrap justify-center gap-1.5 sm:gap-2.5 mt-2" id="s-size"></div>
+          </div>
+          <div class="card card-result row mb-5 shadow-lg">
+            <div class="text-left pr-2">
+              <div class="vi text-base sm:text-lg text-stone-900" id="szVi"></div>
+              <div class="en text-xs sm:text-sm mt-0.5 text-stone-500 font-medium" id="szEn"></div>
+            </div>
+            <div id="szBtn" class="flex items-center"></div>
+          </div>
+
+          <div class="card card-tinted mb-4 shadow-xs text-center">
+            <div class="lbl">🎨 Color</div>
+            <div class="flex flex-wrap justify-center gap-1.5 sm:gap-2.5 mt-2" id="s-color"></div>
+          </div>
+          <div class="card card-result row mb-6 sm:mb-8 shadow-lg">
+            <div class="text-left pr-2">
+              <div class="vi text-base sm:text-lg text-stone-900" id="clVi"></div>
+              <div class="en text-xs sm:text-sm mt-0.5 text-stone-500 font-medium" id="clEn"></div>
+            </div>
+            <div id="clBtn" class="flex items-center"></div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5 mb-6 sm:mb-8" id="ex-try"></div>
+        </div>
+
+        <div>
+          <h2 class="sec"><span>🤝</span> 3. Make a Decision</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5 mb-6 sm:mb-8" id="ex-decide"></div>
+        </div>
+
+        <div>
+          <h2 class="sec"><span>💬</span> 4. What the Seller Says</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5 mb-6 sm:mb-8" id="ex-seller"></div>
+        </div>
+      </section>
+
+      <!-- TAB 4: ASK SOMEONE -->
+      <section id="tab-ask" hidden class="space-y-6 sm:space-y-8">
+        <div>
+          <h2 class="sec"><span>❓</span> 1. Wh- Questions</h2>
+          <div class="card card-tinted mb-4 shadow-xs text-center">
+            <div class="lbl">Topic Question</div>
+            <div class="flex flex-wrap justify-center gap-1.5 sm:gap-2.5 mt-2" id="w-q"></div>
+          </div>
+          <div class="card card-result row mb-5 shadow-lg">
+            <div class="text-left pr-2">
+              <div class="vi text-base sm:text-lg text-stone-900" id="wqVi"></div>
+              <div class="en text-xs sm:text-sm mt-0.5 text-stone-500 font-medium" id="wqEn"></div>
+            </div>
+            <div id="wqBtn" class="flex items-center"></div>
+          </div>
+
+          <div class="card card-tinted mb-4 shadow-xs text-center">
+            <div class="lbl">Your Answer</div>
+            <div class="flex flex-wrap justify-center gap-1.5 sm:gap-2.5 mt-2" id="w-a"></div>
+          </div>
+          <div class="card card-result row mb-6 sm:mb-8 shadow-lg">
+            <div class="text-left pr-2">
+              <div class="vi text-base sm:text-lg text-stone-900" id="waVi"></div>
+              <div class="en text-xs sm:text-sm mt-0.5 text-stone-500 font-medium" id="waEn"></div>
+            </div>
+            <div id="waBtn" class="flex items-center"></div>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="sec"><span>👌</span> 2. Yes / No Questions</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5 mb-6 sm:mb-8" id="ex-yn"></div>
+        </div>
+
+        <div>
+          <h2 class="sec"><span>🎉</span> Make a Suggestion</h2>
+          <div class="card card-tinted mb-4 space-y-5 shadow-xs text-center">
+            <div>
+              <div class="lbl">⏰ When</div>
+              <div class="flex flex-wrap justify-center gap-1.5 sm:gap-2.5 mt-2" id="a-time"></div>
+            </div>
+            <div>
+              <div class="lbl">🎈 Activity</div>
+              <div class="flex flex-wrap justify-center gap-1.5 sm:gap-2.5 mt-2" id="a-act"></div>
+            </div>
+          </div>
+          <div class="card card-result row mb-6 sm:mb-8 shadow-lg">
+            <div class="text-left pr-2">
+              <span class="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-widest text-red-600 bg-red-50 px-2 py-0.5 rounded-full mb-1 inline-block border border-red-100">Live Phrase</span>
+              <div class="vi text-base sm:text-lg text-stone-900" id="aVi"></div>
+              <div class="en text-xs sm:text-sm mt-0.5 text-stone-500 font-medium" id="aEn"></div>
+            </div>
+            <div id="aBtn" class="flex items-center"></div>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="sec"><span>💬</span> Answer Options</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5 mb-6 sm:mb-8" id="ex-ans"></div>
+        </div>
+      </section>
+
+      <!-- TAB 5: QUICK REPLIES -->
+      <section id="tab-quick" hidden class="space-y-6 sm:space-y-8">
+        <div>
+          <h2 class="sec"><span>🙏</span> 1. Thank You</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5 mb-6 sm:mb-8" id="ex-thx"></div>
+        </div>
+
+        <div>
+          <h2 class="sec"><span>😅</span> 2. Sorry</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5 mb-6 sm:mb-8" id="ex-sorry"></div>
+        </div>
+
+        <div>
+          <h2 class="sec"><span>⚡</span> 3. Handy Survival Phrases</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5 mb-6 sm:mb-8" id="ex-hand"></div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</Layout>
+
+<style is:global>
+  :root {
+    --primary: #dc2626;
+    --primary-hover: #b91c1c;
+    --ink: #1c1917;
+    --muted: #78716c;
+    --line: #e7e5e4;
+  }
+
+  /* UTILITY FOR NO SCROLLBAR ON MOBILE TABS */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* SECTION HEADERS */
+  .sec {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #44403c;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 1.5rem 0 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  @media (min-width: 640px) {
+    .sec { font-size: 0.85rem; margin: 2rem 0 1rem; gap: 0.6rem; }
+  }
+  .sec::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, #d6d3d1, transparent);
+  }
+
+  /* LABELS */
+  .lbl {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: #78716c;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0 0 0.4rem;
+  }
+
+  /* CARDS BASE & STYLING */
+  .card {
+    background: #ffffff;
+    border: 1px solid #e7e5e4;
+    border-radius: 16px;
+    padding: 0.75rem 1rem;
+    transition: all 0.2s ease;
+  }
+  @media (min-width: 640px) {
+    .card { border-radius: 18px; padding: 0.85rem 1.25rem; }
+  }
+
+  .card-tinted {
+    background: linear-gradient(135deg, #ffffff 0%, #fafaf9 100%);
+    border: 1px solid #e7e5e4;
+  }
+
+  .card-compact {
+    background: linear-gradient(135deg, #ffffff 0%, #fdfbf7 100%);
+    border: 1px solid #e7e5e4;
+    padding: 0.65rem 1rem;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .card-formula {
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    border: 1.5px solid #fde68a;
+    border-radius: 16px;
+    padding: 0.85rem 1rem;
+    text-align: center;
+    font-weight: 800;
+    color: #92400e;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.08);
+  }
+  @media (min-width: 640px) {
+    .card-formula { border-radius: 18px; padding: 1rem; font-size: 1.1rem; }
+  }
+
+  /* LIVE PHRASE CARD */
+  .card-result {
+    background: linear-gradient(135deg, #ffffff 0%, #fffbfb 100%);
+    border: 1.5px solid #fca5a5;
+    border-radius: 18px;
+    padding: 0.75rem 1rem;
+    box-shadow: 0 6px 16px -4px rgba(220, 38, 38, 0.08);
+    position: relative;
+    overflow: hidden;
+  }
+  .card-result::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--primary);
+  }
+
+  /* TYPOGRAPHY */
+  .vi {
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+  }
+  .en {
+    font-size: 0.775rem;
+    color: var(--muted);
+    margin-top: 0.1rem;
+    font-weight: 500;
+  }
+
+  /* PILL CHIPS (Tối ưu cảm ứng mobile) */
+  .chip {
+    padding: 0.4rem 0.85rem;
+    border: 1.5px solid #e7e5e4;
+    border-radius: 999px;
+    background: #ffffff;
+    font-size: 0.825rem;
+    font-weight: 700;
+    color: #292524;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+    user-select: none;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    touch-action: manipulation;
+  }
+  @media (min-width: 640px) {
+    .chip { padding: 0.45rem 1rem; font-size: 0.9rem; }
+  }
+  .chip small {
+    display: block;
+    font-size: 0.65rem;
+    color: var(--muted);
+    font-weight: 500;
+    margin-top: 0.02rem;
+  }
+  .chip:active {
+    transform: scale(0.96);
+  }
+  .chip.on {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    color: #ffffff;
+    border-color: #dc2626;
+    box-shadow: 0 4px 14px rgba(220, 38, 38, 0.3);
+  }
+  .chip.on small {
+    color: #fecaca;
+  }
+
+  /* NAVIGATION TABS */
+  .tab {
+    padding: 0.45rem 0.95rem;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--muted);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.18s ease;
+    border: 1px solid rgba(231, 229, 228, 0.8);
+    touch-action: manipulation;
+  }
+  @media (min-width: 640px) {
+    .tab { padding: 0.55rem 1.15rem; font-size: 0.875rem; }
+  }
+  .tab:hover {
+    color: var(--ink);
+    background: #ffffff;
+  }
+  .tab.on {
+    color: #ffffff;
+    background: var(--primary);
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+    border-color: var(--primary);
+  }
+
+  /* SPEAK BUTTON */
+  .speak {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    color: var(--primary);
+    border: 1.5px solid #fca5a5;
+    box-shadow: 0 2px 6px rgba(220, 38, 38, 0.12);
+    touch-action: manipulation;
+  }
+  @media (min-width: 640px) {
+    .speak { width: 2.2rem; height: 2.2rem; }
+  }
+  .speak:active {
+    transform: scale(0.92);
+  }
+</style>
+
+<script is:inline>
+  const WHO=[
+    ['anh', 'older brother', 'em', 'younger sibling'],
+    ['chị', 'older sister', 'em', 'younger sibling'],
+    ['cô', 'aunt / woman of parent’s age', 'con', 'child / younger person'],
+    ['chú', 'uncle / man of parent’s age', 'con', 'child / younger person'],
+    ['em', 'younger person', 'anh', 'older brother']
+  ];
+  
+  // S.temp: -1 là không chọn (OPTIONAL), 0 là Nóng/Đá, 1 là Đá/Không đá
+  const S={who:1,num:0,tab:0,veh:0,dest:0,size:1,color:0,time:0,act:0,whq:0,wha:0,dish:0,prot:0,sea:0,drink:0,fruit:0,temp:-1};
+  
+  const REG={nam:{ly:'ly',dia:'dĩa',nhe:'nha',nuoc:'nước suối',heo:'heo',dua:'thơm',ac:'máy lạnh',cam:'cám ơn',oto:'xe hơi',da:'dạ',xem:'coi',toi:'tới',dat:'mắc'}};
+  const NUMS=[['một','one',1],['hai','two',2],['ba','three',3],['bốn','four',4],['năm','five',5]];
+  const PROT=[['bò','beef'],['gà','chicken'],['hải sản','seafood']];
+  const SEA=[['tôm','shrimp','shrimp'],['mực','squid','squid'],['cua','crab','crab'],['cá','fish','fish'],['nghêu','clams','clam'],['hải sản','mixed seafood','seafood']];
+  const DISHES=[
+   {vi:'phở',sm:'noodle soup',clf:'',cats:[0,1],sea:[],en:(n,p,m)=>n+(p?' bowls':' bowl')+' of '+m+' pho'},
+   {vi:'bánh mì',sm:'baguette sandwich',clf:'',cats:[0,1],sea:[],en:(n,p,m)=>n+' '+m+' bánh mì '+(p?'sandwiches':'sandwich')},
+   {vi:'cơm chiên',sm:'fried rice',clf:'',cats:[0,1,2],sea:[0,1,2,5],en:(n,p,m)=>n+(p?' plates':' plate')+' of '+m+' fried rice'},
+   {vi:'mì xào',sm:'stir-fried noodles',clf:'',cats:[0,1,2],sea:[0,1,2,3,4,5],en:(n,p,m)=>n+(p?' plates':' plate')+' of stir-fried noodles with '+m},
+   {vi:'gỏi cuốn',sm:'fresh spring rolls',clf:'phần',cats:[1,2],sea:[0],en:(n,p,m)=>n+(p?' portions':' portion')+' of '+m+' spring rolls'},
+   {vi:'bánh xèo',sm:'crispy pancake',clf:'cái',cats:[2],sea:[0,1,5],en:(n,p,m)=>n+' '+m+' crispy '+(p?'pancakes':'pancake')}];
+  const FR=[['xoài','mango'],['bơ','avocado'],['dâu','strawberry'],['dưa hấu','watermelon'],['cam','orange'],['{dua}','pineapple']];
+  const DRINKS=[
+   {vi:'trà',en:'tea',pl:'teas',t:'th'},{vi:'cà phê',en:'coffee',pl:'coffees',t:'th'},
+   {vi:'sinh tố',en:'smoothie',pl:'smoothies',t:'fr',fr:[0,1,2,3]},
+   {vi:'nước ép',en:'juice',pl:'juices',t:'fr',fr:[4,3,5]},
+   {vi:'{nuoc}',en:'mineral water',t:'w'}];
+  const BILL=[['Tính tiền','The bill, please'],['Bao nhiêu tiền?','How much?'],['Tiền mặt','Cash'],['Thẻ','Card']];
+  const DEST=[['sân bay','airport','the airport'],['khách sạn','hotel','the hotel'],['trung tâm thương mại','shopping mall','the shopping mall'],['chợ','market','the market']];
+  const BOOK=[['{you} đặt Grab chưa?','Have you booked a Grab yet?'],['{self} đặt Grab rồi.','I’ve booked a Grab.'],['{you} đi đâu?','Where are you going?']];
+  const RIDE=[['Dừng ở đây.','Stop here.'],['Chậm chút.','A bit slower, please.'],['Bật {ac}.','Turn on the AC, please.'],['{toi} rồi.','We’re here.']];
+  const SIZES=['S','M','L','XL'];
+  const COLORS=[['đỏ','red'],['xanh dương','blue'],['xanh lá','green'],['đen','black'],['trắng','white']];
+  const TIMES=[['tối nay','Tonight'],['ngày mai','Tomorrow'],['cuối tuần','This weekend']];
+  const ACTS=[['đi uống cà phê','go for coffee'],['đi ăn tối','have dinner'],['đi {xem} phim','watch a movie'],['đi dạo','go for a walk'],['đi mua sắm','go shopping']];
+  const PRICE=[['Cái này bao nhiêu tiền?','How much is this?'],['Bớt chút được không?','Can you give me a discount?'],['{dat} quá!','Too expensive!']];
+  const TRY=[['{self} thử được không?','Can I try it on?'],['Có cái lớn hơn không?','Do you have a bigger one?'],['Có cái nhỏ hơn không?','Do you have a smaller one?']];
+  const DECIDE=[['{self} lấy cái này.','I’ll take this one.']];
+  const SELLER=[['Cái này đang giảm giá.','This is on sale.'],['Hết size này rồi.','We’re out of this size.'],['Không giảm giá được.','We can’t give a discount.'],['Chỉ nhận tiền mặt.','Cash only.']];
+  const WHQ=[
+   {vi:'làm gì',tag:'What to do',qen:'What do you want to do?',ans:[['{xem} phim','watch a movie'],['đi dạo','go for a walk'],['đi mua sắm','go shopping'],['nghỉ ngơi','rest'],['Làm gì cũng được','Anything is fine.',1]]},
+   {vi:'ăn gì',tag:'What to eat',qen:'What do you want to eat?',ans:[['ăn phở','eat pho'],['ăn bánh mì','eat a bánh mì sandwich'],['ăn cơm chiên','eat fried rice'],['ăn mì xào','eat stir-fried noodles'],['ăn gỏi cuốn','eat fresh spring rolls'],['Ăn gì cũng được','Anything is fine.',1]]},
+   {vi:'uống gì',tag:'What to drink',qen:'What do you want to drink?',ans:[['uống trà','drink tea'],['uống cà phê','drink coffee'],['uống sinh tố','drink a smoothie'],['uống nước ép','drink juice'],['uống {nuoc}','drink mineral water'],['Uống gì cũng được','Anything is fine.',1]]},
+   {vi:'đi đâu',tag:'Where to go',qen:'Where do you want to go?',ans:[['đi cà phê','go to a coffee shop'],['đi du thuyền','go on a cruise'],['đi khách sạn','go to a hotel'],['đi villa','go to a villa'],['đi nhà hàng','go to a restaurant'],['Đi đâu cũng được','Anywhere is fine.',1]]}];
+  const YN=[['{you} ăn cay được không?','Can you eat spicy food?'],['{you} có rảnh không?','Are you free?'],['{you} có đói không?','Are you hungry?'],['{you} có thích cái này không?','Do you like this?']];
+  const ANS=[['{da}.','Yes.'],['Không.','No.']];
+  const THX=[['{cam} {you}.','Thank you.'],['Không sao đâu.','No problem. / It’s okay.']];
+  const SORRY=[['Xin lỗi {you}.','I’m sorry.']];
+  const HAND=[['Đợi chút.','Please wait a moment.'],['{you} nói lại được không?','Could you say that again?'],['{self} không hiểu.','I don’t understand.'],['{you} nói chậm lại được không?','Could you speak more slowly?'],['Được chứ!','Sure!']];
+  const PAY=[['Bao nhiêu tiền?','How much is it?'],['Tiền mặt.','Cash.'],['Trả tiền trong app rồi.','Already paid in the app.'],['{cam} {you}.','Thank you.']];
+
+  const me=()=>WHO[S.who][2];
+  const T=s=>s.replace(/\{self\}/g,me()).replace(/\{you\}/g,WHO[S.who][0]).replace(/\{(ly|dia|nhe|nuoc|heo|dua|ac|cam|oto|da|xem|toi|dat)\}/g,(a,k)=>REG['nam'][k]);
+  const H=s=>(t=>t.charAt(0).toUpperCase()+t.slice(1))(T(s));
+  const plain=s=>T(s).replace(/<[^>]+>/g,'');
+  const esc=s=>s.replace(/"/g,'&quot;');
+  const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+  
+  const sp=t=>`<button class="speak" data-t="${esc(t)}" title="Listen"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg></button>`;
+
+  function speak(txt){
+    if(!('speechSynthesis' in window))return;
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(txt);
+    u.lang='vi-VN'; u.rate=0.9; u.pitch=0.6;
+    const vs=window.speechSynthesis.getVoices().filter(v=>/^vi/i.test(v.lang));
+    if(vs.length){
+      u.voice=vs.find(v=>/saigon|sài gòn|south|nam|hcm/i.test(v.name))||vs[0];
+    }
+    window.speechSynthesis.speak(u);
+  }
+  if('speechSynthesis' in window)window.speechSynthesis.getVoices();
+
+  const seg=(id,arr,cur,cb)=>{
+    if(id==='who'){
+      const btn=document.getElementById('dropdown-who-btn');
+      const menu=document.getElementById('dropdown-who-menu');
+      const arrow=document.getElementById('dropdown-who-arrow');
+      const txt=document.getElementById('dropdown-who-text');
+      
+      if(txt && btn && menu){
+        txt.innerHTML=`<b>${arr[cur][0]}</b> <span class="text-[10px] sm:text-xs text-stone-400 font-normal">(${arr[cur][1]})</span>`;
+        menu.innerHTML = arr.map((a,i)=>`
+          <div class="px-3 py-2 rounded-lg cursor-pointer transition flex items-center justify-between ${i===cur?'bg-red-50 text-red-600 font-bold':'hover:bg-stone-100 text-stone-800'}" data-i="${i}">
+            <span class="text-xs sm:text-sm mx-auto">${a[0]} <span class="text-[10px] sm:text-xs text-stone-400 font-normal">(${a[1]})</span></span>
+          </div>
+        `).join('');
+
+        btn.onclick = (e) => {
+          e.stopPropagation();
+          const isOpen = !menu.classList.contains('hidden');
+          menu.classList.toggle('hidden', isOpen);
+          if(arrow) arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+        };
+
+        menu.onclick = (e) => {
+          const item = e.target.closest('[data-i]');
+          if(item){
+            cb(+item.dataset.i);
+            menu.classList.add('hidden');
+            if(arrow) arrow.style.transform = 'rotate(0deg)';
+          }
+        };
+
+        document.addEventListener('click', () => {
+          menu.classList.add('hidden');
+          if(arrow) arrow.style.transform = 'rotate(0deg)';
+        });
+      }
+      return;
+    }
+
+    if(id==='me'){
+      const btn=document.getElementById('dropdown-me-btn');
+      const menu=document.getElementById('dropdown-me-menu');
+      const arrow=document.getElementById('dropdown-me-arrow');
+      const txt=document.getElementById('dropdown-me-text');
+      
+      if(txt && btn && menu){
+        txt.innerHTML=`<b>${arr[cur][2]}</b> <span class="text-[10px] sm:text-xs text-stone-400 font-normal">(${arr[cur][3]})</span>`;
+        menu.innerHTML = arr.map((a,i)=>`
+          <div class="px-3 py-2 rounded-lg cursor-pointer transition flex items-center justify-between ${i===cur?'bg-red-50 text-red-600 font-bold':'hover:bg-stone-100 text-stone-800'}" data-i="${i}">
+            <span class="text-xs sm:text-sm mx-auto">${a[2]} <span class="text-[10px] sm:text-xs text-stone-400 font-normal">(${a[3]})</span></span>
+          </div>
+        `).join('');
+
+        btn.onclick = (e) => {
+          e.stopPropagation();
+          const isOpen = !menu.classList.contains('hidden');
+          menu.classList.toggle('hidden', isOpen);
+          if(arrow) arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+        };
+
+        menu.onclick = (e) => {
+          const item = e.target.closest('[data-i]');
+          if(item){
+            cb(+item.dataset.i);
+            menu.classList.add('hidden');
+            if(arrow) arrow.style.transform = 'rotate(0deg)';
+          }
+        };
+      }
+      return;
+    }
+
+    const el=document.getElementById(id);
+    if(el){
+      el.className='flex flex-wrap justify-center gap-1.5 sm:gap-2.5';
+      el.innerHTML=arr.map((a,i)=>`<button class="chip ${i===cur?'on':''}" data-i="${i}">${a[0]}${a[1]?`<small>${a[1]}</small>`:''}</button>`).join('');
+      el.onclick=e=>{const b=e.target.closest('button');if(b)cb(+b.dataset.i);};
+    }
+  };
+
+  const examples=(id,arr)=>{
+    const el = document.getElementById(id);
+    if(el){
+      el.className='grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5';
+      el.innerHTML=arr.map(a=>`
+        <div class="card card-tinted row shadow-2xs hover:border-stone-300 hover:shadow-md transition">
+          <div class="text-left"><div class="vi text-xs sm:text-base text-stone-900">${H(a[0])}</div><div class="en text-[11px] sm:text-sm">${a[1]}</div></div>
+          <div class="flex items-center">${sp(plain(a[0]))}</div>
+        </div>`).join('');
+    }
+  };
+
+  const show=(p,vi,en)=>{
+    const viEl = document.getElementById(p+'Vi');
+    const enEl = document.getElementById(p+'En');
+    const btnEl = document.getElementById(p+'Btn');
+    if(viEl) viEl.innerHTML=H(vi);
+    if(enEl) enEl.innerHTML=en;
+    if(btnEl) btnEl.innerHTML=sp(plain(vi));
+  };
+
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('.speak');
+    if(btn) speak(btn.dataset.t);
+  });
+  function render(){
+    const w=WHO[S.who], N=NUMS[S.num], pl=N[2]>1;
+    seg('who', WHO, S.who, i=>{S.who=i; render();});
+    seg('me', WHO, S.who, i=>{S.who=i; render();});
+    
+    const excuseEl = document.getElementById('excuse');
+    const excuseBtnEl = document.getElementById('excuseBtn');
+    const formulaEl = document.getElementById('formula');
+    
+    if(excuseEl) excuseEl.textContent=cap(w[0])+' ơi';
+    if(excuseBtnEl) excuseBtnEl.innerHTML=sp(w[0]+' ơi');
+    if(formulaEl) formulaEl.innerHTML=H('Cho {self} + <b>number</b> + <b>something</b>')+'<div class="text-[11px] sm:text-xs text-amber-800 font-medium mt-0.5">“I’d like + number + something”</div>';
+    
+    seg('b-num', NUMS.map(x=>[x[0],x[1]]), S.num, i=>{S.num=i; render();});
+
+    const d=DISHES[S.dish];
+    if(!d.cats.includes(S.prot))S.prot=d.cats[0];
+    if(d.sea.length&&!d.sea.includes(S.sea))S.sea=d.sea[0];
+    seg('f-dish', DISHES.map(x=>[x.vi,x.sm]), S.dish, i=>{S.dish=i; render();});
+    seg('f-meat', d.cats.map(i=>[PROT[i][0],PROT[i][1]]), d.cats.indexOf(S.prot), i=>{S.prot=d.cats[i]; render();});
+    
+    const isSea=S.prot===2;
+    const seaWrap = document.getElementById('f-sea-wrap');
+    if(seaWrap) seaWrap.style.display=isSea?'':'none';
+    if(isSea) seg('f-sea', d.sea.map(i=>[SEA[i][0],SEA[i][1]]), d.sea.indexOf(S.sea), i=>{S.sea=d.sea[i]; render();});
+    
+    const mv=isSea?SEA[S.sea][0]:PROT[S.prot][0], mw=isSea?SEA[S.sea][2]:PROT[S.prot][1];
+    show('f',`Cho {self} ${N[0]} ${d.clf?d.clf+' ':''}${d.vi} ${mv}`,cap(d.en(N[1],pl,mw))+', please.');
+    examples('ex-pork',[['{self} không ăn thịt {heo}.','I don’t eat pork.'],['Món này có thịt {heo} không?','Does this dish contain pork?']]);
+
+    const k=DRINKS[S.drink];
+    if(k.t==='fr'&&!k.fr.includes(S.fruit))S.fruit=k.fr[0];
+    const TE=k.t==='th'?[['nóng','hot'],['đá','iced']]:[['đá','iced'],['không đá','no ice']];
+    
+    seg('d-drink', DRINKS.map(x=>[T(x.vi),x.en]), S.drink, i=>{S.drink=i; S.temp=-1; render();});
+    const fruitWrap = document.getElementById('d-fruit-wrap');
+    const tempWrap = document.getElementById('d-temp-wrap');
+    if(fruitWrap) fruitWrap.style.display=k.t==='fr'?'':'none';
+    if(tempWrap) tempWrap.style.display=k.t==='w'?'none':'';
+    
+    if(k.t==='fr') seg('d-fruit', k.fr.map(i=>[T(FR[i][0]),FR[i][1]]), k.fr.indexOf(S.fruit), i=>{S.fruit=k.fr[i]; render();});
+    
+    // TÍNH NĂNG TOGGLE OPTIONAL CHO TEMPERATURE
+    if(k.t!=='w') {
+      seg('d-temp', TE, S.temp, i=>{
+        if(S.temp === i) S.temp = -1; // Nhấp lại lần nữa để bỏ chọn (Deselect)
+        else S.temp = i;
+        render();
+      });
+    }
+
+    let vi,en,ly=REG['nam'].ly;
+    const tempSuffix = S.temp !== -1 ? ' ' + TE[S.temp][0] : '';
+    
+    if(k.t==='th'){
+      vi=`Cho {self} ${N[0]} ${ly} ${k.vi}${tempSuffix}`;
+      en = S.temp !== -1 ? `${cap(N[1])} ${TE[S.temp][1]} ${pl?k.pl:k.en}, please.` : `${cap(N[1])} ${pl?k.pl:k.en}, please.`;
+    }
+    else if(k.t==='fr'){
+      const f=FR[S.fruit];
+      vi=`Cho {self} ${N[0]} ${ly} ${k.vi} ${f[0]}${tempSuffix}`;
+      if(S.temp === -1) en=`${cap(N[1])} ${f[1]} ${pl?k.pl:k.en}, please.`;
+      else en = S.temp === 0 ? `${cap(N[1])} iced ${f[1]} ${pl?k.pl:k.en}, please.` : `${cap(N[1])} ${f[1]} ${pl?k.pl:k.en}, no ice, please.`;
+    }
+    else{
+      vi=`Cho {self} ${N[0]} chai ${k.vi}`;
+      en=`${cap(N[1])} ${pl?'bottles':'bottle'} of mineral water, please.`;
+    }
+    show('d',vi,en);
+
+    examples('ex-menu',[['{you} ơi, cho {self} {xem} menu {nhe}.','Excuse me, could I see the menu, please?']]);
+    
+    const billEl = document.getElementById('bill');
+    if(billEl){
+      billEl.className='grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5 mb-6 sm:mb-8';
+      billEl.innerHTML=BILL.map(v=>`
+        <div class="card card-tinted row shadow-2xs cursor-pointer hover:border-red-300 hover:shadow-md transition" data-t="${esc(v[0].replace('?',''))}">
+          <div class="text-left"><div class="font-bold text-stone-900 text-xs sm:text-base">${v[0]}</div><div class="text-stone-500 text-[11px] sm:text-sm mt-0.5">${v[1]}</div></div>
+          <div class="flex items-center"><div class="speak">🔊</div></div>
+        </div>`).join('');
+    }
+
+    renderRide(); renderMore(); renderTabs();
+  }
+
+  function renderRide(){
+    seg('r-dest', DEST.map(v=>[v[0],v[1]]), S.dest, i=>{S.dest=i; render();});
+    show('r','{self} đi '+DEST[S.dest][0],'I’m going to '+DEST[S.dest][2]+'.');
+    examples('ex-book',BOOK); examples('ex-ride',RIDE); examples('ex-pay',PAY);
+  }
+
+  function renderWh(){
+    const q=WHQ[S.whq], A=q.ans;
+    if(S.wha>=A.length)S.wha=0;
+    seg('w-q', WHQ.map(x=>[x.vi,x.tag]), S.whq, i=>{S.whq=i; S.wha=0; render();});
+    show('wq','{you} muốn '+q.vi+'?',q.qen);
+    seg('w-a', A.map(a=>[T(a[0]),a[1]]), S.wha, i=>{S.wha=i; render();});
+    const a=A[S.wha];
+    if(a[2])show('wa',a[0],a[1]);else show('wa','{self} muốn '+a[0],'I want to '+a[1]+'.');
+  }
+
+  function renderMore(){
+    examples('ex-price',PRICE); examples('ex-try',TRY); examples('ex-decide',DECIDE); examples('ex-seller',SELLER);
+    seg('s-size', SIZES.map(s=>[s]), S.size, i=>{S.size=i; render();});
+    show('sz','Có size '+SIZES[S.size]+' không?','Do you have size '+SIZES[S.size]+'?');
+    seg('s-color', COLORS.map(c=>[c[0],c[1]]), S.color, i=>{S.color=i; render();});
+    show('cl','Có màu '+COLORS[S.color][0]+' không?','Do you have it in '+COLORS[S.color][1]+'?');
+    renderWh(); examples('ex-yn',YN); examples('ex-ans',ANS);
+    seg('a-time', TIMES.map(t=>[t[0],t[1]]), S.time, i=>{S.time=i; render();});
+    seg('a-act', ACTS.map(t=>[T(t[0]),t[1]]), S.act, i=>{S.act=i; render();});
+    show('a',cap(TIMES[S.time][0])+' mình '+ACTS[S.act][0]+' {nhe}?',TIMES[S.time][1]+', shall we '+ACTS[S.act][1]+'?');
+    examples('ex-thx',THX); examples('ex-sorry',SORRY); examples('ex-hand',HAND);
+  }
+
+  function renderTabs(){
+    const tabNames=['🍜 Food & Drinks','🚕 Book a Ride','🛍️ Shopping','💬 Ask Someone','⚡ Quick Replies'];
+    const tabsEl = document.getElementById('tabs');
+    if(tabsEl){
+      tabsEl.innerHTML=tabNames.map((n,i)=>`
+        <button class="tab ${i===S.tab?'on':''}" data-tab="${i}">
+          ${n}
+        </button>`).join('');
+      
+      tabsEl.onclick=e=>{
+        const b=e.target.closest('button');
+        if(b){S.tab=+b.dataset.tab; render(); window.scrollTo({top: 0, behavior: 'smooth'});}
+      };
+    }
+
+    ['tab-order','tab-ride','tab-shop','tab-ask','tab-quick'].forEach((id,i)=>{
+      const sec = document.getElementById(id);
+      if(sec) sec.hidden=S.tab!==i;
+    });
+  }
+
+  document.addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(b)speak(b.getAttribute('data-t'));});
+
+  render();
+</script>
