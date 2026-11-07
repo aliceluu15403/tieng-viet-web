@@ -308,6 +308,12 @@ import Layout from '../../layout.astro';
 </Layout>
 
 <style is:global>
+  /* Slightly enlarge the typography across the whole page */
+  html { font-size: 17px; }
+  @media (max-width: 639px) {
+    html { font-size: 16.5px; }
+  }
+
   :root {
     --primary: #dc2626;
     --primary-hover: #b91c1c;
@@ -456,13 +462,14 @@ import Layout from '../../layout.astro';
   @media (min-width: 640px) {
     .chip { padding: 0.45rem 1rem; font-size: 0.9rem; }
   }
-  .chip small {
-    display: block;
-    font-size: 0.65rem;
-    color: var(--muted);
-    font-weight: 500;
-    margin-top: 0.02rem;
-  }
+.chip small {
+  display: block;
+  font-size: 0.8rem;
+  line-height: 1.3;
+  color: var(--muted);
+  font-weight: 500;
+  margin-top: 0.08rem;
+}
   .chip:active {
     transform: scale(0.96);
   }
@@ -527,7 +534,13 @@ import Layout from '../../layout.astro';
   .speak:active {
     transform: scale(0.92);
   }
-</style>
+
+  /* Make the English translations under the category chips easier to read */
+  .chip small {
+    font-size: 0.78rem !important;
+    line-height: 1.25;
+  }
+\n</style>
 
 <script is:inline>
   const WHO=[
@@ -779,18 +792,20 @@ import Layout from '../../layout.astro';
     }
     show('d',vi,en);
 
-    examples('ex-menu',[['{you} ơi, cho {self} {xem} menu {nhe}.','Excuse me, could I see the menu, please?']]);
+    examples('ex-menu',[['{you} ơi, cho {self} menu.','Excuse me, could I have the menu, please?']]);
     
-    const billEl = document.getElementById('bill');
-    if(billEl){
-      billEl.className='grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5 mb-6 sm:mb-8';
-      billEl.innerHTML=BILL.map(v=>`
-        <div class="card card-tinted row shadow-2xs cursor-pointer hover:border-red-300 hover:shadow-md transition" data-t="${esc(v[0].replace('?',''))}">
-          <div class="text-left"><div class="font-bold text-stone-900 text-xs sm:text-base">${v[0]}</div><div class="text-stone-500 text-[11px] sm:text-sm mt-0.5">${v[1]}</div></div>
-          <div class="flex items-center"><div class="speak">🔊</div></div>
-        </div>`).join('');
-    }
-
+const billEl = document.getElementById('bill');
+if(billEl){
+  billEl.className='grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5 mb-6 sm:mb-8';
+  billEl.innerHTML=BILL.map(v=>`
+    <div class="card card-tinted row shadow-2xs cursor-pointer hover:border-red-300 hover:shadow-md transition">
+      <div class="text-left">
+        <div class="font-bold text-stone-900 text-xs sm:text-base">${v[0]}</div>
+        <div class="text-stone-500 text-[11px] sm:text-sm mt-0.5">${v[1]}</div>
+      </div>
+      <div class="flex items-center">${sp(plain(v[0]))}</div>
+    </div>`).join('');
+}
     renderRide(); renderMore(); renderTabs();
   }
 
