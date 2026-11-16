@@ -45,7 +45,7 @@ export default {
       { vn: "Đồ dùng cá nhân", en: "Personal items" },
       { vn: "Băng chuyền", en: "Baggage carousel / Conveyor belt" },
       { vn: "Hạng phổ thông", en: "Economy class" },
-      { vn: "Thương gia", en: "Business class" },
+      { vn: "Hạng thương gia", en: "Business class" },
       { vn: "Hạng nhất", en: "First class" }
     ]
   },
