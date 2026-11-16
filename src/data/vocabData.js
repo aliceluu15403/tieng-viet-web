@@ -34,7 +34,19 @@ export default {
       { vn: "Hộ chiếu", en: "Passport" },
       { vn: "Kiểm tra an ninh", en: "Security check" },
       { vn: "Hoãn", en: "Delayed / Delay" },
-      { vn: "Khu vực nhận hành lý", en: "Baggage claim" }
+      { vn: "Khu vực nhận hành lý", en: "Baggage claim" },
+      { vn: "Căn cước công dân", en: "Citizen Identity Card" },
+      { vn: "Vé máy bay", en: "Flight ticket / Boarding pass" },
+      { vn: "Quốc tế", en: "International" },
+      { vn: "Chuyến bay nội địa", en: "Domestic flight" },
+      { vn: "Hành lý", en: "Luggage / Baggage" },
+      { vn: "Vali", en: "Suitcase" },
+      { vn: "Cân", en: "Scale" },
+      { vn: "Đồ dùng cá nhân", en: "Personal items" },
+      { vn: "Băng chuyền", en: "Baggage carousel / Conveyor belt" },
+      { vn: "Hạng phổ thông", en: "Economy class" },
+      { vn: "Thương gia", en: "Business class" },
+      { vn: "Hạng nhất", en: "First class" }
     ]
   },
 
