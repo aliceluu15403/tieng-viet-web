@@ -45,7 +45,7 @@ export default {
       { vn: "Đồ dùng cá nhân", en: "Personal items" },
       { vn: "Băng chuyền", en: "Baggage carousel / Conveyor belt" },
       { vn: "Hạng phổ thông", en: "Economy class" },
-      { vn: "Thương gia", en: "Business class" },
+      { vn: "Hạng thương gia", en: "Business class" },
       { vn: "Hạng nhất", en: "First class" },
       { vn: "Chuyển tiếp", en: "Transfer / Connecting flight" },
       { vn: "Quá cảnh", en: "Transit" }
@@ -420,7 +420,7 @@ export default {
   },
 
   "emotions_expert": {
-    title: "Emotions",
+    title: "Feelings and Emotions",
     type: "free",
     words: [
       { vn: "Vui", en: "Happy" },
@@ -429,9 +429,30 @@ export default {
       { vn: "Sợ", en: "Scared / Afraid" },
       { vn: "Chán", en: "Bored / Boring" },
       { vn: "Tự tin", en: "Confident" },
-      { vn: "Xấu hổ / Ngại", en: "Shy / Embarrassed" }
+      { vn: "Xấu hổ / Ngại", en: "Shy / Embarrassed" },
+      { vn: "Hạnh phúc", en: "Happy / Blessed" },
+      { vn: "Thất vọng", en: "Disappointed" },
+      { vn: "Bực mình", en: "Annoyed / Frustrated" },
+      { vn: "Tức giận", en: "Angry / Mad" },
+      { vn: "Khó chịu", en: "Uncomfortable / Irritated" },
+      { vn: "Tiếc", en: "Regretful / What a pity" },
+      { vn: "Thoải mái", en: "Comfortable / Relaxed" }
     ]
   },
+  "cause_expert": {
+    title: "Cause",
+    type: "free",
+    words: [
+      { vn: "Làm khó", en: "Make it difficult / Give someone a hard time" },
+      { vn: "Làm phiền", en: "Bother / Disturb" },
+      { vn: "Làm ồn", en: "Make noise" },
+      { vn: "Làm bẩn", en: "Make dirty / Stain" },
+      { vn: "Làm vỡ", en: "Break (into pieces)" },
+      { vn: "Làm mất", en: "Lose" },
+      { vn: "Làm hư", en: "Break / Damage / Spoil" },
+      { vn: "Làm đổ", en: "Spill / Knock over" }
+    ]
+},
   "kitchen_south": {
     title: "Kitchen",
     type: "locked",
